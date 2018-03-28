@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+    <id>preferred_providers</id>
+    <name>Preferred Providers</name>
+    <summary>Allow nextcloud to request user accounts</summary>
+    <description><![CDATA[Allow nextcloud to request user accounts]]></description>
+    <version>1.0.0</version>
+    <licence>agpl</licence>
+    <author>John Molakvoæ</author>
+    <namespace>Preferred_Providers</namespace>
+    <category>files</category>
+    <bugs>https://github.com/nextcloud/preferred_providers</bugs>
+    <dependencies>
+        <nextcloud min-version="12" max-version="14"/>
+    </dependencies>
+    <settings>
+        <admin>OCA\Preferred_Providers\Settings\Admin</admin>
+		<admin-section>OCA\Preferred_Providers\Settings\Section</admin-section>
+    </settings>
+</info>
