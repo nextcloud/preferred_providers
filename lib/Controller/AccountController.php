@@ -25,7 +25,7 @@ namespace OCA\Preferred_Providers\Controller;
 use OC\Authentication\Token\IProvider;
 use OC\Authentication\Token\IToken;
 
-use OCA\Preferred_Providers\Mailer\NewUserMailHelper;
+use OCA\Preferred_Providers\Mailer\VerifyMailHelper;
 
 use OCP\AppFramework\ApiController;
 use OCP\AppFramework\Http;
@@ -58,8 +58,8 @@ class AccountController extends ApiController {
 	private $tokenProvider;
 	/** @var IMailer */
 	private $mailer;
-	/** @var NewUserMailHelper */
-	private $newUserMailHelper;
+	/** @var VerifyMailHelper */
+	private $verifyMailHelper;
 	/** @var ILogger */
 	private $logger;
 	/** @var IURLGenerator */
@@ -79,7 +79,7 @@ class AccountController extends ApiController {
 	 * @param ISecureRandom $secureRandom
 	 * @param IProvider $tokenProvider
 	 * @param IMailer $mailer
-	 * @param NewUserMailHelper $newUserMailHelper
+	 * @param VerifyMailHelper $verifyMailHelper
 	 * @param ILogger $logger
 	 * @param IURLGenerator $urlGenerator
 	 * @param ITimeFactory $timeFactory
@@ -92,7 +92,7 @@ class AccountController extends ApiController {
 								ISecureRandom $secureRandom,
 								IProvider $tokenProvider,
 								IMailer $mailer,
-								NewUserMailHelper $newUserMailHelper,
+								VerifyMailHelper $verifyMailHelper,
 								ILogger $logger,
 								IURLGenerator $urlGenerator,
 								ITimeFactory $timeFactory,
@@ -104,7 +104,7 @@ class AccountController extends ApiController {
 		$this->secureRandom = $secureRandom;
 		$this->tokenProvider = $tokenProvider;
 		$this->mailer = $mailer;
-		$this->newUserMailHelper = $newUserMailHelper;
+		$this->verifyMailHelper = $verifyMailHelper;
 		$this->logger = $logger;
 		$this->urlGenerator = $urlGenerator;
 		$this->timeFactory = $timeFactory;
@@ -159,8 +159,8 @@ class AccountController extends ApiController {
 		$newUser->setEMailAddress($email);
 		try {
 			// send email without the reset password link
-			$emailTemplate = $this->newUserMailHelper->generateTemplate($newUser);
-			$this->newUserMailHelper->sendMail($newUser, $emailTemplate);
+			$emailTemplate = $this->verifyMailHelper->generateTemplate($newUser);
+			$this->verifyMailHelper->sendMail($newUser, $emailTemplate);
 		} catch (\Exception $e) {
 			$this->logger->logException($e, [
 				'message' => "Can't send new user mail to $email",

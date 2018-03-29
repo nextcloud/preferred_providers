@@ -22,31 +22,116 @@ declare(strict_types=1);
 
 namespace OCA\Preferred_Providers\Controller;
 
-class MailHelperController {
+use OCP\AppFramework\Controller;
+use OCP\AppFramework\Http\RedirectResponse;
+use OCP\AppFramework\Http\TemplateResponse;
+use OCP\AppFramework\Utility\ITimeFactory;
+use OCP\IConfig;
+use OCP\IL10N;
+use OCP\IRequest;
+use OCP\IUserManager;
+use OCP\Security\ICrypto;
+
+class MailHelperController extends Controller {
 
 	/** @var string */
 	protected $appName;
+	/** @var IConfig */
+	private $config;
+	/** @var IL10N */
+	private $l10n;
+	/** @var IUserManager */
+	private $userManager;
+	/** @var ICrypto */
+	private $crypto;
+	/** @var ITimeFactory */
+	private $timeFactory;
 
 	/**
 	 * Account constructor.
 	 * 
 	 * @param string $appName
 	 * @param IRequest $request
+	 * @param IConfig $config
+	 * @param IL10N $l10n
+	 * @param IUserManager $userManager
+	 * @param ICrypto $crypto
+	 * @param ITimeFactory $timeFactory
 	 */
 	public function __construct(string $appName,
-								IRequest $request) {
-
+								IRequest $request,
+								IConfig $config,
+								IL10N $l10n,
+								IUserManager $userManager,
+								ICrypto $crypto,
+								ITimeFactory $timeFactory) {
+		parent::__construct($appName, $request);
+		$this->appName = $appName;
+		$this->config = $config;
+		$this->l10n = $l10n;
+		$this->userManager = $userManager;
+		$this->crypto = $crypto;
+		$this->timeFactory = $timeFactory;
     }
 
 
     /**
-     * Validate email
+     * @NoCSRFRequired
+     * @PublicPage
+	 * 
+     * Process email verification
 	 * 
 	 * @param string $email The email to create an account for
 	 * @param string $token The security token
-	 * @throws OCSForbiddenException
+	 * @return RedirectResponse|TemplateResponse
      */
     public function confirmMailAddress(string $email, string $token) {
+		// process token validation
+		try {
+			$this->checkVerifyMailAddressToken($token, $email);
+		} catch (\Exception $e) {
+			return new TemplateResponse('core', 'error', [
+				'errors' => array(array('error' => $e->getMessage()))
+			], 'guest');
+		}
+
+		// remove user deadline & token
+		$this->config->deleteUserValue($email, $this->appName, 'disable_user_after');
+		$this->config->deleteUserValue($email, $this->appName, 'verify_token');
 		
+		// redirect to home, user should already be logged
+		return new RedirectResponse('/');
+	}
+
+	/**
+	 * Check token authenticity
+	 * 
+	 * @param string $token
+	 * @param string $userId
+	 * @throws \Exception
+	 */
+	protected function checkVerifyMailAddressToken($token, $userId) {
+		$user = $this->userManager->get($userId);
+		if($user === null || !$user->isEnabled()) {
+			throw new \Exception($this->l10n->t('The token is invalid'));
+		}
+		try {
+			$encryptedToken = $this->config->getUserValue($userId, $this->appName, 'verify_token');
+			$mailAddress = !is_null($user->getEMailAddress()) ? $user->getEMailAddress() : '';
+			$decryptedToken = $this->crypto->decrypt($encryptedToken, $mailAddress.$this->config->getSystemValue('secret'));
+		} catch (\Exception $e) {
+			throw new \Exception($this->l10n->t('The token is invalid'));
+		}
+		$splittedToken = explode(':', $decryptedToken);
+		if(count($splittedToken) !== 2) {
+			throw new \Exception($this->l10n->t('The token is invalid'));
+		}
+		if ($splittedToken[0] < ($this->timeFactory->getTime() - 60*60*12) ||
+			$user->getLastLogin() > $splittedToken[0]) {
+			throw new \Exception($this->l10n->t('The token is expired'));
+		}
+		if (!hash_equals($splittedToken[1], $token)) {
+			throw new \Exception($this->l10n->t('The token is invalid'));
+		}
 	}
 }

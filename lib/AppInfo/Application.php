@@ -28,6 +28,10 @@ use Symfony\Component\EventDispatcher\GenericEvent;
 class Application extends App {
 	public function __construct() {
 		parent::__construct('preferred_providers');
+		// $container = $this->getContainer();
+
+		// $server = $container->getServer();
+		// $eventDispatcher = $server->getEventDispatcher();
 
 		// $eventDispatcher->addListener('OCP\PasswordPolicy::validate',
 		// 	function(GenericEvent $event) use ($container) {

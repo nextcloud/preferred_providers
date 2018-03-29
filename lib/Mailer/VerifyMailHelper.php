@@ -41,7 +41,10 @@ use OCP\Mail\IMailer;
 use OCP\Security\ICrypto;
 use OCP\Security\ISecureRandom;
 
-class NewUserMailHelper {
+class VerifyMailHelper {
+
+	/** @var string */
+	protected $appName;
 	/** @var Defaults */
 	private $themingDefaults;
 	/** @var IURLGenerator */
@@ -58,10 +61,9 @@ class NewUserMailHelper {
 	private $config;
 	/** @var ICrypto */
 	private $crypto;
-	/** @var string */
-	private $fromAddress;
 
 	/**
+	 * @param string $appName
 	 * @param Defaults $themingDefaults
 	 * @param IURLGenerator $urlGenerator
 	 * @param IL10N $l10n
@@ -70,17 +72,17 @@ class NewUserMailHelper {
 	 * @param ITimeFactory $timeFactory
 	 * @param IConfig $config
 	 * @param ICrypto $crypto
-	 * @param string $fromAddress
 	 */
-	public function __construct(Defaults $themingDefaults,
+	public function __construct(string $appName,
+								Defaults $themingDefaults,
 								IURLGenerator $urlGenerator,
 								IL10N $l10n,
 								IMailer $mailer,
 								ISecureRandom $secureRandom,
 								ITimeFactory $timeFactory,
 								IConfig $config,
-								ICrypto $crypto,
-								$fromAddress) {
+								ICrypto $crypto) {
+		$this->appName = $appName;
 		$this->themingDefaults = $themingDefaults;
 		$this->urlGenerator = $urlGenerator;
 		$this->l10n = $l10n;
@@ -89,7 +91,6 @@ class NewUserMailHelper {
 		$this->timeFactory = $timeFactory;
 		$this->config = $config;
 		$this->crypto = $crypto;
-		$this->fromAddress = $fromAddress;
 	}
 
 	/**
@@ -102,24 +103,22 @@ class NewUserMailHelper {
 	}
 
 	/**
+	 * Generate token and mail template
+	 * 
 	 * @param IUser $user
 	 * @return IEMailTemplate
 	 */
 	public function generateTemplate(IUser $user) {
-		$token = $this->secureRandom->generate(
-			21,
-			ISecureRandom::CHAR_DIGITS .
-			ISecureRandom::CHAR_LOWER .
-			ISecureRandom::CHAR_UPPER
-		);
-		$tokenValue = $this->timeFactory->getTime() . ':' . $token;
-		$mailAddress = (null !== $user->getEMailAddress()) ? $user->getEMailAddress() : '';
-		$encryptedValue = $this->crypto->encrypt($tokenValue, $mailAddress . $this->config->getSystemValue('secret'));
-		$this->config->setUserValue($user->getUID(), 'preferred_providers', 'verify_token', $encryptedValue);
-		$link = $this->urlGenerator->linkToRouteAbsolute('preferred_providers.MailHelper.confirmMailAddress', ['email' => $mailAddress, 'token' => $token]);
-
+		// set base data
 		$displayName = $user->getDisplayName();
 		$userId = $user->getUID();
+		$mailAddress = (null !== $user->getEMailAddress()) ? $user->getEMailAddress() : '';
+
+		// generate token and verify link
+		$token = $this->generateVerifyToken($user);
+		$link = $this->urlGenerator->linkToRouteAbsolute($this->appName.'.MailHelper.confirmMailAddress', ['email' => $mailAddress, 'token' => $token]);
+
+		// generate mail template
 
 		$emailTemplate = $this->mailer->createEMailTemplate('settings.Welcome', [
 			'link' => $link,
@@ -128,14 +127,14 @@ class NewUserMailHelper {
 			'instancename' => $this->themingDefaults->getName()
 		]);
 
-		$emailTemplate->setSubject($this->l10n->t('Your %s account was created', [$this->themingDefaults->getName()]));
+		$emailTemplate->setSubject($this->l10n->t('Verify your %s account', [$this->themingDefaults->getName()]));
 		$emailTemplate->addHeader();
 		$emailTemplate->addHeading($this->l10n->t('Welcome aboard'));
 		$emailTemplate->addBodyText($this->l10n->t('Welcome to your %s account, you can add, protect, and share your data.', [$this->themingDefaults->getName()]));
-		$emailTemplate->addBodyText($this->l10n->t('To keep using you raccount, you need to verify your email address !'));
-		$emailTemplate->addBodyText($this->l10n->t('Your username is: %s', [$userId]));
+		$emailTemplate->addBodyText($this->l10n->t('To keep using your account, you need to verify your email address !'));
+		$emailTemplate->addBodyText($this->l10n->t('Your login is: %s', [$userId]));
 		$buttonText = $this->l10n->t('Click here to verify your email address');
-		$emailTemplate->addBodyButtonGroup(
+		$emailTemplate->addBodyButton(
 			$buttonText,
 			$link
 		);
@@ -155,8 +154,27 @@ class NewUserMailHelper {
 							 IEMailTemplate $emailTemplate) {
 		$message = $this->mailer->createMessage();
 		$message->setTo([$user->getEMailAddress() => $user->getDisplayName()]);
-		$message->setFrom([$this->fromAddress => $this->themingDefaults->getName()]);
 		$message->useTemplate($emailTemplate);
 		$this->mailer->send($message);
+	}
+
+	/**
+	 * Generate and save the verify mail token
+	 *
+	 * @param IUser $user
+	 * @return string the token
+	 */
+	private function generateVerifyToken(IUser $user): string {
+		$token = $this->secureRandom->generate(
+			21,
+			ISecureRandom::CHAR_DIGITS .
+			ISecureRandom::CHAR_LOWER .
+			ISecureRandom::CHAR_UPPER
+		);
+		$tokenValue = $this->timeFactory->getTime() . ':' . $token;
+		$mailAddress = (null !== $user->getEMailAddress()) ? $user->getEMailAddress() : '';
+		$encryptedValue = $this->crypto->encrypt($tokenValue, $mailAddress . $this->config->getSystemValue('secret'));
+		$this->config->setUserValue($user->getUID(), $this->appName, 'verify_token', $encryptedValue);
+		return $token;
 	}
 }
