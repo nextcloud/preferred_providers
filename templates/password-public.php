@@ -22,14 +22,14 @@ declare(strict_types=1);
 ?>
 <form action="<?php print_unescaped($_['link']) ?>" id="set-password" method="post">
     <fieldset>
-        <p class="grouptop">
+        <div class="grouptop">
             <input type="hidden" value="<?php print_unescaped($_['email']) ?>" name="email">
             <label for="password" class="infield"><?php p($l->t('New password')); ?></label>
             <input type="password" name="password" id="password" value="" placeholder="<?php p($l->t('New Password')); ?>" required />
-        </p>
-        <p class="groupbottom">
+        </div>
+        <div class="groupbottom">
             <input type="password" name="passwordConfirm" id="passwordConfirm" value="" placeholder="<?php p($l->t('Confirm Password')); ?>" required />
-        </p>
+        </div>
         <div id="submit-wrapper">
             <input class="primary" type="submit" id="submit" value="<?php p($l->t('Set password')); ?>" />
             <div class="submit-icon icon-confirm-white"></div>

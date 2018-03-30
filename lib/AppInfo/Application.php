@@ -22,23 +22,17 @@ declare(strict_types=1);
 
 namespace OCA\Preferred_Providers\AppInfo;
 
+use OCA\Preferred_Providers\Hook\LoginHook;
+
 use OCP\AppFramework\App;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
 class Application extends App {
+
+	/** @var string */
+	protected $appName = 'preferred_providers';
+	
 	public function __construct() {
-		parent::__construct('preferred_providers');
-		// $container = $this->getContainer();
-
-		// $server = $container->getServer();
-		// $eventDispatcher = $server->getEventDispatcher();
-
-		// $eventDispatcher->addListener('OCP\PasswordPolicy::validate',
-		// 	function(GenericEvent $event) use ($container) {
-		// 		/** @var PasswordValidator $validator */
-		// 		$validator = $container->query(PasswordValidator::class);
-		// 		$validator->validate($event->getSubject());
-		// 	}
-		// );
+		parent::__construct($this->appName);
 	}
 }
