@@ -111,17 +111,17 @@ class AccountController extends ApiController {
 		$this->crypto = $crypto;
 	}
 
-    /**
-     * @NoAdminRequired
-     * @NoCSRFRequired
-     * @PublicPage
-     * @CORS
+	/**
+	 * @NoAdminRequired
+	 * @NoCSRFRequired
+	 * @PublicPage
+	 * @CORS
 	 * 
 	 * @param string $token The security token required
 	 * @param string $email The email to create an account for
 	 * @return string the app password for the user
 	 * @throws OCSForbiddenException
-     */
+	 */
 	public function requestAccount(string $token = '', string $email = '') {
 		// checking if valid token
 		$provider_token = $this->config->getAppValue($this->appName, 'provider_token', false);
@@ -186,8 +186,8 @@ class AccountController extends ApiController {
 		return new DataResponse(['data' => ['setPassword' => $setPasswordUrl]], Http::STATUS_CREATED);
 	}
 
-    /**
-     * Generate token and process it
+	/**
+	 * Generate token and process it
 	 * 
 	 * @param string $email mail address
 	 * @return string reset password url
@@ -199,8 +199,8 @@ class AccountController extends ApiController {
 		return $this->urlGenerator->linkToRouteAbsolute($this->appName.'.password.set_password', array('email' => $email, 'token' => $token));
 	}
 
-    /**
-     * Generate a random password of 30 random chars
+	/**
+	 * Generate a random password of 30 random chars
 	 */
 	private function processDeviceToken(string $email) {
 		$token = $this->generateRandomDeviceToken();
@@ -209,8 +209,8 @@ class AccountController extends ApiController {
 
 	}
 
-    /**
-     * Generate a random password of 30 random chars
+	/**
+	 * Generate a random password of 30 random chars
 	 * 
 	 * @return string
 	 */

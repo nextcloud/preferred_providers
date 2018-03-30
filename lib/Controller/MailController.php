@@ -82,20 +82,20 @@ class MailController extends Controller {
 		$this->crypto = $crypto;
 		$this->timeFactory = $timeFactory;
 		$this->verifyMailHelper = $verifyMailHelper;
-    }
+	}
 
 
-    /**
-     * @NoCSRFRequired
-     * @PublicPage
+	/**
+	 * @NoCSRFRequired
+	 * @PublicPage
 	 * 
-     * Process email verification
+	 * Process email verification
 	 * 
 	 * @param string $email The email to create an account for
 	 * @param string $token The security token
 	 * @return RedirectResponse|TemplateResponse
-     */
-    public function confirmMailAddress(string $email, string $token) {
+	 */
+	public function confirmMailAddress(string $email, string $token) {
 		// process token validation
 		try {
 			$this->checkVerifyMailAddressToken($token, $email);

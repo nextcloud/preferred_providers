@@ -22,8 +22,6 @@ declare(strict_types=1);
 
 namespace OCA\Preferred_Providers\AppInfo;
 
-use OCA\Preferred_Providers\Hook\LoginHook;
-
 use OCP\AppFramework\App;
 use Symfony\Component\EventDispatcher\GenericEvent;
 

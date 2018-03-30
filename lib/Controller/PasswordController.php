@@ -81,20 +81,20 @@ class PasswordController extends Controller {
 		$this->crypto = $crypto;
 		$this->urlGenerator = $urlGenerator;
 		$this->userSession = $userSession;
-    }
+	}
 
 
-    /**
-     * @NoCSRFRequired
-     * @PublicPage
+	/**
+	 * @NoCSRFRequired
+	 * @PublicPage
 	 * 
-     * Display password definition template
+	 * Display password definition template
 	 * 
 	 * @param string $token The security token
 	 * @param string $email The user email
 	 * @return TemplateResponse
-     */
-    public function setPassword(string $token, string $email) {
+	 */
+	public function setPassword(string $token, string $email) {
 		try {
 			$this->checkPasswordToken($token, $email);
 		} catch (\Exception $e) {
@@ -106,18 +106,18 @@ class PasswordController extends Controller {
 	}
 
 	/**
-     * @NoCSRFRequired
-     * @PublicPage
+	 * @NoCSRFRequired
+	 * @PublicPage
 	 * 
-     * Display password definition template
+	 * Display password definition template
 	 * 
 	 * @param string $token The security token
 	 * @param string $email The user email
 	 * @param string $password The user password
 	 * @param string $passwordConfirm The user password confirmation
 	 * @return TemplateResponse|RedirectResponse
-     */
-    public function submitPassword(string $token, string $email, string $password, string $passwordConfirm) {
+	 */
+	public function submitPassword(string $token, string $email, string $password, string $passwordConfirm) {
 		// checking if passwords match
 		if ($password !== $passwordConfirm) {
 			return $this->generateTemplate($token, $email, $this->l10n->t('Password does not match the confirm password'));
@@ -157,13 +157,13 @@ class PasswordController extends Controller {
 
 
 	/**
-     * Generate template
+	 * Generate template
 	 * 
 	 * @param string $token The security token
 	 * @param string $email The user email
 	 * @param string $error optional
 	 * @return TemplateResponse
-     */
+	 */
 	protected function generateTemplate(string $token, string $email, string $error = '') {
 		return new TemplateResponse(
 			$this->appName,
