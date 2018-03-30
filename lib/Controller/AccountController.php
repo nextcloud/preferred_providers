@@ -170,20 +170,20 @@ class AccountController extends ApiController {
 			return new DataResponse(['data' => ['message' => 'error sending the invitation mail']], Http::STATUS_BAD_REQUEST);
 		}
 
-		// generate reset password token
+		// generate set password token
 		try {
-			$lostPassUrl = $this->processLostPasswordToken($email);
+			$setPasswordUrl = $this->processLostPasswordToken($email);
 		} catch (\Exception $e) {
 			$this->logger->logException($e, [
-				'message' => "An error occured during the token generation for $email",
+				'message' => "An error occured during the password token generation for $email",
 				'level' => \OCP\Util::ERROR,
 				'app' => $this->appName,
 			]);
-			return new DataResponse(['data' => ['message' => 'error generating the user token']], Http::STATUS_BAD_REQUEST);
+			return new DataResponse(['data' => ['message' => 'error generating the password token']], Http::STATUS_BAD_REQUEST);
 		}
 
 		// generate app-password
-		return new DataResponse(['data' => ['lostPass' => $lostPassUrl]], Http::STATUS_CREATED);
+		return new DataResponse(['data' => ['setPassword' => $setPasswordUrl]], Http::STATUS_CREATED);
 	}
 
     /**
@@ -194,10 +194,9 @@ class AccountController extends ApiController {
 	 */
 	private function processLostPasswordToken(string $email): string {
 		$token = $this->generateRandomToken();
-		$tokenValue = $this->timeFactory->getTime() . ':' . $token;
-		$encryptedValue = $this->crypto->encrypt($tokenValue, $email . $this->config->getSystemValue('secret'));
-		$this->config->setUserValue($email, 'core', 'lostpassword', $encryptedValue);
-		return $this->urlGenerator->linkToRouteAbsolute('core.lost.resetform', ['userId' => $email, 'token' => $token]);
+		$encryptedValue = $this->crypto->encrypt($token, $email . $this->config->getSystemValue('secret'));
+		$this->config->setUserValue($email, $this->appName, 'set_password', $encryptedValue);
+		return $this->urlGenerator->linkToRouteAbsolute($this->appName.'.password.set_password', array('email' => $email, 'token' => $token));
 	}
 
     /**

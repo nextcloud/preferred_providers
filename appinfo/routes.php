@@ -12,6 +12,8 @@ return [
 		['root' => '/account', 'name' => 'Account#requestAccount', 'url' => '/request/{token}', 'verb' => 'POST']
 	],
 	'routes' => [
-		['name' => 'MailHelper#confirmMailAddress', 'url' => '/login/confirm/{email}/{token}', 'verb' => 'GET'],
+		['name' => 'mail#confirm_mail_address', 'url' => '/login/confirm/{email}/{token}', 'verb' => 'GET'],
+		['name' => 'password#set_password', 'url' => '/password/set/{email}/{token}', 'verb' => 'GET'],
+		['name' => 'password#submit_password', 'url' => '/password/submit/{token}', 'verb' => 'POST'],
 	]
 ];

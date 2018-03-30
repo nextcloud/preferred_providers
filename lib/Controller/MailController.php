@@ -22,6 +22,9 @@ declare(strict_types=1);
 
 namespace OCA\Preferred_Providers\Controller;
 
+use OCA\Preferred_Providers\Controller\AccountController;
+use OCA\Preferred_Providers\Mailer\VerifyMailHelper;
+
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\TemplateResponse;
@@ -32,7 +35,7 @@ use OCP\IRequest;
 use OCP\IUserManager;
 use OCP\Security\ICrypto;
 
-class MailHelperController extends Controller {
+class MailController extends Controller {
 
 	/** @var string */
 	protected $appName;
@@ -46,6 +49,9 @@ class MailHelperController extends Controller {
 	private $crypto;
 	/** @var ITimeFactory */
 	private $timeFactory;
+	/** @var VerifyMailHelper */
+	private $verifyMailHelper;
+
 
 	/**
 	 * Account constructor.
@@ -57,6 +63,8 @@ class MailHelperController extends Controller {
 	 * @param IUserManager $userManager
 	 * @param ICrypto $crypto
 	 * @param ITimeFactory $timeFactory
+	 * @param VerifyMailHelper $verifyMailHelper
+	 * 
 	 */
 	public function __construct(string $appName,
 								IRequest $request,
@@ -64,7 +72,8 @@ class MailHelperController extends Controller {
 								IL10N $l10n,
 								IUserManager $userManager,
 								ICrypto $crypto,
-								ITimeFactory $timeFactory) {
+								ITimeFactory $timeFactory,
+								VerifyMailHelper $verifyMailHelper) {
 		parent::__construct($appName, $request);
 		$this->appName = $appName;
 		$this->config = $config;
@@ -72,6 +81,7 @@ class MailHelperController extends Controller {
 		$this->userManager = $userManager;
 		$this->crypto = $crypto;
 		$this->timeFactory = $timeFactory;
+		$this->verifyMailHelper = $verifyMailHelper;
     }
 
 
@@ -98,6 +108,19 @@ class MailHelperController extends Controller {
 		// remove user deadline & token
 		$this->config->deleteUserValue($email, $this->appName, 'disable_user_after');
 		$this->config->deleteUserValue($email, $this->appName, 'verify_token');
+
+		// send welcome email
+		try {
+			$user = $this->userManager->get($email);
+			$emailTemplate = $this->verifyMailHelper->generateTemplate($user, true);
+			$this->verifyMailHelper->sendMail($user, $emailTemplate);
+		} catch (\Exception $e) {
+			$this->logger->logException($e, [
+				'message' => "Can't send welcome email to $email",
+				'level' => \OCP\Util::ERROR,
+				'app' => $this->appName,
+			]);
+		}
 		
 		// redirect to home, user should already be logged
 		return new RedirectResponse('/');
@@ -107,7 +130,7 @@ class MailHelperController extends Controller {
 	 * Check token authenticity
 	 * 
 	 * @param string $token
-	 * @param string $userId
+	 * @param string $userId the user mail address / id
 	 * @throws \Exception
 	 */
 	protected function checkVerifyMailAddressToken($token, $userId) {
@@ -117,8 +140,7 @@ class MailHelperController extends Controller {
 		}
 		try {
 			$encryptedToken = $this->config->getUserValue($userId, $this->appName, 'verify_token');
-			$mailAddress = !is_null($user->getEMailAddress()) ? $user->getEMailAddress() : '';
-			$decryptedToken = $this->crypto->decrypt($encryptedToken, $mailAddress.$this->config->getSystemValue('secret'));
+			$decryptedToken = $this->crypto->decrypt($encryptedToken, $userId.$this->config->getSystemValue('secret'));
 		} catch (\Exception $e) {
 			throw new \Exception($this->l10n->t('The token is invalid'));
 		}
@@ -126,9 +148,9 @@ class MailHelperController extends Controller {
 		if(count($splittedToken) !== 2) {
 			throw new \Exception($this->l10n->t('The token is invalid'));
 		}
-		if ($splittedToken[0] < ($this->timeFactory->getTime() - 60*60*12) ||
+		if ($splittedToken[0] < ($this->timeFactory->getTime() - AccountController::validateEmailDelay) ||
 			$user->getLastLogin() > $splittedToken[0]) {
-			throw new \Exception($this->l10n->t('The token is expired'));
+			throw new \Exception($this->l10n->t('The token is expired, please contact your provider'));
 		}
 		if (!hash_equals($splittedToken[1], $token)) {
 			throw new \Exception($this->l10n->t('The token is invalid'));

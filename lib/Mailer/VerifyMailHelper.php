@@ -106,40 +106,69 @@ class VerifyMailHelper {
 	 * Generate token and mail template
 	 * 
 	 * @param IUser $user
+	 * @param bool $verified is the mail verified
 	 * @return IEMailTemplate
 	 */
-	public function generateTemplate(IUser $user) {
+	public function generateTemplate(IUser $user, bool $verified = false): IEMailTemplate {
 		// set base data
-		$displayName = $user->getDisplayName();
 		$userId = $user->getUID();
-		$mailAddress = (null !== $user->getEMailAddress()) ? $user->getEMailAddress() : '';
 
-		// generate token and verify link
+		// generate token + link
 		$token = $this->generateVerifyToken($user);
-		$link = $this->urlGenerator->linkToRouteAbsolute($this->appName.'.MailHelper.confirmMailAddress', ['email' => $mailAddress, 'token' => $token]);
+		$link = $verified ? $this->urlGenerator->getAbsoluteURL('/') :
+			$this->urlGenerator->linkToRouteAbsolute($this->appName.'.mail.confirm_mail_address', ['email' => $userId, 'token' => $token]);
 
 		// generate mail template
-
-		$emailTemplate = $this->mailer->createEMailTemplate('settings.Welcome', [
+		$emailTemplate = $this->mailer->createEMailTemplate('account.Welcome', [
 			'link' => $link,
-			'displayname' => $displayName,
-			'userid' => $userId,
+			'email' => $userId,
 			'instancename' => $this->themingDefaults->getName()
 		]);
 
+		if ($verified) {
+			$emailTemplate = $this->generateVerifiedMailBody($emailTemplate, $userId, $link);
+		} else {
+			$emailTemplate = $this->generateNonVerifiedMailBody($emailTemplate, $userId, $link);
+		}
+
+		return $emailTemplate;
+	}
+
+	/**
+	 * Generate mail body for the welcome mail
+	 */
+	protected function generateVerifiedMailBody(IEMailTemplate $emailTemplate, string $userId, string $link): IEMailTemplate {
+		$emailTemplate->setSubject($this->l10n->t('Welcome to your %s account', [$this->themingDefaults->getName()]));
+		$emailTemplate->addHeader();
+		$emailTemplate->addHeading($this->l10n->t('Congratulations!'));
+		$emailTemplate->addBodyText($this->l10n->t('Your account is now verified.'));
+		$emailTemplate->addBodyText($this->l10n->t('Welcome to your %s account, you can add, protect, and share your data.', [$this->themingDefaults->getName()]));
+		$emailTemplate->addBodyText($this->l10n->t('Your login is: %s', [$userId]));
+		$leftButtonText = $this->l10n->t('Start using %s', [$this->themingDefaults->getName()]);
+		$emailTemplate->addBodyButtonGroup(
+			$leftButtonText,
+			$link,
+			$this->l10n->t('Install Client'),
+			'https://nextcloud.com/install/#install-clients'
+		);
+		$emailTemplate->addFooter();
+		return $emailTemplate;
+	}
+
+	/**
+	 * Generate mail body for the verification mail
+	 */
+	protected function generateNonVerifiedMailBody(IEMailTemplate $emailTemplate, string $userId, string $link): IEMailTemplate {
 		$emailTemplate->setSubject($this->l10n->t('Verify your %s account', [$this->themingDefaults->getName()]));
 		$emailTemplate->addHeader();
-		$emailTemplate->addHeading($this->l10n->t('Welcome aboard'));
-		$emailTemplate->addBodyText($this->l10n->t('Welcome to your %s account, you can add, protect, and share your data.', [$this->themingDefaults->getName()]));
-		$emailTemplate->addBodyText($this->l10n->t('To keep using your account, you need to verify your email address !'));
-		$emailTemplate->addBodyText($this->l10n->t('Your login is: %s', [$userId]));
+		$emailTemplate->addHeading($this->l10n->t('Welcome aboard!'));
+		$emailTemplate->addBodyText($this->l10n->t('To keep using your account, you need to verify your email address.'));
 		$buttonText = $this->l10n->t('Click here to verify your email address');
 		$emailTemplate->addBodyButton(
 			$buttonText,
 			$link
 		);
 		$emailTemplate->addFooter();
-
 		return $emailTemplate;
 	}
 
