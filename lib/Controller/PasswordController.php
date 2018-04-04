@@ -165,6 +165,13 @@ class PasswordController extends Controller {
 			return $this->generateTemplate($token, $email, $e->getMessage());
 		}
 
+		// redirect to ClientFlowLogin if the request comes from android/ios/desktop
+		if ($ocsapirequest === 'true') {
+			$clientName = $this->getClientName();
+			$redirectUri = $this->generateAppPassword($email, $clientName);
+			return new RedirectResponse($redirectUri);
+		}
+
 		// login
 		try {
 			$loginResult = $this->userManager->checkPasswordNoLogging($email, $password);
@@ -172,13 +179,6 @@ class PasswordController extends Controller {
 			$this->userSession->createSessionToken($this->request, $loginResult->getUID(), $email, $password);	
 		} catch (\Exception $e) {
 			$this->logger->debug('Unable to perform auto login for ' . $email, ['app' => $this->appName]);
-		}
-
-		// redirect to ClientFlowLogin if the request comes from android/ios/desktop
-		if ($ocsapirequest === 'true') {
-			$clientName = $this->getClientName();
-			$redirectUri = $this->generateAppPassword($email, $clientName);
-			return new RedirectResponse($redirectUri);
 		}
 
 		return new RedirectResponse($this->urlGenerator->getAbsoluteURL('/'));
