@@ -22,6 +22,8 @@ declare(strict_types=1);
 
 namespace OCA\Preferred_Providers\Controller;
 
+use OC\Authentication\Token\IProvider;
+
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\TemplateResponse;
@@ -33,6 +35,7 @@ use OCP\IURLGenerator;
 use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\Security\ICrypto;
+use OCP\Security\ISecureRandom;
 
 class PasswordController extends Controller {
 
@@ -54,6 +57,10 @@ class PasswordController extends Controller {
 	private $userSession;
 	/** @var ILogger */
 	private $logger;
+	/** @var IProvider */
+	private $tokenProvider;
+	/** @var ISecureRandom */
+	private $secureRandom;
 
 	/**
 	 * Account constructor.
@@ -67,6 +74,8 @@ class PasswordController extends Controller {
 	 * @param IURLGenerator $urlGenerator
 	 * @param IUserSession $userSession
 	 * @param ILogger $logger
+	 * @param IProvider $tokenProvider
+	 * @param ISecureRandom $secureRandom
 	 */
 	public function __construct(string $appName,
 								IRequest $request,
@@ -76,7 +85,9 @@ class PasswordController extends Controller {
 								ICrypto $crypto,
 								IURLGenerator $urlGenerator,
 								IUserSession $userSession,
-								ILogger $logger) {
+								ILogger $logger,
+								IProvider $tokenProvider,
+								ISecureRandom $secureRandom) {
 		parent::__construct($appName, $request);
 		$this->appName = $appName;
 		$this->request = $request;
@@ -87,6 +98,8 @@ class PasswordController extends Controller {
 		$this->urlGenerator = $urlGenerator;
 		$this->userSession = $userSession;
 		$this->logger = $logger;
+		$this->tokenProvider = $tokenProvider;
+		$this->secureRandom = $secureRandom;
 	}
 
 
@@ -163,7 +176,9 @@ class PasswordController extends Controller {
 
 		// redirect to ClientFlowLogin if the request comes from android/ios/desktop
 		if ($ocsapirequest === 'true') {
-			return new RedirectResponse($this->urlGenerator->linkToRouteAbsolute('core.ClientFlowLogin.showAuthPickerPage'));
+			$clientName = $this->getClientName();
+			$redirectUri = $this->generateAppPassword($email, $clientName);
+			return new RedirectResponse($redirectUri);
 		}
 
 		return new RedirectResponse($this->urlGenerator->getAbsoluteURL('/'));
@@ -214,5 +229,51 @@ class PasswordController extends Controller {
 		if (!hash_equals($decryptedToken, $token)) {
 			throw new \Exception($this->l10n->t('The token is invalid'));
 		}
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getClientName() {
+		$userAgent = $this->request->getHeader('USER_AGENT');
+		return $userAgent !== '' ? $userAgent : 'unknown';
+	}
+
+
+	/**
+	 * generate application password and return nc protocol formatted url
+	 * 
+	 * @param string $email the user email/userId
+	 * @param string $clientName the user agent
+	 * @return string 
+	 */
+	protected function generateAppPassword(string $email, string $clientName) {
+
+		// generate token
+		$token = $this->secureRandom->generate(72, ISecureRandom::CHAR_HUMAN_READABLE);
+		$this->tokenProvider->generateToken($token, $email, $email, null, $clientName);
+
+		// build redirection
+		if (strpos($this->request->getRequestUri(), '/index.php') !== false) {
+			$serverPostfix = substr($this->request->getRequestUri(), 0, strpos($this->request->getRequestUri(), '/index.php'));
+		} else if (strpos($this->request->getRequestUri(), '/login/flow') !== false) {
+			$serverPostfix = substr($this->request->getRequestUri(), 0, strpos($this->request->getRequestUri(), '/login/flow'));
+		}
+
+		$protocol = $this->request->getServerProtocol();
+
+		if ($protocol !== "https") {
+			$xForwardedProto = $this->request->getHeader('X-Forwarded-Proto');
+			$xForwardedSSL = $this->request->getHeader('X-Forwarded-Ssl');
+			if ($xForwardedProto === 'https' || $xForwardedSSL === 'on') {
+				$protocol = 'https';
+			}
+		}
+
+		$serverPath = $protocol . "://" . $this->request->getServerHost() . $serverPostfix;
+		$redirectUri = 'nc://login/server:' . $serverPath . '&user:' . urlencode($email) . '&password:' . urlencode($token);
+
+		return $redirectUri;
+		
 	}
 }

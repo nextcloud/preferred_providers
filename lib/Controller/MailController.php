@@ -123,7 +123,7 @@ class MailController extends Controller {
 		}
 		
 		// redirect to home, user should already be logged
-		return new RedirectResponse('/');
+		return new RedirectResponse($this->urlGenerator->getAbsoluteURL('/'));
 	}
 
 	/**

@@ -38,7 +38,6 @@ use OCP\IURLGenerator;
 use OCP\IUserManager;
 use OCP\Mail\IMailer;
 use OCP\Security\ICrypto;
-use OCP\Security\ISecureRandom;
 
 
 class AccountController extends ApiController {
@@ -52,8 +51,6 @@ class AccountController extends ApiController {
 	private $config;
 	/** @var IUserManager */
 	private $userManager;
-	/** @var ISecureRandom */
-	private $secureRandom;
 	/** @var IProvider */
 	private $tokenProvider;
 	/** @var IMailer */
@@ -76,7 +73,6 @@ class AccountController extends ApiController {
 	 * @param IRequest $request
 	 * @param IConfig $config
 	 * @param IUserManager $userManager
-	 * @param ISecureRandom $secureRandom
 	 * @param IProvider $tokenProvider
 	 * @param IMailer $mailer
 	 * @param VerifyMailHelper $verifyMailHelper
@@ -89,7 +85,6 @@ class AccountController extends ApiController {
 								IRequest $request,
 								IConfig $config,
 								IUserManager $userManager,
-								ISecureRandom $secureRandom,
 								IProvider $tokenProvider,
 								IMailer $mailer,
 								VerifyMailHelper $verifyMailHelper,
@@ -101,7 +96,6 @@ class AccountController extends ApiController {
 		$this->appName = $appName;
 		$this->config = $config;
 		$this->userManager = $userManager;
-		$this->secureRandom = $secureRandom;
 		$this->tokenProvider = $tokenProvider;
 		$this->mailer = $mailer;
 		$this->verifyMailHelper = $verifyMailHelper;
