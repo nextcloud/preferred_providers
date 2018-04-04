@@ -22,9 +22,6 @@ declare(strict_types=1);
 
 namespace OCA\Preferred_Providers\Controller;
 
-use OC\Authentication\Token\IProvider;
-use OC\Authentication\Token\IToken;
-
 use OCA\Preferred_Providers\Mailer\VerifyMailHelper;
 
 use OCP\AppFramework\ApiController;
@@ -38,6 +35,7 @@ use OCP\IURLGenerator;
 use OCP\IUserManager;
 use OCP\Mail\IMailer;
 use OCP\Security\ICrypto;
+use OCP\Security\ISecureRandom;
 
 
 class AccountController extends ApiController {
@@ -51,8 +49,6 @@ class AccountController extends ApiController {
 	private $config;
 	/** @var IUserManager */
 	private $userManager;
-	/** @var IProvider */
-	private $tokenProvider;
 	/** @var IMailer */
 	private $mailer;
 	/** @var VerifyMailHelper */
@@ -65,6 +61,8 @@ class AccountController extends ApiController {
 	private $timeFactory;
 	/** @var ICrypto */
 	private $crypto;
+	/** @var ISecureRandom */
+	private $secureRandom;
 
 	/**
 	 * Account constructor.
@@ -73,36 +71,36 @@ class AccountController extends ApiController {
 	 * @param IRequest $request
 	 * @param IConfig $config
 	 * @param IUserManager $userManager
-	 * @param IProvider $tokenProvider
 	 * @param IMailer $mailer
 	 * @param VerifyMailHelper $verifyMailHelper
 	 * @param ILogger $logger
 	 * @param IURLGenerator $urlGenerator
 	 * @param ITimeFactory $timeFactory
 	 * @param ICrypto $crypto
+	 * @param ISecureRandom $secureRandom
 	 */
 	public function __construct(string $appName,
 								IRequest $request,
 								IConfig $config,
 								IUserManager $userManager,
-								IProvider $tokenProvider,
 								IMailer $mailer,
 								VerifyMailHelper $verifyMailHelper,
 								ILogger $logger,
 								IURLGenerator $urlGenerator,
 								ITimeFactory $timeFactory,
-								ICrypto $crypto){
+								ICrypto $crypto,
+								ISecureRandom $secureRandom){
 		parent::__construct($appName, $request, 'POST');
 		$this->appName = $appName;
 		$this->config = $config;
 		$this->userManager = $userManager;
-		$this->tokenProvider = $tokenProvider;
 		$this->mailer = $mailer;
 		$this->verifyMailHelper = $verifyMailHelper;
 		$this->logger = $logger;
 		$this->urlGenerator = $urlGenerator;
 		$this->timeFactory = $timeFactory;
 		$this->crypto = $crypto;
+		$this->secureRandom = $secureRandom;
 	}
 
 	/**
