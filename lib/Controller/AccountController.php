@@ -201,16 +201,6 @@ class AccountController extends ApiController {
 
 	/**
 	 * Generate a random password of 30 random chars
-	 */
-	private function processDeviceToken(string $email) {
-		$token = $this->generateRandomDeviceToken();
-		$this->tokenProvider->generateToken($token, $email, $email, null, $this->appName);
-		return $token;
-
-	}
-
-	/**
-	 * Generate a random password of 30 random chars
 	 * 
 	 * @return string
 	 */
@@ -230,19 +220,6 @@ class AccountController extends ApiController {
 			ISecureRandom::CHAR_LOWER .
 			ISecureRandom::CHAR_UPPER
 		);
-	}
-
-	/**
-	 * Return a 25 digit device password e.g. AbCdE-fGhJk-MnPqR-sTwXy-23456
-	 * 
-	 * @return string
-	 */
-	private function generateRandomDeviceToken(): string {
-		$groups = [];
-		for ($i = 0; $i < 5; $i++) {
-			$groups[] = $this->secureRandom->generate(5, ISecureRandom::CHAR_HUMAN_READABLE);
-		}
-		return implode('-', $groups);
 	}
 
 }

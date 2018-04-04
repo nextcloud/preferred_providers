@@ -27,6 +27,7 @@ use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IConfig;
 use OCP\IL10N;
+use OCP\ILogger;
 use OCP\IRequest;
 use OCP\IURLGenerator;
 use OCP\IUserManager;
@@ -51,6 +52,8 @@ class PasswordController extends Controller {
 	private $urlGenerator;
 	/** @var IUserSession */
 	private $userSession;
+	/** @var ILogger */
+	private $logger;
 
 	/**
 	 * Account constructor.
@@ -63,6 +66,7 @@ class PasswordController extends Controller {
 	 * @param ICrypto $crypto
 	 * @param IURLGenerator $urlGenerator
 	 * @param IUserSession $userSession
+	 * @param ILogger $logger
 	 */
 	public function __construct(string $appName,
 								IRequest $request,
@@ -71,7 +75,8 @@ class PasswordController extends Controller {
 								IUserManager $userManager,
 								ICrypto $crypto,
 								IURLGenerator $urlGenerator,
-								IUserSession $userSession) {
+								IUserSession $userSession,
+								ILogger $logger) {
 		parent::__construct($appName, $request);
 		$this->appName = $appName;
 		$this->request = $request;
@@ -81,6 +86,7 @@ class PasswordController extends Controller {
 		$this->crypto = $crypto;
 		$this->urlGenerator = $urlGenerator;
 		$this->userSession = $userSession;
+		$this->logger = $logger;
 	}
 
 
@@ -127,7 +133,9 @@ class PasswordController extends Controller {
 		try {
 			$this->checkPasswordToken($token, $email);
 		} catch (\Exception $e) {
-			return $this->generateTemplate($token, $email, $e->getMessage());
+			return new TemplateResponse('core', 'error', [
+				'errors' => array(array('error' => $e->getMessage()))
+			], 'guest');
 		}
 
 		// all clear! set password
@@ -136,21 +144,28 @@ class PasswordController extends Controller {
 			if (!$user->setPassword($password)) {
 				return $this->generateTemplate($token, $email, $this->l10n->t('Unable to set the password. Contact your provider.'));
 			}
-			$this->config->deleteUserValue($email, $this->appName, 'set_password');
+			//$this->config->deleteUserValue($email, $this->appName, 'set_password');
 			// logout and ignore failure
 			@\OC::$server->getUserSession()->unsetMagicInCookie();
-		} catch (\Exception $e){
+		} catch (\Exception $e) {
 			return $this->generateTemplate($token, $email, $e->getMessage());
 		}
 
-		// login!
+		// login
 		try {
 			$loginResult = $this->userManager->checkPasswordNoLogging($email, $password);
 			$this->userSession->completeLogin($loginResult, ['loginName' => $email, 'password' => $password]);
 			$this->userSession->createSessionToken($this->request, $loginResult->getUID(), $email, $password);	
-		} catch (\Exception $e){
+		} catch (\Exception $e) {
 			$this->logger->debug('Unable to perform auto login for ' . $email, ['app' => $this->appName]);
 		}
+
+		// redirect to ClientFlowLogin if the request comes from android/ios/desktop
+		$clientRequest = $this->request->getHeader('OCS-APIREQUEST');
+		if ($clientRequest === 'true') {
+			return new RedirectResponse($this->urlGenerator->linkToRouteAbsolute('core.ClientFlowLogin.showAuthPickerPage'));
+		}
+
 		return new RedirectResponse('/');
 		
 	}
