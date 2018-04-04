@@ -24,6 +24,7 @@ declare(strict_types=1);
 	<fieldset>
 		<div class="grouptop">
 			<input type="hidden" value="<?php print_unescaped($_['email']) ?>" name="email">
+			<input type="hidden" value="<?php print_unescaped($_['ocsapirequest']) ?>" name="ocsapirequest">
 			<label for="password" class="infield"><?php p($l->t('New password')); ?></label>
 			<input type="password" name="password" id="password" value="" placeholder="<?php p($l->t('New Password')); ?>" required />
 		</div>

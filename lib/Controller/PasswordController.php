@@ -121,9 +121,10 @@ class PasswordController extends Controller {
 	 * @param string $email The user email
 	 * @param string $password The user password
 	 * @param string $passwordConfirm The user password confirmation
+	 * @param string $ocsapirequest OCS-APIREQUEST header check
 	 * @return TemplateResponse|RedirectResponse
 	 */
-	public function submitPassword(string $token, string $email, string $password, string $passwordConfirm) {
+	public function submitPassword(string $token, string $email, string $password, string $passwordConfirm, string $ocsapirequest = '') {
 		// checking if passwords match
 		if ($password !== $passwordConfirm) {
 			return $this->generateTemplate($token, $email, $this->l10n->t('Password does not match the confirm password'));
@@ -161,12 +162,11 @@ class PasswordController extends Controller {
 		}
 
 		// redirect to ClientFlowLogin if the request comes from android/ios/desktop
-		$clientRequest = $this->request->getHeader('OCS-APIREQUEST');
-		if ($clientRequest === 'true') {
+		if ($ocsapirequest === 'true') {
 			return new RedirectResponse($this->urlGenerator->linkToRouteAbsolute('core.ClientFlowLogin.showAuthPickerPage'));
 		}
 
-		return new RedirectResponse('/');
+		return new RedirectResponse($this->urlGenerator->getAbsoluteURL('/'));
 		
 	}
 
@@ -186,6 +186,7 @@ class PasswordController extends Controller {
 			array(
 				'link' => $this->urlGenerator->linkToRouteAbsolute($this->appName.'.password.submit_password', array('token' => $token)),
 				'email' => $email,
+				'ocsapirequest' => $this->request->getHeader('OCS-APIREQUEST'),
 				'error' => $error
 			),
 			'guest'
