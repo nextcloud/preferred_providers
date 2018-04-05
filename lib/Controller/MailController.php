@@ -32,6 +32,7 @@ use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IRequest;
+use OCP\IURLGenerator;
 use OCP\IUserManager;
 use OCP\Security\ICrypto;
 
@@ -49,6 +50,8 @@ class MailController extends Controller {
 	private $crypto;
 	/** @var ITimeFactory */
 	private $timeFactory;
+	/** @var IURLGenerator */
+	private $urlGenerator;
 	/** @var VerifyMailHelper */
 	private $verifyMailHelper;
 
@@ -63,6 +66,7 @@ class MailController extends Controller {
 	 * @param IUserManager $userManager
 	 * @param ICrypto $crypto
 	 * @param ITimeFactory $timeFactory
+	 * @param IURLGenerator $urlGenerator
 	 * @param VerifyMailHelper $verifyMailHelper
 	 * 
 	 */
@@ -73,6 +77,7 @@ class MailController extends Controller {
 								IUserManager $userManager,
 								ICrypto $crypto,
 								ITimeFactory $timeFactory,
+								IURLGenerator $urlGenerator,
 								VerifyMailHelper $verifyMailHelper) {
 		parent::__construct($appName, $request);
 		$this->appName = $appName;
@@ -81,6 +86,7 @@ class MailController extends Controller {
 		$this->userManager = $userManager;
 		$this->crypto = $crypto;
 		$this->timeFactory = $timeFactory;
+		$this->urlGenerator = $urlGenerator;
 		$this->verifyMailHelper = $verifyMailHelper;
 	}
 

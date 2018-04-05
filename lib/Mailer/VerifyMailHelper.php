@@ -140,15 +140,12 @@ class VerifyMailHelper {
 	protected function generateVerifiedMailBody(IEMailTemplate $emailTemplate, string $userId, string $link): IEMailTemplate {
 		$emailTemplate->setSubject($this->l10n->t('Welcome to your %s account', [$this->themingDefaults->getName()]));
 		$emailTemplate->addHeader();
-		$emailTemplate->addHeading($this->l10n->t('Congratulations!'));
-		$emailTemplate->addBodyText($this->l10n->t('Your account is now verified.'));
-		$emailTemplate->addBodyText($this->l10n->t('Welcome to your %s account, you can add, protect, and share your data.', [$this->themingDefaults->getName()]));
-		$emailTemplate->addBodyText($this->l10n->t('Your login is: %s', [$userId]));
+		$emailTemplate->addBodyText($this->l10n->t('Your %s account %s is now verified!', [$this->themingDefaults->getName(), $userId]));
 		$leftButtonText = $this->l10n->t('Start using %s', [$this->themingDefaults->getName()]);
 		$emailTemplate->addBodyButtonGroup(
 			$leftButtonText,
 			$link,
-			$this->l10n->t('Install Client'),
+			$this->l10n->t('Install mobile or desktop client'),
 			'https://nextcloud.com/install/#install-clients'
 		);
 		$emailTemplate->addFooter();
@@ -161,8 +158,7 @@ class VerifyMailHelper {
 	protected function generateNonVerifiedMailBody(IEMailTemplate $emailTemplate, string $userId, string $link): IEMailTemplate {
 		$emailTemplate->setSubject($this->l10n->t('Verify your %s account', [$this->themingDefaults->getName()]));
 		$emailTemplate->addHeader();
-		$emailTemplate->addHeading($this->l10n->t('Welcome aboard!'));
-		$emailTemplate->addBodyText($this->l10n->t('To keep using your account, you need to verify your email address.'));
+		$emailTemplate->addBodyText($this->l10n->t('Just one step left to complete your account setup.'));
 		$buttonText = $this->l10n->t('Click here to verify your email address');
 		$emailTemplate->addBodyButton(
 			$buttonText,
