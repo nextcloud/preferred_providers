@@ -158,7 +158,7 @@ class PasswordController extends Controller {
 			if (!$user->setPassword($password)) {
 				return $this->generateTemplate($token, $email, $this->l10n->t('Unable to set the password. Contact your provider.'));
 			}
-			//$this->config->deleteUserValue($email, $this->appName, 'set_password');
+			$this->config->deleteUserValue($email, $this->appName, 'set_password');
 			// logout and ignore failure
 			@\OC::$server->getUserSession()->unsetMagicInCookie();
 		} catch (\Exception $e) {
