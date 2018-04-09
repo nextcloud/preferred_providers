@@ -192,7 +192,7 @@ class AccountController extends ApiController {
 	}
 
 	/**
-	 * Generate a random password of 30 random chars
+	 * Generate a random password of 20 random chars
 	 * 
 	 * @return string
 	 */
