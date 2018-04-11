@@ -6,7 +6,6 @@ This application allows external request of new accounts.
 2. Go to the preferred providers settings and keep your token in reach.
 3. Make a POST request to `/ocs/v2.php/account/request/YOURTOKEN` with the `{email: 'myawesomemail@nextcloud.com'}` data.
 
-   e.g.
 ``` js
 $.post('/ocs/v2.php/account/request/56300a2bf7e06894a5b59c1eb47f7460', {email:'myawesomemail@nextcloud.com'}).complete((response) => {
     console.log(JSON.parse(response.responseText).data.setPassword)
