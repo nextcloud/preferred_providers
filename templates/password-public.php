@@ -19,20 +19,22 @@ declare(strict_types=1);
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
+ script('preferred_providers', 'password-public')
 ?>
 <form action="<?php print_unescaped($_['link']) ?>" id="set-password" method="post">
 	<fieldset>
 		<div class="grouptop">
-			<input type="hidden" value="<?php print_unescaped($_['email']) ?>" name="email">
 			<input type="hidden" value="<?php print_unescaped($_['ocsapirequest']) ?>" name="ocsapirequest">
-			<label for="password" class="infield"><?php p($l->t('New password')); ?></label>
-			<input type="password" name="password" id="password" value="" placeholder="<?php p($l->t('New Password')); ?>" required />
+			<input type="email" name="email" id="email" value="<?php print_unescaped($_['email']) ?>" readonly />
 		</div>
 		<div class="groupbottom">
-			<input type="password" name="passwordConfirm" id="passwordConfirm" value="" placeholder="<?php p($l->t('Confirm Password')); ?>" required />
+			<input type="password" name="password" id="password" value="" placeholder="<?php p($l->t('Enter password')); ?>" required />
+			<input type="checkbox" id="show" name="show">
+			<label for="show"></label>
 		</div>
 		<div id="submit-wrapper">
-			<input class="primary" type="submit" id="submit" value="<?php p($l->t('Set password')); ?>" />
+			<input class="login primary" type="submit" id="submit" value="<?php p($l->t('Log in')); ?>" />
 			<div class="submit-icon icon-confirm-white"></div>
 		</div>
 	</fieldset>

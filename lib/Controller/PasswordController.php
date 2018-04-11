@@ -133,16 +133,10 @@ class PasswordController extends Controller {
 	 * @param string $token The security token
 	 * @param string $email The user email
 	 * @param string $password The user password
-	 * @param string $passwordConfirm The user password confirmation
 	 * @param string $ocsapirequest OCS-APIREQUEST header check
 	 * @return TemplateResponse|RedirectResponse
 	 */
-	public function submitPassword(string $token, string $email, string $password, string $passwordConfirm, string $ocsapirequest = '') {
-		// checking if passwords match
-		if ($password !== $passwordConfirm) {
-			return $this->generateTemplate($token, $email, $this->l10n->t('Password does not match the confirm password'));
-		}
-
+	public function submitPassword(string $token, string $email, string $password, string $ocsapirequest = '') {
 		// process token validation
 		try {
 			$this->checkPasswordToken($token, $email);
