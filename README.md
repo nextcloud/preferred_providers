@@ -14,5 +14,4 @@ $.post('/ocs/v2.php/account/request/56300a2bf7e06894a5b59c1eb47f7460', {email:'m
 
 4. The server will accept or not the request and provide a link for the user login and password definition https://cloud.yourdomain.com/apps/preferred_providers/password/set/yourawesomemail@nextcloud.com/aipTgstNeenUXe20BJTH8
 5. Meanwhile a mail confirmation is sent to the user. He have 6h to confirm or his account will be disabled
-6. After 4, if you set up the OCS-APIREQUEST header, you will be redirected to a `nc://` url with valid app-password token for your application
-   If not, you will be logged and redirected to the home page
+6. After 4, if you set up the `OCS-APIREQUEST` header, you will be redirected to a `nc://` url with valid app-password token for your application. If not, you will be logged and redirected to the home page.
