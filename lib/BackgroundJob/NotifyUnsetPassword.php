@@ -25,6 +25,7 @@ namespace OCA\Preferred_Providers\BackgroundJob;
 use OC\BackgroundJob\TimedJob;
 use OC\SystemConfig;
 use OCA\Preferred_Providers\Mailer\SetPasswordMailHelper;
+use OCP\IConfig;
 use OCP\IDBConnection;
 use OCP\ILogger;
 
@@ -42,6 +43,9 @@ class NotifyUnsetPassword extends TimedJob {
     /** @var SystemConfig */
     private $systemConfig;
 
+    /** @var IConfig */
+    private $config;
+
     /** @var SetPasswordMailHelper */
     private $mailHelper;
 
@@ -55,6 +59,7 @@ class NotifyUnsetPassword extends TimedJob {
         $this->logger = \OC::$server->getLogger();
         $this->connection = \OC::$server->getDatabaseConnection();
         $this->systemConfig = \OC::$server->getSystemConfig();
+        $this->config = \OC::$server->getConfig();
 
         $this->mailHelper = new SetPasswordMailHelper(
             $this->appName,
