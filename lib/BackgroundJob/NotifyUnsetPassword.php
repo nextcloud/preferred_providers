@@ -27,7 +27,6 @@ use OC\SystemConfig;
 use OCA\Preferred_Providers\Mailer\SetPasswordMailHelper;
 use OCP\IDBConnection;
 use OCP\ILogger;
-use Icewind\SMB\Exception\Exception;
 
 class NotifyUnsetPassword extends TimedJob {
 
