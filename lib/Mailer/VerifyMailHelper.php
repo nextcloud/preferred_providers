@@ -32,7 +32,7 @@ namespace OCA\Preferred_Providers\Mailer;
 
 use OCP\Mail\IEMailTemplate;
 use OCP\AppFramework\Utility\ITimeFactory;
-use OCP\Defaults;
+use OCA\Theming\ThemingDefaults;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
@@ -45,8 +45,8 @@ class VerifyMailHelper {
 
 	/** @var string */
 	protected $appName;
-	/** @var Defaults */
-	private $themingDefaults;
+	/** @var ThemingDefaults */
+	private $themingThemingDefaults;
 	/** @var IURLGenerator */
 	private $urlGenerator;
 	/** @var IL10N */
@@ -64,7 +64,7 @@ class VerifyMailHelper {
 
 	/**
 	 * @param string $appName
-	 * @param Defaults $themingDefaults
+	 * @param ThemingDefaults $themingThemingDefaults
 	 * @param IURLGenerator $urlGenerator
 	 * @param IL10N $l10n
 	 * @param IMailer $mailer
@@ -74,7 +74,7 @@ class VerifyMailHelper {
 	 * @param ICrypto $crypto
 	 */
 	public function __construct(string $appName,
-								Defaults $themingDefaults,
+								ThemingDefaults $themingThemingDefaults,
 								IURLGenerator $urlGenerator,
 								IL10N $l10n,
 								IMailer $mailer,
@@ -83,7 +83,7 @@ class VerifyMailHelper {
 								IConfig $config,
 								ICrypto $crypto) {
 		$this->appName = $appName;
-		$this->themingDefaults = $themingDefaults;
+		$this->themingThemingDefaults = $themingThemingDefaults;
 		$this->urlGenerator = $urlGenerator;
 		$this->l10n = $l10n;
 		$this->mailer = $mailer;
@@ -122,7 +122,7 @@ class VerifyMailHelper {
 		$emailTemplate = $this->mailer->createEMailTemplate('account.Welcome', [
 			'link' => $link,
 			'email' => $userId,
-			'instancename' => $this->themingDefaults->getName()
+			'instancename' => $this->themingThemingDefaults->getName()
 		]);
 
 		if ($verified) {
@@ -138,10 +138,10 @@ class VerifyMailHelper {
 	 * Generate mail body for the welcome mail
 	 */
 	protected function generateVerifiedMailBody(IEMailTemplate $emailTemplate, string $userId, string $link): IEMailTemplate {
-		$emailTemplate->setSubject($this->l10n->t('Welcome to your %s account', [$this->themingDefaults->getName()]));
+		$emailTemplate->setSubject($this->l10n->t('Welcome to your %s account', [$this->themingThemingDefaults->getName()]));
 		$emailTemplate->addHeader();
-		$emailTemplate->addBodyText($this->l10n->t('Your %s account %s is now verified!', [$this->themingDefaults->getName(), $userId]));
-		$leftButtonText = $this->l10n->t('Start using %s', [$this->themingDefaults->getName()]);
+		$emailTemplate->addBodyText($this->l10n->t('Your %s account %s is now verified!', [$this->themingThemingDefaults->getName(), $userId]));
+		$leftButtonText = $this->l10n->t('Start using %s', [$this->themingThemingDefaults->getName()]);
 		$emailTemplate->addBodyButtonGroup(
 			$leftButtonText,
 			$link,
@@ -156,7 +156,7 @@ class VerifyMailHelper {
 	 * Generate mail body for the verification mail
 	 */
 	protected function generateNonVerifiedMailBody(IEMailTemplate $emailTemplate, string $userId, string $link): IEMailTemplate {
-		$emailTemplate->setSubject($this->l10n->t('Verify your %s account', [$this->themingDefaults->getName()]));
+		$emailTemplate->setSubject($this->l10n->t('Verify your %s account', [$this->themingThemingDefaults->getName()]));
 		$emailTemplate->addHeader();
 		$emailTemplate->addBodyText($this->l10n->t('Just one step left to complete your account setup.'));
 		$buttonText = $this->l10n->t('Click here to verify your email address');

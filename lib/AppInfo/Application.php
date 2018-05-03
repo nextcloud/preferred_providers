@@ -28,7 +28,7 @@ use Symfony\Component\EventDispatcher\GenericEvent;
 class Application extends App {
 
 	/** @var string */
-	protected $appName = 'preferred_providers';
+	public $appName = 'preferred_providers';
 	
 	public function __construct() {
 		parent::__construct($this->appName);

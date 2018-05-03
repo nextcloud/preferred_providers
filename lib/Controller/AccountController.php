@@ -159,12 +159,13 @@ class AccountController extends ApiController {
 				'level' => \OCP\Util::ERROR,
 				'app' => $this->appName,
 			]);
-			return new DataResponse(['data' => ['message' => 'error sending the invitation mail']], Http::STATUS_BAD_REQUEST);
+			// continue anyway. Let's only warn the admin log
+			// return new DataResponse(['data' => ['message' => 'error sending the invitation mail']], Http::STATUS_BAD_REQUEST);
 		}
 
 		// generate set password token
 		try {
-			$setPasswordUrl = $this->processLostPasswordToken($email);
+			$setPasswordUrl = $this->processSetPasswordToken($email);
 		} catch (\Exception $e) {
 			$this->logger->logException($e, [
 				'message' => "An error occured during the password token generation for $email",
@@ -184,10 +185,11 @@ class AccountController extends ApiController {
 	 * @param string $email mail address
 	 * @return string reset password url
 	 */
-	private function processLostPasswordToken(string $email): string {
+	private function processSetPasswordToken(string $email): string {
 		$token = $this->generateRandomToken();
 		$encryptedValue = $this->crypto->encrypt($token, $email . $this->config->getSystemValue('secret'));
 		$this->config->setUserValue($email, $this->appName, 'set_password', $encryptedValue);
+		$this->config->setUserValue($email, $this->appName, 'remind_password', time());
 		return $this->urlGenerator->linkToRouteAbsolute($this->appName.'.password.set_password', array('email' => $email, 'token' => $token));
 	}
 
