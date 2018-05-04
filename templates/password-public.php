@@ -30,7 +30,7 @@ declare(strict_types=1);
 			<input type="email" name="email" id="email" value="<?php print_unescaped($_['email']) ?>" readonly />
 		</div>
 		<div class="groupbottom">
-			<input type="password" name="password" id="password" value="" placeholder="<?php p($l->t('Enter password')); ?>" required />
+			<input type="password" name="password" id="password" value="" placeholder="<?php p($l->t('Set password')); ?>" required />
 			<input type="checkbox" id="show" name="show">
 			<label for="show"></label>
 		</div>
