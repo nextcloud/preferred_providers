@@ -36,6 +36,7 @@ use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\Security\ICrypto;
 use OCP\Security\ISecureRandom;
+use Sabre\VObject\Property\Boolean;
 
 class PasswordController extends Controller {
 
@@ -111,9 +112,10 @@ class PasswordController extends Controller {
 	 * 
 	 * @param string $token The security token
 	 * @param string $email The user email
+	 * @param string $ocsis this a ocs api request
 	 * @return TemplateResponse
 	 */
-	public function setPassword(string $token, string $email) {
+	public function setPassword(string $token, string $email, $ocs = false) {
 		try {
 			$this->checkPasswordToken($token, $email);
 		} catch (\Exception $e) {
@@ -121,7 +123,17 @@ class PasswordController extends Controller {
 				'errors' => array(array('error' => $e->getMessage()))
 			], 'guest');
 		}
-		return $this->generateTemplate($token, $email);
+		return $this->generateTemplate($token, $email, '', $ocs !== false);
+	}
+
+	/**
+	 * @NoCSRFRequired
+	 * @PublicPage
+	 * 
+	 * shortcut for secondary route with ocs api parameter
+	 */
+	public function setPasswordOcs(string $token, string $email, $ocs = false) {
+		return $this->setPassword($token, $email, $ocs);
 	}
 
 	/**
@@ -189,14 +201,14 @@ class PasswordController extends Controller {
 	 * @param string $error optional
 	 * @return TemplateResponse
 	 */
-	protected function generateTemplate(string $token, string $email, string $error = '') {
+	protected function generateTemplate(string $token, string $email, string $error = '', bool $ocs = false) {
 		return new TemplateResponse(
 			$this->appName,
 			'password-public',
 			array(
 				'link' => $this->urlGenerator->linkToRouteAbsolute($this->appName.'.password.submit_password', array('token' => $token)),
 				'email' => $email,
-				'ocsapirequest' => $this->request->getHeader('OCS-APIREQUEST'),
+				'ocsapirequest' => $this->request->getHeader('OCS-APIREQUEST') || $ocs,
 				'error' => $error
 			),
 			'guest'

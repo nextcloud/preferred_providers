@@ -20,7 +20,7 @@ declare(strict_types=1);
  *
  */
 
- script('preferred_providers', 'password-public')
+ script('preferred_providers', 'password-public');
 ?>
 <form action="<?php print_unescaped($_['link']) ?>" id="set-password" method="post">
 	<fieldset>
