@@ -173,7 +173,7 @@ class PasswordController extends Controller {
 		}
 
 		// redirect to ClientFlowLogin if the request comes from android/ios/desktop
-		if ($ocsapirequest === 'true') {
+		if ($ocsapirequest === '1') {
 			$clientName = $this->getClientName();
 			$redirectUri = $this->generateAppPassword($email, $clientName);
 			return new RedirectResponse($redirectUri);
