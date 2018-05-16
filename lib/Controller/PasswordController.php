@@ -162,14 +162,14 @@ class PasswordController extends Controller {
 		try {
 			$user = $this->userManager->get($email);
 			if (!$user->setPassword($password)) {
-				return $this->generateTemplate($token, $email, $this->l10n->t('Unable to set the password. Contact your provider.'));
+				return $this->generateTemplate($token, $email, $this->l10n->t('Unable to set the password. Contact your provider.'), $ocsapirequest === '1');
 			}
 			$this->config->deleteUserValue($email, $this->appName, 'set_password');
 			$this->config->deleteUserValue($email, $this->appName, 'remind_password');
 			// logout and ignore failure
 			@\OC::$server->getUserSession()->unsetMagicInCookie();
 		} catch (\Exception $e) {
-			return $this->generateTemplate($token, $email, $e->getMessage());
+			return $this->generateTemplate($token, $email, $e->getMessage(), $ocsapirequest === '1');
 		}
 
 		// redirect to ClientFlowLogin if the request comes from android/ios/desktop
