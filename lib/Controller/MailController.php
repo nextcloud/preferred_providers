@@ -154,8 +154,7 @@ class MailController extends Controller {
 		if(count($splittedToken) !== 2) {
 			throw new \Exception($this->l10n->t('The token is invalid'));
 		}
-		if ($splittedToken[0] < ($this->timeFactory->getTime() - AccountController::validateEmailDelay) ||
-			$user->getLastLogin() > $splittedToken[0]) {
+		if ($splittedToken[0] < ($this->timeFactory->getTime() - AccountController::validateEmailDelay)) {
 			throw new \Exception($this->l10n->t('The token is expired, please contact your provider'));
 		}
 		if (!hash_equals($splittedToken[1], $token)) {
