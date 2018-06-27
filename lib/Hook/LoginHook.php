@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare (strict_types = 1);
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>
  *
@@ -22,6 +22,8 @@ declare(strict_types=1);
 
 namespace OCA\Preferred_Providers\Hook;
 
+use OCA\Preferred_Providers\Helper\ExpireUserTrait;
+use OCA\Preferred_Providers\Mailer\VerifyMailHelper;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\IConfig;
 use OCP\ILogger;
@@ -30,18 +32,28 @@ use OCP\IUserSession;
 
 class LoginHook {
 
+	use ExpireUserTrait;
+
 	/** @var string */
 	private $appName;
+
 	/** @var IUserManager */
 	private $userManager;
+
 	/** @var IUserSession */
 	private $userSession;
+
 	/** @var IConfig */
 	private $config;
+
 	/** @var ILogger */
 	private $logger;
+
 	/** @var ITimeFactory */
 	private $timeFactory;
+
+	/** @var VerifyMailHelper */
+	private $mailHelper;
 
 	/**
 	 * @param string $appName
@@ -50,47 +62,47 @@ class LoginHook {
 	 * @param IConfig $config
 	 * @param ILogger $logger
 	 * @param ITimeFactory $timeFactory
+	 * @param VerifyMailHelper $mailHelper
 	 */
 	public function __construct(string $appName,
 								IUserManager $userManager,
 								IUserSession $userSession,
 								IConfig $config,
 								ILogger $logger,
-								ITimeFactory $timeFactory){
-		$this->appName = $appName;
+								ITimeFactory $timeFactory,
+								VerifyMailHelper $mailHelper) {
+		$this->appName     = $appName;
 		$this->userManager = $userManager;
 		$this->userSession = $userSession;
-		$this->config = $config;
-		$this->logger = $logger;
+		$this->config      = $config;
+		$this->logger      = $logger;
 		$this->timeFactory = $timeFactory;
+		$this->mailHelper = $mailHelper;
 	}
 
 	/**
 	 * Register preLogin hook
 	 */
 	public function register() {
-		$this->userSession->listen('\OC\User', 'preLogin', function($userId) {
+		$this->userSession->listen('\OC\User', 'preLogin', function ($userId) {
 			$this->verifyUser($userId);
 		});
 	}
 
 	/**
 	 * Verify if user has validated is email on time
-	 * 
+	 *
 	 * @param string $userId
 	 */
 	private function verifyUser(string $userId) {
 		$user = $this->userManager->get($userId);
-		if($user === null || !$user->isEnabled()) {
+		if ($user === null || !$user->isEnabled()) {
 			return;
 		}
 		$disableTime = $this->config->getUserValue($userId, $this->appName, 'disable_user_after', false);
 		// time expired, disabling user
 		if ($disableTime !== false && $disableTime < $this->timeFactory->getTime()) {
-			$user->setEnabled(false);
-			// removing token to avoid conflict with further manual manipulation of the user
-			$this->config->deleteUserValue($email, $this->appName, 'disable_user_after');
-			$this->logger->debug('User ' . $userId . ' failed to verify email in time and has been disabled', ['app' => $this->appName]);
+			$this->expireUser($userId);
 		}
 	}
 

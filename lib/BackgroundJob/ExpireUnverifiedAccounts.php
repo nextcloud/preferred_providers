@@ -22,67 +22,79 @@ declare (strict_types = 1);
 
 namespace OCA\Preferred_Providers\BackgroundJob;
 
-use OCA\Preferred_Providers\Mailer\SetPasswordMailHelper;
+use OCA\Preferred_Providers\Helper\ExpireUserTrait;
+use OCA\Preferred_Providers\Mailer\VerifyMailHelper;
 use OCP\IConfig;
 use OCP\IDBConnection;
 use OCP\ILogger;
+use OCP\IUserManager;
+use OCP\IUserSession;
+use OC\AppFramework\Utility\TimeFactory;
 use OC\BackgroundJob\TimedJob;
 use OC\SystemConfig;
 
-class NotifyUnsetPassword extends TimedJob {
+class ExpireUnverifiedAccounts extends TimedJob {
+
+	use ExpireUserTrait;
 
 	/** @var string */
 	private $appName;
 
-	/** @var ILogger */
-	private $logger;
+	/** @var IUserManager */
+	private $userManager;
 
-	/** @var IDBConnection */
-	private $connection;
-
-	/** @var SystemConfig */
-	private $systemConfig;
+	/** @var IUserSession */
+	private $userSession;
 
 	/** @var IConfig */
 	private $config;
 
-	/** @var SetPasswordMailHelper */
+	/** @var SystemConfig */
+	private $systemConfig;
+
+	/** @var ILogger */
+	private $logger;
+
+	/** @var TimeFactory */
+	private $timeFactory;
+
+	/** @var IDBConnection */
+	private $connection;
+
+	/** @var VerifyMailHelper */
 	private $mailHelper;
 
 	public function __construct() {
-		// Run once per 5 minutes
-		$this->setInterval(5 * 60);
+		// Run once per 15 minutes
+		$this->setInterval(15 * 60);
 	}
 
 	public function run($argument) {
 		$this->appName      = 'preferred_providers';
-		$this->logger       = \OC::$server->getLogger();
-		$this->connection   = \OC::$server->getDatabaseConnection();
-		$this->systemConfig = \OC::$server->getSystemConfig();
+		$this->userManager  = \OC::$server->getUserManager();
+		$this->userSession  = \OC::$server->getUserSession();
 		$this->config       = \OC::$server->getConfig();
+		$this->systemConfig = \OC::$server->getSystemConfig();
+		$this->logger       = \OC::$server->getLogger();
+		$this->timeFactory  = new TimeFactory();
+		$this->connection   = \OC::$server->getDatabaseConnection();
 
-		$this->mailHelper = new SetPasswordMailHelper(
+		$this->mailHelper = new VerifyMailHelper(
 			$this->appName,
 			\OC::$server->getThemingDefaults(),
 			\OC::$server->getURLGenerator(),
 			\OC::$server->getL10N($this->appName),
 			\OC::$server->getMailer(),
-			\OC::$server->getConfig(),
+			\OC::$server->getSecureRandom(),
+			$this->timeFactory,
+			$this->config,
 			\OC::$server->getCrypto()
 		);
 
 		// process if token is 5min old
-		$users = $this->getUsersForUserLowerThanValue($this->appName, 'remind_password', time() - 5 * 60);
+		$users = $this->getUsersForUserLowerThanValue($this->appName, 'disable_user_after', time());
 		foreach ($users as $userId) {
-			$emailTemplate = $this->mailHelper->generateTemplate($userId);
-			try {
-				$this->mailHelper->sendMail($userId, $emailTemplate);
-				// only send one mail
-				$this->config->deleteUserValue($userId, $this->appName, 'remind_password');
-				$this->logger->debug('Password definition mail sent to ' . $userId, ['app' => $this->appName]);
-			} catch (Exception $e) {
-				$this->logger->debug('Error while sending the password definition mail to  ' . $userId, ['app' => $this->appName]);
-			}
+			$this->expireUser($userId);
 		}
 	}
 

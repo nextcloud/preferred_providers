@@ -109,7 +109,7 @@ class VerifyMailHelper {
 	 * @param bool $verified is the mail verified
 	 * @return IEMailTemplate
 	 */
-	public function generateTemplate(IUser $user, bool $verified = false): IEMailTemplate {
+	public function generateTemplate(IUser $user, bool $verified = false, bool $expired = false): IEMailTemplate {
 		// set base data
 		$userId = $user->getUID();
 
@@ -127,6 +127,8 @@ class VerifyMailHelper {
 
 		if ($verified) {
 			$emailTemplate = $this->generateVerifiedMailBody($emailTemplate, $userId, $link);
+		} else if ($expired) {
+			$emailTemplate = $this->generateFailedVerifyMailBody($emailTemplate, $userId);
 		} else {
 			$emailTemplate = $this->generateNonVerifiedMailBody($emailTemplate, $userId, $link);
 		}
@@ -167,6 +169,19 @@ class VerifyMailHelper {
 		$emailTemplate->addFooter();
 		return $emailTemplate;
 	}
+
+	/**
+	 * Generate mail body for the disable warning mail
+	 */
+	protected function generateFailedVerifyMailBody(IEMailTemplate $emailTemplate, string $userId): IEMailTemplate {
+		$emailTemplate->setSubject($this->l10n->t('Your account has been disabled'));
+		$emailTemplate->addHeader();
+		$emailTemplate->addBodyText($this->l10n->t('You did not verify your %s account in time. Therefore your account %s has been disabled.', [$this->themingDefaults->getName(), $userId]));
+		$emailTemplate->addBodyText($this->l10n->t('Please contact your provider.'));
+		$emailTemplate->addFooter();
+		return $emailTemplate;
+	}
+	
 
 	/**
 	 * Sends a welcome mail to $user to ask him to verify his mail address

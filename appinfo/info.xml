@@ -5,7 +5,7 @@
     <name>Preferred Providers</name>
     <summary>Allow nextcloud to request user accounts</summary>
     <description><![CDATA[Allow nextcloud to request user accounts]]></description>
-    <version>1.1.3</version>
+    <version>1.2.1</version>
     <licence>agpl</licence>
     <author>John Molakvoæ</author>
     <namespace>Preferred_Providers</namespace>
@@ -20,5 +20,6 @@
     </settings>
     <background-jobs>
 		<job>OCA\Preferred_Providers\BackgroundJob\NotifyUnsetPassword</job>
+		<job>OCA\Preferred_Providers\BackgroundJob\ExpireUnverifiedAccounts</job>
     </background-jobs>
 </info>
