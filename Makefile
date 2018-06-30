@@ -20,6 +20,7 @@ appstore:
 	tar cvzf $(appstore_package_name).tar.gz \
 		--exclude-vcs \
 		$(project_directory)/appinfo \
+		$(project_directory)/css \
 		$(project_directory)/img \
 		$(project_directory)/js \
 		$(project_directory)/lib \

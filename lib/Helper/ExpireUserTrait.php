@@ -40,7 +40,7 @@ trait ExpireUserTrait {
 
 		// removing token to avoid conflict with further manual manipulation of the user
 		$this->config->deleteUserValue($userId, $this->appName, 'disable_user_after');
-		$this->logger->debug('User ' . $userId . ' failed to verify email in time and has been disabled', ['app' => $this->appName]);
+		$this->logger->info('User ' . $userId . ' failed to verify email in time and has been disabled', ['app' => $this->appName]);
 
 		// send email
 		if ($user->getEMailAddress() !== '' && $user->getEMailAddress() !== null) {
@@ -49,13 +49,13 @@ trait ExpireUserTrait {
 				$this->mailHelper->sendMail($user, $emailTemplate);
 				// only send one mail
 				$this->config->deleteUserValue($userId, $this->appName, 'remind_password');
-				$this->logger->debug('Failed to verify warning mail sent to ' . $userId, ['app' => $this->appName]);
+				$this->logger->debug('Unverified warning mail sent to ' . $userId, ['app' => $this->appName]);
 			} catch (Exception $e) {
-				$this->logger->debug('Error while sending the failed to verify warning mail to  ' . $userId, ['app' => $this->appName]);
+				$this->logger->error('Error while sending the failed to verify warning mail to  ' . $userId, ['app' => $this->appName]);
 			}
 		} else {
 			// Should not happend
-			$this->logger->debug('Failed to verify warning mail COULD NOT BE sent to ' . $userId . '. No email address is set.', ['app' => $this->appName]);
+			$this->logger->error('Failed to verify warning mail COULD NOT BE sent to ' . $userId . '. No email address is set.', ['app' => $this->appName]);
 		}
 	}
 
