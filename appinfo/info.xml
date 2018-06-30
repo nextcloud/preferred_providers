@@ -5,14 +5,14 @@
     <name>Preferred Providers</name>
     <summary>Allow nextcloud to request user accounts</summary>
     <description><![CDATA[Allow nextcloud to request user accounts]]></description>
-    <version>1.2.1</version>
+    <version>1.3.0</version>
     <licence>agpl</licence>
     <author>John Molakvoæ</author>
     <namespace>Preferred_Providers</namespace>
     <category>files</category>
     <bugs>https://github.com/nextcloud/preferred_providers</bugs>
     <dependencies>
-        <nextcloud min-version="12" max-version="14"/>
+        <nextcloud min-version="13" max-version="14"/>
     </dependencies>
     <settings>
         <admin>OCA\Preferred_Providers\Settings\Admin</admin>

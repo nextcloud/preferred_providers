@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare (strict_types = 1);
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>
  *
@@ -21,13 +21,15 @@ declare(strict_types=1);
  */
 
 return [
-	'ocs' => [
-		['root' => '/account', 'name' => 'Account#requestAccount', 'url' => '/request/{token}', 'verb' => 'POST']
+	'ocs'    => [
+		['root' => '/account', 'name' => 'Account#requestAccount', 'url' => '/request/{token}', 'verb' => 'POST'],
+		['name' => 'Settings#resetToken', 'url' => '/api/v1/token/new', 'verb' => 'GET'],
+		['name' => 'Settings#setGroups', 'url' => '/api/v1/groups', 'verb' => 'POST']
 	],
 	'routes' => [
 		['name' => 'mail#confirm_mail_address', 'url' => '/login/confirm/{email}/{token}', 'verb' => 'GET'],
 		['name' => 'password#set_password', 'url' => '/password/set/{email}/{token}', 'verb' => 'GET'],
 		['name' => 'password#set_password_ocs', 'url' => '/password/set/{email}/{token}/{ocs}', 'verb' => 'GET'],
-		['name' => 'password#submit_password', 'url' => '/password/submit/{token}', 'verb' => 'POST'],
+		['name' => 'password#submit_password', 'url' => '/password/submit/{token}', 'verb' => 'POST']
 	]
 ];

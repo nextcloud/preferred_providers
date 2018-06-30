@@ -20,9 +20,28 @@ declare(strict_types=1);
  *
  */
 
- ?>
- <div id="security-warning" class="section">
+script('preferred_providers', 'admin-settings');
+style('preferred_providers', 'admin-settings');
+?>
+
+<div id="token-section" class="section">
     <h2><?php p($l->t('Preferred providers token')); ?></h2>
     <p class="warning"><?php p($l->t('WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!')); ?></p>
-    <p><?php p($l->t('Your provider token')); ?>: <input type="text" value="<?php p($_['provider_token']) ?>" readonly style="width:250px"/></p>
+    <p><?php p($l->t('Your provider token')); ?>:</p>
+    <div class="token-container">
+        <input type="text" id="token" value="<?php p($_['provider_token']) ?>" readonly />
+        <input type="button" id="token-reset" class="icon-history" title="<?php p($l->t('Reset your token')); ?>" />
+    </div>
+</div>
+
+<div id="groups-section" class="section">
+    <h2><?php p($l->t('Preferred providers groups')); ?></h2>
+    <p><?php p($l->t('The following groups will be added to every new account')); ?>:</p>
+    <select multiple id="groups">
+        <?php foreach($_['groups'] as $group) {
+            $gid = $group->getGid();
+        ?>
+        <option value="<?php p($gid); ?>" <?php p(in_array($gid, $_['provider_groups']) ? 'selected="selected"' : ''); ?>><?php p($gid); ?></option>
+        <?php }?>
+    </select>
 </div>

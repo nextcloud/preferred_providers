@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare (strict_types = 1);
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>
  *
@@ -24,6 +24,7 @@ namespace OCA\Preferred_Providers\Settings;
 
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IConfig;
+use OCP\IGroupManager;
 use OCP\Security\ISecureRandom;
 use OCP\Settings\ISettings;
 
@@ -31,18 +32,26 @@ class Admin implements ISettings {
 
 	/** @var IConfig */
 	private $config;
+
 	/** @var ISecureRandom */
 	private $secureRandom;
+
+	/** @var IGroupManager */
+	private $groupManager;
 
 	/**
 	 * Admin constructor.
 	 *
 	 * @param IConfig $config
 	 * @param ISecureRandom $secureRandom
+	 * @param IGroupManager $groupManager
 	 */
-	public function __construct(IConfig $config, ISecureRandom $secureRandom) {
-		$this->config = $config;
+	public function __construct(IConfig $config,
+								ISecureRandom $secureRandom,
+								IGroupManager $groupManager) {
+		$this->config       = $config;
 		$this->secureRandom = $secureRandom;
+		$this->groupManager = $groupManager;
 	}
 
 	/**
@@ -50,14 +59,17 @@ class Admin implements ISettings {
 	 */
 	public function getForm() {
 		// Generate new token if none exists
-		$provider_token = $this->config->getAppValue('preferred_providers', 'provider_token', false);
+		$provider_token  = $this->config->getAppValue('preferred_providers', 'provider_token', false);
+		$provider_groups = $this->config->getAppValue('preferred_providers', 'provider_groups', '');
 		if (!$provider_token) {
 			$provider_token = md5($this->secureRandom->generate(10));
 			$this->config->setAppValue('preferred_providers', 'provider_token', $provider_token);
 		}
 
 		$parameters = [
-			'provider_token' => $provider_token
+			'provider_token'  => $provider_token,
+			'provider_groups' => explode(',', $provider_groups),
+			'groups'          => $this->groupManager->search('')
 		];
 
 		return new TemplateResponse('preferred_providers', 'settings-admin', $parameters, '');

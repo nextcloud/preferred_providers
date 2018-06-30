@@ -20,7 +20,8 @@ declare(strict_types=1);
  *
  */
 
- script('preferred_providers', 'password-public');
+script('preferred_providers', 'password-public');
+
 ?>
 <p class="info"><?php p($l->t('Almost there! Please create your password')); ?></p>
 <form action="<?php print_unescaped($_['link']) ?>" id="set-password" method="post">
