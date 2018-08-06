@@ -176,12 +176,11 @@ class VerifyMailHelper {
 	protected function generateFailedVerifyMailBody(IEMailTemplate $emailTemplate, string $userId): IEMailTemplate {
 		$emailTemplate->setSubject($this->l10n->t('Your account has been disabled'));
 		$emailTemplate->addHeader();
-		$emailTemplate->addBodyText($this->l10n->t('You did not verify your %s account in time. Therefore your account %s has been disabled.', [$this->themingDefaults->getName(), $userId]));
-		$emailTemplate->addBodyText($this->l10n->t('Please contact your provider.'));
+		$emailTemplate->addBodyText($this->l10n->t('Your %s account %s has been disabled because it was not verified in time.', [$this->themingDefaults->getName(), $userId]));
+		$emailTemplate->addBodyText($this->l10n->t('Please contact your provider for further assistance.'));
 		$emailTemplate->addFooter();
 		return $emailTemplate;
 	}
-	
 
 	/**
 	 * Sends a welcome mail to $user to ask him to verify his mail address
