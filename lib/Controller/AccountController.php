@@ -29,11 +29,13 @@ use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\IConfig;
 use OCP\IGroupManager;
+use OCP\IL10N;
 use OCP\ILogger;
 use OCP\IRequest;
 use OCP\IURLGenerator;
 use OCP\IUserManager;
 use OCP\Mail\IMailer;
+use OCP\Notification\IManager;
 use OCP\Security\ICrypto;
 use OCP\Security\ISecureRandom;
 
@@ -75,6 +77,11 @@ class AccountController extends ApiController {
 	/** @var ISecureRandom */
 	private $secureRandom;
 
+	/** @var IManager */
+	private $notificationsManager;
+
+	/** @var IL10N */
+	private $l10n;
 	/**
 	 * Account constructor.
 	 *
@@ -90,6 +97,7 @@ class AccountController extends ApiController {
 	 * @param ITimeFactory $timeFactory
 	 * @param ICrypto $crypto
 	 * @param ISecureRandom $secureRandom
+	 * @param IL10N $l10n
 	 */
 	public function __construct(string $appName,
 								IRequest $request,
@@ -102,19 +110,23 @@ class AccountController extends ApiController {
 								IURLGenerator $urlGenerator,
 								ITimeFactory $timeFactory,
 								ICrypto $crypto,
-								ISecureRandom $secureRandom) {
+								ISecureRandom $secureRandom,
+								IManager $notificationsManager,
+								IL10N $l10n) {
 		parent::__construct($appName, $request, 'POST');
-		$this->appName          = $appName;
-		$this->config           = $config;
-		$this->userManager      = $userManager;
-		$this->groupManager     = $groupManager;
-		$this->mailer           = $mailer;
-		$this->verifyMailHelper = $verifyMailHelper;
-		$this->logger           = $logger;
-		$this->urlGenerator     = $urlGenerator;
-		$this->timeFactory      = $timeFactory;
-		$this->crypto           = $crypto;
-		$this->secureRandom     = $secureRandom;
+		$this->appName              = $appName;
+		$this->config               = $config;
+		$this->userManager          = $userManager;
+		$this->groupManager         = $groupManager;
+		$this->mailer               = $mailer;
+		$this->verifyMailHelper     = $verifyMailHelper;
+		$this->logger               = $logger;
+		$this->urlGenerator         = $urlGenerator;
+		$this->timeFactory          = $timeFactory;
+		$this->crypto               = $crypto;
+		$this->secureRandom         = $secureRandom;
+		$this->notificationsManager = $notificationsManager;
+		$this->l10n                 = $l10n;
 	}
 
 	/**
@@ -190,6 +202,14 @@ class AccountController extends ApiController {
 			// continue anyway. Let's only warn the admin log
 			// return new DataResponse(['data' => ['message' => 'error sending the invitation mail']], Http::STATUS_BAD_REQUEST);
 		}
+
+		// generate a notification
+		$notification = $this->notificationsManager->createNotification();
+		$notification->setApp($this->appName)
+		             ->setUser($email)
+		             ->setDateTime(new DateTime())
+		             ->setObject($this->l10n->t('Please verify your email address'), 'verify_mail')
+		             ->setSubject($this->l10n->t('A confirmation mail was sent to <strong>%s</strong>. Make sure to confirm the account within 6 hours.', [$email]));
 
 		// generate set password token
 		try {
