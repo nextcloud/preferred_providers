@@ -25,7 +25,7 @@ declare(strict_types=1);
 script('preferred_providers', 'password-public');
 
 ?>
-<p class="info"><?php p($l->t('Almost there! Please create your password')); ?></p>
+<p class="info"><?php p($l->t('After this step, you will receive a mail to verify your account within 6 hours.')); ?></p>
 <form action="<?php print_unescaped($_['link']) ?>" id="set-password" method="post">
 	<fieldset>
 		<div class="grouptop">
