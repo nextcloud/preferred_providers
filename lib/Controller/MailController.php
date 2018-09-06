@@ -1,7 +1,9 @@
 <?php
 declare(strict_types=1);
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * 
+ * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -40,18 +42,25 @@ class MailController extends Controller {
 
 	/** @var string */
 	protected $appName;
+
 	/** @var IConfig */
 	private $config;
+
 	/** @var IL10N */
 	private $l10n;
+
 	/** @var IUserManager */
 	private $userManager;
+
 	/** @var ICrypto */
 	private $crypto;
+
 	/** @var ITimeFactory */
 	private $timeFactory;
+
 	/** @var IURLGenerator */
 	private $urlGenerator;
+
 	/** @var VerifyMailHelper */
 	private $verifyMailHelper;
 
@@ -68,7 +77,6 @@ class MailController extends Controller {
 	 * @param ITimeFactory $timeFactory
 	 * @param IURLGenerator $urlGenerator
 	 * @param VerifyMailHelper $verifyMailHelper
-	 * 
 	 */
 	public function __construct(string $appName,
 								IRequest $request,

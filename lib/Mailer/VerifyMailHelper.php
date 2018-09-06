@@ -174,7 +174,7 @@ class VerifyMailHelper {
 	 * Generate mail body for the disable warning mail
 	 */
 	protected function generateFailedVerifyMailBody(IEMailTemplate $emailTemplate, string $userId): IEMailTemplate {
-		$emailTemplate->setSubject($this->l10n->t('Your account has been disabled'));
+		$emailTemplate->setSubject($this->l10n->t('Your %s account has been disabled', [$this->themingDefaults->getName()]));
 		$emailTemplate->addHeader();
 		$emailTemplate->addBodyText($this->l10n->t('Your %s account %s has been disabled because it was not verified in time.', [$this->themingDefaults->getName(), $userId]));
 		$emailTemplate->addBodyText($this->l10n->t('Please contact your provider for further assistance.'));

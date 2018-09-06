@@ -1,7 +1,9 @@
 <?php
-declare (strict_types = 1);
+declare(strict_types=1);
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * 
+ * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -40,24 +42,34 @@ class PasswordController extends Controller {
 
 	/** @var string */
 	protected $appName;
+	
 	/** @var IRequest */
 	protected $request;
+
 	/** @var IConfig */
 	private $config;
+
 	/** @var IL10N */
 	private $l10n;
+
 	/** @var IUserManager */
 	private $userManager;
+
 	/** @var ICrypto */
 	private $crypto;
+
 	/** @var IURLGenerator */
 	private $urlGenerator;
+
 	/** @var IUserSession */
 	private $userSession;
+
 	/** @var ILogger */
 	private $logger;
+
 	/** @var IProvider */
 	private $tokenProvider;
+
 	/** @var ISecureRandom */
 	private $secureRandom;
 
