@@ -47,7 +47,7 @@ class Notifier implements INotifier {
 
 	/**
 	 * Notifier constructor.
-	 * 
+	 *
 	 * @param string $appName
 	 * @param IFactory $l10nFactory
 	 * @param IUserManager $userManager
@@ -71,54 +71,38 @@ class Notifier implements INotifier {
 	 */
 	public function prepare(INotification $notification, $languageCode): INotification {
 		if ($notification->getApp() !== $this->appName) {
-			// Not my app => throw
-			throw new \InvalidArgumentException('Unknown app');
+			throw new \InvalidArgumentException('Incorrect app');
 		}
 
-		// Read the language from the notification
-		$l = $this->l10nFactory->get($this->appName, $languageCode);
+		$l = $this->lFactory->get($this->appName, $languageCode);
+		$notification->setIcon($this->url->getAbsoluteURL($this->url->imagePath($this->appName, 'app-dark.svg')));
 
-		$i = $notification->getSubject();
-		if ($i !== 'announced') {
-			// Unknown subject => Unknown notification => throw
-			throw new \InvalidArgumentException('Unknown subject');
+		$subject = $notification->getSubject();
+		if ($subject === 'verify_email') {
+			return $this->parseEmailReminder($notification, $l);
 		}
+		throw new \InvalidArgumentException('Unknown subject');
+	}
 
-		$params = $notification->getSubjectParameters();
-		$user   = $this->userManager->get($params[0]);
-		if ($user instanceof IUser) {
-			$displayName = $user->getDisplayName();
-		} else {
-			$displayName = $params[0];
+
+	/**
+	 * @param INotification $notification
+	 * @param IL10N $l
+	 * @return INotification
+	 * @throws \InvalidArgumentException
+	 */
+	protected function parseEmailReminder(INotification $notification, IL10N $l) {
+		if ($notification->getObjectType() !== 'room') {
+			throw new \InvalidArgumentException('Unknown object type');
 		}
-
-		$announcement     = $this->manager->getAnnouncement((int) $notification->getObjectId(), false, false, false);
-		$subject          = str_replace("\n", ' ', $announcement['subject']);
-		$parsedParameters = [$displayName, $subject];
-
-		$notification->setParsedMessage($announcement['message'])
-		             ->setRichSubject(
-			             $l->t('{user} announced “{announcement}”'),
-			             [
-				             'user'         => [
-					             'type' => 'user',
-					             'id'   => $params[0],
-					             'name' => $displayName
-				             ],
-				             'announcement' => [
-					             'type' => 'announcement',
-					             'id'   => $notification->getObjectId(),
-					             'name' => $subject,
-					             'link' => $this->urlGenerator->linkToRouteAbsolute('announcementcenter.page.index', [
-						 'announcement' => $notification->getObjectId()
-					 ])
-				             ]
-			             ]
-		             )
-		             ->setParsedSubject(
-			             (string) $l->t('%1$s announced “%2$s”', $parsedParameters)
-		             );
-
+		$parameters = $notification->getSubjectParameters();
+		$notification
+			->setParsedSubject(
+				$l->t('Please verify your email address')
+			)
+			->setRichSubject(
+				$l->t('A confirmation mail was sent to <strong>%s</strong>. Make sure to confirm the account within 6 hours.', [$email])
+			);
 		return $notification;
 	}
 }

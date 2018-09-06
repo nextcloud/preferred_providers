@@ -208,8 +208,7 @@ class AccountController extends ApiController {
 		$notification->setApp($this->appName)
 		             ->setUser($email)
 		             ->setDateTime(new DateTime())
-		             ->setObject($this->l10n->t('Please verify your email address'), 'verify_mail')
-		             ->setSubject($this->l10n->t('A confirmation mail was sent to <strong>%s</strong>. Make sure to confirm the account within 6 hours.', [$email]));
+		             ->setObject($this->l10n->t('Please verify your email address'), 'verify_email');
 
 		// generate set password token
 		try {
