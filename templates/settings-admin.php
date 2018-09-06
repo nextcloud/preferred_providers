@@ -1,7 +1,9 @@
 <?php
 declare(strict_types=1);
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * 
+ * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -40,8 +42,9 @@ style('preferred_providers', 'admin-settings');
     <select multiple id="groups">
         <?php foreach($_['groups'] as $group) {
             $gid = $group->getGid();
+            $gname = $group->getDisplayName();
         ?>
-        <option value="<?php p($gid); ?>" <?php p(in_array($gid, $_['provider_groups']) ? 'selected="selected"' : ''); ?>><?php p($gid); ?></option>
+        <option value="<?php p($gid); ?>" <?php p(in_array($gid, $_['provider_groups']) ? 'selected="selected"' : ''); ?>><?php p($gname); ?></option>
         <?php }?>
     </select>
 </div>
