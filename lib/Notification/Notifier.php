@@ -44,15 +44,7 @@ class Notifier implements INotifier {
 	/** @var IURLGenerator */
 	protected $urlGenerator;
 
-	/**
-	 * Notifier constructor.
-	 *
-	 * @param string $appName
-	 * @param IFactory $l10nFactory
-	 * @param IUserManager $userManager
-	 * @param IURLGenerator $urlGenerator
-	 */
-	public function __construct(String $appName,
+	public function __construct(string $appName,
 								IFactory $l10nFactory,
 								IUserManager $userManager,
 								IURLGenerator $urlGenerator) {

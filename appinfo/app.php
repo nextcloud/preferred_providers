@@ -21,4 +21,4 @@ declare(strict_types=1);
  */
 
 $app = new \OCA\Preferred_Providers\AppInfo\Application();
-$app->getContainer()->query('OCA\Preferred_Providers\Hook\LoginHook')->register();
+$app->register();

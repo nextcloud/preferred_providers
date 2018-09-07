@@ -24,7 +24,8 @@ namespace OCA\Preferred_Providers\AppInfo;
 
 use OCA\Preferred_Providers\Notification\Notifier;
 use OCP\AppFramework\App;
-use Symfony\Component\EventDispatcher\GenericEvent;
+use OCP\IServerContainer;
+use OCA\Preferred_Providers\Hook\LoginHook;
 
 class Application extends App {
 
@@ -33,6 +34,11 @@ class Application extends App {
 	
 	public function __construct() {
 		parent::__construct($this->appName);
+	}
+
+	public function register() {
+		$this->registerNotifier($this->getContainer()->getServer());
+		$this->getContainer()->query(LoginHook::class)->register();
 	}
 
 	protected function registerNotifier(IServerContainer $server) {
