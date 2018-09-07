@@ -25,7 +25,6 @@ declare(strict_types=1);
 namespace OCA\Preferred_Providers\Notification;
 
 use OCP\IURLGenerator;
-use OCP\IUser;
 use OCP\IUserManager;
 use OCP\L10N\IFactory;
 use OCP\Notification\INotification;
@@ -74,35 +73,24 @@ class Notifier implements INotifier {
 			throw new \InvalidArgumentException('Incorrect app');
 		}
 
-		$l = $this->lFactory->get($this->appName, $languageCode);
-		$notification->setIcon($this->url->getAbsoluteURL($this->url->imagePath($this->appName, 'app-dark.svg')));
+		$l = $this->l10nFactory->get($this->appName, $languageCode);
+		$notification->setIcon($this->urlGenerator->getAbsoluteURL($this->urlGenerator->imagePath($this->appName, 'app-dark.svg')));
 
 		$subject = $notification->getSubject();
 		if ($subject === 'verify_email') {
-			return $this->parseEmailReminder($notification, $l);
+			$message = $l->t('A confirmation mail was sent to {email}. Make sure to confirm the account within 6 hours.');
+			$notification
+				->setParsedSubject($l->t('Please verify your email address'))
+				->setParsedMessage(str_replace('{email}', $notification->getUser(), $message))
+				->setRichMessage($message, [
+					'email' => [
+						'type' => 'email',
+						'id' => $notification->getUser(),
+						'name' => $notification->getUser(),
+					]
+				]);
+			return $notification;
 		}
 		throw new \InvalidArgumentException('Unknown subject');
-	}
-
-
-	/**
-	 * @param INotification $notification
-	 * @param IL10N $l
-	 * @return INotification
-	 * @throws \InvalidArgumentException
-	 */
-	protected function parseEmailReminder(INotification $notification, IL10N $l) {
-		if ($notification->getObjectType() !== 'room') {
-			throw new \InvalidArgumentException('Unknown object type');
-		}
-		$parameters = $notification->getSubjectParameters();
-		$notification
-			->setParsedSubject(
-				$l->t('Please verify your email address')
-			)
-			->setRichSubject(
-				$l->t('A confirmation mail was sent to <strong>%s</strong>. Make sure to confirm the account within 6 hours.', [$email])
-			);
-		return $notification;
 	}
 }

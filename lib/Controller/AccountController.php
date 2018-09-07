@@ -26,6 +26,7 @@ use OCA\Preferred_Providers\Mailer\VerifyMailHelper;
 use OCP\AppFramework\ApiController;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\DataResponse;
+use OCP\AppFramework\OCS\OCSForbiddenException;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\IConfig;
 use OCP\IGroupManager;
@@ -80,8 +81,6 @@ class AccountController extends ApiController {
 	/** @var IManager */
 	private $notificationsManager;
 
-	/** @var IL10N */
-	private $l10n;
 	/**
 	 * Account constructor.
 	 *
@@ -97,7 +96,7 @@ class AccountController extends ApiController {
 	 * @param ITimeFactory $timeFactory
 	 * @param ICrypto $crypto
 	 * @param ISecureRandom $secureRandom
-	 * @param IL10N $l10n
+	 * @param IManager $notificationsManager
 	 */
 	public function __construct(string $appName,
 								IRequest $request,
@@ -111,8 +110,7 @@ class AccountController extends ApiController {
 								ITimeFactory $timeFactory,
 								ICrypto $crypto,
 								ISecureRandom $secureRandom,
-								IManager $notificationsManager,
-								IL10N $l10n) {
+								IManager $notificationsManager) {
 		parent::__construct($appName, $request, 'POST');
 		$this->appName              = $appName;
 		$this->config               = $config;
@@ -126,7 +124,6 @@ class AccountController extends ApiController {
 		$this->crypto               = $crypto;
 		$this->secureRandom         = $secureRandom;
 		$this->notificationsManager = $notificationsManager;
-		$this->l10n                 = $l10n;
 	}
 
 	/**
@@ -206,9 +203,11 @@ class AccountController extends ApiController {
 		// generate a notification
 		$notification = $this->notificationsManager->createNotification();
 		$notification->setApp($this->appName)
-		             ->setUser($email)
-		             ->setDateTime(new DateTime())
-		             ->setObject($this->l10n->t('Please verify your email address'), 'verify_email');
+			->setUser($email)
+			->setDateTime(new \DateTime())
+			->setSubject('verify_email')
+			->setObject('verify_email', sha1($email));
+		$this->notificationsManager->notify($notification);
 
 		// generate set password token
 		try {
