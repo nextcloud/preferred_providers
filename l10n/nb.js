@@ -15,7 +15,6 @@ OC.L10N.register(
     "Verify your %s account" : "Verifiser til %s konto",
     "Just one step left to complete your account setup." : "Bare et steg til for å bli ferdig med oppsett av konto.",
     "Click here to verify your email address" : "Klikk her for å bekrefte din e-post adresse",
-    "Your account has been disabled" : "Din konto er deaktivert",
     "Your %s account %s has been disabled because it was not verified in time." : "Din %s konto %s er deaktivert fordi den ikke er bekreftet innen tidsfristen.",
     "Please contact your provider for further assistance." : "Vennligst kontakt til tilbyder for mer hjelp.",
     "Preferred providers" : "Foretrukne tilbydere",

@@ -13,7 +13,6 @@ OC.L10N.register(
     "Install mobile or desktop client" : "Nainstalovat mobilního nebo desktopového klienta",
     "Just one step left to complete your account setup." : "K dokončení nastavení účtu chybí už jen jeden krok.",
     "Click here to verify your email address" : "Svou e-mailovou adresu ověříte kliknutím sem",
-    "Your account has been disabled" : "Váš účet byl znepřístupněn",
     "Preferred providers" : "Upřednostňovaní poskytovatelé",
     "Preferred Providers" : "Upřednostňovaní poskytovatelé",
     "Allow nextcloud to request user accounts" : "Umožnit nextcloud požadovat uživatelské účty",

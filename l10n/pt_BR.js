@@ -15,7 +15,6 @@ OC.L10N.register(
     "Verify your %s account" : "Verifique sua conta %s",
     "Just one step left to complete your account setup." : "Apenas um passo para concluir a configuração da sua conta.",
     "Click here to verify your email address" : "Clique aqui para confirmar seu endereço de e-mail.",
-    "Your account has been disabled" : "Sua conta foi desativada",
     "Your %s account %s has been disabled because it was not verified in time." : "Sua %s conta %sfoi desativada porque não foi verificada a tempo.",
     "Please contact your provider for further assistance." : "Contacte seu provedor para obter suporte.",
     "Preferred providers" : "Provedores preferenciais",
