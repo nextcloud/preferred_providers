@@ -28,14 +28,17 @@ use OCA\Preferred_Providers\Mailer\VerifyMailHelper;
 use OCP\AppFramework\ApiController;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\DataResponse;
+use OCP\AppFramework\OCS\OCSForbiddenException;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\IConfig;
 use OCP\IGroupManager;
+use OCP\IL10N;
 use OCP\ILogger;
 use OCP\IRequest;
 use OCP\IURLGenerator;
 use OCP\IUserManager;
 use OCP\Mail\IMailer;
+use OCP\Notification\IManager;
 use OCP\Security\ICrypto;
 use OCP\Security\ISecureRandom;
 
@@ -77,6 +80,9 @@ class AccountController extends ApiController {
 	/** @var ISecureRandom */
 	private $secureRandom;
 
+	/** @var IManager */
+	private $notificationsManager;
+
 	/**
 	 * Account constructor.
 	 *
@@ -92,6 +98,7 @@ class AccountController extends ApiController {
 	 * @param ITimeFactory $timeFactory
 	 * @param ICrypto $crypto
 	 * @param ISecureRandom $secureRandom
+	 * @param IManager $notificationsManager
 	 */
 	public function __construct(string $appName,
 								IRequest $request,
@@ -104,19 +111,21 @@ class AccountController extends ApiController {
 								IURLGenerator $urlGenerator,
 								ITimeFactory $timeFactory,
 								ICrypto $crypto,
-								ISecureRandom $secureRandom) {
+								ISecureRandom $secureRandom,
+								IManager $notificationsManager) {
 		parent::__construct($appName, $request, 'POST');
-		$this->appName          = $appName;
-		$this->config           = $config;
-		$this->userManager      = $userManager;
-		$this->groupManager     = $groupManager;
-		$this->mailer           = $mailer;
-		$this->verifyMailHelper = $verifyMailHelper;
-		$this->logger           = $logger;
-		$this->urlGenerator     = $urlGenerator;
-		$this->timeFactory      = $timeFactory;
-		$this->crypto           = $crypto;
-		$this->secureRandom     = $secureRandom;
+		$this->appName              = $appName;
+		$this->config               = $config;
+		$this->userManager          = $userManager;
+		$this->groupManager         = $groupManager;
+		$this->mailer               = $mailer;
+		$this->verifyMailHelper     = $verifyMailHelper;
+		$this->logger               = $logger;
+		$this->urlGenerator         = $urlGenerator;
+		$this->timeFactory          = $timeFactory;
+		$this->crypto               = $crypto;
+		$this->secureRandom         = $secureRandom;
+		$this->notificationsManager = $notificationsManager;
 	}
 
 	/**
@@ -192,6 +201,15 @@ class AccountController extends ApiController {
 			// continue anyway. Let's only warn the admin log
 			// return new DataResponse(['data' => ['message' => 'error sending the invitation mail']], Http::STATUS_BAD_REQUEST);
 		}
+
+		// generate a notification
+		$notification = $this->notificationsManager->createNotification();
+		$notification->setApp($this->appName)
+			->setUser($email)
+			->setDateTime(new \DateTime())
+			->setSubject('verify_email')
+			->setObject('verify_email', sha1($email));
+		$this->notificationsManager->notify($notification);
 
 		// generate set password token
 		try {
