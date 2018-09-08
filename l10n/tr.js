@@ -15,6 +15,7 @@ OC.L10N.register(
     "Verify your %s account" : "%s hesabınızı doğrulayın",
     "Just one step left to complete your account setup." : "Hesap kurulumunuzu tamamlamak için bir adım kaldı.",
     "Click here to verify your email address" : "E-posta adresinizi doğrulamak için buraya tıklayın",
+    "Your %s account has been disabled" : "%s hesabınız devre dışı bırakıldı",
     "Your %s account %s has been disabled because it was not verified in time." : "Zamanında doğrulanmadığı için %s hesabınız %s devre dışı bırakıldı.",
     "Please contact your provider for further assistance." : "Lütfen daha fazla yardım almak için hizmet sağlayıcınız ile görüşün.",
     "Preferred providers" : "Yeğlenen hizmet sağlayıcıları",
