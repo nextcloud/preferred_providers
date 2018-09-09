@@ -1,6 +1,7 @@
 OC.L10N.register(
     "preferred_providers",
     {
+    "Simple signup" : "Einfaches Anmelden",
     "The token is invalid" : "Der Token ist ungültig",
     "The token is expired, please contact your provider" : "Der Token ist abgelaufen, bitte kontaktieren Sie Ihren Anbieter",
     "Unable to set the password. Contact your provider." : "Das Passwort kann nicht gespeichert werden. Bitte kontaktieren Sie den Provider.",
@@ -18,6 +19,8 @@ OC.L10N.register(
     "Your %s account has been disabled" : "Ihr %s-Konto wurde deaktiviert",
     "Your %s account %s has been disabled because it was not verified in time." : "Ihr %sKonto%s wurde deaktiviert, weil es nicht rechtzeitig bestätigt wurde.",
     "Please contact your provider for further assistance." : "Bitte wenden Sie sich für weitere Unterstützung an Ihren Anbieter.",
+    "A confirmation mail was sent to {email}. Make sure to confirm the account within 6 hours." : "Eine Bestätigungs-E-Mail wurde an {email} gesendet. Aktivieren Sie das Konto innerhalb der nächsten 6 Stunden.",
+    "Please verify your email address" : "Bitte überprüfen Sie Ihre E-Mail-Adresse",
     "Preferred providers" : "Bevorzugte Anbieter",
     "Preferred Providers" : "Bevorzugte Anbieter",
     "Allow nextcloud to request user accounts" : "Nextcloud berechtigen Nutzer-Konten anzufordern",

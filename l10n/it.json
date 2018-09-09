@@ -1,4 +1,5 @@
 { "translations": {
+    "Simple signup" : "Registrazione semplice",
     "The token is invalid" : "Il token non è valido",
     "The token is expired, please contact your provider" : "Il token è scaduto, contatta il tuo fornitore",
     "Unable to set the password. Contact your provider." : "Impossibile impostare la password. Contatta il tuo fornitore.",
@@ -16,6 +17,8 @@
     "Your %s account has been disabled" : "Il tuo account %s è stato disabilitato",
     "Your %s account %s has been disabled because it was not verified in time." : "Il tuo account %s di %s è stato disabilitato poiché non è stato verificato in tempo.",
     "Please contact your provider for further assistance." : "Contatta il tuo fornitore per ulteriore assistenza.",
+    "A confirmation mail was sent to {email}. Make sure to confirm the account within 6 hours." : "Un messaggio di conferma è stato inviato a {email}. Assicurati di confermare l'account entro 6 ore.",
+    "Please verify your email address" : "Verifica il tuo indirizzo email",
     "Preferred providers" : "Fornitori preferiti",
     "Preferred Providers" : "Fornitori preferiti",
     "Allow nextcloud to request user accounts" : "Consenti a Nextcloud di richiedere gli account degli utenti",
