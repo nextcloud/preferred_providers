@@ -1,0 +1,26 @@
+OC.L10N.register(
+    "preferred_providers",
+    {
+    "Simple signup" : "Απλή εγγραφή",
+    "The token is invalid" : "Μη έγκυρο αναγνωριστικό",
+    "The token is expired, please contact your provider" : "Το αναγνωριστικό έχει λήξει, παρακαλούμε επικοινωνήστε με τον πάροχό σας",
+    "Unable to set the password. Contact your provider." : "Αδυναμία ορισμού συνθηματικού. Επικοινωνήστε με τον πάροχό σας",
+    "One more step required" : "Ένα ακόμα βήμα απαιτείται",
+    "It looks like you did not create your password yet." : "Φαίνεται να μην έχετε δημιουργήσει ακόμα το συνθηματικό σας.",
+    "Did you encountered an issue during the sign-up process?" : "Είχατε πρόβλημα κατά την εξέλιξη της εγγραφής σας; ",
+    "Access your account" : "Πρόσβαση στον λογαριασμό σας",
+    "Welcome to your %s account" : "Καλώς ήλθατε στον %sλογαριασμό σας",
+    "Start using %s" : "Έναρξη με χρήση %s",
+    "Install mobile or desktop client" : "Εγκατάσταση πελάτη για κινητό ή για υπολογιστή",
+    "Verify your %s account" : "Επιβεβαίωση του %sλογαριασμού σας",
+    "Just one step left to complete your account setup." : "Ένα βήμα απομένει πριν την ολοκλήρωση της ρύθμισης του λογαριασμού σας.",
+    "Please verify your email address" : "Παρακαλούμε επιβεβαιώστε την ηλεκτρονική σας διεύθυνση",
+    "Preferred providers" : "Προτιμώμενοι πάροχοι",
+    "Preferred Providers" : "Προτιμώμενοι πάροχοι",
+    "Set password" : "Ορισμός συνθηματικού",
+    "Log in" : "Είσοδος",
+    "Preferred providers token" : "Αναγνωριστικό προτιμώμενων παρόχων",
+    "Your provider token" : "Το αναγνωριστικό του παρόχου σας",
+    "Reset your token" : "Επαναφορά του αναγνωριστικού σας"
+},
+"nplurals=2; plural=(n != 1);");
