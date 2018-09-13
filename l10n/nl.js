@@ -1,6 +1,7 @@
 OC.L10N.register(
     "preferred_providers",
     {
+    "Simple signup" : "Eenvoudige aanmelding",
     "The token is invalid" : "Het token is ongeldig",
     "The token is expired, please contact your provider" : "Het token is verlopen. Neem contact op met uw provider",
     "Unable to set the password. Contact your provider." : "Niet mogelijk om het wachtwoord op te slaan. Neem contact op met uw provider.",
@@ -15,8 +16,10 @@ OC.L10N.register(
     "Verify your %s account" : "Verifieer uw %s account",
     "Just one step left to complete your account setup." : "Nog slechts een stap om uw account te completeren.",
     "Click here to verify your email address" : "Click hier om uw e-mail adres te verifieren",
+    "Your %s account has been disabled" : "Je %s account is uitgeschakeld",
     "Your %s account %s has been disabled because it was not verified in time." : "Uw %s account %s is uitgeschakeld omdat het niet tijdig geverifieerd is.",
     "Please contact your provider for further assistance." : "Graag contact opnemen met uw provider voor verdere assistentie.",
+    "Please verify your email address" : "Verifieer je e-mailadres",
     "Preferred providers" : "Voorkeur providers",
     "Preferred Providers" : "Voorkeur providers",
     "Allow nextcloud to request user accounts" : "Sta nextcloud to om user accounts op te vragen",
