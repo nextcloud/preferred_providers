@@ -19,6 +19,7 @@ OC.L10N.register(
     "Your %s account has been disabled" : "Je %s account is uitgeschakeld",
     "Your %s account %s has been disabled because it was not verified in time." : "Uw %s account %s is uitgeschakeld omdat het niet tijdig geverifieerd is.",
     "Please contact your provider for further assistance." : "Graag contact opnemen met uw provider voor verdere assistentie.",
+    "A confirmation mail was sent to {email}. Make sure to confirm the account within 6 hours." : "Er werd ter bevestiging een e-mailbericht gestuurd aan {email}. Bevestig het account binnen 6 uur.",
     "Please verify your email address" : "Verifieer je e-mailadres",
     "Preferred providers" : "Voorkeur providers",
     "Preferred Providers" : "Voorkeur providers",
