@@ -19,6 +19,7 @@ OC.L10N.register(
     "Your %s account has been disabled" : "Votre %s compte a été désactivé",
     "Your %s account %s has been disabled because it was not verified in time." : "Votre %s compte %s a été désactivé parce qu'il n'a pas été vérifié à temps.",
     "Please contact your provider for further assistance." : "Veuillez contacter votre fournisseur pour obtenir plus d'aide.",
+    "A confirmation mail was sent to {email}. Make sure to confirm the account within 6 hours." : "Un mail de confirmation a été envoyé à {email}. Veuillez valider votre compte dans les 6 heures.",
     "Please verify your email address" : "Veuillez vérifier votre courriel",
     "Preferred providers" : "Fournisseurs préférés",
     "Preferred Providers" : "Fournisseurs Préférés",
