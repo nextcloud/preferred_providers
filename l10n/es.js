@@ -1,6 +1,7 @@
 OC.L10N.register(
     "preferred_providers",
     {
+    "Simple signup" : "Registro sencillo",
     "The token is invalid" : "El token no es válido",
     "The token is expired, please contact your provider" : "EL token ha caducado, por favor contacte con su proveedor",
     "Unable to set the password. Contact your provider." : "No es posible establecer la contraseña. Contacte con su proveedor",
@@ -15,8 +16,11 @@ OC.L10N.register(
     "Verify your %s account" : "Verifica tu %s cuenta",
     "Just one step left to complete your account setup." : "Tan solo queda un paso para completar la configuración de tu cuenta",
     "Click here to verify your email address" : "Haga clic aquí para verificar su dirección de correo electrónico",
+    "Your %s account has been disabled" : "Tu cuenta de %s ha sido desactivada",
     "Your %s account %s has been disabled because it was not verified in time." : "Tu %s cuenta %s ha sido deshabilitada porque no ha sido verificada a tiempo.",
     "Please contact your provider for further assistance." : "Por favor, póngase en contacto con su proveedor para obtener más ayuda.",
+    "A confirmation mail was sent to {email}. Make sure to confirm the account within 6 hours." : "Se ha enviado un correo de confirmación a {email}. Asegúrate de confirmar la cuenta en las próximas 6 horas.",
+    "Please verify your email address" : "Por favor, verifica tu dirección de correo electrónico",
     "Preferred providers" : "Proveedores preferidos",
     "Preferred Providers" : "Proveedores Preferidos",
     "Allow nextcloud to request user accounts" : "Permitir que Nextcloud solicite cuentas de usuario",
