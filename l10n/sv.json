@@ -1,4 +1,5 @@
 { "translations": {
+    "Simple signup" : "Enkel registrering",
     "The token is invalid" : "Ogiltig token",
     "The token is expired, please contact your provider" : "Token har utgått, var vänlig kontakta din leverantör",
     "Unable to set the password. Contact your provider." : "Kan inte sätta lösenord. Kontakta din leverantör.",
@@ -13,8 +14,11 @@
     "Verify your %s account" : "Verifiera ditt %s konto",
     "Just one step left to complete your account setup." : "Bara ett steg kvar för att slutföra ditt konto.",
     "Click here to verify your email address" : "Klicka här för att verifiera din e-postadress",
+    "Your %s account has been disabled" : "Ditt %s konto har inaktiverats",
     "Your %s account %s has been disabled because it was not verified in time." : "Ditt %s konto %s har inaktiverats för att det inte verifierades i tid.",
     "Please contact your provider for further assistance." : "Kontakta din leverantör för support.",
+    "A confirmation mail was sent to {email}. Make sure to confirm the account within 6 hours." : "Ett bekräftelsemejl skickades till {email}. Se till att bekräfta kontot inom 6 timmar.",
+    "Please verify your email address" : "Bekräfta din e-postadress",
     "Preferred providers" : "Rekommenderade leverantörer",
     "Preferred Providers" : "Rekommenderade leverantörer",
     "Allow nextcloud to request user accounts" : "Tillåt Nextcloud att begära användarkonton",
