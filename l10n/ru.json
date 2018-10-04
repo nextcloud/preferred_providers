@@ -1,6 +1,7 @@
 { "translations": {
     "The token is invalid" : "Недействительный токен",
     "One more step required" : "Еще один шаг",
+    "It looks like you did not create your password yet." : "Похоже что вы не создали еще ваш пароль..",
     "Welcome to your %s account" : "Добро пожаловать в ваш %s аккаунт",
     "Your %s account %s is now verified!" : "Ваш %s аккаунт%s подтвержден!",
     "Start using %s" : "Начните использовать %s",
