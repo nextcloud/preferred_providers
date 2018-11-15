@@ -4,7 +4,7 @@
     "The token is expired, please contact your provider" : "Le jeton a expiré, veuillez contacter votre fournisseur",
     "Unable to set the password. Contact your provider." : "Impossible de configurer le mot de passe. Contactez votre fournisseur.",
     "One more step required" : "Une étape restante",
-    "It looks like you did not create your password yet." : "Il semble que vous n'avez pas encore créé votre mot de passe.",
+    "It looks like you did not create your password yet." : "Il semble que vous n'ayez pas encore créé votre mot de passe.",
     "Did you encountered an issue during the sign-up process?" : "Avez-vous rencontré un problème lors de l'inscription ?",
     "Access your account" : "Accédez à votre compte",
     "Welcome to your %s account" : "Bienvenue à votre %s compte",
