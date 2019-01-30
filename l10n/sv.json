@@ -17,7 +17,7 @@
     "Your %s account has been disabled" : "Ditt %s konto har inaktiverats",
     "Your %s account %s has been disabled because it was not verified in time." : "Ditt %s konto %s har inaktiverats för att det inte verifierades i tid.",
     "Please contact your provider for further assistance." : "Kontakta din leverantör för support.",
-    "A confirmation mail was sent to {email}. Make sure to confirm the account within 6 hours." : "Ett bekräftelsemejl skickades till {email}. Se till att bekräfta kontot inom 6 timmar.",
+    "A confirmation mail was sent to {email}. Make sure to confirm the account within 6 hours." : "Ett e-postmeddelande med bekräftelse skickades till {email}. Se till att bekräfta kontot inom 6 timmar.",
     "Please verify your email address" : "Bekräfta din e-postadress",
     "Preferred providers" : "Rekommenderade leverantörer",
     "Preferred Providers" : "Rekommenderade leverantörer",
