@@ -1,6 +1,7 @@
 OC.L10N.register(
     "preferred_providers",
     {
+    "One more step required" : "Vielä yksi vaihe vaaditaan",
     "It looks like you did not create your password yet." : "Vaikuttaa siltä, ettet luonut vielä salasanaa.",
     "Access your account" : "Käytä tiliäsi",
     "Welcome to your %s account" : "Tervetuloa %s-tilillesi",
