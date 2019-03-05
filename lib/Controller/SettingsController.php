@@ -1,8 +1,8 @@
 <?php
-declare(strict_types=1);
+declare (strict_types = 1);
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- * 
+ *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @license GNU AGPL version 3 or any later version
@@ -24,9 +24,12 @@ declare(strict_types=1);
 
 namespace OCA\Preferred_Providers\Controller;
 
+use OCA\Preferred_Providers\Mailer\VerifyMailHelper;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\DataResponse;
+use OCP\AppFramework\Http\JSONResponse;
 use OCP\AppFramework\OCSController;
+use OCP\AppFramework\OCS\OCSBadRequestException;
 use OCP\AppFramework\OCS\OCSNotFoundException;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\App\IAppManager;
@@ -37,7 +40,9 @@ use OCP\IRequest;
 use OCP\IURLGenerator;
 use OCP\IUserManager;
 use OCP\IUserSession;
+use OCP\Notification\IManager;
 use OCP\Security\ISecureRandom;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class SettingsController extends OCSController {
 
@@ -74,6 +79,12 @@ class SettingsController extends OCSController {
 	/** @var ISecureRandom */
 	private $secureRandom;
 
+	/** @var IManager */
+	private $notificationsManager;
+
+	/** @var VerifyMailHelper */
+	private $verifyMailHelper;
+
 	/**
 	 * Account constructor.
 	 *
@@ -88,6 +99,8 @@ class SettingsController extends OCSController {
 	 * @param IUserSession $userSession
 	 * @param IAppManager $appManager
 	 * @param ISecureRandom $secureRandom
+	 * @param IManager $notificationsManager
+	 * @param VerifyMailHelper $verifyMailHelper
 	 */
 	public function __construct(string $appName,
 								IRequest $request,
@@ -99,18 +112,22 @@ class SettingsController extends OCSController {
 								ITimeFactory $timeFactory,
 								IUserSession $userSession,
 								IAppManager $appManager,
-								ISecureRandom $secureRandom) {
+								ISecureRandom $secureRandom,
+								IManager $notificationsManager,
+								VerifyMailHelper $verifyMailHelper) {
 		parent::__construct($appName, $request);
-		$this->appName      = $appName;
-		$this->config       = $config;
-		$this->userManager  = $userManager;
-		$this->groupManager = $groupManager;
-		$this->logger       = $logger;
-		$this->urlGenerator = $urlGenerator;
-		$this->timeFactory  = $timeFactory;
-		$this->userSession  = $userSession;
-		$this->appManager   = $appManager;
-		$this->secureRandom = $secureRandom;
+		$this->appName              = $appName;
+		$this->config               = $config;
+		$this->userManager          = $userManager;
+		$this->groupManager         = $groupManager;
+		$this->logger               = $logger;
+		$this->urlGenerator         = $urlGenerator;
+		$this->timeFactory          = $timeFactory;
+		$this->userSession          = $userSession;
+		$this->appManager           = $appManager;
+		$this->secureRandom         = $secureRandom;
+		$this->notificationsManager = $notificationsManager;
+		$this->verifyMailHelper     = $verifyMailHelper;
 
 		$this->serverRoot = \OC::$SERVERROOT;
 		$this->appRoot    = $this->appManager->getAppPath($this->appName);
@@ -131,7 +148,9 @@ class SettingsController extends OCSController {
 	/**
 	 * Define the default groups for a new user
 	 *
-	 * @return DataDisplayResponse
+	 * @param array $groups the groups to set
+	 * @return DataResponse
+	 * @throws OCSNotFoundException
 	 */
 	public function setGroups(array $groups): DataResponse {
 		foreach ($groups as $groupId) {
@@ -142,6 +161,57 @@ class SettingsController extends OCSController {
 		$this->config->setAppValue('preferred_providers', 'provider_groups', implode(',', $groups));
 
 		return new DataResponse(['groups' => $groups]);
+	}
+
+	/**
+	 * Enable a user and resend activation email
+	 *
+	 * @param string $userId the user to reactivate
+	 * @return DataResponse
+	 * @throws OCSNotFoundException
+	 * @throws OCSBadRequestException
+	 */
+	public function reactivate(string $userId): JSONResponse {
+		$user = $this->userManager->get($userId);
+		if (!$user) {
+			throw new OCSNotFoundException($userId . ' does not exists');
+		}
+
+		$email = $user->getEMailAddress();
+
+		if (!$email) {
+			throw new OCSBadRequestException($userId . ' does not have an email address');
+		}
+		
+		// enable if the user was disabled
+		if (!$user->isEnabled()) {
+			$user->setEnabled(true);
+		}
+
+		try {
+			// send email without the reset password link
+			$emailTemplate = $this->verifyMailHelper->generateTemplate($user);
+			$this->verifyMailHelper->sendMail($user, $emailTemplate);
+		} catch (\Exception $e) {
+			$this->logger->logException($e, [
+				'message' => "Can't send new user mail to $email",
+				'level'   => \OCP\Util::ERROR,
+				'app'     => $this->appName
+			]);
+			// continue anyway. Let's only warn the admin log
+			// return new DataResponse(['data' => ['message' => 'error sending the invitation mail']], Http::STATUS_BAD_REQUEST);
+		}
+
+		// generate a notification
+		$notification = $this->notificationsManager->createNotification();
+		$notification->setApp($this->appName)
+		             ->setUser($email)
+		             ->setDateTime(new \DateTime())
+		             ->setSubject('verify_email')
+		             ->setObject('verify_email', sha1($email));
+		$this->notificationsManager->notify($notification);
+
+		return new JSONResponse(['status' => 'success']);
 	}
 
 }

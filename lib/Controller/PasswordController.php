@@ -237,12 +237,14 @@ class PasswordController extends Controller {
 		if ($user === null || !$user->isEnabled()) {
 			throw new \Exception($this->l10n->t('The token is invalid'));
 		}
+		
 		try {
 			$encryptedToken = $this->config->getUserValue($userId, $this->appName, 'set_password');
 			$decryptedToken = $this->crypto->decrypt($encryptedToken, $userId . $this->config->getSystemValue('secret'));
 		} catch (\Exception $e) {
 			throw new \Exception($this->l10n->t('The token is invalid'));
 		}
+
 		if (!hash_equals($decryptedToken, $token)) {
 			throw new \Exception($this->l10n->t('The token is invalid'));
 		}
