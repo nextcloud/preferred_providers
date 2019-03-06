@@ -32,6 +32,6 @@ OC.L10N.register(
     "Your provider token" : "あなたのプロバイダーのトークン",
     "Reset your token" : "トークンをリセットする",
     "Preferred providers groups" : "推奨プロバイダーグループ",
-    "The following groups will be added to every new account" : "以下のグループは新しいアカウントを追加することができます。"
+    "The following groups will be added to every new account" : "次のグループは新しいアカウントを追加することができます。"
 },
 "nplurals=1; plural=0;");
