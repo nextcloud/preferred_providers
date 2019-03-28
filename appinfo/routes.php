@@ -26,7 +26,8 @@ return [
 	'ocs'    => [
 		['root' => '/account', 'name' => 'Account#requestAccount', 'url' => '/request/{token}', 'verb' => 'POST'],
 		['name' => 'Settings#resetToken', 'url' => '/api/v1/token/new', 'verb' => 'GET'],
-		['name' => 'Settings#setGroups', 'url' => '/api/v1/groups', 'verb' => 'POST']
+		['name' => 'Settings#setGroups', 'url' => '/api/v1/groups', 'verb' => 'POST'],
+		['name' => 'Settings#reactivate', 'url' => '/api/v1/reactivate', 'verb' => 'POST']
 	],
 	'routes' => [
 		['name' => 'mail#confirm_mail_address', 'url' => '/login/confirm/{email}/{token}', 'verb' => 'GET'],

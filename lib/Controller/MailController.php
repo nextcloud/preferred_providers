@@ -152,19 +152,25 @@ class MailController extends Controller {
 		if($user === null || !$user->isEnabled()) {
 			throw new \Exception($this->l10n->t('The token is invalid'));
 		}
+
+		$mailAddress = (null !== $user->getEMailAddress()) ? $user->getEMailAddress() : '';
+
 		try {
 			$encryptedToken = $this->config->getUserValue($userId, $this->appName, 'verify_token');
-			$decryptedToken = $this->crypto->decrypt($encryptedToken, $userId.$this->config->getSystemValue('secret'));
+			$decryptedToken = $this->crypto->decrypt($encryptedToken, $mailAddress.$this->config->getSystemValue('secret'));
 		} catch (\Exception $e) {
 			throw new \Exception($this->l10n->t('The token is invalid'));
 		}
+
 		$splittedToken = explode(':', $decryptedToken);
 		if(count($splittedToken) !== 2) {
 			throw new \Exception($this->l10n->t('The token is invalid'));
 		}
+
 		if ($splittedToken[0] < ($this->timeFactory->getTime() - AccountController::validateEmailDelay)) {
 			throw new \Exception($this->l10n->t('The token is expired, please contact your provider'));
 		}
+		
 		if (!hash_equals($splittedToken[1], $token)) {
 			throw new \Exception($this->l10n->t('The token is invalid'));
 		}
