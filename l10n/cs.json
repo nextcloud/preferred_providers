@@ -1,4 +1,7 @@
 { "translations": {
+    "User enabled and verification email sent!" : "Účet uživatele zapnut a ověřovací e-mail odeslán!",
+    "Error while sending the verification email" : "Chyba při odesílání ověřovacího e-mailu",
+    "Resend verification email and enable" : "Znovu poslat ověřovací e-mail a zapnout",
     "Simple signup" : "Jednoduché přihlášení",
     "The token is invalid" : "Token není platný",
     "The token is expired, please contact your provider" : "Platnost tokenu skončila, obraťte se na poskytovatele",

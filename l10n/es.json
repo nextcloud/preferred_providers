@@ -1,4 +1,7 @@
 { "translations": {
+    "User enabled and verification email sent!" : "¡Usuario activado y correo de verificación enviado!",
+    "Error while sending the verification email" : "Error al mandar el correo de verificación",
+    "Resend verification email and enable" : "Volver a enviar correo de verificación y activar",
     "Simple signup" : "Registro sencillo",
     "The token is invalid" : "El token no es válido",
     "The token is expired, please contact your provider" : "EL token ha caducado, por favor contacte con su proveedor",

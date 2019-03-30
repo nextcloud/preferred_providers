@@ -1,6 +1,9 @@
 OC.L10N.register(
     "preferred_providers",
     {
+    "User enabled and verification email sent!" : "Användare aktiverad och verifierings-mail skickat!",
+    "Error while sending the verification email" : "Fel när verifierings-mail skickades",
+    "Resend verification email and enable" : "Skicka om verifierings-mail och aktivera",
     "Simple signup" : "Enkel registrering",
     "The token is invalid" : "Ogiltig token",
     "The token is expired, please contact your provider" : "Token har utgått, var vänlig kontakta din leverantör",
