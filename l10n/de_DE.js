@@ -1,9 +1,9 @@
 OC.L10N.register(
     "preferred_providers",
     {
-    "User enabled and verification email sent!" : "Benutzer hinzugefügt und Verifizierung E-Mail gesendet!",
+    "User enabled and verification email sent!" : "Benutzer aktiviert und Bestätigungs-E-Mail gesendet!",
     "Error while sending the verification email" : "Fehler beim senden der Verifizierung E-Mail",
-    "Resend verification email and enable" : "Verifizierung E-Mail erneut senden und bestätigen",
+    "Resend verification email and enable" : "Bestätigungs-E-Mail erneut versenden und aktivieren",
     "Simple signup" : "Einfaches Anmelden",
     "The token is invalid" : "Der Token ist ungültig",
     "The token is expired, please contact your provider" : "Der Token ist abgelaufen, bitte kontaktieren Sie Ihren Anbieter",
