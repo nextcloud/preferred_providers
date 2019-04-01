@@ -1,6 +1,9 @@
 OC.L10N.register(
     "preferred_providers",
     {
+    "User enabled and verification email sent!" : "Kullanıcı etkinleştirildi ve doğrulama e-postası gönderildi!",
+    "Error while sending the verification email" : "Doğrulama e-postası gönderilirken sorun çıktı",
+    "Resend verification email and enable" : "Doğrulama e-postasını yeniden gönder ve etkinleştir",
     "Simple signup" : "Basit hesap açma",
     "The token is invalid" : "Kod geçersiz",
     "The token is expired, please contact your provider" : "Kodun süresi geçmiş, lütfen hizmet sağlayıcınız ile görüşün",
