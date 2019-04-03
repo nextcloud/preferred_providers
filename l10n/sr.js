@@ -1,6 +1,9 @@
 OC.L10N.register(
     "preferred_providers",
     {
+    "User enabled and verification email sent!" : "Корисник омогућен и е-пошта за верификацију послата!",
+    "Error while sending the verification email" : "Грешка приликом слања е-поште за верификацију",
+    "Resend verification email and enable" : "Пошаљи поново е-пошту за верификацију и омогући",
     "Simple signup" : "Једноставна регистрација",
     "The token is invalid" : "Токен није исправан",
     "The token is expired, please contact your provider" : "Токен је истекао, контактирајте Вашег провајдера",
