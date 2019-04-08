@@ -1,6 +1,9 @@
 OC.L10N.register(
     "preferred_providers",
     {
+    "User enabled and verification email sent!" : "Gebruiker geactiveerd en verificatie-email verstuurd!",
+    "Error while sending the verification email" : "Fout bij het versturen van de verificatie-email",
+    "Resend verification email and enable" : "Verstuur verificatie-email opnieuw en activeer",
     "Simple signup" : "Eenvoudige aanmelding",
     "The token is invalid" : "Het token is ongeldig",
     "The token is expired, please contact your provider" : "Het token is verlopen. Neem contact op met uw provider",
