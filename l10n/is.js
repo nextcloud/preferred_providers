@@ -1,6 +1,9 @@
 OC.L10N.register(
     "preferred_providers",
     {
+    "User enabled and verification email sent!" : "Sending tölvupósts með staðfestingartengli og virkjun notanda tókst!",
+    "Error while sending the verification email" : "Villa við að senda staðfestingarpóst",
+    "Resend verification email and enable" : "Endursenda staðfestingarpóst og virkja",
     "Simple signup" : "Einföld nýskráning",
     "The token is invalid" : "Teiknið er ógilt",
     "The token is expired, please contact your provider" : "Teiknið er útrunnið, hafðu samband við þjónustuveituna þína",
