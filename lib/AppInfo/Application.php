@@ -2,7 +2,7 @@
 declare(strict_types=1);
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- * 
+ *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @license GNU AGPL version 3 or any later version
@@ -33,7 +33,7 @@ class Application extends App {
 
 	/** @var string */
 	protected $appName = 'preferred_providers';
-	
+
 	public function __construct() {
 		parent::__construct($this->appName);
 	}
@@ -45,14 +45,6 @@ class Application extends App {
 
 	protected function registerNotifier(IServerContainer $server) {
 		$manager = $server->getNotificationManager();
-		$manager->registerNotifier(function() use ($server) {
-			return $server->query(Notifier::class);
-		}, function() use ($server) {
-			$l = $server->getL10N($this->appName);
-			return [
-				'id' => $this->appName,
-				'name' => $l->t('Simple signup'),
-			];
-		});
+		$manager->registerNotifierService(Notifier::class);
 	}
 }
