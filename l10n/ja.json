@@ -1,4 +1,7 @@
 { "translations": {
+    "User enabled and verification email sent!" : "ユーザーが有効になり、確認メールが送信されました！",
+    "Error while sending the verification email" : "確認メールの送信中にエラーが発生しました",
+    "Resend verification email and enable" : "確認メールを再送信してユーザーを有効にする",
     "Simple signup" : "簡単サインアップ",
     "The token is invalid" : "トークンが無効です",
     "The token is expired, please contact your provider" : "トークンが期限切れです。ご利用のプロバイダーに連絡してください。",
