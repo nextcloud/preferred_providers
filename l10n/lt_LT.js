@@ -10,6 +10,8 @@ OC.L10N.register(
     "A confirmation mail was sent to {email}. Make sure to confirm the account within 6 hours." : "Patvirtinimo laiškas buvo išsiųstas į {email}. Užtikrinkite, kad patvirtinsite paskyrą ne vėliau kaip per 6 valandas.",
     "Please verify your email address" : "Patvirtinkite savo el. pašto adresą",
     "After this step, you will receive a mail to verify your account within 6 hours." : "Po šio žingsnio, gausite laišką, skirtą patvirtinti paskyrą ne vėliau kaip per 6 valandas.",
+    "Set password" : "Nustatyti slaptažodį",
+    "Log in" : "Prisijungti",
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "ĮSPĖJIMAS! Šis prieigos raktas yra labai svarbus ir turi būti atidžiai saugomas. Jūs turėtumėte jį perduoti tik Nextcloud atstovui!",
     "The following groups will be added to every new account" : "Šios grupės bus pridėtos į kiekvieną naują paskyrą"
 },

@@ -1,0 +1,6 @@
+{ "translations": {
+    "It looks like you did not create your password yet." : "Parece que aún no has creado tu contraseña.",
+    "Set password" : "Configurar contraseña",
+    "Log in" : "Iniciar sesión"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}
