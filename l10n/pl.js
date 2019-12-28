@@ -29,7 +29,7 @@ OC.L10N.register(
     "Allow nextcloud to request user accounts" : "Zezwól Nextcloud na żądanie kont użytkowników",
     "After this step, you will receive a mail to verify your account within 6 hours." : "Po wykonaniu tego kroku otrzymasz w ciągu 6 godzin maila, celem weryfikacji Twojego konta.",
     "Set password" : "Ustaw hasło",
-    "Log in" : "Zaloguj",
+    "Log in" : "Zaloguj się",
     "Preferred providers token" : "Token preferowanych dostawców",
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "UWAGA! Ten token jest bardzo ważny i należy go traktować z należytą ostrożnością. Powinieneś go dać tylko oficjalnemu przedstawicielowi Nextcloud!",
     "Your provider token" : "Twój token dostawcy",
