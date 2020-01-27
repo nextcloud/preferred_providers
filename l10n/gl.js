@@ -31,7 +31,7 @@ OC.L10N.register(
     "Set password" : "Estabelecer o contrasinal",
     "Log in" : "Acceder",
     "Preferred providers token" : "Marca de provedores preferidos",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "AVISO! Esta marca é moi importante e debe manexarse amodo. Só debería dárllelo a un oficial de nextcloud! ",
+    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "AVISO! Esta marca é moi importante e debe manexarse amodo. Só debería darllo a un oficial de nextcloud! ",
     "Your provider token" : "Marca do seu provedor",
     "Reset your token" : "Restabelecer a súa marca",
     "Preferred providers groups" : "Grupos de provedores preferidos",

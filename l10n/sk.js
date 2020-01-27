@@ -1,6 +1,10 @@
 OC.L10N.register(
     "preferred_providers",
     {
+    "User enabled and verification email sent!" : "Používateľ povolený a overovací e-mail poslaný!",
+    "Error while sending the verification email" : "Počas odosielania notifikačného e-mailu nastala chyba",
+    "Resend verification email and enable" : "Pošli notifikačný e-mail znova a povol",
+    "Simple signup" : "Jednoduché prihlásenie",
     "The token is invalid" : "Token je neplatný",
     "The token is expired, please contact your provider" : "Platnosť tokenu skončila, kontaktujte prosím svojho poskytovateľa",
     "Unable to set the password. Contact your provider." : "Nie je možné nastaviť heslo. Obráťte sa na svojho poskytovateľa.",
@@ -15,8 +19,11 @@ OC.L10N.register(
     "Verify your %s account" : "Overte svoj %s účet",
     "Just one step left to complete your account setup." : "Na dokončenie nastavenia účtu ostáva už len jeden krok.",
     "Click here to verify your email address" : "Kliknutím sem overíte svoju adresu e-mailu",
+    "Your %s account has been disabled" : "Váš účet %s bol zakázaný",
     "Your %s account %s has been disabled because it was not verified in time." : "Váš %s účet %s bol zakázaný, pretože nebol overený v stanovenom časovom limite.",
     "Please contact your provider for further assistance." : "Pre poskytnutie pomoci kontaktujte svojho poskytovateľa.",
+    "A confirmation mail was sent to {email}. Make sure to confirm the account within 6 hours." : "Notifikačný e-mail bol odoslaný na {email}. Do 6 hodín musíte účet overiť.",
+    "Please verify your email address" : "Prosím, overte vašu e-mailovú adresu",
     "Preferred providers" : "Preferovaní poskytovatelia",
     "Preferred Providers" : "Preferovaní poskytovatelia",
     "Allow nextcloud to request user accounts" : "Umožniť Nextcloudu požadovať používateľské účty",
