@@ -1,7 +1,6 @@
 OC.L10N.register(
     "preferred_providers",
     {
-    "Simple signup" : "Egyszerű feliratkozás",
     "The token is invalid" : "A token nem érvényes",
     "The token is expired, please contact your provider" : "A token lejárt, kérlek kérlek vedd fela kapcsolatot a szolgáltatóddal",
     "It looks like you did not create your password yet." : "Úgy tűnik, hogy még nem hoztad létre a jelszavad.",
@@ -14,6 +13,7 @@ OC.L10N.register(
     "Verify your %s account" : "Hitelesítsd a %s fiókod",
     "Your %s account has been disabled" : "A %s fiókod le lett tiltva",
     "Please contact your provider for further assistance." : "Kérjük, vedd fel a kapcsolatot a szolgáltatóddal a további segítségért.",
+    "Simple signup" : "Egyszerű feliratkozás",
     "Please verify your email address" : "Kérlek ellenőrizd az e-mail címedet",
     "Preferred providers" : "Ajánlott szolgáltatók",
     "Preferred Providers" : "Ajánlott szolgáltatók",
