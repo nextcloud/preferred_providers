@@ -1,7 +1,6 @@
 OC.L10N.register(
     "preferred_providers",
     {
-    "Simple signup" : "הרשמה פשוטה",
     "The token is invalid" : "האסימון שגוי",
     "The token is expired, please contact your provider" : "האסימון פג, נא ליצור קשר עם הספק שלך",
     "Unable to set the password. Contact your provider." : "לא ניתן להגדיר את הססמה. נא ליצור קשר עם הספק שלך.",
@@ -19,6 +18,7 @@ OC.L10N.register(
     "Your %s account has been disabled" : "חשבונך אצל %s הושבת",
     "Your %s account %s has been disabled because it was not verified in time." : "חשבונך אצל %s בשם %s הושבת כיוון שהוא לא אומת בזמן.",
     "Please contact your provider for further assistance." : "נא ליצור קשר עם הספק שלך לסיוע נוסף.",
+    "Simple signup" : "הרשמה פשוטה",
     "A confirmation mail was sent to {email}. Make sure to confirm the account within 6 hours." : "נשלח דוא״ל אימות אל {email}. נא לאמת את החשבון תוך 6 שעות.",
     "Please verify your email address" : "נא לאמת את כתובת הדוא״ל שלך",
     "Preferred providers" : "ספקים מועדפים",

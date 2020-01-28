@@ -1,7 +1,6 @@
 OC.L10N.register(
     "preferred_providers",
     {
-    "Simple signup" : "Простая регистрация",
     "The token is invalid" : "Недействительный токен",
     "The token is expired, please contact your provider" : "Истёк срок действия токена, свяжитесь с вашим поставщиком услуг",
     "Unable to set the password. Contact your provider." : "Невозможно установить пароль, свяжитесь с вашим поставщиком услуг.",
@@ -13,6 +12,7 @@ OC.L10N.register(
     "Start using %s" : "Начните использовать %s",
     "Verify your %s account" : "Подтвердите ваш %s аккаунт",
     "Click here to verify your email address" : "Нажмите здесь, чтобы подтвердить вашу электронную почту",
+    "Simple signup" : "Простая регистрация",
     "A confirmation mail was sent to {email}. Make sure to confirm the account within 6 hours." : "Письмо с подтверждением было отправлено на {email}. Необходимо подтвердить в течение 6 часов.",
     "Please verify your email address" : "Пожалуйста, подтвердите ваш электронный адрес",
     "Preferred providers" : "Предпочитаемые поставщики услуги",
