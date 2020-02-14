@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "The token is invalid" : "Žeton ni veljaven",
     "Welcome to your %s account" : "Dobrodošli v oblaku %s",
+    "Install mobile or desktop client" : "Namesti mobilni ali namizni odjemalec",
     "Set password" : "Nastavi geslo",
     "Log in" : "Prijava",
     "Reset your token" : "Ponastavi žeton"
