@@ -1,6 +1,9 @@
 OC.L10N.register(
     "preferred_providers",
     {
+    "User enabled and verification email sent!" : "Учётная запись активирована и отправлено эл. письмо подтверждения.",
+    "Error while sending the verification email" : "Не удалось отправить эл. письмо подтверждения",
+    "Resend verification email and enable" : "Повторно оправить эл. письмо подтверждения и активировать запись пользователя",
     "The token is invalid" : "Недействительный токен",
     "The token is expired, please contact your provider" : "Истёк срок действия токена, свяжитесь с вашим поставщиком услуг",
     "Unable to set the password. Contact your provider." : "Невозможно установить пароль, свяжитесь с вашим поставщиком услуг.",
