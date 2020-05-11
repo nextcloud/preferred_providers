@@ -168,6 +168,12 @@ class PasswordController extends Controller {
 			], 'guest');
 		}
 
+		if (\mb_strlen($password) > 100) {
+			return new TemplateResponse('core', 'error', [
+				'errors' => array(array('error' => $this->l10n->t('Password to long')))
+			], 'guest');
+		}
+
 		// all clear! set password
 		try {
 			$user = $this->userManager->get($email);
