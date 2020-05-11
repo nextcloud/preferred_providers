@@ -27,10 +27,14 @@ namespace OCA\Preferred_Providers\Settings;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IConfig;
 use OCP\IGroupManager;
+use OCP\IInitialStateService;
 use OCP\Security\ISecureRandom;
 use OCP\Settings\ISettings;
 
 class Admin implements ISettings {
+
+	/** @var string */
+	private $appName;
 
 	/** @var IConfig */
 	private $config;
@@ -41,6 +45,9 @@ class Admin implements ISettings {
 	/** @var IGroupManager */
 	private $groupManager;
 
+	/** @var IInitialStateService */
+	private $initialStateService;
+
 	/**
 	 * Admin constructor.
 	 *
@@ -48,12 +55,17 @@ class Admin implements ISettings {
 	 * @param ISecureRandom $secureRandom
 	 * @param IGroupManager $groupManager
 	 */
-	public function __construct(IConfig $config,
+	public function __construct(string $appName,
+								IConfig $config,
 								ISecureRandom $secureRandom,
-								IGroupManager $groupManager) {
+								IGroupManager $groupManager,
+								IInitialStateService $initialStateService) {
+		$this->appName       = $appName;
 		$this->config       = $config;
 		$this->secureRandom = $secureRandom;
 		$this->groupManager = $groupManager;
+		$this->initialStateService = $initialStateService;
+
 	}
 
 	/**
@@ -61,20 +73,26 @@ class Admin implements ISettings {
 	 */
 	public function getForm() {
 		// Generate new token if none exists
-		$provider_token  = $this->config->getAppValue('preferred_providers', 'provider_token', false);
-		$provider_groups = $this->config->getAppValue('preferred_providers', 'provider_groups', '');
+		$provider_token  = $this->config->getAppValue($this->appName, 'provider_token', false);
 		if (!$provider_token) {
 			$provider_token = md5($this->secureRandom->generate(10));
-			$this->config->setAppValue('preferred_providers', 'provider_token', $provider_token);
+			$this->config->setAppValue($this->appName, 'provider_token', $provider_token);
 		}
+
+		// Get groups settings
+		$provider_groups = $this->config->getAppValue($this->appName, 'provider_groups', '');
+		$provider_groups_confirmed = $this->config->getAppValue($this->appName, 'provider_groups_confirmed', '');
+		$provider_groups_unconfirmed = $this->config->getAppValue($this->appName, 'provider_groups_unconfirmed', '');
 
 		$parameters = [
 			'provider_token'  => $provider_token,
 			'provider_groups' => explode(',', $provider_groups),
+			'provider_groups_confirmed' => explode(',', $provider_groups_confirmed),
+			'provider_groups_unconfirmed' => explode(',', $provider_groups_unconfirmed),
 			'groups'          => $this->groupManager->search('')
 		];
 
-		return new TemplateResponse('preferred_providers', 'settings-admin', $parameters, '');
+		return new TemplateResponse($this->appName, 'settings-admin', $parameters);
 	}
 
 	/**

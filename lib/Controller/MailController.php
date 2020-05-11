@@ -32,6 +32,7 @@ use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\IConfig;
+use OCP\IGroupManager;
 use OCP\IL10N;
 use OCP\IRequest;
 use OCP\IURLGenerator;
@@ -64,6 +65,9 @@ class MailController extends Controller {
 	/** @var VerifyMailHelper */
 	private $verifyMailHelper;
 
+	/** @var IGroupManager */
+	private $groupManager;
+
 
 	/**
 	 * Account constructor.
@@ -77,6 +81,7 @@ class MailController extends Controller {
 	 * @param ITimeFactory $timeFactory
 	 * @param IURLGenerator $urlGenerator
 	 * @param VerifyMailHelper $verifyMailHelper
+	 * @param VerifyMailHelper $verifyMailHelper
 	 */
 	public function __construct(string $appName,
 								IRequest $request,
@@ -86,7 +91,8 @@ class MailController extends Controller {
 								ICrypto $crypto,
 								ITimeFactory $timeFactory,
 								IURLGenerator $urlGenerator,
-								VerifyMailHelper $verifyMailHelper) {
+								VerifyMailHelper $verifyMailHelper,
+								IGroupManager $groupManager) {
 		parent::__construct($appName, $request);
 		$this->appName = $appName;
 		$this->config = $config;
@@ -96,6 +102,7 @@ class MailController extends Controller {
 		$this->timeFactory = $timeFactory;
 		$this->urlGenerator = $urlGenerator;
 		$this->verifyMailHelper = $verifyMailHelper;
+		$this->groupManager = $groupManager;
 	}
 
 
@@ -136,6 +143,27 @@ class MailController extends Controller {
 			]);
 		}
 		
+		// add/remove user to groups
+		$unconfirmedGroups = $this->config->getAppValue($this->appName, 'provider_groups_unconfirmed', '');
+		$confirmedGroups = $this->config->getAppValue($this->appName, 'provider_groups_confirmed', '');
+
+		if ($unconfirmedGroups !== '') {
+			$groupIds = explode(',', $unconfirmedGroups);
+			foreach ($groupIds as $groupId) {
+				if ($this->groupManager->groupExists($groupId)) {
+					$this->groupManager->get($groupId)->removeUser($user);
+				}
+			}
+		}
+		if ($confirmedGroups !== '') {
+			$groupIds = explode(',', $confirmedGroups);
+			foreach ($groupIds as $groupId) {
+				if ($this->groupManager->groupExists($groupId)) {
+					$this->groupManager->get($groupId)->addUser($user);
+				}
+			}
+		}
+
 		// redirect to home, user should already be logged
 		return new RedirectResponse($this->urlGenerator->getAbsoluteURL('/'));
 	}

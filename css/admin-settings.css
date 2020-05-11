@@ -11,7 +11,7 @@
 	height: 44px;
 	margin-left: 10px;
 }
-#groups {
+#groups-section select {
 	width: 250px;
 	height: 100px;
 	background-image: none;

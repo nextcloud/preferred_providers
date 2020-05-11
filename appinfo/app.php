@@ -22,14 +22,5 @@ declare(strict_types=1);
  *
  */
 
-$app = new \OCA\Preferred_Providers\AppInfo\Application();
+$app  = \OC::$server->query(\OCA\Preferred_Providers\AppInfo\Application::class);
 $app->register();
-
-// --- register js for user management------------------------------------------
-$eventDispatcher = \OC::$server->getEventDispatcher();
-$eventDispatcher->addListener(
-	'OC\Settings\Users::loadAdditionalScripts',
-	function() {
-		\OCP\Util::addScript('preferred_providers', 'users-management');
-	}
-);
