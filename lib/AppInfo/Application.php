@@ -24,23 +24,30 @@ declare(strict_types=1);
 
 namespace OCA\Preferred_Providers\AppInfo;
 
+use OCA\Preferred_Providers\Hook\LoginHook;
 use OCA\Preferred_Providers\Notification\Notifier;
 use OCP\AppFramework\App;
 use OCP\IServerContainer;
-use OCA\Preferred_Providers\Hook\LoginHook;
+use OCP\Util;
 
 class Application extends App {
 
-	/** @var string */
-	protected $appName = 'preferred_providers';
+	const APP_ID = 'preferred_providers';
 
 	public function __construct() {
-		parent::__construct($this->appName);
+		parent::__construct(self::APP_ID);
 	}
 
 	public function register() {
 		$this->registerNotifier($this->getContainer()->getServer());
 		$this->getContainer()->query(LoginHook::class)->register();
+
+		$eventDispatcher = $this->getContainer()->getServer()->getEventDispatcher();
+		$eventDispatcher->addListener('OC\Settings\Users::loadAdditionalScripts',	
+			function() {	
+				Util::addScript(self::APP_ID, 'users-management');	
+			}	
+		);
 	}
 
 	protected function registerNotifier(IServerContainer $server) {
