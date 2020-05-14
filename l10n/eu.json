@@ -1,6 +1,8 @@
 { "translations": {
     "User enabled and verification email sent!" : "Erabiltzailea aktibatu da eta berresteko mezua bidali da!",
     "Error while sending the verification email" : "Errorea gertatu da berresteko mezua bidaltzean",
+    "The token is invalid" : "Tokena baliogabea da",
+    "The token is expired, please contact your provider" : "Tokena iraungita dago, mesedez jarri harremanetan hornitzailearekin",
     "Unable to set the password. Contact your provider." : "Ezin da pasahitza ezarri. Jarri harremanetan hornitzailearekin.",
     "One more step required" : "Urrats bat gehiago falta da",
     "It looks like you did not create your password yet." : "Ematen du oraindik ez duzula pasahitza sortu",
@@ -9,14 +11,18 @@
     "Welcome to your %s account" : "Ongi etorri zure %s kontura",
     "Start using %s" : "Hasi %s erabiltzen",
     "Install mobile or desktop client" : "Instalatu mugikorreko edo mahaigaineko bezeroa",
+    "Verify your %s account" : "Egiaztatu zure %s kontua",
     "Click here to verify your email address" : "Egin klik hemen berresteko zure helbide elektonikoa",
     "Your %s account has been disabled" : "Zure %s kontua desaktibatu da",
+    "Your %s account %s has been disabled because it was not verified in time." : "Zure %s kontua %s desgaitu egin da ez delako denboraz egiaztatu.",
     "Please verify your email address" : "Egiaztatu zure e-mail helbidea",
     "Preferred providers" : "Hobetsitako hornitzaileak",
     "Preferred Providers" : "Hobetsitako hornitzaileak",
     "Allow nextcloud to request user accounts" : "Baimena eman Nextcloudi eskatzeko erabiltzaile kontuak",
     "After this step, you will receive a mail to verify your account within 6 hours." : "Urrats honen ondoren, 6 ordu barru zure kontua berresteko mezu bat jasoko duzu.",
     "Set password" : "Ezarri pasahitza",
-    "Log in" : "Hasi saioa"
+    "Log in" : "Hasi saioa",
+    "Your provider token" : "Zure hornitzailearen tokena",
+    "Reset your token" : "Berezarri zure tokena"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

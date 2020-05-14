@@ -6,6 +6,7 @@ OC.L10N.register(
     "Resend verification email and enable" : "Επαναποστολή μηνύματος επιβεβαίωσης και ενεργοποίηση",
     "The token is invalid" : "Μη έγκυρο αναγνωριστικό",
     "The token is expired, please contact your provider" : "Το αναγνωριστικό έχει λήξει, παρακαλούμε επικοινωνήστε με τον πάροχό σας",
+    "Password to long" : "Ο κωδικός είναι πολύ μεγάλος",
     "Unable to set the password. Contact your provider." : "Αδυναμία ορισμού συνθηματικού. Επικοινωνήστε με τον πάροχό σας",
     "One more step required" : "Ένα ακόμα βήμα απαιτείται",
     "It looks like you did not create your password yet." : "Φαίνεται να μην έχετε δημιουργήσει ακόμα το συνθηματικό σας.",

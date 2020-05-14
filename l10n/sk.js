@@ -6,6 +6,7 @@ OC.L10N.register(
     "Resend verification email and enable" : "Pošli notifikačný e-mail znova a povol",
     "The token is invalid" : "Token je neplatný",
     "The token is expired, please contact your provider" : "Platnosť tokenu skončila, kontaktujte prosím svojho poskytovateľa",
+    "Password to long" : "Heslo je príliš dlhé",
     "Unable to set the password. Contact your provider." : "Nie je možné nastaviť heslo. Obráťte sa na svojho poskytovateľa.",
     "One more step required" : "Je potrebný ešte jeden krok",
     "It looks like you did not create your password yet." : "Vyzerá to tak, že zatiaľ nemáte vytvorené heslo.",
