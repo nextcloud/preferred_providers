@@ -47,4 +47,24 @@ style('preferred_providers', 'admin-settings');
         <option value="<?php p($gid); ?>" <?php p(in_array($gid, $_['provider_groups']) ? 'selected="selected"' : ''); ?>><?php p($gname); ?></option>
         <?php }?>
     </select>
+
+    <p><?php p($l->t('The following groups will be set to every unconfirmed account and removed when confirmed')); ?>:</p>
+    <select multiple id="groups_unconfirmed">
+        <?php foreach($_['groups'] as $group) {
+            $gid = $group->getGid();
+            $gname = $group->getDisplayName();
+        ?>
+        <option value="<?php p($gid); ?>" <?php p(in_array($gid, $_['provider_groups_unconfirmed']) ? 'selected="selected"' : ''); ?>><?php p($gname); ?></option>
+        <?php }?>
+    </select>
+
+    <p><?php p($l->t('The following groups will be set to every confirmed account')); ?>:</p>
+    <select multiple id="groups_confirmed">
+        <?php foreach($_['groups'] as $group) {
+            $gid = $group->getGid();
+            $gname = $group->getDisplayName();
+        ?>
+        <option value="<?php p($gid); ?>" <?php p(in_array($gid, $_['provider_groups_confirmed']) ? 'selected="selected"' : ''); ?>><?php p($gname); ?></option>
+        <?php }?>
+    </select>
 </div>

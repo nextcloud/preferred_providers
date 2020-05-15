@@ -152,13 +152,20 @@ class SettingsController extends OCSController {
 	 * @return DataResponse
 	 * @throws OCSNotFoundException
 	 */
-	public function setGroups(array $groups): DataResponse {
+	public function setGroups(array $groups, string $for = 'all'): DataResponse {
 		foreach ($groups as $groupId) {
 			if (!$this->groupManager->groupExists($groupId)) {
 				throw new OCSNotFoundException($groupId . ' does not exists');
 			}
 		}
-		$this->config->setAppValue('preferred_providers', 'provider_groups', implode(',', $groups));
+
+		if ($for === 'all') {
+			$this->config->setAppValue('preferred_providers', 'provider_groups', implode(',', $groups));
+		} elseif ($for === 'confirmed' || $for === 'unconfirmed') {
+			$this->config->setAppValue('preferred_providers', 'provider_groups_' . $for, implode(',', $groups));
+		} else {
+			throw new OCSBadRequestException();
+		}
 
 		return new DataResponse(['groups' => $groups]);
 	}

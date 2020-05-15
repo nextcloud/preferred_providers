@@ -163,9 +163,11 @@ class AccountController extends ApiController {
 			$newUser  = $this->userManager->createUser($email, $password);
 
 			// add user to groups
-			$groups = $this->config->getAppValue($this->appName, 'provider_groups', false);
-			if ($groups !== false) {
-				$groupIds = explode(',', $groups);
+			$groups = $this->config->getAppValue($this->appName, 'provider_groups', '');
+			$unconfirmedGroups = $this->config->getAppValue($this->appName, 'provider_groups_unconfirmed', '');
+			
+			if (!empty($groups)) {
+				$groupIds = array_merge(explode(',', $groups), explode(',', $unconfirmedGroups));
 				foreach ($groupIds as $groupId) {
 					if ($this->groupManager->groupExists($groupId)) {
 						$this->groupManager->get($groupId)->addUser($newUser);
