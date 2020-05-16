@@ -6,6 +6,7 @@ OC.L10N.register(
     "Resend verification email and enable" : "Повторно оправить эл. письмо подтверждения и активировать запись пользователя",
     "The token is invalid" : "Недействительный токен",
     "The token is expired, please contact your provider" : "Истёк срок действия токена, свяжитесь с вашим поставщиком услуг",
+    "Password to long" : "Пароль очень длинный",
     "Unable to set the password. Contact your provider." : "Невозможно установить пароль, свяжитесь с вашим поставщиком услуг.",
     "One more step required" : "Еще один шаг",
     "It looks like you did not create your password yet." : "Похоже, вы еще не придумали ваш пароль.",
