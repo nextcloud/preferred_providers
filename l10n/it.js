@@ -36,6 +36,8 @@ OC.L10N.register(
     "Your provider token" : "Il tuo token dei fornitori",
     "Reset your token" : "Ripristina il tuo token",
     "Preferred providers groups" : "Gruppi di fornitori preferiti",
-    "The following groups will be added to every new account" : "I seguenti gruppi saranno aggiunti a ogni nuovo account."
+    "The following groups will be added to every new account" : "I seguenti gruppi saranno aggiunti a ogni nuovo account.",
+    "The following groups will be set to every unconfirmed account and removed when confirmed" : "I gruppi seguenti saranno impostati a ogni account non confermato e rimossi se confermati",
+    "The following groups will be set to every confirmed account" : "I gruppi seguenti saranno impostati a ogni account non confermato"
 },
 "nplurals=2; plural=(n != 1);");

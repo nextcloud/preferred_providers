@@ -6,6 +6,7 @@ OC.L10N.register(
     "Resend verification email and enable" : "Activer l'utilisateur et envoyer le mail de vérification",
     "The token is invalid" : "Jeton non valide",
     "The token is expired, please contact your provider" : "Le jeton a expiré, veuillez contacter votre fournisseur",
+    "Password to long" : "Mot de passe trop long",
     "Unable to set the password. Contact your provider." : "Impossible de configurer le mot de passe. Contactez votre fournisseur.",
     "One more step required" : "Encore une étape restante",
     "It looks like you did not create your password yet." : "Il semble que vous n'ayez pas encore créé votre mot de passe.",
@@ -35,6 +36,8 @@ OC.L10N.register(
     "Your provider token" : "Votre jeton de fournisseur",
     "Reset your token" : "Réinitialiser votre jeton",
     "Preferred providers groups" : "Groupes de fournisseurs préférés",
-    "The following groups will be added to every new account" : "Les groupes suivants seront ajoutés à chaque nouveau compte"
+    "The following groups will be added to every new account" : "Les groupes suivants seront ajoutés à chaque nouveau compte",
+    "The following groups will be set to every unconfirmed account and removed when confirmed" : "Les groupes suivants seront définis pour chaque compte non confirmé et seront supprimés lorsqu'ils seront confirmés",
+    "The following groups will be set to every confirmed account" : "Les groupes suivants seront établis pour chaque compte confirmé"
 },
 "nplurals=2; plural=(n > 1);");

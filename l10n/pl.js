@@ -36,6 +36,8 @@ OC.L10N.register(
     "Your provider token" : "Twój token dostawcy",
     "Reset your token" : "Zresetuj Twój token",
     "Preferred providers groups" : "Preferowany grupy dostawców",
-    "The following groups will be added to every new account" : "Następujące grupy zostaną dodane do każdego nowego konta"
+    "The following groups will be added to every new account" : "Następujące grupy zostaną dodane do każdego nowego konta",
+    "The following groups will be set to every unconfirmed account and removed when confirmed" : "Następujące grupy zostaną przypisane do każdego niepotwierdzonego konta i usunięte po jego potwierdzeniu",
+    "The following groups will be set to every confirmed account" : "Następujące grupy zostaną przypisane dla każdego potwierdzonego konta"
 },
 "nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);");
