@@ -34,6 +34,8 @@
     "Your provider token" : "Токен провайдера",
     "Reset your token" : "Сбросить токен",
     "Preferred providers groups" : "Группы предпочитаемых поставщиков услуги",
-    "The following groups will be added to every new account" : "Новые учётные записи будут включены в следующие группы "
+    "The following groups will be added to every new account" : "Новые учётные записи будут включены в следующие группы ",
+    "The following groups will be set to every unconfirmed account and removed when confirmed" : "Новые учётные записи будут включены в следующие группы и удалены из этих групп при подтверждении",
+    "The following groups will be set to every confirmed account" : "Новые подтверждённые учётные записи будут включены в следующие группы "
 },"pluralForm" :"nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);"
 }

@@ -1,11 +1,12 @@
 OC.L10N.register(
     "preferred_providers",
     {
-    "User enabled and verification email sent!" : "S'ha enviat el correu electrònic de verificació i activació de l'usuari.",
-    "Error while sending the verification email" : "S'ha produït un error mentre s'enviava el correu electrònic de verificació",
-    "Resend verification email and enable" : "Reenvia el correu electrònic de verificació i activa",
+    "User enabled and verification email sent!" : "Usuari activat i correu de verificació enviat!",
+    "Error while sending the verification email" : "Error mentre s'enviava el correu de verificació",
+    "Resend verification email and enable" : "Reenvia el correu de verificació i activa",
     "The token is invalid" : "El testimoni no és vàlid",
     "The token is expired, please contact your provider" : "El testimoni ha caducat, contacteu amb el vostre proveïdor",
+    "Password to long" : "Contrasenya massa llarga",
     "Unable to set the password. Contact your provider." : "No s'ha pogut de establir la contrasenya. Contacteu amb el vostre proveïdor.",
     "One more step required" : "Fa falta un pas més",
     "It looks like you did not create your password yet." : "Sembla que no heu creat la vostra contrasenya encara.",
@@ -35,6 +36,8 @@ OC.L10N.register(
     "Your provider token" : "El testimoni del vostre proveïdor",
     "Reset your token" : "Restabliu el vostre testimoni",
     "Preferred providers groups" : "Grups de proveïdors preferents",
-    "The following groups will be added to every new account" : "Els grups següents s'afegiràn a cada compte nou"
+    "The following groups will be added to every new account" : "Els grups següents s'afegiràn a cada compte nou",
+    "The following groups will be set to every unconfirmed account and removed when confirmed" : "Els grups següents es configuraran a tot compte no confirmat i s'eliminaran quan es confirmi",
+    "The following groups will be set to every confirmed account" : "Els grups següents es configuraran a tot compte confirmat"
 },
 "nplurals=2; plural=(n != 1);");

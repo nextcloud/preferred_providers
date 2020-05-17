@@ -36,6 +36,8 @@ OC.L10N.register(
     "Your provider token" : "Testemuña do seu provedor",
     "Reset your token" : "Restabelecer a súa testemuña",
     "Preferred providers groups" : "Grupos de provedores preferidos",
-    "The following groups will be added to every new account" : "Os seguintes grupos vanse engadir a cada conta nova"
+    "The following groups will be added to every new account" : "Os seguintes grupos vanse engadir a cada conta nova",
+    "The following groups will be set to every unconfirmed account and removed when confirmed" : "Estabeleceranse os seguintes grupos en todas as contas non confirmadas e eliminaranse cando se confirme",
+    "The following groups will be set to every confirmed account" : "Estabeleceranse os seguintes grupos para cada conta confirmada"
 },
 "nplurals=2; plural=(n != 1);");
