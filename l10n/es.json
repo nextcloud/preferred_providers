@@ -33,6 +33,8 @@
     "Your provider token" : "Token de su proveedor",
     "Reset your token" : "Restablece tu token",
     "Preferred providers groups" : "Grupos de proveedores preferidos",
-    "The following groups will be added to every new account" : "Los siguientes grupos se agregarán a cada cuenta nueva"
+    "The following groups will be added to every new account" : "Los siguientes grupos se agregarán a cada cuenta nueva",
+    "The following groups will be set to every unconfirmed account and removed when confirmed" : "Los siguientes grupos serán adjudicados a toda cuenta sin confirmar y se eliminarán cuando se confirmen",
+    "The following groups will be set to every confirmed account" : "Los siguientes grupos serán adjudicados a cada cuenta confirmada"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
