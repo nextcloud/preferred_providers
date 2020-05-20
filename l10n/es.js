@@ -6,6 +6,7 @@ OC.L10N.register(
     "Resend verification email and enable" : "Volver a enviar correo de verificación y activar",
     "The token is invalid" : "El token no es válido",
     "The token is expired, please contact your provider" : "El token ha caducado, por favor contacte con su proveedor",
+    "Password to long" : "Contraseña demasiado larga",
     "Unable to set the password. Contact your provider." : "No es posible establecer la contraseña. Contacte con su proveedor",
     "One more step required" : "Se requiere un paso más",
     "It looks like you did not create your password yet." : "Parece que aún no has creado una contraseña.",
