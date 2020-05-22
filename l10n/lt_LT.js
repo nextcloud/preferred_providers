@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "The token is invalid" : "Prieigos raktas yra neteisingas",
     "One more step required" : "Reikalingas dar vienas žingsnis",
+    "It looks like you did not create your password yet." : "Atrodo, kad dar nesate susikūrę slaptažodžio.",
     "Welcome to your %s account" : "Sveiki atvykę į savo %s paskyrą",
     "Click here to verify your email address" : "Spustelėkite čia, norėdami patvirtinti savo el. pašto adresą",
     "Your %s account has been disabled" : "Jūsų %s paskyra išjungta",

@@ -34,6 +34,8 @@
     "Your provider token" : "Το αναγνωριστικό του παρόχου σας",
     "Reset your token" : "Επαναφορά του αναγνωριστικού σας",
     "Preferred providers groups" : "Προτιμώμενες ομάδες παρόχων",
-    "The following groups will be added to every new account" : "Οι παρακάτω ομάδες θα προστίθενται σε κάθε νέο λογαριασμό"
+    "The following groups will be added to every new account" : "Οι παρακάτω ομάδες θα προστίθενται σε κάθε νέο λογαριασμό",
+    "The following groups will be set to every unconfirmed account and removed when confirmed" : "Οι παρακάτω ομάδες θα προστίθενται σε κάθε νέο μη επιβεβαιωμένο λογαριασμό χρήστη και αφαιρούνται μετά την επιβεβαίωσή τους",
+    "The following groups will be set to every confirmed account" : "Οι παρακάτω ομάδες θα προστίθενται σε κάθε επιβεβαιωμένο λογαριασμό χρήστη"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
