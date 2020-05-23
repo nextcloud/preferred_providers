@@ -1,8 +1,12 @@
 OC.L10N.register(
     "preferred_providers",
     {
+    "User enabled and verification email sent!" : "המשתמש הופעל ונשלחה הודעת תיקוף בדוא״ל!",
+    "Error while sending the verification email" : "שגיאה בשליחת הודעת התיקוף בדוא״ל",
+    "Resend verification email and enable" : "לשלוח את הודעת התיקוף בדוא״ל ולהפעיל",
     "The token is invalid" : "האסימון שגוי",
     "The token is expired, please contact your provider" : "האסימון פג, נא ליצור קשר עם הספק שלך",
+    "Password to long" : "הססמה ארוכה מדי",
     "Unable to set the password. Contact your provider." : "לא ניתן להגדיר את הססמה. נא ליצור קשר עם הספק שלך.",
     "One more step required" : "נדרש שלב נוסף",
     "It looks like you did not create your password yet." : "נראה כי טרם יצרת את הססמה שלך עדיין.",
@@ -32,6 +36,8 @@ OC.L10N.register(
     "Your provider token" : "אסימון הספק שלך",
     "Reset your token" : "איפוס האסימון שלך",
     "Preferred providers groups" : "קבוצות ספקים מועדפים",
-    "The following groups will be added to every new account" : "הקבוצות הבאות יתווספו לכל חשבון חדש"
+    "The following groups will be added to every new account" : "הקבוצות הבאות יתווספו לכל חשבון חדש",
+    "The following groups will be set to every unconfirmed account and removed when confirmed" : "הקבוצות הבאות יוגדרו לכל חשבון שלא אושר והוסר בעת האישור",
+    "The following groups will be set to every confirmed account" : "הקבוצות הבאות יוגדרו עבור כל חשבון שאושר"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;");
