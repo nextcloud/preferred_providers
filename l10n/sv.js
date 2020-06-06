@@ -6,6 +6,7 @@ OC.L10N.register(
     "Resend verification email and enable" : "Skicka om verifierings-mail och aktivera",
     "The token is invalid" : "Ogiltig token",
     "The token is expired, please contact your provider" : "Token har utgått, var vänlig kontakta din leverantör",
+    "Password to long" : "Lösenordet är för långt",
     "Unable to set the password. Contact your provider." : "Kan inte sätta lösenord. Kontakta din leverantör.",
     "One more step required" : "Ytterligare ett steg krävs",
     "It looks like you did not create your password yet." : "Det verkar som att du inte har skapat ditt lösenord än.",
