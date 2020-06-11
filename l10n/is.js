@@ -6,6 +6,7 @@ OC.L10N.register(
     "Resend verification email and enable" : "Endursenda staðfestingarpóst og virkja",
     "The token is invalid" : "Teiknið er ógilt",
     "The token is expired, please contact your provider" : "Teiknið er útrunnið, hafðu samband við þjónustuveituna þína",
+    "Password to long" : "Lykilorð er of langt",
     "Unable to set the password. Contact your provider." : "Gat ekki stillt lykilorðið. Hafðu samband við þjónustuveituna þína.",
     "One more step required" : "Eitt þrep í viðbót er nauðsynlegt",
     "It looks like you did not create your password yet." : "Það lítur út fyrir að þú hafir ekki ennþá útbúið lykilorðið þitt.",
@@ -35,6 +36,8 @@ OC.L10N.register(
     "Your provider token" : "Teikn frá þjónustuveitunni þinni",
     "Reset your token" : "Endurstilltu teiknið þitt",
     "Preferred providers groups" : "Umbeðnir hópar þjónustuveitna",
-    "The following groups will be added to every new account" : "Eftirfarandi hópum verður bætt við alla nýja notendaaðganga"
+    "The following groups will be added to every new account" : "Eftirfarandi hópum verður bætt við alla nýja notendaaðganga",
+    "The following groups will be set to every unconfirmed account and removed when confirmed" : "Eftirfarandi hópum verður bætt við alla óstaðfesta notendaaðganga og síðan fjarlægðir þegar notendaaðgangur er staðfestur",
+    "The following groups will be set to every confirmed account" : "Eftirfarandi hópum verður bætt við alla staðfesta notendaaðganga"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");
