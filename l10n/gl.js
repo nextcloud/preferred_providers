@@ -3,7 +3,7 @@ OC.L10N.register(
     {
     "User enabled and verification email sent!" : "Usuario activado e correo electrónico de verificación enviado!",
     "Error while sending the verification email" : "Produciuse un erro ao enviar o correo de verificación",
-    "Resend verification email and enable" : "Volver enviar o correo electrónico de verificación e activar",
+    "Resend verification email and enable" : "Volver enviar o correo de verificación e activar",
     "The token is invalid" : "A testemuña no é valida",
     "The token is expired, please contact your provider" : "A testemuña caducou, póñase en contacto co administrador",
     "Password to long" : "Contrasinal longo",
