@@ -4,6 +4,7 @@
     "Resend verification email and enable" : "Пошаљи поново е-пошту за верификацију и омогући",
     "The token is invalid" : "Токен није исправан",
     "The token is expired, please contact your provider" : "Токен је истекао, контактирајте Вашег провајдера",
+    "Password to long" : "Лозинка предугачка",
     "Unable to set the password. Contact your provider." : "Не могу да поставим лозинку. Контактирајте Вашег провајдера.",
     "One more step required" : "Потребан још један корак",
     "It looks like you did not create your password yet." : "Изгледа да још нисте поставили лозинку.",
@@ -33,6 +34,8 @@
     "Your provider token" : "Токен Вашег провајдера",
     "Reset your token" : "Ресетујте токен",
     "Preferred providers groups" : "Групе жељених провајдера",
-    "The following groups will be added to every new account" : "Следеће групе ће бити додате сваком новом налогу"
+    "The following groups will be added to every new account" : "Следеће групе ће бити додате сваком новом налогу",
+    "The following groups will be set to every unconfirmed account and removed when confirmed" : "Следеће групе ће бити додате сваком непотвђеном налогу и уклоњене када се он потврди",
+    "The following groups will be set to every confirmed account" : "Следеће групе ће бити додате сваком потврђеном налогу"
 },"pluralForm" :"nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);"
 }
