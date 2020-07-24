@@ -4,6 +4,7 @@
     "Resend verification email and enable" : "重新发送验证邮件及启用",
     "The token is invalid" : "令牌无效",
     "The token is expired, please contact your provider" : "令牌已过期，请与您的提供商联系",
+    "Password to long" : "密码过长",
     "Unable to set the password. Contact your provider." : "无法设置密码。联系您的提供商。",
     "One more step required" : "还需要一步",
     "It looks like you did not create your password yet." : "似乎您还未新建您的密码",
@@ -33,6 +34,8 @@
     "Your provider token" : "您的供应商令牌",
     "Reset your token" : "重置您的令牌",
     "Preferred providers groups" : "首选供应商分组",
-    "The following groups will be added to every new account" : "每一个新账号都将被添加到以下分组"
+    "The following groups will be added to every new account" : "每一个新账号都将被添加到以下分组",
+    "The following groups will be set to every unconfirmed account and removed when confirmed" : "以下群组将被设置为每个未确认的账号，并在确认后删除",
+    "The following groups will be set to every confirmed account" : "下面的组将被设置为每个已确认的账号"
 },"pluralForm" :"nplurals=1; plural=0;"
 }
