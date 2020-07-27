@@ -2,7 +2,7 @@
 declare(strict_types=1);
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- * 
+ *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @license GNU AGPL version 3 or any later version
@@ -42,7 +42,7 @@ class PasswordController extends Controller {
 
 	/** @var string */
 	protected $appName;
-	
+
 	/** @var IRequest */
 	protected $request;
 
@@ -149,6 +149,7 @@ class PasswordController extends Controller {
 	/**
 	 * @NoCSRFRequired
 	 * @PublicPage
+	 * @AnonRateThrottle(limit=5, period=1)
 	 *
 	 * Display password definition template
 	 *
@@ -243,7 +244,7 @@ class PasswordController extends Controller {
 		if ($user === null || !$user->isEnabled()) {
 			throw new \Exception($this->l10n->t('The token is invalid'));
 		}
-		
+
 		try {
 			$encryptedToken = $this->config->getUserValue($userId, $this->appName, 'set_password');
 			$decryptedToken = $this->crypto->decrypt($encryptedToken, $userId . $this->config->getSystemValue('secret'));
