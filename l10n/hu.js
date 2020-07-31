@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "The token is invalid" : "A token nem érvényes",
     "The token is expired, please contact your provider" : "A token lejárt, kérlek kérlek vedd fela kapcsolatot a szolgáltatóddal",
+    "Unable to set the password. Contact your provider." : "Nem lehetett beállítani a jelszót. Lépjen kapcsolatba a szolgáltatójával.",
     "It looks like you did not create your password yet." : "Úgy tűnik, hogy még nem hoztad létre a jelszavad.",
     "Did you encountered an issue during the sign-up process?" : "Történthetett valami probléma a regisztrációs folyamat során?",
     "Access your account" : "Belépés a fiókodba",
@@ -11,6 +12,7 @@ OC.L10N.register(
     "Start using %s" : "Kezd használni a %s",
     "Install mobile or desktop client" : "Mobil vagy asztali kliens telepítése",
     "Verify your %s account" : "Hitelesítsd a %s fiókod",
+    "Click here to verify your email address" : "Kattintson ide, hogy megerősítse az e-mail címét.",
     "Your %s account has been disabled" : "A %s fiókod le lett tiltva",
     "Please contact your provider for further assistance." : "Kérjük, vedd fel a kapcsolatot a szolgáltatóddal a további segítségért.",
     "Simple signup" : "Egyszerű feliratkozás",
