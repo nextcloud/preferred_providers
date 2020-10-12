@@ -1,6 +1,7 @@
 { "translations": {
     "Error while sending the verification email" : "Prišlo je do napake med pošiljanjem overitvenega elektronskega sporočila",
     "The token is invalid" : "Žeton ni veljaven",
+    "Password to long" : "Geslo je predolgo",
     "Unable to set the password. Contact your provider." : "Ni mogoče določiti gesla. Stopite v stik s ponudnikom.",
     "It looks like you did not create your password yet." : "Kaže, da še niste ustvarili nobenega gesla.",
     "Access your account" : "Dostop do vašega računa",
