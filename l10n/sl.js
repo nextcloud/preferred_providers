@@ -1,7 +1,9 @@
 OC.L10N.register(
     "preferred_providers",
     {
+    "User enabled and verification email sent!" : "Uporabnik je omogočen in overitveno sporočilo je bilo poslano!",
     "Error while sending the verification email" : "Prišlo je do napake med pošiljanjem overitvenega elektronskega sporočila",
+    "Resend verification email and enable" : "Ponovno pošlji vabilo po elektronski pošti in omogoči uporabnika",
     "The token is invalid" : "Žeton ni veljaven",
     "Password to long" : "Geslo je predolgo",
     "Unable to set the password. Contact your provider." : "Ni mogoče določiti gesla. Stopite v stik s ponudnikom.",
