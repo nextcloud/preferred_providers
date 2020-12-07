@@ -27,7 +27,7 @@ OC.L10N.register(
     "Please verify your email address" : "Ověřte svou e-mailovou adresu",
     "Preferred providers" : "Upřednostňovaní poskytovatelé",
     "Preferred Providers" : "Upřednostňovaní poskytovatelé",
-    "Allow nextcloud to request user accounts" : "Umožnit nextcloud požadovat uživatelské účty",
+    "Allow nextcloud to request user accounts" : "Povolit nextcloud požadovat uživatelské účty",
     "After this step, you will receive a mail to verify your account within 6 hours." : "Po tomto kroku obdržíte do 6 hodin e-mail pro ověření vašeho účtu.",
     "Set password" : "Nastavit heslo",
     "Log in" : "Přihlásit",
