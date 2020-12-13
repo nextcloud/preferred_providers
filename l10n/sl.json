@@ -15,17 +15,23 @@
     "Start using %s" : "Začnite uporabljati %s",
     "Install mobile or desktop client" : "Namesti mobilni ali namizni odjemalec",
     "Verify your %s account" : "Overite račun %s",
+    "Just one step left to complete your account setup." : "Še zadnji korak do konca nastavljanja računa.",
     "Click here to verify your email address" : "Kliknite za overitev elektronskega naslova",
     "Your %s account has been disabled" : "Račun %s je onemogočen",
+    "Your %s account %s has been disabled because it was not verified in time." : "Račun %s %s je onemogočen, ker ni bil potrjen v določenem času.",
     "Please contact your provider for further assistance." : "Za nadaljnjo pomoč stopite v stik s ponudnikom storitve.",
     "Simple signup" : "Enostavna prijava",
+    "A confirmation mail was sent to {email}. Make sure to confirm the account within 6 hours." : "Na elektronski naslov {email} je bilo poslano potrditveno sporočilo. Poskrbite, da bo račun potrjen v naslednjih 6 urah.",
     "Please verify your email address" : "Overite elektronski naslov",
     "Preferred providers" : "Prednostni ponudniki",
     "Preferred Providers" : "Prednostni ponudniki",
     "Allow nextcloud to request user accounts" : "Dovoli oblaku Nextcloud zahtevo za uporabniške račune",
+    "After this step, you will receive a mail to verify your account within 6 hours." : "Po tem koraku nastavitve boste prejeli elektronsko sporočilo za overitev računa v naslednjih 6 urah.",
     "Set password" : "Nastavi geslo",
     "Log in" : "Prijava",
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "OPOZORILO! Ta žeton je pomemben in ga je treba uporabljati previdno. Posredujete ga lahko izključno uradnim osebam, ki upravljajo okolje Nextcloud.",
-    "Reset your token" : "Ponastavi žeton"
+    "Your provider token" : "Žeton ponudnika",
+    "Reset your token" : "Ponastavi žeton",
+    "The following groups will be set to every confirmed account" : "Navedene skupine bodo nastavljene za vsak potrjen račun."
 },"pluralForm" :"nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);"
 }
