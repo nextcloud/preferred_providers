@@ -30,7 +30,7 @@
     "Set password" : "Sla wachtwoord op",
     "Log in" : "Aanmelden",
     "Preferred providers token" : "Voorkeur providers token",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "WARNING! Dit token is erg belangrijk en moet met zorg behandeld worden. U zou dit aan enkel een nextcloud-official moeten overhandigen!",
+    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "WARNING! Dit token is erg belangrijk en moet met zorg behandeld worden. Je zou dit alleen aan een nextcloud-official moeten overhandigen!",
     "Your provider token" : "Je provider token",
     "Reset your token" : "Reset je token",
     "Preferred providers groups" : "Voorkeur providers groepen",
