@@ -31,9 +31,12 @@ OC.L10N.register(
     "After this step, you will receive a mail to verify your account within 6 hours." : "Po tem koraku nastavitve boste prejeli elektronsko sporočilo za overitev računa v naslednjih 6 urah.",
     "Set password" : "Nastavi geslo",
     "Log in" : "Prijava",
+    "Preferred providers token" : "Žeton prednostnih ponudnikov",
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "OPOZORILO! Ta žeton je pomemben in ga je treba uporabljati previdno. Posredujete ga lahko izključno uradnim osebam, ki upravljajo okolje Nextcloud.",
     "Your provider token" : "Žeton ponudnika",
     "Reset your token" : "Ponastavi žeton",
+    "Preferred providers groups" : "Skupine prednostnih ponudnikov",
+    "The following groups will be added to every new account" : "Navedene skupine bodo dodane k vsakemu novemu računu.",
     "The following groups will be set to every unconfirmed account and removed when confirmed" : "Navedene skupine bodo nastavljene za vsak nepotrjen račun in odstranjene takoj ob potrditvi.",
     "The following groups will be set to every confirmed account" : "Navedene skupine bodo nastavljene za vsak potrjen račun."
 },
