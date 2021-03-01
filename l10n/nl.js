@@ -18,7 +18,7 @@ OC.L10N.register(
     "Install mobile or desktop client" : "Installeer Mobiele of Desktop app",
     "Verify your %s account" : "Verifieer je %s account",
     "Just one step left to complete your account setup." : "Nog slechts een stap om je account te completeren.",
-    "Click here to verify your email address" : "Click hier om uw e-mailadres te verifiëren",
+    "Click here to verify your email address" : "Click hier om je e-mailadres te verifiëren",
     "Your %s account has been disabled" : "Je %s account is uitgeschakeld",
     "Your %s account %s has been disabled because it was not verified in time." : "Je %s account %s is uitgeschakeld omdat het niet tijdig geverifieerd is.",
     "Please contact your provider for further assistance." : "Graag contact opnemen met je provider voor verdere assistentie.",
