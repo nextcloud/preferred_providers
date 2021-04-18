@@ -106,7 +106,7 @@ class SetPasswordMailHelper {
 		$emailTemplate->setSubject($this->l10n->t('One more step required', [$this->themingDefaults->getName()]));
 		$emailTemplate->addHeader();
 		$emailTemplate->addBodyText($this->l10n->t('It looks like you did not create your password yet.'));
-		$emailTemplate->addBodyText($this->l10n->t('Did you encountered an issue during the sign-up process?'));
+		$emailTemplate->addBodyText($this->l10n->t('Did you encounter an issue during the sign-up process?'));
 		$emailTemplate->addBodyButton(
 			$this->l10n->t('Access your account'),
 			$link
