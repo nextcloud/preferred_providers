@@ -9,7 +9,6 @@ OC.L10N.register(
     "Unable to set the password. Contact your provider." : "تنظیم رمز عبور امکان پذیر نیست. با ارائه دهنده خود تماس بگیرید",
     "One more step required" : "یک مرحله دیگر لازم است",
     "It looks like you did not create your password yet." : "یک سطح دیگر",
-    "Did you encountered an issue during the sign-up process?" : "آیا در جریان ثبت نام با مشکلی روبرو شدید؟",
     "Access your account" : "به حساب کاربری خود دسترسی پیدا کنید",
     "Welcome to your %s account" : "به شما خوش آمديد%s حساب",
     "Your %s account %s is now verified!" : "شما %s حساب %s اکنون تأیید شده است!",

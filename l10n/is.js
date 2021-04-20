@@ -10,7 +10,6 @@ OC.L10N.register(
     "Unable to set the password. Contact your provider." : "Gat ekki stillt lykilorðið. Hafðu samband við þjónustuveituna þína.",
     "One more step required" : "Eitt þrep í viðbót er nauðsynlegt",
     "It looks like you did not create your password yet." : "Það lítur út fyrir að þú hafir ekki ennþá útbúið lykilorðið þitt.",
-    "Did you encountered an issue during the sign-up process?" : "Rakstu á vandamál á meðan nýskráningarferlinu stóð?",
     "Access your account" : "Opnaðu aðganginn þinn",
     "Welcome to your %s account" : "Velkomin í %s notandaaðganginn þinn",
     "Your %s account %s is now verified!" : "%s notandaaðganginn þinn %s er núna yfirfarinn!",

@@ -10,7 +10,6 @@ OC.L10N.register(
     "Unable to set the password. Contact your provider." : "Невозможно установить пароль, свяжитесь с вашим поставщиком услуг.",
     "One more step required" : "Еще один шаг",
     "It looks like you did not create your password yet." : "Похоже, вы еще не придумали ваш пароль.",
-    "Did you encountered an issue during the sign-up process?" : "Вы столкнулись с трудностями в ходе регистрации?",
     "Access your account" : "Доступ к учётной записи",
     "Welcome to your %s account" : "Добро пожаловать в ваш %s аккаунт",
     "Your %s account %s is now verified!" : "Ваш %s аккаунт%s подтвержден!",

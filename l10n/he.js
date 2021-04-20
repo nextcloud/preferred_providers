@@ -10,7 +10,6 @@ OC.L10N.register(
     "Unable to set the password. Contact your provider." : "לא ניתן להגדיר את הססמה. נא ליצור קשר עם הספק שלך.",
     "One more step required" : "נדרש שלב נוסף",
     "It looks like you did not create your password yet." : "נראה כי טרם יצרת את הססמה שלך עדיין.",
-    "Did you encountered an issue during the sign-up process?" : "נתקלת בתקלה במהלך ההרשמה?",
     "Access your account" : "גישה לחשבון שלך",
     "Welcome to your %s account" : "ברוך בואך לחשבונך אצל %s",
     "Your %s account %s is now verified!" : "חשבונך אצל %s בשם %s אומת כעת!",

@@ -10,7 +10,6 @@ OC.L10N.register(
     "Unable to set the password. Contact your provider." : "Не могу да поставим лозинку. Контактирајте Вашег провајдера.",
     "One more step required" : "Потребан још један корак",
     "It looks like you did not create your password yet." : "Изгледа да још нисте поставили лозинку.",
-    "Did you encountered an issue during the sign-up process?" : "Да ли сте наишли на проблем при процесу регистрације?",
     "Access your account" : "Приступите Вашем налогу",
     "Welcome to your %s account" : "Добродошли на Ваш %s налог",
     "Your %s account %s is now verified!" : "Ваш %s налог %s је сада верификован!",

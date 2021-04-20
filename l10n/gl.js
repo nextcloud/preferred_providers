@@ -10,7 +10,6 @@ OC.L10N.register(
     "Unable to set the password. Contact your provider." : "Non é posíbel estabelecer o contrasinal, Contacte co seu provedor.",
     "One more step required" : "É necesario un paso máis",
     "It looks like you did not create your password yet." : "Semella que aínda non creou o seu contrasinal.",
-    "Did you encountered an issue during the sign-up process?" : "Atopou algún incidente durante o proceso de rexistro?",
     "Access your account" : "Acceda á súa conta",
     "Welcome to your %s account" : "Benvido á súa conta %s",
     "Your %s account %s is now verified!" : "A súa conta %s, %s, foi verificada!",

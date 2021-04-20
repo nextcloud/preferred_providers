@@ -10,7 +10,6 @@ OC.L10N.register(
     "Unable to set the password. Contact your provider." : "No es posible establecer la contraseña. Contacte con su proveedor",
     "One more step required" : "Se requiere un paso más",
     "It looks like you did not create your password yet." : "Parece que aún no has creado una contraseña.",
-    "Did you encountered an issue during the sign-up process?" : "¿Encontraste algún problema durante el proceso de registro?",
     "Access your account" : "Accede a tu cuenta",
     "Welcome to your %s account" : "Bienvenido a tu %s cuenta",
     "Your %s account %s is now verified!" : "¡Tu %s cuenta %s ha sido verificada!",

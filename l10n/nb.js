@@ -6,7 +6,6 @@ OC.L10N.register(
     "Unable to set the password. Contact your provider." : "Kan ikke angi passord. Kontakt din tilbyder.",
     "One more step required" : "Et steg til er påkrevd",
     "It looks like you did not create your password yet." : "Det virker som om du ikke har opprettet passord enda.",
-    "Did you encountered an issue during the sign-up process?" : "Har det oppstått problem under påmeldingsprosessen?",
     "Access your account" : "Aksesser din konto",
     "Welcome to your %s account" : "Velkommen til din %s konto",
     "Your %s account %s is now verified!" : "Din %s konto %s er nå bekreftet!",
