@@ -10,6 +10,7 @@ OC.L10N.register(
     "Unable to set the password. Contact your provider." : "Parola ayarlanamadı, Hizmet sağlayıcınız ile görüşün.",
     "One more step required" : "Bir adım kaldı",
     "It looks like you did not create your password yet." : "Henüz parolanızı ayarlamamışsınız gibi görünüyor.",
+    "Did you encounter an issue during the sign-up process?" : "Hesap açma işlemi sırasında bir sorun yaşadınız mı?",
     "Access your account" : "Hesabınıza erişin",
     "Welcome to your %s account" : "%s hesabınıza hoş geldiniz",
     "Your %s account %s is now verified!" : "%s hesabınız %s doğrulandı!",
