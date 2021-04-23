@@ -10,6 +10,7 @@ OC.L10N.register(
     "Unable to set the password. Contact your provider." : "Heslo se nedaří nastavit. Obraťte se na poskytovatele.",
     "One more step required" : "Je třeba ještě jeden krok",
     "It looks like you did not create your password yet." : "Zdá se, že jste si doposud nevytvořili heslo.",
+    "Did you encounter an issue during the sign-up process?" : "Narazili jste na problém při procesu přihlášení?",
     "Access your account" : "Přístup k vašemu účtu",
     "Welcome to your %s account" : "Vítejte ve svém %s účtu",
     "Your %s account %s is now verified!" : "Váš %s účet %s je nyní ověřen!",
