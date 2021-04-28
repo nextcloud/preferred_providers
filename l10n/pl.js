@@ -4,7 +4,7 @@ OC.L10N.register(
     "User enabled and verification email sent!" : "Włączony użytkownik i wysłany e-mail weryfikacyjny!",
     "Error while sending the verification email" : "Błąd podczas wysyłania e-maila weryfikacyjnego",
     "Resend verification email and enable" : "Włącz i wyślij ponownie e-mail weryfikacyjny",
-    "The token is invalid" : "Token niewłaściwy",
+    "The token is invalid" : "Token jest nieprawidłowy",
     "The token is expired, please contact your provider" : "Token wygasł, skontaktuj się z Twoim dostawcą",
     "Password to long" : "Za długie hasło",
     "Unable to set the password. Contact your provider." : "Nie można ustawić hasła. Skontaktuj się z Twoim dostawcą.",
