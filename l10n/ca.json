@@ -8,6 +8,7 @@
     "Unable to set the password. Contact your provider." : "No s'ha pogut de establir la contrasenya. Contacteu amb el vostre proveïdor.",
     "One more step required" : "Fa falta un pas més",
     "It looks like you did not create your password yet." : "Sembla que no heu creat la vostra contrasenya encara.",
+    "Did you encounter an issue during the sign-up process?" : "Heu trobat cap problema durant el procés de registre?",
     "Access your account" : "Accediu al vostre compte",
     "Welcome to your %s account" : "Benvingut al vostre compte %s",
     "Your %s account %s is now verified!" : "El vostre %s compte %s ha està verificat!",
