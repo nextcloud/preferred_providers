@@ -10,6 +10,7 @@ OC.L10N.register(
     "Unable to set the password. Contact your provider." : "Niet mogelijk om het wachtwoord op te slaan. Neem contact op met je provider.",
     "One more step required" : "Nog een stap noodzakelijk",
     "It looks like you did not create your password yet." : "Het lijkt alsof je nog geen wachtwoord opgeslagen heeft.",
+    "Did you encounter an issue during the sign-up process?" : "Kwam je een fout tegen tijdens het registratieprocess?",
     "Access your account" : "Ga naar je account",
     "Welcome to your %s account" : "Welkom bij je  %s account",
     "Your %s account %s is now verified!" : "Je %s account %s is nu bevestigd!",
