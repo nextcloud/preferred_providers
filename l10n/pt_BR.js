@@ -8,7 +8,7 @@ OC.L10N.register(
     "The token is expired, please contact your provider" : "O token expirou, contacte seu provedor",
     "Password to long" : "Senha muito longa",
     "Unable to set the password. Contact your provider." : "Não é possível definir a senha. Contacte seu provedor.",
-    "One more step required" : "Um ou mais passos requeridos",
+    "One more step required" : "Mais um passo necessário",
     "It looks like you did not create your password yet." : "Parece que você ainda não criou sua senha.",
     "Did you encounter an issue during the sign-up process?" : "Você encontrou algum problema durante o processo de inscrição?",
     "Access your account" : "Acesse sua conta",
