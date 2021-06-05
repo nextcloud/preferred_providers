@@ -24,7 +24,7 @@
     "A confirmation mail was sent to {email}. Make sure to confirm the account within 6 hours." : "{email} adresine bir onay e-postası gönderildi. E-postaya bakarak 6 saat içinde onaylama işlemini tamamlamayı unutmayın.",
     "Please verify your email address" : "Lütfen e-posta adresinizi yeniden yazın",
     "Preferred providers" : "Yeğlenen hizmet sağlayıcıları",
-    "Preferred Providers" : "Yeğlenen Hizmet Sağlayıcıları",
+    "Preferred Providers" : "Yeğlenen hizmet sağlayıcıları",
     "Allow nextcloud to request user accounts" : "Nextcloud kullanıcı hesaplarını isteyebilsin",
     "After this step, you will receive a mail to verify your account within 6 hours." : "Bu adımdan sonra hesabınızı doğrulamak için 6 saat süreyle geçerli olacak bir e-posta alacaksınız.",
     "Set password" : "Parolayı ayarla",
