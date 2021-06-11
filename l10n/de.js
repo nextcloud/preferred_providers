@@ -7,7 +7,7 @@ OC.L10N.register(
     "The token is invalid" : "Der Token ist ungültig",
     "The token is expired, please contact your provider" : "Der Token ist abgelaufen, bitte kontaktiere Deinen Anbieter",
     "Password to long" : "Passwort ist zu lang",
-    "Unable to set the password. Contact your provider." : "Das Passwort kann nicht gespeichert werden. Bitte kontaktiere den Provider.",
+    "Unable to set the password. Contact your provider." : "Das Passwort konnte nicht gespeichert werden. Bitte kontaktiere den Provider.",
     "One more step required" : "Ein weiterer Schritt ist nötig",
     "It looks like you did not create your password yet." : "Es scheint, als hättest Du noch kein Passwort erstellt.",
     "Did you encounter an issue during the sign-up process?" : "Ist bei der Registrierung ein Problem aufgetreten?",
