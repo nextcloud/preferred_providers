@@ -10,6 +10,7 @@ OC.L10N.register(
     "Unable to set the password. Contact your provider." : "Nem lehetett beállítani a jelszót. Lépjen kapcsolatba a szolgáltatójával.",
     "One more step required" : "Még egy lépés szükséges",
     "It looks like you did not create your password yet." : "Úgy tűnik, hogy még nem hoztad létre a jelszavad.",
+    "Did you encounter an issue during the sign-up process?" : "Találkozott bármilyen problémával a regisztrációs folyamat során?",
     "Access your account" : "Belépés a fiókodba",
     "Welcome to your %s account" : "Üdvözlünk a %s fiókodban",
     "Your %s account %s is now verified!" : "A te %s fiókod %s nincs hitelesítve!",
