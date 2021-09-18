@@ -27,7 +27,7 @@ OC.L10N.register(
     "Please verify your email address" : "請驗證您的電郵地址",
     "Preferred providers" : "更合意的服務提供者",
     "Preferred Providers" : "更合意的服務提供者",
-    "Allow nextcloud to request user accounts" : "允許 Nextcloud 請求用戶賬戶",
+    "Allow nextcloud to request user accounts" : "允許 Nextcloud 索取用戶賬戶資料",
     "After this step, you will receive a mail to verify your account within 6 hours." : "完成此步驟後，您將在6個小時內收到一封用於賬戶驗證的電郵。",
     "Set password" : "設定密碼",
     "Log in" : "登入",
