@@ -1,8 +1,9 @@
 <?php
+
 declare(strict_types=1);
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- * 
+ *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @license GNU AGPL version 3 or any later version
@@ -23,7 +24,7 @@ declare(strict_types=1);
  */
 
 return [
-	'ocs'    => [
+	'ocs' => [
 		['root' => '/account', 'name' => 'Account#requestAccount', 'url' => '/request/{token}', 'verb' => 'POST'],
 		['name' => 'Settings#resetToken', 'url' => '/api/v1/token/new', 'verb' => 'GET'],
 		['name' => 'Settings#setGroups', 'url' => '/api/v1/groups', 'verb' => 'POST'],

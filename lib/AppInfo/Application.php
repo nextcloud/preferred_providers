@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
@@ -31,8 +32,7 @@ use OCP\IServerContainer;
 use OCP\Util;
 
 class Application extends App {
-
-	const APP_ID = 'preferred_providers';
+	public const APP_ID = 'preferred_providers';
 
 	public function __construct() {
 		parent::__construct(self::APP_ID);
@@ -43,10 +43,10 @@ class Application extends App {
 		$this->getContainer()->query(LoginHook::class)->register();
 
 		$eventDispatcher = $this->getContainer()->getServer()->getEventDispatcher();
-		$eventDispatcher->addListener('OC\Settings\Users::loadAdditionalScripts',	
-			function() {	
-				Util::addScript(self::APP_ID, 'users-management');	
-			}	
+		$eventDispatcher->addListener('OC\Settings\Users::loadAdditionalScripts',
+			function () {
+				Util::addScript(self::APP_ID, 'users-management');
+			}
 		);
 	}
 

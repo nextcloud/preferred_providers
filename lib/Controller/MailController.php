@@ -1,8 +1,9 @@
 <?php
+
 declare(strict_types=1);
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- * 
+ *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @license GNU AGPL version 3 or any later version
@@ -24,7 +25,6 @@ declare(strict_types=1);
 
 namespace OCA\Preferred_Providers\Controller;
 
-use OCA\Preferred_Providers\Controller\AccountController;
 use OCA\Preferred_Providers\Mailer\VerifyMailHelper;
 
 use OCP\AppFramework\Controller;
@@ -71,7 +71,7 @@ class MailController extends Controller {
 
 	/**
 	 * Account constructor.
-	 * 
+	 *
 	 * @param string $appName
 	 * @param IRequest $request
 	 * @param IConfig $config
@@ -109,9 +109,9 @@ class MailController extends Controller {
 	/**
 	 * @NoCSRFRequired
 	 * @PublicPage
-	 * 
+	 *
 	 * Process email verification
-	 * 
+	 *
 	 * @param string $email The email to create an account for
 	 * @param string $token The security token
 	 * @return RedirectResponse|TemplateResponse
@@ -170,14 +170,14 @@ class MailController extends Controller {
 
 	/**
 	 * Check token authenticity
-	 * 
+	 *
 	 * @param string $token
 	 * @param string $userId the user mail address / id
 	 * @throws \Exception
 	 */
 	protected function checkVerifyMailAddressToken($token, $userId) {
 		$user = $this->userManager->get($userId);
-		if($user === null || !$user->isEnabled()) {
+		if ($user === null || !$user->isEnabled()) {
 			throw new \Exception($this->l10n->t('The token is invalid'));
 		}
 
@@ -191,7 +191,7 @@ class MailController extends Controller {
 		}
 
 		$splittedToken = explode(':', $decryptedToken);
-		if(count($splittedToken) !== 2) {
+		if (count($splittedToken) !== 2) {
 			throw new \Exception($this->l10n->t('The token is invalid'));
 		}
 

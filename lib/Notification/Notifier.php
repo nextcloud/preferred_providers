@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /**
  * @copyright Copyright (c) 2016, Joas Schilling <coding@schilljs.com>
@@ -48,9 +49,9 @@ class Notifier implements INotifier {
 								IFactory $l10nFactory,
 								IUserManager $userManager,
 								IURLGenerator $urlGenerator) {
-		$this->appName      = $appName;
-		$this->l10nFactory  = $l10nFactory;
-		$this->userManager  = $userManager;
+		$this->appName = $appName;
+		$this->l10nFactory = $l10nFactory;
+		$this->userManager = $userManager;
 		$this->urlGenerator = $urlGenerator;
 	}
 

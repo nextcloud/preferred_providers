@@ -1,8 +1,9 @@
 <?php
+
 declare(strict_types=1);
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- * 
+ *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @license GNU AGPL version 3 or any later version
@@ -57,11 +58,11 @@ class NotifyUnsetPassword extends TimedJob {
 	}
 
 	public function run($argument) {
-		$this->appName      = 'preferred_providers';
-		$this->logger       = \OC::$server->getLogger();
-		$this->connection   = \OC::$server->getDatabaseConnection();
+		$this->appName = 'preferred_providers';
+		$this->logger = \OC::$server->getLogger();
+		$this->connection = \OC::$server->getDatabaseConnection();
 		$this->systemConfig = \OC::$server->getSystemConfig();
-		$this->config       = \OC::$server->getConfig();
+		$this->config = \OC::$server->getConfig();
 
 		$this->mailHelper = new SetPasswordMailHelper(
 			$this->appName,
@@ -97,7 +98,6 @@ class NotifyUnsetPassword extends TimedJob {
 	 * @return array of user IDs
 	 */
 	private function getUsersForUserLowerThanValue($appName, $key, $value) {
-
 		$sql = 'SELECT `userid` FROM `*PREFIX*preferences` ' .
 			'WHERE `appid` = ? AND `configkey` = ? ';
 

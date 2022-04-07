@@ -2,7 +2,7 @@
 declare(strict_types=1);
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- * 
+ *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @license GNU AGPL version 3 or any later version
@@ -42,7 +42,7 @@ script('preferred_providers', 'password-public');
 			<div class="submit-icon icon-confirm-white"></div>
 		</div>
 	</fieldset>
-	<?php if($_['error']) { ?>
+	<?php if ($_['error']) { ?>
 		<p class="warning error">
 		   <?php print_unescaped($_['error']) ?>
 		</p>

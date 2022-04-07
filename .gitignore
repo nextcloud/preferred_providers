@@ -8,3 +8,4 @@ coverage
 npm-debug.log
 package-lock.json
 vendor
+.php-cs-fixer.cache

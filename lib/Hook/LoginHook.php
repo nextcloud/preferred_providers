@@ -1,8 +1,9 @@
 <?php
+
 declare(strict_types=1);
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- * 
+ *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @license GNU AGPL version 3 or any later version
@@ -33,7 +34,6 @@ use OCP\IUserManager;
 use OCP\IUserSession;
 
 class LoginHook {
-
 	use ExpireUserTrait;
 
 	/** @var string */
@@ -73,11 +73,11 @@ class LoginHook {
 								ILogger $logger,
 								ITimeFactory $timeFactory,
 								VerifyMailHelper $mailHelper) {
-		$this->appName     = $appName;
+		$this->appName = $appName;
 		$this->userManager = $userManager;
 		$this->userSession = $userSession;
-		$this->config      = $config;
-		$this->logger      = $logger;
+		$this->config = $config;
+		$this->logger = $logger;
 		$this->timeFactory = $timeFactory;
 		$this->mailHelper = $mailHelper;
 	}
@@ -107,5 +107,4 @@ class LoginHook {
 			$this->expireUser($userId);
 		}
 	}
-
 }

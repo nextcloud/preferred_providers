@@ -1,8 +1,9 @@
 <?php
+
 declare(strict_types=1);
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- * 
+ *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @license GNU AGPL version 3 or any later version
@@ -60,12 +61,11 @@ class Admin implements ISettings {
 								ISecureRandom $secureRandom,
 								IGroupManager $groupManager,
 								IInitialStateService $initialStateService) {
-		$this->appName       = $appName;
-		$this->config       = $config;
+		$this->appName = $appName;
+		$this->config = $config;
 		$this->secureRandom = $secureRandom;
 		$this->groupManager = $groupManager;
 		$this->initialStateService = $initialStateService;
-
 	}
 
 	/**
@@ -73,7 +73,7 @@ class Admin implements ISettings {
 	 */
 	public function getForm() {
 		// Generate new token if none exists
-		$provider_token  = $this->config->getAppValue($this->appName, 'provider_token', false);
+		$provider_token = $this->config->getAppValue($this->appName, 'provider_token', false);
 		if (!$provider_token) {
 			$provider_token = md5($this->secureRandom->generate(10));
 			$this->config->setAppValue($this->appName, 'provider_token', $provider_token);
@@ -85,11 +85,11 @@ class Admin implements ISettings {
 		$provider_groups_unconfirmed = $this->config->getAppValue($this->appName, 'provider_groups_unconfirmed', '');
 
 		$parameters = [
-			'provider_token'  => $provider_token,
+			'provider_token' => $provider_token,
 			'provider_groups' => explode(',', $provider_groups),
 			'provider_groups_confirmed' => explode(',', $provider_groups_confirmed),
 			'provider_groups_unconfirmed' => explode(',', $provider_groups_unconfirmed),
-			'groups'          => $this->groupManager->search('')
+			'groups' => $this->groupManager->search('')
 		];
 
 		return new TemplateResponse($this->appName, 'settings-admin', $parameters);
@@ -112,5 +112,4 @@ class Admin implements ISettings {
 	public function getPriority() {
 		return 5;
 	}
-
 }

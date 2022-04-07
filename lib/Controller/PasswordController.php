@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
@@ -100,17 +101,17 @@ class PasswordController extends Controller {
 								IProvider $tokenProvider,
 								ISecureRandom $secureRandom) {
 		parent::__construct($appName, $request);
-		$this->appName       = $appName;
-		$this->request       = $request;
-		$this->config        = $config;
-		$this->l10n          = $l10n;
-		$this->userManager   = $userManager;
-		$this->crypto        = $crypto;
-		$this->urlGenerator  = $urlGenerator;
-		$this->userSession   = $userSession;
-		$this->logger        = $logger;
+		$this->appName = $appName;
+		$this->request = $request;
+		$this->config = $config;
+		$this->l10n = $l10n;
+		$this->userManager = $userManager;
+		$this->crypto = $crypto;
+		$this->urlGenerator = $urlGenerator;
+		$this->userSession = $userSession;
+		$this->logger = $logger;
 		$this->tokenProvider = $tokenProvider;
-		$this->secureRandom  = $secureRandom;
+		$this->secureRandom = $secureRandom;
 	}
 
 	/**
@@ -191,7 +192,7 @@ class PasswordController extends Controller {
 
 		// redirect to ClientFlowLogin if the request comes from android/ios/desktop
 		if ($ocsapirequest === '1') {
-			$clientName  = $this->getClientName();
+			$clientName = $this->getClientName();
 			$redirectUri = $this->generateAppPassword($email, $clientName);
 
 			return new RedirectResponse($redirectUri);
@@ -207,7 +208,6 @@ class PasswordController extends Controller {
 		}
 
 		return new RedirectResponse($this->urlGenerator->getAbsoluteURL('/'));
-
 	}
 
 	/**
@@ -223,10 +223,10 @@ class PasswordController extends Controller {
 			$this->appName,
 			'password-public',
 			array(
-				'link'          => $this->urlGenerator->linkToRouteAbsolute($this->appName . '.password.submit_password', array('token' => $token)),
-				'email'         => $email,
+				'link' => $this->urlGenerator->linkToRouteAbsolute($this->appName . '.password.submit_password', array('token' => $token)),
+				'email' => $email,
 				'ocsapirequest' => $this->request->getHeader('OCS-APIREQUEST') || $ocs,
-				'error'         => $error
+				'error' => $error
 			),
 			'guest'
 		);
@@ -283,7 +283,7 @@ class PasswordController extends Controller {
 
 		if (strpos($this->request->getRequestUri(), '/index.php') !== false) {
 			$serverPostfix = substr($this->request->getRequestUri(), 0, strpos($this->request->getRequestUri(), '/index.php'));
-		} else if (strpos($this->request->getRequestUri(), '/login/flow') !== false) {
+		} elseif (strpos($this->request->getRequestUri(), '/login/flow') !== false) {
 			$serverPostfix = substr($this->request->getRequestUri(), 0, strpos($this->request->getRequestUri(), '/login/flow'));
 		}
 
@@ -291,16 +291,15 @@ class PasswordController extends Controller {
 
 		if ($protocol !== 'https') {
 			$xForwardedProto = $this->request->getHeader('X-Forwarded-Proto');
-			$xForwardedSSL   = $this->request->getHeader('X-Forwarded-Ssl');
+			$xForwardedSSL = $this->request->getHeader('X-Forwarded-Ssl');
 			if ($xForwardedProto === 'https' || $xForwardedSSL === 'on') {
 				$protocol = 'https';
 			}
 		}
 
-		$serverPath  = $protocol . '://' . $this->request->getServerHost() . $serverPostfix;
+		$serverPath = $protocol . '://' . $this->request->getServerHost() . $serverPostfix;
 		$redirectUri = 'nc://login/server:' . $serverPath . '&user:' . urlencode($email) . '&password:' . urlencode($token);
 
 		return $redirectUri;
-
 	}
 }

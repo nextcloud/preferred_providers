@@ -1,8 +1,9 @@
 <?php
+
 declare(strict_types=1);
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- * 
+ *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @license GNU AGPL version 3 or any later version
@@ -32,7 +33,6 @@ use OCP\AppFramework\OCS\OCSForbiddenException;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\IConfig;
 use OCP\IGroupManager;
-use OCP\IL10N;
 use OCP\ILogger;
 use OCP\IRequest;
 use OCP\IURLGenerator;
@@ -45,7 +45,7 @@ use OCP\Security\ISecureRandom;
 class AccountController extends ApiController {
 
 	/* delay for the user to confirm his email */
-	const validateEmailDelay = (6 * 60 * 60);
+	public const validateEmailDelay = (6 * 60 * 60);
 
 	/** @var string */
 	protected $appName;
@@ -114,17 +114,17 @@ class AccountController extends ApiController {
 								ISecureRandom $secureRandom,
 								IManager $notificationsManager) {
 		parent::__construct($appName, $request, 'POST');
-		$this->appName              = $appName;
-		$this->config               = $config;
-		$this->userManager          = $userManager;
-		$this->groupManager         = $groupManager;
-		$this->mailer               = $mailer;
-		$this->verifyMailHelper     = $verifyMailHelper;
-		$this->logger               = $logger;
-		$this->urlGenerator         = $urlGenerator;
-		$this->timeFactory          = $timeFactory;
-		$this->crypto               = $crypto;
-		$this->secureRandom         = $secureRandom;
+		$this->appName = $appName;
+		$this->config = $config;
+		$this->userManager = $userManager;
+		$this->groupManager = $groupManager;
+		$this->mailer = $mailer;
+		$this->verifyMailHelper = $verifyMailHelper;
+		$this->logger = $logger;
+		$this->urlGenerator = $urlGenerator;
+		$this->timeFactory = $timeFactory;
+		$this->crypto = $crypto;
+		$this->secureRandom = $secureRandom;
 		$this->notificationsManager = $notificationsManager;
 	}
 
@@ -160,7 +160,7 @@ class AccountController extends ApiController {
 		try {
 			// create user
 			$password = $this->generatePassword();
-			$newUser  = $this->userManager->createUser($email, $password);
+			$newUser = $this->userManager->createUser($email, $password);
 
 			// add user to groups
 			$groups = $this->config->getAppValue($this->appName, 'provider_groups', '');
@@ -181,8 +181,8 @@ class AccountController extends ApiController {
 		} catch (\Exception $e) {
 			$this->logger->logException($e, [
 				'message' => 'Failed addUser attempt with exception.',
-				'level'   => \OCP\Util::ERROR,
-				'app'     => $this->appName
+				'level' => \OCP\Util::ERROR,
+				'app' => $this->appName
 			]);
 
 			return new DataResponse(['data' => ['message' => 'error creating the user']], Http::STATUS_BAD_REQUEST);
@@ -197,8 +197,8 @@ class AccountController extends ApiController {
 		} catch (\Exception $e) {
 			$this->logger->logException($e, [
 				'message' => "Can't send new user mail to $email",
-				'level'   => \OCP\Util::ERROR,
-				'app'     => $this->appName
+				'level' => \OCP\Util::ERROR,
+				'app' => $this->appName
 			]);
 			// continue anyway. Let's only warn the admin log
 			// return new DataResponse(['data' => ['message' => 'error sending the invitation mail']], Http::STATUS_BAD_REQUEST);
@@ -219,8 +219,8 @@ class AccountController extends ApiController {
 		} catch (\Exception $e) {
 			$this->logger->logException($e, [
 				'message' => "An error occured during the password token generation for $email",
-				'level'   => \OCP\Util::ERROR,
-				'app'     => $this->appName
+				'level' => \OCP\Util::ERROR,
+				'app' => $this->appName
 			]);
 
 			return new DataResponse(['data' => ['message' => 'error generating the password token']], Http::STATUS_BAD_REQUEST);
@@ -238,7 +238,7 @@ class AccountController extends ApiController {
 	 * @return string reset password url
 	 */
 	private function processSetPasswordToken(string $email): string {
-		$token          = $this->generateRandomToken();
+		$token = $this->generateRandomToken();
 		$encryptedValue = $this->crypto->encrypt($token, $email . $this->config->getSystemValue('secret'));
 		$this->config->setUserValue($email, $this->appName, 'set_password', $encryptedValue);
 		$this->config->setUserValue($email, $this->appName, 'remind_password', time());
@@ -268,5 +268,4 @@ class AccountController extends ApiController {
 			ISecureRandom::CHAR_UPPER
 		);
 	}
-
 }
