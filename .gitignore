@@ -7,3 +7,4 @@ css/style.css
 coverage
 npm-debug.log
 package-lock.json
+vendor
