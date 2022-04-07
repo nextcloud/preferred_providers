@@ -2,7 +2,7 @@
 declare(strict_types=1);
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- * 
+ *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @license GNU AGPL version 3 or any later version
@@ -40,31 +40,31 @@ style('preferred_providers', 'admin-settings');
     <h2><?php p($l->t('Preferred providers groups')); ?></h2>
     <p><?php p($l->t('The following groups will be added to every new account')); ?>:</p>
     <select multiple id="groups">
-        <?php foreach($_['groups'] as $group) {
-            $gid = $group->getGid();
-            $gname = $group->getDisplayName();
-        ?>
+        <?php foreach ($_['groups'] as $group) {
+	$gid = $group->getGid();
+	$gname = $group->getDisplayName(); ?>
         <option value="<?php p($gid); ?>" <?php p(in_array($gid, $_['provider_groups']) ? 'selected="selected"' : ''); ?>><?php p($gname); ?></option>
-        <?php }?>
+        <?php
+}?>
     </select>
 
     <p><?php p($l->t('The following groups will be set to every unconfirmed account and removed when confirmed')); ?>:</p>
     <select multiple id="groups_unconfirmed">
-        <?php foreach($_['groups'] as $group) {
-            $gid = $group->getGid();
-            $gname = $group->getDisplayName();
-        ?>
+        <?php foreach ($_['groups'] as $group) {
+		$gid = $group->getGid();
+		$gname = $group->getDisplayName(); ?>
         <option value="<?php p($gid); ?>" <?php p(in_array($gid, $_['provider_groups_unconfirmed']) ? 'selected="selected"' : ''); ?>><?php p($gname); ?></option>
-        <?php }?>
+        <?php
+	}?>
     </select>
 
     <p><?php p($l->t('The following groups will be set to every confirmed account')); ?>:</p>
     <select multiple id="groups_confirmed">
-        <?php foreach($_['groups'] as $group) {
-            $gid = $group->getGid();
-            $gname = $group->getDisplayName();
-        ?>
+        <?php foreach ($_['groups'] as $group) {
+		$gid = $group->getGid();
+		$gname = $group->getDisplayName(); ?>
         <option value="<?php p($gid); ?>" <?php p(in_array($gid, $_['provider_groups_confirmed']) ? 'selected="selected"' : ''); ?>><?php p($gname); ?></option>
-        <?php }?>
+        <?php
+	}?>
     </select>
 </div>

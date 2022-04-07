@@ -1,8 +1,9 @@
 <?php
+
 declare(strict_types=1);
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- * 
+ *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @license GNU AGPL version 3 or any later version
@@ -29,7 +30,6 @@ use OCA\Theming\ThemingDefaults;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
-use OCP\IUser;
 use OCP\Mail\IMailer;
 use OCP\Security\ICrypto;
 
@@ -86,7 +86,7 @@ class SetPasswordMailHelper {
 
 	/**
 	 * Generate token and mail template
-	 * 
+	 *
 	 * @param string $userId
 	 * @param bool $verified is the mail verified
 	 * @return IEMailTemplate

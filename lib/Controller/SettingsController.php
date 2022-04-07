@@ -1,5 +1,6 @@
 <?php
-declare (strict_types = 1);
+
+declare(strict_types = 1);
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
@@ -42,7 +43,6 @@ use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\Notification\IManager;
 use OCP\Security\ISecureRandom;
-use phpDocumentor\Reflection\Types\Boolean;
 
 class SettingsController extends OCSController {
 
@@ -116,21 +116,21 @@ class SettingsController extends OCSController {
 								IManager $notificationsManager,
 								VerifyMailHelper $verifyMailHelper) {
 		parent::__construct($appName, $request);
-		$this->appName              = $appName;
-		$this->config               = $config;
-		$this->userManager          = $userManager;
-		$this->groupManager         = $groupManager;
-		$this->logger               = $logger;
-		$this->urlGenerator         = $urlGenerator;
-		$this->timeFactory          = $timeFactory;
-		$this->userSession          = $userSession;
-		$this->appManager           = $appManager;
-		$this->secureRandom         = $secureRandom;
+		$this->appName = $appName;
+		$this->config = $config;
+		$this->userManager = $userManager;
+		$this->groupManager = $groupManager;
+		$this->logger = $logger;
+		$this->urlGenerator = $urlGenerator;
+		$this->timeFactory = $timeFactory;
+		$this->userSession = $userSession;
+		$this->appManager = $appManager;
+		$this->secureRandom = $secureRandom;
 		$this->notificationsManager = $notificationsManager;
-		$this->verifyMailHelper     = $verifyMailHelper;
+		$this->verifyMailHelper = $verifyMailHelper;
 
 		$this->serverRoot = \OC::$SERVERROOT;
-		$this->appRoot    = $this->appManager->getAppPath($this->appName);
+		$this->appRoot = $this->appManager->getAppPath($this->appName);
 	}
 
 	/**
@@ -202,8 +202,8 @@ class SettingsController extends OCSController {
 		} catch (\Exception $e) {
 			$this->logger->logException($e, [
 				'message' => "Can't send new user mail to $email",
-				'level'   => \OCP\Util::ERROR,
-				'app'     => $this->appName
+				'level' => \OCP\Util::ERROR,
+				'app' => $this->appName
 			]);
 			// continue anyway. Let's only warn the admin log
 			// return new DataResponse(['data' => ['message' => 'error sending the invitation mail']], Http::STATUS_BAD_REQUEST);
@@ -212,13 +212,12 @@ class SettingsController extends OCSController {
 		// generate a notification
 		$notification = $this->notificationsManager->createNotification();
 		$notification->setApp($this->appName)
-		             ->setUser($email)
-		             ->setDateTime(new \DateTime())
-		             ->setSubject('verify_email')
-		             ->setObject('verify_email', sha1($email));
+					 ->setUser($email)
+					 ->setDateTime(new \DateTime())
+					 ->setSubject('verify_email')
+					 ->setObject('verify_email', sha1($email));
 		$this->notificationsManager->notify($notification);
 
 		return new JSONResponse(['status' => 'success']);
 	}
-
 }

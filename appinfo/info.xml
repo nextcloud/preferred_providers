@@ -4,21 +4,21 @@
     <name>Preferred Providers</name>
     <summary>Allow nextcloud to request user accounts</summary>
     <description><![CDATA[Allow nextcloud to request user accounts]]></description>
-    <version>1.10.0</version>
+    <version>1.11.0</version>
     <licence>agpl</licence>
     <author>John Molakvoæ</author>
     <namespace>Preferred_Providers</namespace>
     <category>files</category>
     <bugs>https://github.com/nextcloud/preferred_providers</bugs>
     <dependencies>
-        <nextcloud min-version="20" max-version="24"/>
+        <nextcloud min-version="22" max-version="24"/>
     </dependencies>
-    <settings>
-        <admin>OCA\Preferred_Providers\Settings\Admin</admin>
-        <admin-section>OCA\Preferred_Providers\Settings\Section</admin-section>
-    </settings>
     <background-jobs>
         <job>OCA\Preferred_Providers\BackgroundJob\NotifyUnsetPassword</job>
         <job>OCA\Preferred_Providers\BackgroundJob\ExpireUnverifiedAccounts</job>
     </background-jobs>
+    <settings>
+        <admin>OCA\Preferred_Providers\Settings\Admin</admin>
+        <admin-section>OCA\Preferred_Providers\Settings\Section</admin-section>
+    </settings>
 </info>

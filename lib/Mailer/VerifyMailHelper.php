@@ -1,7 +1,8 @@
 <?php
+
 declare(strict_types=1);
 /**
- * 
+ *
  * @copyright Copyright (c) 2017 Lukas Reschke <lukas@statuscode.ch>
  * @copyright Copyright (c) 2018 John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>
  *
@@ -104,7 +105,7 @@ class VerifyMailHelper {
 
 	/**
 	 * Generate token and mail template
-	 * 
+	 *
 	 * @param IUser $user
 	 * @param bool $verified is the mail verified
 	 * @return IEMailTemplate
@@ -127,7 +128,7 @@ class VerifyMailHelper {
 
 		if ($verified) {
 			$emailTemplate = $this->generateVerifiedMailBody($emailTemplate, $userId, $link);
-		} else if ($expired) {
+		} elseif ($expired) {
 			$emailTemplate = $this->generateFailedVerifyMailBody($emailTemplate, $userId);
 		} else {
 			$emailTemplate = $this->generateNonVerifiedMailBody($emailTemplate, $userId, $link);
