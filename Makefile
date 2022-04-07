@@ -1,7 +1,7 @@
 
 app_name=$(notdir $(CURDIR))
 project_directory=$(CURDIR)/../$(app_name)
-appstore_build_directory=$(CURDIR)/build/artifacts/appstore
+appstore_build_directory=$(CURDIR)/build/artifacts
 appstore_package_name=$(appstore_build_directory)/$(app_name)
 
 all: clean appstore
