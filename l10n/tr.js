@@ -32,7 +32,7 @@ OC.L10N.register(
     "Set password" : "Parolayı ayarla",
     "Log in" : "Oturum aç",
     "Preferred providers token" : "Yeğlenen hizmet sağlayıcıları kodu",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "UYARI! Bu kod çok önemlidir ve dikkatle korunması gerekir. Bu kodu yalnız Nextcloud sorumlusuna vermelisiniz!",
+    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "UYARI! Bu kod çok önemlidir ve dikkatle korunması gerekir. Bu kodu yalnızca Nextcloud sorumlusuna vermelisiniz!",
     "Your provider token" : "Hizmet sağlayıcı kodunuz",
     "Reset your token" : "Kodunuzu sıfırlayın",
     "Preferred providers groups" : "Yeğlenen hizmet sağlayıcı grupları",
