@@ -274,6 +274,9 @@ class PasswordController extends Controller {
 	 * @return string
 	 */
 	protected function generateAppPassword(string $email, string $clientName) {
+		if (mb_strlen($clientName) > 128) {
+			$clientName = mb_substr($clientName, 0, 120) . '…';
+		}
 
 		// generate token
 		$token = $this->secureRandom->generate(72, ISecureRandom::CHAR_HUMAN_READABLE);
