@@ -40,4 +40,4 @@ OC.L10N.register(
     "The following groups will be set to every unconfirmed account and removed when confirmed" : "Les groupes suivants seront définis pour chaque compte non confirmé et seront supprimés lorsqu'ils seront confirmés",
     "The following groups will be set to every confirmed account" : "Les groupes suivants seront établis pour chaque compte confirmé"
 },
-"nplurals=2; plural=(n > 1);");
+"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");
