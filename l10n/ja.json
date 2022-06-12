@@ -8,6 +8,7 @@
     "Unable to set the password. Contact your provider." : "パスワードを設定できません。ご利用のプロバイダーに連絡してください。",
     "One more step required" : "あともう１ステップです。",
     "It looks like you did not create your password yet." : "まだパスワードが生成されていないようです。",
+    "Did you encounter an issue during the sign-up process?" : "アカウント登録のプロセスで問題がありましたか？",
     "Access your account" : "あなたのアカウントにアクセスする",
     "Welcome to your %s account" : "あなたの %s アカウントへようこそ",
     "Your %s account %s is now verified!" : "あなたの %s アカウント%s が確認されました！",
