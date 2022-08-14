@@ -5,7 +5,7 @@ OC.L10N.register(
     "Error while sending the verification email" : "Doğrulama e-postası gönderilirken sorun çıktı",
     "Resend verification email and enable" : "Doğrulama e-postasını yeniden gönder ve etkinleştir",
     "The token is invalid" : "Kod geçersiz",
-    "The token is expired, please contact your provider" : "Kodun süresi geçmiş, lütfen hizmet sağlayıcınız ile görüşün",
+    "The token is expired, please contact your provider" : "Kodun geçerlilik süresi dolmuş. Lütfen hizmet sağlayıcınız ile görüşün",
     "Password to long" : "Parola çok uzun",
     "Unable to set the password. Contact your provider." : "Parola ayarlanamadı, Hizmet sağlayıcınız ile görüşün.",
     "One more step required" : "Bir adım kaldı",
