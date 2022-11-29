@@ -1,9 +1,9 @@
 OC.L10N.register(
     "preferred_providers",
     {
-    "User enabled and verification email sent!" : "Utilisateur activé et mail de vérification envoyé !",
-    "Error while sending the verification email" : "Erreur lors de l'envoi du mail de vérification",
-    "Resend verification email and enable" : "Activer l'utilisateur et envoyer le mail de vérification",
+    "User enabled and verification email sent!" : "Utilisateur activé et courriel de vérification envoyé !",
+    "Error while sending the verification email" : "Erreur lors de l'envoi du courriel de vérification",
+    "Resend verification email and enable" : "Activer l'utilisateur et envoyer le courriel de vérification",
     "The token is invalid" : "Jeton non valide",
     "The token is expired, please contact your provider" : "Le jeton a expiré, veuillez contacter votre fournisseur",
     "Password to long" : "Mot de passe trop long",
