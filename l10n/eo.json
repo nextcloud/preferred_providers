@@ -1,4 +1,7 @@
 { "translations": {
+    "Set your password" : "Agordi vian pasvorton",
+    "Account name or email" : "Kontonomo aŭ retpoŝta adreso",
+    "Password" : "Pasvorto",
     "Set password" : "Uzi pasvorton",
     "Log in" : "Ensaluti"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

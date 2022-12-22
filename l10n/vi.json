@@ -1,4 +1,7 @@
 { "translations": {
+    "Set your password" : "Đặt mật khẩu của bạn",
+    "Account name or email" : "Tên tài khoản hoặc email",
+    "Password" : "Mật khẩu",
     "Set password" : "Đặt mật khẩu",
     "Log in" : "Đăng nhập"
 },"pluralForm" :"nplurals=1; plural=0;"

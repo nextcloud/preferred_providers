@@ -1,4 +1,6 @@
 { "translations": {
+    "Set your password" : "Atur kata sandi Anda",
+    "Password" : "Kata sandi",
     "Set password" : "Atur kata sandi",
     "Log in" : "Masuk"
 },"pluralForm" :"nplurals=1; plural=0;"

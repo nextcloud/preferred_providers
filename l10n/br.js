@@ -1,6 +1,8 @@
 OC.L10N.register(
     "preferred_providers",
     {
+    "Set your password" : "Lakaat ho ger-tremen",
+    "Password" : "Ger-tremen",
     "Set password" : "Lakaat ur ger-tremen",
     "Log in" : "Kennaskañ"
 },

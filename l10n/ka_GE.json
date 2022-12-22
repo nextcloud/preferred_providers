@@ -1,4 +1,6 @@
 { "translations": {
+    "Set your password" : "დააყენეთ თქვენი პაროლი",
+    "Password" : "პაროლი",
     "Set password" : "პაროლის დაყენება",
     "Log in" : "ლოგინი"
 },"pluralForm" :"nplurals=2; plural=(n!=1);"

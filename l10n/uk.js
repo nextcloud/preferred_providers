@@ -1,6 +1,9 @@
 OC.L10N.register(
     "preferred_providers",
     {
+    "Set your password" : "Встановіть свій пароль",
+    "Account name or email" : "Ім'я користувача або електронна пошта",
+    "Password" : "Пароль",
     "Set password" : "Встановити пароль",
     "Log in" : "Увійти"
 },

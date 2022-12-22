@@ -1,6 +1,8 @@
 OC.L10N.register(
     "preferred_providers",
     {
+    "Set your password" : "Setează parola",
+    "Password" : "Parolă",
     "Set password" : "Setare parolă",
     "Log in" : "Autentificare"
 },

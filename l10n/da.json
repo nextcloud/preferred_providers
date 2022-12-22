@@ -1,5 +1,8 @@
 { "translations": {
     "Password to long" : "Adgangskode er for lang",
+    "Set your password" : "Sæt dit password",
+    "Account name or email" : "Brugernavn eller e-mail",
+    "Password" : "Adgangskode",
     "Set password" : "Skift adgangskode",
     "Log in" : "Log ind"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

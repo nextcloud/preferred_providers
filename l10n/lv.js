@@ -1,6 +1,8 @@
 OC.L10N.register(
     "preferred_providers",
     {
+    "Account name or email" : "Lietotājvārds vai e-pasts",
+    "Password" : "Parole",
     "Set password" : "Iestatīt paroli",
     "Log in" : "Pieteikties"
 },
