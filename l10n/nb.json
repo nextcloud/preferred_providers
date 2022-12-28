@@ -14,6 +14,7 @@
     "Click here to verify your email address" : "Klikk her for å bekrefte din e-post adresse",
     "Your %s account %s has been disabled because it was not verified in time." : "Din %s konto %s er deaktivert fordi den ikke er bekreftet innen tidsfristen.",
     "Please contact your provider for further assistance." : "Vennligst kontakt til tilbyder for mer hjelp.",
+    "Please verify your email address" : "Vennligst verifiser epost-addressen din",
     "Preferred providers" : "Foretrukne tilbydere",
     "Preferred Providers" : "Foretrukne tilbydere",
     "Allow nextcloud to request user accounts" : "Tillat Nextcloud å aksessere bruker kontoer",
