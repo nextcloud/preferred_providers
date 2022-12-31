@@ -29,7 +29,7 @@ OC.L10N.register(
     "Preferred Providers" : "Yeğlenen hizmet sağlayıcıları",
     "Allow nextcloud to request user accounts" : "Nextcloud kullanıcı hesaplarını isteyebilsin",
     "Set your password" : "Parolanızı ayarlayın",
-    "Account name or email" : "Hesap ado ya da e-posta adresi",
+    "Account name or email" : "Hesap adı ya da e-posta adresi",
     "Password" : "Parola",
     "Set password" : "Parolayı ayarla",
     "Log in" : "Oturum aç",
