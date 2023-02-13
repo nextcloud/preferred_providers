@@ -29,6 +29,7 @@ OC.L10N.register(
     "Preferred Providers" : "ספקים מועדפים",
     "Allow nextcloud to request user accounts" : "לאפשר ל־Nextcloud לבקש חשבונות משתמשים",
     "Set your password" : "הגדרת הססמה שלך",
+    "Account name or email" : "שם משתמש או דואר אלקטרוני",
     "Password" : "ססמה",
     "Set password" : "הגדרת ססמה",
     "Log in" : "כניסה",
