@@ -21,6 +21,7 @@ OC.L10N.register(
     "Preferred Providers" : "Foretrukne tilbydere",
     "Allow nextcloud to request user accounts" : "Tillat Nextcloud å aksessere bruker kontoer",
     "Set your password" : "Sett passordet ditt",
+    "Account name or email" : "Kontonavn eller e-postadresse",
     "Password" : "Passord",
     "Set password" : "Angi passord",
     "Log in" : "Logg inn",
