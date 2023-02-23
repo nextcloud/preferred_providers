@@ -28,6 +28,7 @@ OC.L10N.register(
     "Preferred Providers" : "Жељени провајдери",
     "Allow nextcloud to request user accounts" : "Дозволи да Некстклауд захтева корисничке налоге",
     "Set your password" : "Поставите лозинку",
+    "Account name or email" : "Име налога или е-адреса",
     "Password" : "Лозинка",
     "Set password" : "Постави лозинку",
     "Log in" : "Пријава",
