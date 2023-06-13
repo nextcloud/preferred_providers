@@ -38,7 +38,7 @@ style('preferred_providers', 'admin-settings');
 
 <div id="groups-section" class="section">
     <h2><?php p($l->t('Preferred providers groups')); ?></h2>
-    <p><?php p($l->t('The following groups will be added to every new account')); ?>:</p>
+    <p><?php p($l->t('Select the groups to which each new account will be added.')); ?>:</p>
     <select multiple id="groups">
         <?php foreach ($_['groups'] as $group) {
 	$gid = $group->getGid();
@@ -48,7 +48,7 @@ style('preferred_providers', 'admin-settings');
 }?>
     </select>
 
-    <p><?php p($l->t('The following groups will be set to every unconfirmed account and removed when confirmed')); ?>:</p>
+    <p><?php p($l->t('Select the groups that will be assigned to each unconfirmed account. They will be deleted once the account has been verified.')); ?>:</p>
     <select multiple id="groups_unconfirmed">
         <?php foreach ($_['groups'] as $group) {
 		$gid = $group->getGid();
@@ -58,7 +58,7 @@ style('preferred_providers', 'admin-settings');
 	}?>
     </select>
 
-    <p><?php p($l->t('The following groups will be set to every confirmed account')); ?>:</p>
+    <p><?php p($l->t('Select the groups that will be assigned to each confirmed account.')); ?>:</p>
     <select multiple id="groups_confirmed">
         <?php foreach ($_['groups'] as $group) {
 		$gid = $group->getGid();
