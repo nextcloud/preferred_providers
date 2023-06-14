@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="5.12.0@f90118cdeacd0088e7215e64c0c99ceca819e176">
+  <file src="lib/Controller/MailController.php">
+    <InvalidDocblock>
+      <code>public function __construct(string $appName,</code>
+    </InvalidDocblock>
+  </file>
+  <file src="lib/Controller/PasswordController.php">
+    <UndefinedClass>
+      <code>IProvider</code>
+      <code>\OC</code>
+    </UndefinedClass>
+    <UndefinedDocblockClass>
+      <code><![CDATA[$this->tokenProvider]]></code>
+      <code>IProvider</code>
+    </UndefinedDocblockClass>
+  </file>
+  <file src="lib/Controller/SettingsController.php">
+    <UndefinedClass>
+      <code>\OC</code>
+    </UndefinedClass>
+  </file>
+  <file src="lib/Mailer/SetPasswordMailHelper.php">
+    <UndefinedClass>
+      <code>ThemingDefaults</code>
+    </UndefinedClass>
+    <UndefinedDocblockClass>
+      <code><![CDATA[$this->themingDefaults]]></code>
+      <code><![CDATA[$this->themingDefaults]]></code>
+      <code>ThemingDefaults</code>
+    </UndefinedDocblockClass>
+  </file>
+  <file src="lib/Mailer/VerifyMailHelper.php">
+    <InvalidArrayOffset>
+      <code><![CDATA[[$user->getEMailAddress() => $user->getDisplayName()]]]></code>
+    </InvalidArrayOffset>
+    <UndefinedClass>
+      <code>ThemingDefaults</code>
+    </UndefinedClass>
+    <UndefinedDocblockClass>
+      <code><![CDATA[$this->themingDefaults]]></code>
+      <code><![CDATA[$this->themingDefaults]]></code>
+      <code><![CDATA[$this->themingDefaults]]></code>
+      <code><![CDATA[$this->themingDefaults]]></code>
+      <code><![CDATA[$this->themingDefaults]]></code>
+      <code><![CDATA[$this->themingDefaults]]></code>
+      <code><![CDATA[$this->themingDefaults]]></code>
+      <code>ThemingDefaults</code>
+    </UndefinedDocblockClass>
+  </file>
+</files>
