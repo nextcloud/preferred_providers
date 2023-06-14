@@ -25,11 +25,11 @@ declare(strict_types=1);
 
 namespace OCA\Preferred_Providers\Mailer;
 
-use OCP\Mail\IEMailTemplate;
 use OCA\Theming\ThemingDefaults;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
+use OCP\Mail\IEMailTemplate;
 use OCP\Mail\IMailer;
 use OCP\Security\ICrypto;
 
@@ -60,12 +60,12 @@ class SetPasswordMailHelper {
 	 * @param ICrypto $crypto
 	 */
 	public function __construct(string $appName,
-								ThemingDefaults $themingDefaults,
-								IURLGenerator $urlGenerator,
-								IL10N $l10n,
-								IMailer $mailer,
-								IConfig $config,
-								ICrypto $crypto) {
+		ThemingDefaults $themingDefaults,
+		IURLGenerator $urlGenerator,
+		IL10N $l10n,
+		IMailer $mailer,
+		IConfig $config,
+		ICrypto $crypto) {
 		$this->appName = $appName;
 		$this->themingDefaults = $themingDefaults;
 		$this->urlGenerator = $urlGenerator;
@@ -80,7 +80,7 @@ class SetPasswordMailHelper {
 	 *
 	 * @param IL10N $l10n
 	 */
-	public function setL10N(IL10N $l10n) {
+	public function setL10N(IL10N $l10n): void {
 		$this->l10n = $l10n;
 	}
 
@@ -121,10 +121,11 @@ class SetPasswordMailHelper {
 	 *
 	 * @param string $user
 	 * @param IEmailTemplate $emailTemplate
-	 * @throws Exception If mail could not be sent
+	 *
+	 * @throws \Exception If mail could not be sent
 	 */
 	public function sendMail(string $userId,
-							 IEMailTemplate $emailTemplate) {
+		IEMailTemplate $emailTemplate): void {
 		$message = $this->mailer->createMessage();
 		$message->setTo([$userId]);
 		$message->useTemplate($emailTemplate);

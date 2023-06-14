@@ -25,26 +25,24 @@ declare(strict_types=1);
 
 namespace OCA\Preferred_Providers\BackgroundJob;
 
+use Exception;
 use OCA\Preferred_Providers\Mailer\SetPasswordMailHelper;
+use OCP\AppFramework\Utility\ITimeFactory;
+use OCP\BackgroundJob\TimedJob;
 use OCP\IConfig;
 use OCP\IDBConnection;
-use OCP\ILogger;
-use OC\BackgroundJob\TimedJob;
-use OC\SystemConfig;
+use Psr\Log\LoggerInterface;
 
 class NotifyUnsetPassword extends TimedJob {
 
 	/** @var string */
 	private $appName;
 
-	/** @var ILogger */
+	/** @var LoggerInterface */
 	private $logger;
 
 	/** @var IDBConnection */
 	private $connection;
-
-	/** @var SystemConfig */
-	private $systemConfig;
 
 	/** @var IConfig */
 	private $config;
@@ -52,39 +50,33 @@ class NotifyUnsetPassword extends TimedJob {
 	/** @var SetPasswordMailHelper */
 	private $mailHelper;
 
-	public function __construct() {
+	public function __construct(ITimeFactory $timeFactory, LoggerInterface $logger, IDBConnection $connection, SetPasswordMailHelper $mailHelper, IConfig $config) {
+		parent::__construct($timeFactory);
+		$this->appName = 'preferred_providers';
+		$this->logger = $logger;
+		$this->connection = $connection;
+		$this->config = $config;
+		$this->mailHelper = $mailHelper;
+
 		// Run once per 5 minutes
 		$this->setInterval(5 * 60);
 	}
 
+	/**
+	 * @return void
+	 */
 	public function run($argument) {
-		$this->appName = 'preferred_providers';
-		$this->logger = \OC::$server->getLogger();
-		$this->connection = \OC::$server->getDatabaseConnection();
-		$this->systemConfig = \OC::$server->getSystemConfig();
-		$this->config = \OC::$server->getConfig();
-
-		$this->mailHelper = new SetPasswordMailHelper(
-			$this->appName,
-			\OC::$server->getThemingDefaults(),
-			\OC::$server->getURLGenerator(),
-			\OC::$server->getL10N($this->appName),
-			\OC::$server->getMailer(),
-			\OC::$server->getConfig(),
-			\OC::$server->getCrypto()
-		);
-
 		// process if token is 5min old
-		$users = $this->getUsersForUserLowerThanValue($this->appName, 'remind_password', time() - 5 * 60);
+		$users = $this->getUsersForUserLowerThanValue($this->appName, 'remind_password', strval(time() - 5 * 60));
 		foreach ($users as $userId) {
 			$emailTemplate = $this->mailHelper->generateTemplate($userId);
 			try {
 				$this->mailHelper->sendMail($userId, $emailTemplate);
 				// only send one mail
 				$this->config->deleteUserValue($userId, $this->appName, 'remind_password');
-				$this->logger->debug('Password definition mail sent to ' . $userId, ['app' => $this->appName]);
+				$this->logger->debug('Password definition mail sent to ' . $userId);
 			} catch (Exception $e) {
-				$this->logger->debug('Error while sending the password definition mail to  ' . $userId, ['app' => $this->appName]);
+				$this->logger->debug('Error while sending the password definition mail to  ' . $userId);
 			}
 		}
 	}
@@ -101,7 +93,7 @@ class NotifyUnsetPassword extends TimedJob {
 		$sql = 'SELECT `userid` FROM `*PREFIX*preferences` ' .
 			'WHERE `appid` = ? AND `configkey` = ? ';
 
-		if ($this->systemConfig->getValue('dbtype', 'sqlite') === 'oci') {
+		if ($this->config->getSystemValueString('dbtype', 'sqlite') === 'oci') {
 			//oracle hack: need to explicitly cast CLOB to CHAR for comparison
 			$sql .= 'AND to_char(`configvalue`) < ?';
 		} else {

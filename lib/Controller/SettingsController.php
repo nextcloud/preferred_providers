@@ -26,28 +26,30 @@ declare(strict_types = 1);
 namespace OCA\Preferred_Providers\Controller;
 
 use OCA\Preferred_Providers\Mailer\VerifyMailHelper;
-use OCP\AppFramework\Http;
+use OCP\App\IAppManager;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\JSONResponse;
-use OCP\AppFramework\OCSController;
 use OCP\AppFramework\OCS\OCSBadRequestException;
 use OCP\AppFramework\OCS\OCSNotFoundException;
+use OCP\AppFramework\OCSController;
 use OCP\AppFramework\Utility\ITimeFactory;
-use OCP\App\IAppManager;
 use OCP\IConfig;
 use OCP\IGroupManager;
-use OCP\ILogger;
 use OCP\IRequest;
 use OCP\IURLGenerator;
 use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\Notification\IManager;
 use OCP\Security\ISecureRandom;
+use Psr\Log\LoggerInterface;
 
 class SettingsController extends OCSController {
 
 	/** @var string */
 	protected $appName;
+
+	/** @var string */
+	protected $appRoot;
 
 	/** @var string */
 	protected $serverRoot;
@@ -61,17 +63,11 @@ class SettingsController extends OCSController {
 	/** @var IGroupManager */
 	private $groupManager;
 
-	/** @var ILogger */
+	/** @var LoggerInterface */
 	private $logger;
-
-	/** @var IURLGenerator */
-	private $urlGenerator;
 
 	/** @var ITimeFactory */
 	protected $timeFactory;
-
-	/** @var IUserSession */
-	private $userSession;
 
 	/** @var IAppManager */
 	private $appManager;
@@ -93,7 +89,7 @@ class SettingsController extends OCSController {
 	 * @param IConfig $config
 	 * @param IUserManager $userManager
 	 * @param IGroupManager $groupManager
-	 * @param ILogger $logger
+	 * @param LoggerInterface $logger
 	 * @param IURLGenerator $urlGenerator
 	 * @param ITimeFactory $timeFactory
 	 * @param IUserSession $userSession
@@ -103,27 +99,23 @@ class SettingsController extends OCSController {
 	 * @param VerifyMailHelper $verifyMailHelper
 	 */
 	public function __construct(string $appName,
-								IRequest $request,
-								IConfig $config,
-								IUserManager $userManager,
-								IGroupManager $groupManager,
-								ILogger $logger,
-								IURLGenerator $urlGenerator,
-								ITimeFactory $timeFactory,
-								IUserSession $userSession,
-								IAppManager $appManager,
-								ISecureRandom $secureRandom,
-								IManager $notificationsManager,
-								VerifyMailHelper $verifyMailHelper) {
+		IRequest $request,
+		IConfig $config,
+		IUserManager $userManager,
+		IGroupManager $groupManager,
+		LoggerInterface $logger,
+		ITimeFactory $timeFactory,
+		IAppManager $appManager,
+		ISecureRandom $secureRandom,
+		IManager $notificationsManager,
+		VerifyMailHelper $verifyMailHelper) {
 		parent::__construct($appName, $request);
 		$this->appName = $appName;
 		$this->config = $config;
 		$this->userManager = $userManager;
 		$this->groupManager = $groupManager;
 		$this->logger = $logger;
-		$this->urlGenerator = $urlGenerator;
 		$this->timeFactory = $timeFactory;
-		$this->userSession = $userSession;
 		$this->appManager = $appManager;
 		$this->secureRandom = $secureRandom;
 		$this->notificationsManager = $notificationsManager;
@@ -174,7 +166,7 @@ class SettingsController extends OCSController {
 	 * Enable a user and resend activation email
 	 *
 	 * @param string $userId the user to reactivate
-	 * @return DataResponse
+	 *
 	 * @throws OCSNotFoundException
 	 * @throws OCSBadRequestException
 	 */
@@ -200,11 +192,7 @@ class SettingsController extends OCSController {
 			$emailTemplate = $this->verifyMailHelper->generateTemplate($user);
 			$this->verifyMailHelper->sendMail($user, $emailTemplate);
 		} catch (\Exception $e) {
-			$this->logger->logException($e, [
-				'message' => "Can't send new user mail to $email",
-				'level' => \OCP\Util::ERROR,
-				'app' => $this->appName
-			]);
+			$this->logger->error("Can't send new user mail to $email", ['exception' => $e]);
 			// continue anyway. Let's only warn the admin log
 			// return new DataResponse(['data' => ['message' => 'error sending the invitation mail']], Http::STATUS_BAD_REQUEST);
 		}

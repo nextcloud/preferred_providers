@@ -27,14 +27,12 @@ namespace OCA\Preferred_Providers\BackgroundJob;
 
 use OCA\Preferred_Providers\Helper\ExpireUserTrait;
 use OCA\Preferred_Providers\Mailer\VerifyMailHelper;
+use OCP\AppFramework\Utility\ITimeFactory;
+use OCP\BackgroundJob\TimedJob;
 use OCP\IConfig;
 use OCP\IDBConnection;
-use OCP\ILogger;
 use OCP\IUserManager;
-use OCP\IUserSession;
-use OC\AppFramework\Utility\TimeFactory;
-use OC\BackgroundJob\TimedJob;
-use OC\SystemConfig;
+use Psr\Log\LoggerInterface;
 
 class ExpireUnverifiedAccounts extends TimedJob {
 	use ExpireUserTrait;
@@ -42,22 +40,18 @@ class ExpireUnverifiedAccounts extends TimedJob {
 	/** @var string */
 	private $appName;
 
-	/** @var IUserManager */
+	/**
+	 * @var IUserManager
+	 */
 	private $userManager;
-
-	/** @var IUserSession */
-	private $userSession;
 
 	/** @var IConfig */
 	private $config;
 
-	/** @var SystemConfig */
-	private $systemConfig;
-
-	/** @var ILogger */
+	/** @var LoggerInterface */
 	private $logger;
 
-	/** @var TimeFactory */
+	/** @var ITimeFactory */
 	private $timeFactory;
 
 	/** @var IDBConnection */
@@ -66,35 +60,25 @@ class ExpireUnverifiedAccounts extends TimedJob {
 	/** @var VerifyMailHelper */
 	private $mailHelper;
 
-	public function __construct() {
+	public function __construct(ITimeFactory $timeFactory, IConfig $config, LoggerInterface $logger, IDBConnection $connection, VerifyMailHelper $mailHelper) {
+		parent::__construct($timeFactory);
+
+		$this->appName = 'preferred_providers';
+		$this->config = $config;
+		$this->logger = $logger;
+		$this->connection = $connection;
+		$this->mailHelper = $mailHelper;
+
 		// Run once per 15 minutes
 		$this->setInterval(15 * 60);
 	}
 
+	/**
+	 * @return void
+	 */
 	public function run($argument) {
-		$this->appName = 'preferred_providers';
-		$this->userManager = \OC::$server->getUserManager();
-		$this->userSession = \OC::$server->getUserSession();
-		$this->config = \OC::$server->getConfig();
-		$this->systemConfig = \OC::$server->getSystemConfig();
-		$this->logger = \OC::$server->getLogger();
-		$this->timeFactory = new TimeFactory();
-		$this->connection = \OC::$server->getDatabaseConnection();
-
-		$this->mailHelper = new VerifyMailHelper(
-			$this->appName,
-			\OC::$server->getThemingDefaults(),
-			\OC::$server->getURLGenerator(),
-			\OC::$server->getL10N($this->appName),
-			\OC::$server->getMailer(),
-			\OC::$server->getSecureRandom(),
-			$this->timeFactory,
-			$this->config,
-			\OC::$server->getCrypto()
-		);
-
 		// process if token is 5min old
-		$users = $this->getUsersForUserLowerThanValue($this->appName, 'disable_user_after', time());
+		$users = $this->getUsersForUserLowerThanValue($this->appName, 'disable_user_after', strval(time()));
 		foreach ($users as $userId) {
 			$this->expireUser($userId);
 		}
@@ -112,7 +96,7 @@ class ExpireUnverifiedAccounts extends TimedJob {
 		$sql = 'SELECT `userid` FROM `*PREFIX*preferences` ' .
 			'WHERE `appid` = ? AND `configkey` = ? ';
 
-		if ($this->systemConfig->getValue('dbtype', 'sqlite') === 'oci') {
+		if ($this->config->getSystemValueString('dbtype', 'sqlite') === 'oci') {
 			//oracle hack: need to explicitly cast CLOB to CHAR for comparison
 			$sql .= 'AND to_char(`configvalue`) < ?';
 		} else {

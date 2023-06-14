@@ -22,8 +22,8 @@ declare(strict_types=1);
  *
  */
 
-script('preferred_providers', 'admin-settings');
-style('preferred_providers', 'admin-settings');
+\OCP\Util::addScript('preferred_providers', 'admin-settings');
+\OCP\Util::addStyle('preferred_providers', 'admin-settings');
 ?>
 
 <div id="token-section" class="section">
@@ -41,30 +41,30 @@ style('preferred_providers', 'admin-settings');
     <p><?php p($l->t('Select the groups to which each new account will be added.')); ?>:</p>
     <select multiple id="groups">
         <?php foreach ($_['groups'] as $group) {
-	$gid = $group->getGid();
-	$gname = $group->getDisplayName(); ?>
+        	$gid = $group->getGid();
+        	$gname = $group->getDisplayName(); ?>
         <option value="<?php p($gid); ?>" <?php p(in_array($gid, $_['provider_groups']) ? 'selected="selected"' : ''); ?>><?php p($gname); ?></option>
         <?php
-}?>
+        }?>
     </select>
 
     <p><?php p($l->t('Select the groups that will be assigned to each unconfirmed account. They will be deleted once the account has been verified.')); ?>:</p>
     <select multiple id="groups_unconfirmed">
         <?php foreach ($_['groups'] as $group) {
-		$gid = $group->getGid();
-		$gname = $group->getDisplayName(); ?>
+        	$gid = $group->getGid();
+        	$gname = $group->getDisplayName(); ?>
         <option value="<?php p($gid); ?>" <?php p(in_array($gid, $_['provider_groups_unconfirmed']) ? 'selected="selected"' : ''); ?>><?php p($gname); ?></option>
         <?php
-	}?>
+        }?>
     </select>
 
     <p><?php p($l->t('Select the groups that will be assigned to each confirmed account.')); ?>:</p>
     <select multiple id="groups_confirmed">
         <?php foreach ($_['groups'] as $group) {
-		$gid = $group->getGid();
-		$gname = $group->getDisplayName(); ?>
+        	$gid = $group->getGid();
+        	$gname = $group->getDisplayName(); ?>
         <option value="<?php p($gid); ?>" <?php p(in_array($gid, $_['provider_groups_confirmed']) ? 'selected="selected"' : ''); ?>><?php p($gname); ?></option>
         <?php
-	}?>
+        }?>
     </select>
 </div>

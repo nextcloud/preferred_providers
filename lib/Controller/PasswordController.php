@@ -25,19 +25,19 @@ declare(strict_types=1);
 
 namespace OCA\Preferred_Providers\Controller;
 
+use OC\Authentication\Token\IProvider;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IConfig;
 use OCP\IL10N;
-use OCP\ILogger;
 use OCP\IRequest;
 use OCP\IURLGenerator;
 use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\Security\ICrypto;
 use OCP\Security\ISecureRandom;
-use OC\Authentication\Token\IProvider;
+use Psr\Log\LoggerInterface;
 
 class PasswordController extends Controller {
 
@@ -65,7 +65,7 @@ class PasswordController extends Controller {
 	/** @var IUserSession */
 	private $userSession;
 
-	/** @var ILogger */
+	/** @var LoggerInterface */
 	private $logger;
 
 	/** @var IProvider */
@@ -85,21 +85,21 @@ class PasswordController extends Controller {
 	 * @param ICrypto $crypto
 	 * @param IURLGenerator $urlGenerator
 	 * @param IUserSession $userSession
-	 * @param ILogger $logger
+	 * @param LoggerInterface $logger
 	 * @param IProvider $tokenProvider
 	 * @param ISecureRandom $secureRandom
 	 */
 	public function __construct(string $appName,
-								IRequest $request,
-								IConfig $config,
-								IL10N $l10n,
-								IUserManager $userManager,
-								ICrypto $crypto,
-								IURLGenerator $urlGenerator,
-								IUserSession $userSession,
-								ILogger $logger,
-								IProvider $tokenProvider,
-								ISecureRandom $secureRandom) {
+		IRequest $request,
+		IConfig $config,
+		IL10N $l10n,
+		IUserManager $userManager,
+		ICrypto $crypto,
+		IURLGenerator $urlGenerator,
+		IUserSession $userSession,
+		LoggerInterface $logger,
+		IProvider $tokenProvider,
+		ISecureRandom $secureRandom) {
 		parent::__construct($appName, $request);
 		$this->appName = $appName;
 		$this->request = $request;
@@ -139,11 +139,12 @@ class PasswordController extends Controller {
 
 	/**
 	 * @NoCSRFRequired
+	 *
 	 * @PublicPage
 	 *
 	 * shortcut for secondary route with ocs api parameter
 	 */
-	public function setPasswordOcs(string $token, string $email, $ocs = false) {
+	public function setPasswordOcs(string $token, string $email, $ocs = false): TemplateResponse {
 		return $this->setPassword($token, $email, $ocs);
 	}
 
@@ -237,7 +238,10 @@ class PasswordController extends Controller {
 	 *
 	 * @param string $token
 	 * @param string $userId the user mail address / id
+	 *
 	 * @throws \Exception
+	 *
+	 * @return void
 	 */
 	protected function checkPasswordToken($token, $userId) {
 		$user = $this->userManager->get($userId);

@@ -22,8 +22,8 @@ declare(strict_types=1);
  *
  */
 
-script('preferred_providers', 'password-public');
-style('preferred_providers', 'password-public');
+\OCP\Util::addScript('preferred_providers', 'password-public');
+\OCP\Util::addStyle('preferred_providers', 'password-public');
 
 ?>
 <div class="guest-box login-box">

@@ -25,12 +25,16 @@ declare(strict_types=1);
 
 namespace OCA\Preferred_Providers\Helper;
 
+use Exception;
+
 trait ExpireUserTrait {
 
 	/**
 	 * Expire a user
 	 *
 	 * @param string $userId
+	 *
+	 * @return void
 	 */
 	private function expireUser(string $userId) {
 		$user = $this->userManager->get($userId);
@@ -43,7 +47,7 @@ trait ExpireUserTrait {
 
 		// removing token to avoid conflict with further manual manipulation of the user
 		$this->config->deleteUserValue($userId, $this->appName, 'disable_user_after');
-		$this->logger->info('User ' . $userId . ' failed to verify email in time and has been disabled', ['app' => $this->appName]);
+		$this->logger->info('User ' . $userId . ' failed to verify email in time and has been disabled');
 
 		// send email
 		if ($user->getEMailAddress() !== '' && $user->getEMailAddress() !== null) {
@@ -52,13 +56,13 @@ trait ExpireUserTrait {
 				$this->mailHelper->sendMail($user, $emailTemplate);
 				// only send one mail
 				$this->config->deleteUserValue($userId, $this->appName, 'remind_password');
-				$this->logger->debug('Unverified warning mail sent to ' . $userId, ['app' => $this->appName]);
+				$this->logger->debug('Unverified warning mail sent to ' . $userId);
 			} catch (Exception $e) {
-				$this->logger->error('Error while sending the failed to verify warning mail to  ' . $userId, ['app' => $this->appName]);
+				$this->logger->error('Error while sending the failed to verify warning mail to  ' . $userId);
 			}
 		} else {
 			// Should not happend
-			$this->logger->error('Failed to verify warning mail COULD NOT BE sent to ' . $userId . '. No email address is set.', ['app' => $this->appName]);
+			$this->logger->error('Failed to verify warning mail COULD NOT BE sent to ' . $userId . '. No email address is set.');
 		}
 	}
 }

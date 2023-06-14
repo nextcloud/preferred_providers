@@ -38,6 +38,7 @@ use OCP\IRequest;
 use OCP\IURLGenerator;
 use OCP\IUserManager;
 use OCP\Security\ICrypto;
+use Psr\Log\LoggerInterface;
 
 class MailController extends Controller {
 
@@ -49,6 +50,9 @@ class MailController extends Controller {
 
 	/** @var IL10N */
 	private $l10n;
+
+	/** @var LoggerInterface $logger */
+	private $logger;
 
 	/** @var IUserManager */
 	private $userManager;
@@ -76,6 +80,7 @@ class MailController extends Controller {
 	 * @param IRequest $request
 	 * @param IConfig $config
 	 * @param IL10N $l10n
+	 * @param LoggerInterface $logger
 	 * @param IUserManager $userManager
 	 * @param ICrypto $crypto
 	 * @param ITimeFactory $timeFactory
@@ -84,19 +89,21 @@ class MailController extends Controller {
 	 * @param VerifyMailHelper $verifyMailHelper
 	 */
 	public function __construct(string $appName,
-								IRequest $request,
-								IConfig $config,
-								IL10N $l10n,
-								IUserManager $userManager,
-								ICrypto $crypto,
-								ITimeFactory $timeFactory,
-								IURLGenerator $urlGenerator,
-								VerifyMailHelper $verifyMailHelper,
-								IGroupManager $groupManager) {
+		IRequest $request,
+		IConfig $config,
+		IL10N $l10n,
+		LoggerInterface $logger,
+		IUserManager $userManager,
+		ICrypto $crypto,
+		ITimeFactory $timeFactory,
+		IURLGenerator $urlGenerator,
+		VerifyMailHelper $verifyMailHelper,
+		IGroupManager $groupManager) {
 		parent::__construct($appName, $request);
 		$this->appName = $appName;
 		$this->config = $config;
 		$this->l10n = $l10n;
+		$this->logger = $logger;
 		$this->userManager = $userManager;
 		$this->crypto = $crypto;
 		$this->timeFactory = $timeFactory;
@@ -136,11 +143,7 @@ class MailController extends Controller {
 			$emailTemplate = $this->verifyMailHelper->generateTemplate($user, true);
 			$this->verifyMailHelper->sendMail($user, $emailTemplate);
 		} catch (\Exception $e) {
-			$this->logger->logException($e, [
-				'message' => "Can't send welcome email to $email",
-				'level' => \OCP\Util::ERROR,
-				'app' => $this->appName,
-			]);
+			$this->logger->error("Can't send welcome email to $email", ['exception' => $e]);
 		}
 		
 		// add/remove user to groups
@@ -173,7 +176,10 @@ class MailController extends Controller {
 	 *
 	 * @param string $token
 	 * @param string $userId the user mail address / id
+	 *
 	 * @throws \Exception
+	 *
+	 * @return void
 	 */
 	protected function checkVerifyMailAddressToken($token, $userId) {
 		$user = $this->userManager->get($userId);
