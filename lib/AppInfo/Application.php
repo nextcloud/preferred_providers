@@ -28,9 +28,9 @@ namespace OCA\Preferred_Providers\AppInfo;
 use OCA\Preferred_Providers\Hook\LoginHook;
 use OCA\Preferred_Providers\Notification\Notifier;
 use OCP\AppFramework\App;
+use OCP\EventDispatcher\IEventDispatcher;
 use OCP\IServerContainer;
 use OCP\Util;
-use OCP\EventDispatcher\IEventDispatcher;
 
 class Application extends App {
 	public const APP_ID = 'preferred_providers';
@@ -50,7 +50,7 @@ class Application extends App {
 		/** @var IEventDispatcher */
 		$eventDispatcher = $server->query(IEventDispatcher::class);
 		$eventDispatcher->addListener('OC\Settings\Users::loadAdditionalScripts',
-			function() {
+			function () {
 				Util::addScript(self::APP_ID, 'users-management');
 			}
 		);
