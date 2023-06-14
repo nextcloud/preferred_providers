@@ -37,9 +37,6 @@ OC.L10N.register(
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "ATENTZIONE! Custu token est de importu mannu e depet èssere manigiadu cun atentzione meda. Ddu depes frunire isceti a unu nextcloud ufitziale!",
     "Your provider token" : "Token de su frunidore tuo",
     "Reset your token" : "Torra a impostare su token tuo",
-    "Preferred providers groups" : "Grupos de is frunidores preferidos",
-    "The following groups will be added to every new account" : "Custos grupos ant a èssere agiuntos a ogni contu nou",
-    "The following groups will be set to every unconfirmed account and removed when confirmed" : "Custos grupos ant a èssere impostados in ogni contu no cunfirmadu e bogados cando cunfirmadu",
-    "The following groups will be set to every confirmed account" : "Custos grupos ant a èssere impostados a ogni contu cunfirmadu"
+    "Preferred providers groups" : "Grupos de is frunidores preferidos"
 },
 "nplurals=2; plural=(n != 1);");

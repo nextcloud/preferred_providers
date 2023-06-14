@@ -38,9 +38,6 @@ OC.L10N.register(
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "אזהרה! האסימון הזה מאוד חשוב ויש לטפל בו בזהירות רבה. מוטב לספק אותו אך ורק לסמכות רשמית של Nextcloud!",
     "Your provider token" : "אסימון הספק שלך",
     "Reset your token" : "איפוס האסימון שלך",
-    "Preferred providers groups" : "קבוצות ספקים מועדפים",
-    "The following groups will be added to every new account" : "הקבוצות הבאות יתווספו לכל חשבון חדש",
-    "The following groups will be set to every unconfirmed account and removed when confirmed" : "הקבוצות הבאות יוגדרו לכל חשבון שלא אושר והוסר בעת האישור",
-    "The following groups will be set to every confirmed account" : "הקבוצות הבאות יוגדרו עבור כל חשבון שאושר"
+    "Preferred providers groups" : "קבוצות ספקים מועדפים"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;");

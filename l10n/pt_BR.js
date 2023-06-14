@@ -38,9 +38,6 @@ OC.L10N.register(
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "ATENÇÃO! Este token é muito importante e deve ser tratado com cuidado. Você só deve entregá-lo a um funcionário do nextcloud!",
     "Your provider token" : "Seu token do provedor",
     "Reset your token" : "Redefinir seu token",
-    "Preferred providers groups" : "Grupos de provedores preferenciais",
-    "The following groups will be added to every new account" : "Os seguintes grupos serão adicionados a cada nova conta",
-    "The following groups will be set to every unconfirmed account and removed when confirmed" : "Os seguintes grupos serão definidos à cada nova conta não confirmada e removidos quando confirmada",
-    "The following groups will be set to every confirmed account" : "Os seguintes grupos serão adicionados a cada nova conta confirmada"
+    "Preferred providers groups" : "Grupos de provedores preferenciais"
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

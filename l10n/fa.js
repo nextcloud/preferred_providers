@@ -35,7 +35,6 @@ OC.L10N.register(
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "هشدار! این نشانه بسیار مهم است و باید با دقت به آنها رسیدگی شود. شما فقط باید آن را به یک مقام نکست کلود به من بدهید!",
     "Your provider token" : "نشان دهنده ارائه دهنده شما",
     "Reset your token" : "نماد خود را دوباره تنظیم کنید",
-    "Preferred providers groups" : "گروه های ارائه دهنده ترجیحی",
-    "The following groups will be added to every new account" : "گروه های زیر به هر حساب جدید اضافه می شوند"
+    "Preferred providers groups" : "گروه های ارائه دهنده ترجیحی"
 },
 "nplurals=2; plural=(n > 1);");

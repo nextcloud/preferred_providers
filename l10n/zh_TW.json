@@ -36,9 +36,6 @@
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "警告！此權杖非常重要，必須小心處理。您只應該將其給 Nextcloud 官方！",
     "Your provider token" : "您的提供者權杖",
     "Reset your token" : "重設您的權杖",
-    "Preferred providers groups" : "偏好的提供者群組",
-    "The following groups will be added to every new account" : "以下的群組將會新增到每個新帳號",
-    "The following groups will be set to every unconfirmed account and removed when confirmed" : "以下的群組將會為每個未確認的帳號設定，並在其確認完畢後移除",
-    "The following groups will be set to every confirmed account" : "以下的群組將會被設定給每個已確認的帳號"
+    "Preferred providers groups" : "偏好的提供者群組"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

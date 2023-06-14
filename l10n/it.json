@@ -36,9 +36,6 @@
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "AVVISO! Questo token è molto importante e deve essere gestito con attenzione. Dovresti darlo solo a un Nextcloud ufficiale!",
     "Your provider token" : "Il tuo token dei fornitori",
     "Reset your token" : "Ripristina il tuo token",
-    "Preferred providers groups" : "Gruppi di fornitori preferiti",
-    "The following groups will be added to every new account" : "I seguenti gruppi saranno aggiunti a ogni nuovo account.",
-    "The following groups will be set to every unconfirmed account and removed when confirmed" : "I gruppi seguenti saranno impostati a ogni account non confermato e rimossi se confermati",
-    "The following groups will be set to every confirmed account" : "I gruppi seguenti saranno impostati a ogni account non confermato"
+    "Preferred providers groups" : "Gruppi di fornitori preferiti"
 },"pluralForm" :"nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

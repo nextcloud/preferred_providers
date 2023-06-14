@@ -37,9 +37,6 @@ OC.L10N.register(
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "UPOZORENJE! Ovaj je token vrlo važan i njime se mora pažljivo rukovati. Smijete ga predati samo službenom zastupniku nextclouda!",
     "Your provider token" : "Token vašeg davatelja usluga",
     "Reset your token" : "Resetiraj svoj token",
-    "Preferred providers groups" : "Grupe omiljenih davatelja usluga",
-    "The following groups will be added to every new account" : "Sljedeće će se grupe dodavati svakom novom računu",
-    "The following groups will be set to every unconfirmed account and removed when confirmed" : "Sljedeće će se grupe postaviti za svaki nepotvrđeni račun nakon potvrđivanja",
-    "The following groups will be set to every confirmed account" : "Sljedeće će se grupe postaviti za svaki potvrđeni račun"
+    "Preferred providers groups" : "Grupe omiljenih davatelja usluga"
 },
 "nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;");

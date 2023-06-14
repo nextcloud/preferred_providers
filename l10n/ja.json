@@ -36,9 +36,6 @@
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "警告！このトークンは非常に重要ですから注意して扱ってください。トークンはNextcloudの公式の関係者にだけ渡してください。",
     "Your provider token" : "あなたのプロバイダーのトークン",
     "Reset your token" : "トークンをリセットする",
-    "Preferred providers groups" : "推奨プロバイダーグループ",
-    "The following groups will be added to every new account" : "次のグループは新しいアカウントを追加することができます。",
-    "The following groups will be set to every unconfirmed account and removed when confirmed" : "確認されていないすべてのアカウントは以下のグループが設定され、確認されるとこのグループは削除されます。",
-    "The following groups will be set to every confirmed account" : "確認されたすべてのアカウントに以下のグループは設定されます"
+    "Preferred providers groups" : "推奨プロバイダーグループ"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

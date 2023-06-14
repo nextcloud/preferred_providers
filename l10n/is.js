@@ -36,9 +36,6 @@ OC.L10N.register(
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "AÐVÖRUN! Þetta teikn er ákaflega mikilvægt og þarf að umgangast með varúð. Þú ættir aldrei að gefa neinum færi á að sjá það nema opinberum umsjónarmanni Nextcloud þjónsins þíns!",
     "Your provider token" : "Teikn frá þjónustuveitunni þinni",
     "Reset your token" : "Endurstilltu teiknið þitt",
-    "Preferred providers groups" : "Umbeðnir hópar þjónustuveitna",
-    "The following groups will be added to every new account" : "Eftirfarandi hópum verður bætt við alla nýja notendaaðganga",
-    "The following groups will be set to every unconfirmed account and removed when confirmed" : "Eftirfarandi hópum verður bætt við alla óstaðfesta notendaaðganga og síðan fjarlægðir þegar notendaaðgangur er staðfestur",
-    "The following groups will be set to every confirmed account" : "Eftirfarandi hópum verður bætt við alla staðfesta notendaaðganga"
+    "Preferred providers groups" : "Umbeðnir hópar þjónustuveitna"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

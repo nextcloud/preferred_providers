@@ -37,9 +37,6 @@ OC.L10N.register(
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "ΠΡΟΣΟΧΗ! Αυτό το αναγνωριστικό΄είναι σημαντικό και χρειάζεται προσεκτική διαχείριση. Πρέπει να το δώσετε μόνο σε επίσημο nextcloud!",
     "Your provider token" : "Το αναγνωριστικό του παρόχου σας",
     "Reset your token" : "Επαναφορά του αναγνωριστικού σας",
-    "Preferred providers groups" : "Προτιμώμενες ομάδες παρόχων",
-    "The following groups will be added to every new account" : "Οι παρακάτω ομάδες θα προστίθενται σε κάθε νέο λογαριασμό",
-    "The following groups will be set to every unconfirmed account and removed when confirmed" : "Οι παρακάτω ομάδες θα προστίθενται σε κάθε νέο μη επιβεβαιωμένο λογαριασμό χρήστη και αφαιρούνται μετά την επιβεβαίωσή τους",
-    "The following groups will be set to every confirmed account" : "Οι παρακάτω ομάδες θα προστίθενται σε κάθε επιβεβαιωμένο λογαριασμό χρήστη"
+    "Preferred providers groups" : "Προτιμώμενες ομάδες παρόχων"
 },
 "nplurals=2; plural=(n != 1);");

@@ -36,9 +36,6 @@
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "警告！此令牌非常重要，须谨慎操作。您只应将其提供给nextcloud官方人员！",
     "Your provider token" : "您的供应商令牌",
     "Reset your token" : "重置您的令牌",
-    "Preferred providers groups" : "首选供应商分组",
-    "The following groups will be added to every new account" : "每一个新账号都将被添加到以下分组",
-    "The following groups will be set to every unconfirmed account and removed when confirmed" : "以下群组将被设置为每个未确认的账号，并在确认后删除",
-    "The following groups will be set to every confirmed account" : "下面的组将被设置为每个已确认的账号"
+    "Preferred providers groups" : "首选供应商分组"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

@@ -38,9 +38,6 @@ OC.L10N.register(
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "UYARI! Bu kod çok önemlidir ve dikkatle korunması gerekir. Bu kodu yalnızca Nextcloud sorumlusuna vermelisiniz!",
     "Your provider token" : "Hizmet sağlayıcı kodunuz",
     "Reset your token" : "Kodunuzu sıfırlayın",
-    "Preferred providers groups" : "Yeğlenen hizmet sağlayıcı grupları",
-    "The following groups will be added to every new account" : "Şu gruplar her yeni hesaba eklenir",
-    "The following groups will be set to every unconfirmed account and removed when confirmed" : "Şu gruplar onaylanmamış her hesaba atanır, onay sonrasında kaldırılır",
-    "The following groups will be set to every confirmed account" : "Şu gruplar onaylanmış her hesaba atanır"
+    "Preferred providers groups" : "Yeğlenen hizmet sağlayıcı grupları"
 },
 "nplurals=2; plural=(n > 1);");

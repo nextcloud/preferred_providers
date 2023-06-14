@@ -35,7 +35,6 @@
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "VARNING! Denna token är mycket viktig och måste hanteras omsorgsfullt. Du bör bara ge den till en Nextcloud-anställd!",
     "Your provider token" : "Din leverantörs token",
     "Reset your token" : "Återställ din token",
-    "Preferred providers groups" : "Rekommenderad leverantörs grupper ",
-    "The following groups will be added to every new account" : "Följande grupper kommer att läggas till varje nytt konto"
+    "Preferred providers groups" : "Rekommenderad leverantörs grupper "
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

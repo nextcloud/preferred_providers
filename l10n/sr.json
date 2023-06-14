@@ -36,9 +36,6 @@
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "УПОЗОРЕЊЕ! Овај токен је веома важан и мора се добро пазити. Смете га дати само званичном Некстклауду!",
     "Your provider token" : "Токен Вашег провајдера",
     "Reset your token" : "Ресетујте токен",
-    "Preferred providers groups" : "Групе жељених провајдера",
-    "The following groups will be added to every new account" : "Следеће групе ће бити додате сваком новом налогу",
-    "The following groups will be set to every unconfirmed account and removed when confirmed" : "Следеће групе ће бити додате сваком непотвђеном налогу и уклоњене када се он потврди",
-    "The following groups will be set to every confirmed account" : "Следеће групе ће бити додате сваком потврђеном налогу"
+    "Preferred providers groups" : "Групе жељених провајдера"
 },"pluralForm" :"nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);"
 }

@@ -38,9 +38,6 @@ OC.L10N.register(
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "ВНИМАНИЕ! Този токен е много важен и трябва да се работи внимателно. Трябва да го дадете само на служител на nextcloud!",
     "Your provider token" : "Вашият токен за доставчика",
     "Reset your token" : "Възстановете токена си",
-    "Preferred providers groups" : "Предпочитани групи доставчици",
-    "The following groups will be added to every new account" : "Следните групи ще бъдат добавяни към всеки нов профил",
-    "The following groups will be set to every unconfirmed account and removed when confirmed" : "Следните групи ще бъдат зададени за всеки непотвърден профил и ще бъдат премахнати, когато бъдат потвърдени",
-    "The following groups will be set to every confirmed account" : "Следните групи ще бъдат настроени към всеки потвърден профил"
+    "Preferred providers groups" : "Предпочитани групи доставчици"
 },
 "nplurals=2; plural=(n != 1);");

@@ -19,7 +19,6 @@ OC.L10N.register(
     "Password" : "Salasana",
     "Set password" : "Aseta salasana",
     "Log in" : "Kirjaudu",
-    "Reset your token" : "Nollaa polettisi",
-    "The following groups will be added to every new account" : "Seuraavat ryhmät lisätään jokaiselle uudelle tilille"
+    "Reset your token" : "Nollaa polettisi"
 },
 "nplurals=2; plural=(n != 1);");
