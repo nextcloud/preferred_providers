@@ -25,39 +25,35 @@ declare(strict_types=1);
 
 namespace OCA\Preferred_Providers\AppInfo;
 
-use OCA\Preferred_Providers\Hook\LoginHook;
+use OCA\Preferred_Providers\Event\LoginListener;
 use OCA\Preferred_Providers\Notification\Notifier;
 use OCP\AppFramework\App;
+use OCP\AppFramework\Bootstrap\IBootContext;
+use OCP\AppFramework\Bootstrap\IBootstrap;
+use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\EventDispatcher\IEventDispatcher;
-use OCP\IServerContainer;
+use OCP\User\Events\BeforeUserLoggedInEvent;
 use OCP\Util;
 
-class Application extends App {
+class Application extends App implements IBootstrap {
 	public const APP_ID = 'preferred_providers';
 
 	public function __construct() {
 		parent::__construct(self::APP_ID);
-
-		$container = $this->getContainer();
-		$server = $container->query(IServerContainer::class);
-
-		$this->registerNotifier($server);
-
-		/** @var LoginHook */
-		$loginHook = $container->query(LoginHook::class);
-		$loginHook->register();
-
-		/** @var IEventDispatcher */
-		$eventDispatcher = $server->query(IEventDispatcher::class);
-		$eventDispatcher->addListener('OC\Settings\Users::loadAdditionalScripts',
-			function () {
-				Util::addScript(self::APP_ID, 'users-management');
-			}
-		);
 	}
 
-	protected function registerNotifier(IServerContainer $server) {
-		$manager = $server->getNotificationManager();
-		$manager->registerNotifierService(Notifier::class);
+	public function register(IRegistrationContext $context): void {
+		$context->registerNotifierService(Notifier::class);
+		
+		$context->registerEventListener(BeforeUserLoggedInEvent::class, LoginListener::class);
+	}
+
+	public function boot(IBootContext $context): void {
+		$container = $context->getServerContainer();
+
+		$dispatcher = $container->query(IEventDispatcher::class);
+		$dispatcher->addListener('OC\Settings\Users::loadAdditionalScripts', function () {
+			Util::addScript(self::APP_ID, 'users-management');
+		});
 	}
 }

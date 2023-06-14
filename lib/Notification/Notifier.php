@@ -46,9 +46,9 @@ class Notifier implements INotifier {
 	protected $urlGenerator;
 
 	public function __construct(string $appName,
-								IFactory $l10nFactory,
-								IUserManager $userManager,
-								IURLGenerator $urlGenerator) {
+		IFactory $l10nFactory,
+		IUserManager $userManager,
+		IURLGenerator $urlGenerator) {
 		$this->appName = $appName;
 		$this->l10nFactory = $l10nFactory;
 		$this->userManager = $userManager;

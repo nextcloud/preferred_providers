@@ -23,17 +23,23 @@ declare(strict_types=1);
  *
  */
 
-namespace OCA\Preferred_Providers\Hook;
+namespace OCA\Preferred_Providers\Event;
 
 use OCA\Preferred_Providers\Helper\ExpireUserTrait;
 use OCA\Preferred_Providers\Mailer\VerifyMailHelper;
 use OCP\AppFramework\Utility\ITimeFactory;
+use OCP\EventDispatcher\Event;
+use OCP\EventDispatcher\IEventListener;
 use OCP\IConfig;
-use OCP\ILogger;
 use OCP\IUserManager;
 use OCP\IUserSession;
+use OCP\User\Events\BeforeUserLoggedInEvent;
+use Psr\Log\LoggerInterface;
 
-class LoginHook {
+/**
+ * @template-implements IEventListener<Event>
+ */
+class LoginListener implements IEventListener {
 	use ExpireUserTrait;
 
 	/** @var string */
@@ -48,7 +54,7 @@ class LoginHook {
 	/** @var IConfig */
 	private $config;
 
-	/** @var ILogger */
+	/** @var LoggerInterface */
 	private $logger;
 
 	/** @var ITimeFactory */
@@ -62,17 +68,17 @@ class LoginHook {
 	 * @param IUserManager $userManager
 	 * @param IUserSession $userSession
 	 * @param IConfig $config
-	 * @param ILogger $logger
+	 * @param LoggerInterface $logger
 	 * @param ITimeFactory $timeFactory
 	 * @param VerifyMailHelper $mailHelper
 	 */
 	public function __construct(string $appName,
-								IUserManager $userManager,
-								IUserSession $userSession,
-								IConfig $config,
-								ILogger $logger,
-								ITimeFactory $timeFactory,
-								VerifyMailHelper $mailHelper) {
+		IUserManager $userManager,
+		IUserSession $userSession,
+		IConfig $config,
+		LoggerInterface $logger,
+		ITimeFactory $timeFactory,
+		VerifyMailHelper $mailHelper) {
 		$this->appName = $appName;
 		$this->userManager = $userManager;
 		$this->userSession = $userSession;
@@ -83,18 +89,22 @@ class LoginHook {
 	}
 
 	/**
-	 * Register preLogin hook
+	 * Handle incoming event from event dispatcher
+	 *
+	 * @param Event $event
 	 */
-	public function register() {
-		$this->userSession->listen('\OC\User', 'preLogin', function ($userId) {
-			$this->verifyUser($userId);
-		});
+	public function handle(Event $event): void {
+		if ($event instanceof BeforeUserLoggedInEvent) {
+			$this->verifyUser($event->getUsername());
+		}
 	}
 
 	/**
 	 * Verify if user has validated is email on time
 	 *
 	 * @param string $userId
+	 *
+	 * @return void
 	 */
 	private function verifyUser(string $userId) {
 		$user = $this->userManager->get($userId);

@@ -33,7 +33,6 @@ use OCP\AppFramework\OCS\OCSForbiddenException;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\IConfig;
 use OCP\IGroupManager;
-use OCP\ILogger;
 use OCP\IRequest;
 use OCP\IURLGenerator;
 use OCP\IUserManager;
@@ -41,6 +40,7 @@ use OCP\Mail\IMailer;
 use OCP\Notification\IManager;
 use OCP\Security\ICrypto;
 use OCP\Security\ISecureRandom;
+use Psr\Log\LoggerInterface;
 
 class AccountController extends ApiController {
 
@@ -65,7 +65,7 @@ class AccountController extends ApiController {
 	/** @var VerifyMailHelper */
 	private $verifyMailHelper;
 
-	/** @var ILogger */
+	/** @var LoggerInterface */
 	private $logger;
 
 	/** @var IURLGenerator */
@@ -93,7 +93,7 @@ class AccountController extends ApiController {
 	 * @param IGroupManager $groupManager
 	 * @param IMailer $mailer
 	 * @param VerifyMailHelper $verifyMailHelper
-	 * @param ILogger $logger
+	 * @param LoggerInterface $logger
 	 * @param IURLGenerator $urlGenerator
 	 * @param ITimeFactory $timeFactory
 	 * @param ICrypto $crypto
@@ -101,18 +101,18 @@ class AccountController extends ApiController {
 	 * @param IManager $notificationsManager
 	 */
 	public function __construct(string $appName,
-								IRequest $request,
-								IConfig $config,
-								IUserManager $userManager,
-								IGroupManager $groupManager,
-								IMailer $mailer,
-								VerifyMailHelper $verifyMailHelper,
-								ILogger $logger,
-								IURLGenerator $urlGenerator,
-								ITimeFactory $timeFactory,
-								ICrypto $crypto,
-								ISecureRandom $secureRandom,
-								IManager $notificationsManager) {
+		IRequest $request,
+		IConfig $config,
+		IUserManager $userManager,
+		IGroupManager $groupManager,
+		IMailer $mailer,
+		VerifyMailHelper $verifyMailHelper,
+		LoggerInterface $logger,
+		IURLGenerator $urlGenerator,
+		ITimeFactory $timeFactory,
+		ICrypto $crypto,
+		ISecureRandom $secureRandom,
+		IManager $notificationsManager) {
 		parent::__construct($appName, $request, 'POST');
 		$this->appName = $appName;
 		$this->config = $config;
@@ -130,19 +130,24 @@ class AccountController extends ApiController {
 
 	/**
 	 * @NoAdminRequired
+	 *
 	 * @NoCSRFRequired
+	 *
 	 * @PublicPage
+	 *
 	 * @CORS
 	 *
 	 * @param string $token The security token required
 	 * @param string $email The email to create an account for
-	 * @return string the app password for the user
+	 *
+	 * @return DataResponse the app password for the user
+	 *
 	 * @throws OCSForbiddenException
 	 */
-	public function requestAccount(string $token = '', string $email = '') {
+	public function requestAccount(string $token = '', string $email = ''): DataResponse {
 		// checking if valid token
-		$provider_token = $this->config->getAppValue($this->appName, 'provider_token', false);
-		if (!$provider_token || $provider_token !== $token) {
+		$provider_token = $this->config->getAppValue($this->appName, 'provider_token');
+		if ($provider_token === '' || $provider_token !== $token) {
 			return new DataResponse(['data' => ['message' => 'invalid token']], Http::STATUS_UNAUTHORIZED);
 		}
 
@@ -177,29 +182,22 @@ class AccountController extends ApiController {
 
 			// set expire delay
 			$this->config->setUserValue($email, $this->appName, 'disable_user_after', $this->timeFactory->getTime() + $this::validateEmailDelay);
-			$this->logger->info('New account requested for: ' . $email . '. Groups: ' . $groups, ['app' => $this->appName]);
+			$this->logger->info('New account requested for: ' . $email . '. Groups: ' . $groups);
 		} catch (\Exception $e) {
-			$this->logger->logException($e, [
-				'message' => 'Failed addUser attempt with exception.',
-				'level' => \OCP\Util::ERROR,
-				'app' => $this->appName
-			]);
+			$this->logger->error('Failed addUser attempt with exception.', ['exception' => $e]);
 
 			return new DataResponse(['data' => ['message' => 'error creating the user']], Http::STATUS_BAD_REQUEST);
 		}
 
 		// send confirmation mail
-		$newUser->setEMailAddress($email);
+		$newUser->setSystemEMailAddress($email);
+
 		try {
 			// send email without the reset password link
 			$emailTemplate = $this->verifyMailHelper->generateTemplate($newUser);
 			$this->verifyMailHelper->sendMail($newUser, $emailTemplate);
 		} catch (\Exception $e) {
-			$this->logger->logException($e, [
-				'message' => "Can't send new user mail to $email",
-				'level' => \OCP\Util::ERROR,
-				'app' => $this->appName
-			]);
+			$this->logger->error("Can't send new user mail to $email", ['exception' => $e]);
 			// continue anyway. Let's only warn the admin log
 			// return new DataResponse(['data' => ['message' => 'error sending the invitation mail']], Http::STATUS_BAD_REQUEST);
 		}
@@ -217,11 +215,7 @@ class AccountController extends ApiController {
 		try {
 			$setPasswordUrl = $this->processSetPasswordToken($email);
 		} catch (\Exception $e) {
-			$this->logger->logException($e, [
-				'message' => "An error occured during the password token generation for $email",
-				'level' => \OCP\Util::ERROR,
-				'app' => $this->appName
-			]);
+			$this->logger->error("An error occured during the password token generation for $email", ['exception' => $e]);
 
 			return new DataResponse(['data' => ['message' => 'error generating the password token']], Http::STATUS_BAD_REQUEST);
 		}
@@ -241,7 +235,7 @@ class AccountController extends ApiController {
 		$token = $this->generateRandomToken();
 		$encryptedValue = $this->crypto->encrypt($token, $email . $this->config->getSystemValue('secret'));
 		$this->config->setUserValue($email, $this->appName, 'set_password', $encryptedValue);
-		$this->config->setUserValue($email, $this->appName, 'remind_password', time());
+		$this->config->setUserValue($email, $this->appName, 'remind_password', strval(time()));
 
 		return $this->urlGenerator->linkToRouteAbsolute($this->appName . '.password.set_password', array('email' => $email, 'token' => $token));
 	}

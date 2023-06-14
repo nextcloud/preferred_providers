@@ -28,7 +28,6 @@ namespace OCA\Preferred_Providers\Settings;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IConfig;
 use OCP\IGroupManager;
-use OCP\IInitialStateService;
 use OCP\Security\ISecureRandom;
 use OCP\Settings\ISettings;
 
@@ -46,9 +45,6 @@ class Admin implements ISettings {
 	/** @var IGroupManager */
 	private $groupManager;
 
-	/** @var IInitialStateService */
-	private $initialStateService;
-
 	/**
 	 * Admin constructor.
 	 *
@@ -57,15 +53,13 @@ class Admin implements ISettings {
 	 * @param IGroupManager $groupManager
 	 */
 	public function __construct(string $appName,
-								IConfig $config,
-								ISecureRandom $secureRandom,
-								IGroupManager $groupManager,
-								IInitialStateService $initialStateService) {
+		IConfig $config,
+		ISecureRandom $secureRandom,
+		IGroupManager $groupManager) {
 		$this->appName = $appName;
 		$this->config = $config;
 		$this->secureRandom = $secureRandom;
 		$this->groupManager = $groupManager;
-		$this->initialStateService = $initialStateService;
 	}
 
 	/**
@@ -73,8 +67,8 @@ class Admin implements ISettings {
 	 */
 	public function getForm() {
 		// Generate new token if none exists
-		$provider_token = $this->config->getAppValue($this->appName, 'provider_token', false);
-		if (!$provider_token) {
+		$provider_token = $this->config->getAppValue($this->appName, 'provider_token', '');
+		if ($provider_token === '') {
 			$provider_token = md5($this->secureRandom->generate(10));
 			$this->config->setAppValue($this->appName, 'provider_token', $provider_token);
 		}
