@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
 	sendEmail = function(event) {
 		var userId = event.target.closest('div[data-id]').dataset.id;
 		var button = event.target.parentElement;
