@@ -152,7 +152,7 @@ class SettingsController extends OCSController {
 	 * @return DataResponse
 	 * @throws OCSNotFoundException
 	 */
-	public function setGroups(array $groups, string $for = 'all'): DataResponse {
+	public function setGroups(array $groups = [], string $for = 'all'): DataResponse {
 		foreach ($groups as $groupId) {
 			if (!$this->groupManager->groupExists($groupId)) {
 				throw new OCSNotFoundException($groupId . ' does not exists');

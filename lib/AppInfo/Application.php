@@ -28,6 +28,7 @@ namespace OCA\Preferred_Providers\AppInfo;
 use OCA\Preferred_Providers\Hook\LoginHook;
 use OCA\Preferred_Providers\Notification\Notifier;
 use OCP\AppFramework\App;
+use OCP\EventDispatcher\IEventDispatcher;
 use OCP\IServerContainer;
 use OCP\Util;
 
@@ -36,13 +37,18 @@ class Application extends App {
 
 	public function __construct() {
 		parent::__construct(self::APP_ID);
-	}
 
-	public function register() {
-		$this->registerNotifier($this->getContainer()->getServer());
-		$this->getContainer()->query(LoginHook::class)->register();
+		$container = $this->getContainer();
+		$server = $container->query(IServerContainer::class);
 
-		$eventDispatcher = $this->getContainer()->getServer()->getEventDispatcher();
+		$this->registerNotifier($server);
+
+		/** @var LoginHook */
+		$loginHook = $container->query(LoginHook::class);
+		$loginHook->register();
+
+		/** @var IEventDispatcher */
+		$eventDispatcher = $server->query(IEventDispatcher::class);
 		$eventDispatcher->addListener('OC\Settings\Users::loadAdditionalScripts',
 			function () {
 				Util::addScript(self::APP_ID, 'users-management');
