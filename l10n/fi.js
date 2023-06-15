@@ -1,7 +1,11 @@
 OC.L10N.register(
     "preferred_providers",
     {
+    "User enabled and verification email sent!" : "Käyttäjä otettu käyttöön ja vahvistussähköposti lähetetty!",
+    "Error while sending the verification email" : "Virhe vahvistussähköpostia lähettäessä",
+    "Resend verification email and enable" : "Lähetä vahvistussähköposti uudelleen ja ota käyttöön",
     "The token is invalid" : "Poletti on virheellinen",
+    "The token is expired, please contact your provider" : "Poletti on vanhentunut, ole yhteydessä palveluntarjoajaan",
     "Password to long" : "Salasana on liian pitkä",
     "One more step required" : "Vielä yksi vaihe vaaditaan",
     "It looks like you did not create your password yet." : "Vaikuttaa siltä, ettet luonut vielä salasanaa.",
@@ -13,12 +17,15 @@ OC.L10N.register(
     "Verify your %s account" : "Vahvista %s-tilisi",
     "Just one step left to complete your account setup." : "Vielä yksi vaihe ennen tilisi asetuksien valmistumista. ",
     "Click here to verify your email address" : "Napsauta tästä vahvistaaksesi sähköpostiosoitteesi",
+    "A confirmation mail was sent to {email}. Make sure to confirm the account within 6 hours." : "Vahvistussähköposti lähetettiin osoitteeseen {email}. Vahvista tilisi kuuden tunnin kuluessa.",
     "Please verify your email address" : "Vahvista sähköpostiosoitteesi",
     "Set your password" : "Aseta salasanasi",
     "Account name or email" : "Tilin nimi tai sähköpostiosoite",
     "Password" : "Salasana",
     "Set password" : "Aseta salasana",
     "Log in" : "Kirjaudu",
-    "Reset your token" : "Nollaa polettisi"
+    "After this step, you will receive a mail to verify your account within 6 hours." : "Tämän vaiheen jälkeen saat sähköpostiviestin, jonka avulla sinun tulee vahvistaa tilisi kuuden tunnin kuluessa.",
+    "Reset your token" : "Nollaa polettisi",
+    "Select the groups to which each new account will be added." : "Valitse ryhmät, joihin uudet tilit lisätään."
 },
 "nplurals=2; plural=(n != 1);");

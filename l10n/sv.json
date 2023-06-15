@@ -8,6 +8,7 @@
     "Unable to set the password. Contact your provider." : "Kan inte sätta lösenord. Kontakta din leverantör.",
     "One more step required" : "Ytterligare ett steg krävs",
     "It looks like you did not create your password yet." : "Det verkar som att du inte har skapat ditt lösenord än.",
+    "Did you encounter an issue during the sign-up process?" : "Fick du ett problem under registreringsprocessen?",
     "Access your account" : "Öppna ditt konto",
     "Welcome to your %s account" : "Välkommen till ditt %s konto",
     "Your %s account %s is now verified!" : "Ditt %s konto %s är nu verifierat!",
@@ -35,6 +36,9 @@
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "VARNING! Denna token är mycket viktig och måste hanteras omsorgsfullt. Du bör bara ge den till en Nextcloud-anställd!",
     "Your provider token" : "Din leverantörs token",
     "Reset your token" : "Återställ din token",
-    "Preferred providers groups" : "Rekommenderad leverantörs grupper "
+    "Preferred providers groups" : "Rekommenderad leverantörs grupper ",
+    "Select the groups to which each new account will be added." : "Välj de grupper som varje nytt konto ska läggas till.",
+    "Select the groups that will be assigned to each unconfirmed account. They will be deleted once the account has been verified." : "Välj de grupper som kommer att tilldelas varje obekräftat konto. De kommer att raderas när kontot har verifierats.",
+    "Select the groups that will be assigned to each confirmed account." : "Välj de grupper som kommer att tilldelas varje bekräftat konto."
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

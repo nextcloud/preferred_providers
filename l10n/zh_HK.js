@@ -38,6 +38,9 @@ OC.L10N.register(
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "警告！ 此令牌非常重要，必須小心處理。您只應將其交給Nextcloud官員！",
     "Your provider token" : "您的服務提供者權杖",
     "Reset your token" : "重設您的權杖",
-    "Preferred providers groups" : "更合意的服務提供者群組"
+    "Preferred providers groups" : "更合意的服務提供者群組",
+    "Select the groups to which each new account will be added." : "選取每個新帳號要新增至的群組。",
+    "Select the groups that will be assigned to each unconfirmed account. They will be deleted once the account has been verified." : "選取要分配給每個未確認帳號的群組。一旦帳號通過驗證，這些帳號將會從該群組中移除。",
+    "Select the groups that will be assigned to each confirmed account." : "選取要分配給每個已確認賬戶的群組。"
 },
 "nplurals=1; plural=0;");

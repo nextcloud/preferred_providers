@@ -36,6 +36,9 @@
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!",
     "Your provider token" : "Your provider token",
     "Reset your token" : "Reset your token",
-    "Preferred providers groups" : "Preferred providers groups"
+    "Preferred providers groups" : "Preferred providers groups",
+    "Select the groups to which each new account will be added." : "Select the groups to which each new account will be added.",
+    "Select the groups that will be assigned to each unconfirmed account. They will be deleted once the account has been verified." : "Select the groups that will be assigned to each unconfirmed account. They will be deleted once the account has been verified.",
+    "Select the groups that will be assigned to each confirmed account." : "Select the groups that will be assigned to each confirmed account."
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

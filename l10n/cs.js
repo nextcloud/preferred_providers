@@ -38,6 +38,9 @@ OC.L10N.register(
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "VAROVÁNÍ! Tento token je velmi důležitý a je třeba s ním zacházet opatrně. Měli byste ho poskytnout pouze oficiálnímu zástupci nextcloud!",
     "Your provider token" : "Token vašeho poskytovatele",
     "Reset your token" : "Resetovat token",
-    "Preferred providers groups" : "Skupiny upřednostňovaných poskytovatelů"
+    "Preferred providers groups" : "Skupiny upřednostňovaných poskytovatelů",
+    "Select the groups to which each new account will be added." : "Vyberte skupiny do kterých bude každý z nových účtů přidán.",
+    "Select the groups that will be assigned to each unconfirmed account. They will be deleted once the account has been verified." : "Vyberte skupiny které budou přiřazeny každému nepotvrzenému účtu. Jakmile bude účet ověřen, budou smazány.",
+    "Select the groups that will be assigned to each confirmed account." : "Vyberte skupiny které budou přiřazeny každému potvrzenému účtu."
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;");

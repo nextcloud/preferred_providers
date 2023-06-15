@@ -38,6 +38,9 @@ OC.L10N.register(
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "УПОЗОРЕЊЕ! Овај токен је веома важан и мора се добро пазити. Смете га дати само званичном Некстклауду!",
     "Your provider token" : "Токен Вашег провајдера",
     "Reset your token" : "Ресетујте токен",
-    "Preferred providers groups" : "Групе жељених провајдера"
+    "Preferred providers groups" : "Групе жељених провајдера",
+    "Select the groups to which each new account will be added." : "Изаберите групе у које ће да се дода сваки нови налог.",
+    "Select the groups that will be assigned to each unconfirmed account. They will be deleted once the account has been verified." : "Изаберите фрупе које ће се доделити сваком непотврђеном налогу. Оне ће се обрисати онда када се налог потврди.",
+    "Select the groups that will be assigned to each confirmed account." : "Изаберите групе које ће се доделити сваком портвђеном налогу."
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);");
