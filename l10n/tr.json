@@ -36,6 +36,9 @@
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "UYARI! Bu kod çok önemlidir ve dikkatle korunması gerekir. Bu kodu yalnızca Nextcloud sorumlusuna vermelisiniz!",
     "Your provider token" : "Hizmet sağlayıcı kodunuz",
     "Reset your token" : "Kodunuzu sıfırlayın",
-    "Preferred providers groups" : "Yeğlenen hizmet sağlayıcı grupları"
+    "Preferred providers groups" : "Yeğlenen hizmet sağlayıcı grupları",
+    "Select the groups to which each new account will be added." : "Yeni hesapların ekleneceği grupları seçin.",
+    "Select the groups that will be assigned to each unconfirmed account. They will be deleted once the account has been verified." : "Onaylanmamış hesapların ekleneceği grupları seçin. Hesap doğrulandığında bunlar silinir.",
+    "Select the groups that will be assigned to each confirmed account." : "Doğrulanmış hesapların ekleneceği grupları seçin."
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }
