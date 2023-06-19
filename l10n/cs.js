@@ -29,7 +29,7 @@ OC.L10N.register(
     "Preferred Providers" : "Upřednostňovaní poskytovatelé",
     "Allow nextcloud to request user accounts" : "Povolit nextcloud požadovat uživatelské účty",
     "Set your password" : "Nastavte si své heslo",
-    "Account name or email" : "Název účtu nebo e-mail",
+    "Account name or email" : "Název účtu nebo e-mailová adresa",
     "Password" : "Heslo",
     "Set password" : "Nastavit heslo",
     "Log in" : "Přihlásit",
