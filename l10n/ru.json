@@ -36,6 +36,9 @@
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "ВНИМАНИЕ! Этот токен крайне важен, обращайтесь с осторожностью. Вы должны предоставить его представителю Nextcloud!",
     "Your provider token" : "Токен провайдера",
     "Reset your token" : "Сбросить токен",
-    "Preferred providers groups" : "Группы предпочитаемых поставщиков услуги"
+    "Preferred providers groups" : "Группы предпочитаемых поставщиков услуги",
+    "Select the groups to which each new account will be added." : "Выберите группы, в которые будет добавляться каждая новая учетная запись.",
+    "Select the groups that will be assigned to each unconfirmed account. They will be deleted once the account has been verified." : "Выберите группы, которые будут назначены каждой неподтвержденной учетной записи. Учетная запись будет исключена из группы, как только будет подтверждена.",
+    "Select the groups that will be assigned to each confirmed account." : "Выберите группы, которые будут назначены каждой подтвержденной учетной записи."
 },"pluralForm" :"nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);"
 }

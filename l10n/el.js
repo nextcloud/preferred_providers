@@ -29,6 +29,7 @@ OC.L10N.register(
     "Preferred Providers" : "Προτιμώμενοι πάροχοι",
     "Allow nextcloud to request user accounts" : "Επιτρέπεται στο nextcloud την αίτηση λογαριασμών χρήστη",
     "Set your password" : "Καθορισμός συνθηματικού",
+    "Account name or email" : "Όνομα λογαριασμού ή email",
     "Password" : "Συνθηματικό",
     "Set password" : "Ορισμός συνθηματικού",
     "Log in" : "Είσοδος",
