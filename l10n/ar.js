@@ -1,6 +1,9 @@
 OC.L10N.register(
     "preferred_providers",
     {
+    "User enabled and verification email sent!" : "تمكين المستخدم وإرسال البريد الإلكتروني للتحقق!",
+    "Error while sending the verification email" : "خطأ أثناء إرسال رسالة التحقق",
+    "Resend verification email and enable" : "إعادة إرسال رسالة التحقق والتمكين",
     "The token is invalid" : "الرمز المميز غير صالح",
     "The token is expired, please contact your provider" : "انتهت صلاحية الرمزالمميز، يرجى الاتصال بمزود الخدمة الخاص بك",
     "Unable to set the password. Contact your provider." : "تعذر تعيين كلمة المرور. يرجي الاتصال بمزود الخدمة الخاص بك.",
