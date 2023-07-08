@@ -8,6 +8,7 @@
     "Unable to set the password. Contact your provider." : "تعذر تعيين كلمة المرور. يرجي الاتصال بمزود الخدمة الخاص بك.",
     "One more step required" : "مطلوب خطوة أخرى",
     "It looks like you did not create your password yet." : "يبدو أنك لم تنشئ كلمة المرور الخاصة بك بعد.",
+    "Did you encounter an issue during the sign-up process?" : "هل واجهت مشكلة أثناء عملية التسجيل؟",
     "Access your account" : "الوصول إلى حسابك",
     "Welcome to your %s account" : "مرحبًا بك في حساب%sالخاص بك",
     "Your %s account %s is now verified!" : "حسابك %sالخاص بـ %sتم التحقق منه الآن!",
