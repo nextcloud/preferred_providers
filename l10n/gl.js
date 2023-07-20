@@ -8,7 +8,7 @@ OC.L10N.register(
     "The token is expired, please contact your provider" : "O testemuño caducou, póñase en contacto co administrador",
     "Password to long" : "Contrasinal longo",
     "Unable to set the password. Contact your provider." : "Non é posíbel estabelecer o contrasinal, Contacte co seu provedor.",
-    "One more step required" : "É necesario un paso máis",
+    "One more step required" : "Precisase un paso máis",
     "It looks like you did not create your password yet." : "Semella que aínda non creou o seu contrasinal.",
     "Did you encounter an issue during the sign-up process?" : "Atopou algún incidente durante o proceso de rexistro?",
     "Access your account" : "Acceda á súa conta",
