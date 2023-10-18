@@ -173,7 +173,7 @@ class PasswordController extends Controller {
 
 		if (\mb_strlen($password) > 100) {
 			return new TemplateResponse('core', 'error', [
-				'errors' => array(array('error' => $this->l10n->t('Password to long')))
+				'errors' => array(array('error' => $this->l10n->t('Password too long')))
 			], 'guest');
 		}
 
