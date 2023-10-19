@@ -6,7 +6,6 @@ OC.L10N.register(
     "Resend verification email and enable" : "Lähetä vahvistussähköposti uudelleen ja ota käyttöön",
     "The token is invalid" : "Poletti on virheellinen",
     "The token is expired, please contact your provider" : "Poletti on vanhentunut, ole yhteydessä palveluntarjoajaan",
-    "Password to long" : "Salasana on liian pitkä",
     "One more step required" : "Vielä yksi vaihe vaaditaan",
     "It looks like you did not create your password yet." : "Vaikuttaa siltä, ettet luonut vielä salasanaa.",
     "Access your account" : "Käytä tiliäsi",

@@ -4,7 +4,6 @@
     "Resend verification email and enable" : "Ponovno pošalji poruku e-pošte za potvrdu i omogući",
     "The token is invalid" : "Nevažeći token",
     "The token is expired, please contact your provider" : "Token je istekao, obratite se svom davatelju usluga",
-    "Password to long" : "Zaporka je preduga",
     "Unable to set the password. Contact your provider." : "Nije moguće postaviti zaporku. Obratite se svom davatelju usluga.",
     "One more step required" : "Potreban je još jedan korak",
     "It looks like you did not create your password yet." : "Izgleda da još niste stvorili zaporku.",

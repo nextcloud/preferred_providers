@@ -6,7 +6,6 @@ OC.L10N.register(
     "Resend verification email and enable" : "重新发送验证邮件及启用",
     "The token is invalid" : "令牌无效",
     "The token is expired, please contact your provider" : "令牌已过期，请与您的提供商联系",
-    "Password to long" : "密码过长",
     "Unable to set the password. Contact your provider." : "无法设置密码。联系您的提供商。",
     "One more step required" : "还需要一步",
     "It looks like you did not create your password yet." : "似乎您还未新建您的密码",

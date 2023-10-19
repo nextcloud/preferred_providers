@@ -6,7 +6,6 @@ OC.L10N.register(
     "Resend verification email and enable" : "Bidali berriro egiaztapen mezu elektronikoa eta gaitu",
     "The token is invalid" : "Tokena baliogabea da",
     "The token is expired, please contact your provider" : "Tokena iraungita dago, mesedez jarri harremanetan hornitzailearekin",
-    "Password to long" : "Pasahitza luzeegia da",
     "Unable to set the password. Contact your provider." : "Ezin da pasahitza ezarri. Jarri harremanetan hornitzailearekin.",
     "One more step required" : "Urrats bat gehiago falta da",
     "It looks like you did not create your password yet." : "Ematen du oraindik ez duzula pasahitza sortu",

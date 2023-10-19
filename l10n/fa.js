@@ -6,7 +6,6 @@ OC.L10N.register(
     "Resend verification email and enable" : "ارسال مجدد ایمیل تأیید و فعال کردن",
     "The token is invalid" : "نشان نامعتبر است",
     "The token is expired, please contact your provider" : "لطفاً نماد منقضی شده است ، لطفا با ارائه دهنده خود تماس بگیرید",
-    "Password to long" : "Password to long",
     "Unable to set the password. Contact your provider." : "تنظیم رمز عبور امکان پذیر نیست. با ارائه دهنده خود تماس بگیرید",
     "One more step required" : "یک مرحله دیگر لازم است",
     "It looks like you did not create your password yet." : "یک سطح دیگر",

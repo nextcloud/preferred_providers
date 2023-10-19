@@ -4,7 +4,6 @@
     "Resend verification email and enable" : "Ellenőrző e-mail újraküldése, és engedélyezés",
     "The token is invalid" : "A token nem érvényes",
     "The token is expired, please contact your provider" : "A token lejárt, vegye fel a kapcsolatot a szolgáltatójával",
-    "Password to long" : "A jelszó túl hosszú",
     "Unable to set the password. Contact your provider." : "Nem sikerült beállítani a jelszót. Lépjen kapcsolatba a szolgáltatójával.",
     "One more step required" : "Még egy lépés szükséges",
     "It looks like you did not create your password yet." : "Úgy tűnik, hogy még nem hozta létre a jelszavát.",

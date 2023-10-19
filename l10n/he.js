@@ -6,7 +6,6 @@ OC.L10N.register(
     "Resend verification email and enable" : "לשלוח את הודעת התיקוף בדוא״ל ולהפעיל",
     "The token is invalid" : "האסימון שגוי",
     "The token is expired, please contact your provider" : "האסימון פג, נא ליצור קשר עם הספק שלך",
-    "Password to long" : "הססמה ארוכה מדי",
     "Unable to set the password. Contact your provider." : "לא ניתן להגדיר את הססמה. נא ליצור קשר עם הספק שלך.",
     "One more step required" : "נדרש שלב נוסף",
     "It looks like you did not create your password yet." : "נראה כי טרם יצרת את הססמה שלך עדיין.",

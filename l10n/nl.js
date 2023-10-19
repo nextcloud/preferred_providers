@@ -6,7 +6,6 @@ OC.L10N.register(
     "Resend verification email and enable" : "Verstuur verificatie-email opnieuw en activeer",
     "The token is invalid" : "Het token is ongeldig",
     "The token is expired, please contact your provider" : "Het token is verlopen. Neem contact op met je provider",
-    "Password to long" : "Wachtwoord is te lang",
     "Unable to set the password. Contact your provider." : "Niet mogelijk om het wachtwoord op te slaan. Neem contact op met je provider.",
     "One more step required" : "Nog een stap noodzakelijk",
     "It looks like you did not create your password yet." : "Het lijkt alsof je nog geen wachtwoord opgeslagen heeft.",

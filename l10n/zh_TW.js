@@ -6,7 +6,6 @@ OC.L10N.register(
     "Resend verification email and enable" : "重新傳送驗證電子郵件並啟用",
     "The token is invalid" : "權杖無效",
     "The token is expired, please contact your provider" : "權杖已過期，請聯絡您的提供者",
-    "Password to long" : "密碼太長",
     "Unable to set the password. Contact your provider." : "無法設定密碼。聯絡您的提供者。",
     "One more step required" : "還有一步",
     "It looks like you did not create your password yet." : "看來您尚未建立您的密碼。",

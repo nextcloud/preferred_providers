@@ -6,7 +6,6 @@ OC.L10N.register(
     "Resend verification email and enable" : "Ponovno pošlji vabilo po elektronski pošti in omogoči uporabnika",
     "The token is invalid" : "Žeton ni veljaven",
     "The token is expired, please contact your provider" : "Za uporabo je zahtevan žeton za dostop. Stopite v stik s skrbnikom sistema.",
-    "Password to long" : "Geslo je predolgo",
     "Unable to set the password. Contact your provider." : "Ni mogoče določiti gesla. Stopite v stik s ponudnikom.",
     "One more step required" : "Zahtevan je še en korak",
     "It looks like you did not create your password yet." : "Kaže, da še niste ustvarili nobenega gesla.",

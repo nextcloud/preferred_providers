@@ -6,7 +6,6 @@ OC.L10N.register(
     "Resend verification email and enable" : "Torra a imbiare su messàgiu de cumproa e ativa",
     "The token is invalid" : "Su token no est bàlidu",
     "The token is expired, please contact your provider" : "Su token est iscadidu, cuntata su frunidore",
-    "Password to long" : "Crae tropu longa",
     "Unable to set the password. Contact your provider." : "No faghet a impostare sa crae. Cuntata su frunidore.",
     "One more step required" : "Serbit un'àteru passàgiu",
     "It looks like you did not create your password yet." : "Parit chi no as ancora creadu sa crae.",

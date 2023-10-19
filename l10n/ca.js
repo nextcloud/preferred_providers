@@ -6,7 +6,6 @@ OC.L10N.register(
     "Resend verification email and enable" : "Reenvia el correu de verificació i habilita",
     "The token is invalid" : "El testimoni no és vàlid",
     "The token is expired, please contact your provider" : "El testimoni ha caducat, contacteu amb el vostre proveïdor",
-    "Password to long" : "Contrasenya massa llarga",
     "Unable to set the password. Contact your provider." : "No s'ha pogut de establir la contrasenya. Contacteu amb el vostre proveïdor.",
     "One more step required" : "Fa falta un pas més",
     "It looks like you did not create your password yet." : "Sembla que no heu creat la vostra contrasenya encara.",
