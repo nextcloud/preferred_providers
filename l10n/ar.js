@@ -6,6 +6,7 @@ OC.L10N.register(
     "Resend verification email and enable" : "إعادة إرسال رسالة التحقق والتمكين",
     "The token is invalid" : "رمز التحقق غير صالح",
     "The token is expired, please contact your provider" : "انتهت صلاحية رمز التحقق، يرجى الاتصال بمزود الخدمة الخاص بك",
+    "Password too long" : "كلمة المرور أطول مما يجب",
     "Unable to set the password. Contact your provider." : "تعذر تعيين كلمة المرور. يرجي الاتصال بمزود الخدمة الخاص بك.",
     "One more step required" : "مطلوب خطوة أخرى",
     "It looks like you did not create your password yet." : "يبدو أنك لم تنشئ كلمة المرور الخاصة بك بعد.",

@@ -6,6 +6,7 @@ OC.L10N.register(
     "Resend verification email and enable" : "Resend verification email and enable",
     "The token is invalid" : "The token is invalid",
     "The token is expired, please contact your provider" : "The token is expired, please contact your provider",
+    "Password too long" : "Password too long",
     "Unable to set the password. Contact your provider." : "Unable to set the password. Contact your provider.",
     "One more step required" : "One more step required",
     "It looks like you did not create your password yet." : "It looks like you did not create your password yet.",
