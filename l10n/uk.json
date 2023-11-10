@@ -4,6 +4,7 @@
     "Resend verification email and enable" : "Надіслати лист підтвердження повторно та зробити активним.",
     "The token is invalid" : "Недійсний токен",
     "The token is expired, please contact your provider" : "Час дії токену вичерпано, будь ласка, сконтактуйте з вашим постачальником послуг",
+    "Password too long" : "Пароль задовгий",
     "Unable to set the password. Contact your provider." : "Неможливо встановити пароль. Сконтактуйте з вашим постачальником послуг.",
     "One more step required" : "Ще один крок",
     "It looks like you did not create your password yet." : "Схоже, що досі не створено пароль.",
@@ -20,10 +21,24 @@
     "Your %s account %s has been disabled because it was not verified in time." : "Ваш %s обліковий запис %s було вимкнено, оскільки його не було перевірено протягом визначеного часу.",
     "Please contact your provider for further assistance." : "Будь ласка, сконтактуйте з вашим постачальником послуг для подальших дій.",
     "Simple signup" : "Просте налаштування",
+    "A confirmation mail was sent to {email}. Make sure to confirm the account within 6 hours." : "Лист підтвердження надіслано на адресу {email}. Будь ласка, підтвердіть обліковий запис протягом наступних 6 годин.",
+    "Please verify your email address" : "Підтвердіть вашу адресу ел.пошти",
+    "Preferred providers" : "Вибрані постачальники",
+    "Preferred Providers" : "Вибрані постачальники",
+    "Allow nextcloud to request user accounts" : "Дозволити Nextcloud надсилати запити щодо облікових записів користувачів",
     "Set your password" : "Встановіть свій пароль",
     "Account name or email" : "Ім'я користувача або електронна пошта",
     "Password" : "Пароль",
     "Set password" : "Встановити пароль",
-    "Log in" : "Увійти"
+    "Log in" : "Увійти",
+    "After this step, you will receive a mail to verify your account within 6 hours." : "Після цього ви отримаєте ел.лист з проханням підтвердити ваш обліковий запис протягом 6 годин.",
+    "Preferred providers token" : "Токен вибраних постачальників",
+    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "УВАГА! Цей токен містити дуже важливі дані. Передавайте його тільки офіційним представникам Nextcloud!",
+    "Your provider token" : "Ваш токен постачальника",
+    "Reset your token" : "Скинути ваш токен",
+    "Preferred providers groups" : "Вибрані групи постачальників",
+    "Select the groups to which each new account will be added." : "Виберіть групи, до яких буде додано кожний новий обліковий запис",
+    "Select the groups that will be assigned to each unconfirmed account. They will be deleted once the account has been verified." : "Виберіть групи, до яких буде призначено кожний непідтверджений обліковий запис. Одразу після підтвердження облікового запису такі групи буде вилучено.",
+    "Select the groups that will be assigned to each confirmed account." : "Виберіть групи, до яких буде призначено кожний підтверджений обліковий запис."
 },"pluralForm" :"nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);"
 }
