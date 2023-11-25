@@ -27,6 +27,7 @@ OC.L10N.register(
     "Preferred Providers" : "Umbeðnar þjónustuveitur",
     "Allow nextcloud to request user accounts" : "Leyfa Nextcloud að biðja um notendaaðganga",
     "Set your password" : "Stilltu lykilorðið þitt",
+    "Account name or email" : "Heiti aðgangs eða tölvupóstfang",
     "Password" : "Lykilorð",
     "Set password" : "Stilltu lykilorð",
     "Log in" : "Skrá inn",
