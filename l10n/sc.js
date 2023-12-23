@@ -28,6 +28,7 @@ OC.L10N.register(
     "Preferred Providers" : "Frunidores preferidos",
     "Allow nextcloud to request user accounts" : "Permite a nextcloud de rechèdere is contos de is utentes",
     "Set your password" : "Imposta sa crae tua",
+    "Account name or email" : "Nòmine de su contu o indiritzu de posta",
     "Password" : "Crae",
     "Set password" : "Imposta sa crae",
     "Log in" : "Intra",
