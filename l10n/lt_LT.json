@@ -9,6 +9,7 @@
     "A confirmation mail was sent to {email}. Make sure to confirm the account within 6 hours." : "Patvirtinimo laiškas buvo išsiųstas į {email}. Užtikrinkite, kad patvirtinsite paskyrą ne vėliau kaip per 6 valandas.",
     "Please verify your email address" : "Patvirtinkite savo el. pašto adresą",
     "Set your password" : "Nustatykite savo slaptažodį.",
+    "Account name or email" : "Paskyros vardas ar el. paštas",
     "Password" : "Slaptažodis",
     "Set password" : "Nustatyti slaptažodį",
     "Log in" : "Prisijungti",
