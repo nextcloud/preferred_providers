@@ -37,6 +37,8 @@
     "Your provider token" : "Votre jeton de fournisseur",
     "Reset your token" : "Réinitialiser votre jeton",
     "Preferred providers groups" : "Groupes de fournisseurs préférés",
-    "Select the groups to which each new account will be added." : "Sélectionnez les groupes auxquels chaque nouveau compte sera ajouté."
+    "Select the groups to which each new account will be added." : "Sélectionnez les groupes auxquels chaque nouveau compte sera ajouté.",
+    "Select the groups that will be assigned to each unconfirmed account. They will be deleted once the account has been verified." : "Sélectionner les groupes qui seront affectés à chaque compte non confirmé. Ils seront supprimés une fois que le compte aura été vérifié.",
+    "Select the groups that will be assigned to each confirmed account." : "Sélectionner les groupes qui seront affectés à chaque compte non confirmé."
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }
