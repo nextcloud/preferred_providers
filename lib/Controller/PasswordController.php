@@ -27,6 +27,7 @@ namespace OCA\Preferred_Providers\Controller;
 
 use OC\Authentication\Token\IProvider;
 use OCP\AppFramework\Controller;
+use OCP\AppFramework\Http\ContentSecurityPolicy;
 use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IConfig;
@@ -195,7 +196,6 @@ class PasswordController extends Controller {
 		if ($ocsapirequest === '1') {
 			$clientName = $this->getClientName();
 			$redirectUri = $this->generateAppPassword($email, $clientName);
-
 			return new RedirectResponse($redirectUri);
 		}
 
@@ -220,17 +220,27 @@ class PasswordController extends Controller {
 	 * @return TemplateResponse
 	 */
 	protected function generateTemplate(string $token, string $email, string $error = '', bool $ocs = false) {
-		return new TemplateResponse(
+		$response = new TemplateResponse(
 			$this->appName,
 			'password-public',
 			array(
-				'link' => $this->urlGenerator->linkToRouteAbsolute($this->appName . '.password.submit_password', array('token' => $token)),
+				'link' => $this->urlGenerator->linkToRoute($this->appName . '.password.submit_password', array('token' => $token)),
 				'email' => $email,
 				'ocsapirequest' => $this->request->getHeader('OCS-APIREQUEST') || $ocs,
 				'error' => $error
 			),
 			'guest'
 		);
+
+		if ($ocs) {
+			// We need to set the CSP header to allow the redirect to the Nextcloud client
+			// some browsers (e.g. Safari) seems to block the redirect if the CSP header is not set.
+			$csp = new ContentSecurityPolicy();
+			$csp->addAllowedFormActionDomain('nc://*');
+			$response->setContentSecurityPolicy($csp);
+		}
+
+		return $response;
 	}
 
 	/**
