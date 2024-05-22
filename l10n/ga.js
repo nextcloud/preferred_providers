@@ -1,6 +1,7 @@
 OC.L10N.register(
     "preferred_providers",
     {
+    "Set your password" : "Socraigh do phasfhocal",
     "Account name or email" : "Ainm cuntais nó ríomhphost",
     "Password" : "Pasfhocal",
     "Log in" : "Logáil isteach"
