@@ -23,7 +23,7 @@ OC.L10N.register(
     "Your %s account %s has been disabled because it was not verified in time." : "Zamanında doğrulanmadığı için %s hesabınız %s devre dışı bırakıldı.",
     "Please contact your provider for further assistance." : "Lütfen daha fazla yardım almak için hizmet sağlayıcınız ile görüşün.",
     "Simple signup" : "Basit hesap açma",
-    "A confirmation mail was sent to {email}. Make sure to confirm the account within 6 hours." : "{email} adresine bir onay e-postası gönderildi. E-postaya bakarak 6 saat içinde onaylama işlemini tamamlamayı unutmayın.",
+    "A confirmation mail was sent to {email}. Make sure to confirm the account within 6 hours." : "{email} adresine bir onay e-postası gönderildi. 6 saat içinde e-postaya bakıp onaylama işlemini tamamlamayı unutmayın.",
     "Please verify your email address" : "Lütfen e-posta adresinizi yeniden yazın",
     "Preferred providers" : "Yeğlenen hizmet sağlayıcıları",
     "Preferred Providers" : "Yeğlenen hizmet sağlayıcıları",
