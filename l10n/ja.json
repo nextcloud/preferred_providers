@@ -4,6 +4,7 @@
     "Resend verification email and enable" : "確認メールを再送信してユーザーを有効にする",
     "The token is invalid" : "トークンが無効です",
     "The token is expired, please contact your provider" : "トークンが期限切れです。ご利用のプロバイダーに連絡してください。",
+    "Password too long" : "パスワードが長すぎます",
     "Unable to set the password. Contact your provider." : "パスワードを設定できません。ご利用のプロバイダーに連絡してください。",
     "One more step required" : "あともう１ステップです。",
     "It looks like you did not create your password yet." : "まだパスワードが生成されていないようです。",
