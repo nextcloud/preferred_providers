@@ -3,7 +3,7 @@
     <id>preferred_providers</id>
     <name>Preferred Providers</name>
     <summary>Allow nextcloud to request user accounts</summary>
-    <description><![CDATA[Allow nextcloud to request user accounts]]></description>
+    <description><![CDATA[Registration handling app for Nextcloud partners only]]></description>
     <version>1.16.0-dev.0</version>
     <licence>agpl</licence>
     <author>John Molakvoæ</author>
