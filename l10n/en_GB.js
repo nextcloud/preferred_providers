@@ -28,6 +28,7 @@ OC.L10N.register(
     "Preferred providers" : "Preferred providers",
     "Preferred Providers" : "Preferred Providers",
     "Allow nextcloud to request user accounts" : "Allow nextcloud to request user accounts",
+    "Registration handling app for Nextcloud partners only" : "Registration handling app for Nextcloud partners only",
     "Set your password" : "Set your password",
     "Account name or email" : "Account name or email",
     "Password" : "Password",

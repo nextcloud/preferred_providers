@@ -28,6 +28,7 @@ OC.L10N.register(
     "Preferred providers" : "المزودون الموصي بهم",
     "Preferred Providers" : "المزودون الموصي بهم",
     "Allow nextcloud to request user accounts" : "السماح لنكست كلود بطلب حسابات المستخدمين",
+    "Registration handling app for Nextcloud partners only" : "تطبيق التعامل مع التسجيل لشركاء نكست كلاود فقط",
     "Set your password" : "قم بإدخال كلمة المرور",
     "Account name or email" : "اسم الحساب أو البريد الالكتروني",
     "Password" : "كلمة المرور",

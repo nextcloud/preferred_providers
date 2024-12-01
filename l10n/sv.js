@@ -28,6 +28,7 @@ OC.L10N.register(
     "Preferred providers" : "Rekommenderade leverantörer",
     "Preferred Providers" : "Rekommenderade leverantörer",
     "Allow nextcloud to request user accounts" : "Tillåt Nextcloud att begära användarkonton",
+    "Registration handling app for Nextcloud partners only" : "Registreringsapp endast för Nextcloud-partners",
     "Set your password" : "Ställ in ditt lösenord",
     "Account name or email" : "Användarnamn eller e-post",
     "Password" : "Lösenord",
