@@ -28,6 +28,7 @@ OC.L10N.register(
     "Preferred providers" : "Soláthraithe tosaíochta",
     "Preferred Providers" : "Soláthraithe Roghnaithe",
     "Allow nextcloud to request user accounts" : "Lig do nextcloud cuntais úsáideora a iarraidh",
+    "Registration handling app for Nextcloud partners only" : "Aip láimhseála clárúcháin do chomhpháirtithe Nextcloud amháin",
     "Set your password" : "Socraigh do phasfhocal",
     "Account name or email" : "Ainm cuntais nó ríomhphost",
     "Password" : "Pasfhocal",
