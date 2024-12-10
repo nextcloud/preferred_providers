@@ -6,7 +6,7 @@ OC.L10N.register(
     "Preferred providers" : "Fornidores preferíos",
     "Preferred Providers" : "Fornidores preferíos",
     "Set your password" : "Afitar la contraseña",
-    "Account name or email" : "Nome de la cuenta o direición de corréu electrónicu",
+    "Account name or email" : "Nome o direición de corréu de la cuenta",
     "Password" : "Contraseña",
     "Set password" : "Afitar la contraseña",
     "Log in" : "Aniciar la sesión"
