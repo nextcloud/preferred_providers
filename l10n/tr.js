@@ -28,6 +28,7 @@ OC.L10N.register(
     "Preferred providers" : "Yeğlenen hizmet sağlayıcıları",
     "Preferred Providers" : "Yeğlenen hizmet sağlayıcıları",
     "Allow nextcloud to request user accounts" : "Nextcloud kullanıcı hesaplarını isteyebilsin",
+    "Registration handling app for Nextcloud partners only" : "Yalnızca Nextcloud iş ortakları için kayıt işleme uygulaması",
     "Set your password" : "Parolanızı ayarlayın",
     "Account name or email" : "Hesap adı ya da e-posta adresi",
     "Password" : "Parola",
