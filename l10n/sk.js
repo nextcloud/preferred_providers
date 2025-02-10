@@ -6,6 +6,7 @@ OC.L10N.register(
     "Resend verification email and enable" : "Pošli notifikačný e-mail znova a povol",
     "The token is invalid" : "Token je neplatný",
     "The token is expired, please contact your provider" : "Platnosť tokenu skončila, kontaktujte prosím svojho poskytovateľa",
+    "Password too long" : "Heslo je príliš dlhé",
     "Unable to set the password. Contact your provider." : "Nie je možné nastaviť heslo. Obráťte sa na svojho poskytovateľa.",
     "One more step required" : "Je potrebný ešte jeden krok",
     "It looks like you did not create your password yet." : "Vyzerá to tak, že zatiaľ nemáte vytvorené heslo.",
@@ -27,6 +28,7 @@ OC.L10N.register(
     "Preferred providers" : "Preferovaní poskytovatelia",
     "Preferred Providers" : "Preferovaní poskytovatelia",
     "Allow nextcloud to request user accounts" : "Umožniť Nextcloudu požadovať používateľské účty",
+    "Registration handling app for Nextcloud partners only" : "Aplikácia na spracovanie registrácie iba pre partnerov Nextcloud",
     "Set your password" : "Nastavte si heslo",
     "Account name or email" : "Názov účtu alebo e-mail",
     "Password" : "Heslo",
@@ -37,6 +39,9 @@ OC.L10N.register(
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "VAROVANIE! Tento token je veľmi dôležitý a je potrebné s ním zachádzať opatrne. Mali by ste ho poskytnúť len oficiálnemu zástupcovi nextcloud.",
     "Your provider token" : "Token vášho poskytovateľa",
     "Reset your token" : "Resetovať token",
-    "Preferred providers groups" : "Skupiny preferovaných poskytovateľov"
+    "Preferred providers groups" : "Skupiny preferovaných poskytovateľov",
+    "Select the groups to which each new account will be added." : "Vyberte skupiny, do ktorých sa pridá každý nový účet.",
+    "Select the groups that will be assigned to each unconfirmed account. They will be deleted once the account has been verified." : "Vyberte skupiny, ktoré budú priradené ku každému nepotvrdenému účtu. Po overení účtu budú odstránené.",
+    "Select the groups that will be assigned to each confirmed account." : "Vyberte skupiny, ktoré budú priradené ku každému potvrdenému účtu."
 },
 "nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);");
