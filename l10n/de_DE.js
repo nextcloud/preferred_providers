@@ -18,7 +18,7 @@ OC.L10N.register(
     "Install mobile or desktop client" : "Mobil-App oder Desktop-Client installieren",
     "Verify your %s account" : "Prüfen Sie Ihr %s-Konto",
     "Just one step left to complete your account setup." : "Nur noch ein Schritt um die Einrichtung Ihres Kontos abzuschließen.",
-    "Click here to verify your email address" : "Klicken Sie hier um Ihre E-Mail-Adresse zu überprüfen",
+    "Click here to verify your email address" : "Klicken Sie hier, um Ihre E-Mail-Adresse zu überprüfen",
     "Your %s account has been disabled" : "Ihr %s-Konto wurde deaktiviert",
     "Your %s account %s has been disabled because it was not verified in time." : "Ihr %s-Konto%s wurde deaktiviert, weil es nicht rechtzeitig bestätigt wurde.",
     "Please contact your provider for further assistance." : "Bitte wenden Sie sich für weitere Unterstützung an Ihren Anbieter.",
