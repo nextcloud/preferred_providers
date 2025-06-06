@@ -26,7 +26,7 @@ OC.L10N.register(
     "Please verify your email address" : "Proszę zweryfikować adres e-mail",
     "Preferred providers" : "Preferowani dostawcy",
     "Preferred Providers" : "Preferowani Dostawcy",
-    "Allow nextcloud to request user accounts" : "Zezwól Nextcloud na żądanie kont użytkowników",
+    "Allow nextcloud to request user accounts" : "Zezwalaj Nextcloud na żądanie kont użytkowników",
     "Set your password" : "Ustaw hasło",
     "Account name or email" : "Nazwa konta lub e-mail",
     "Password" : "Hasło",
