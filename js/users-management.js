@@ -1,6 +1,5 @@
 $(document).ready(function() {
-	sendEmail = function(event) {
-		var userId = event.target.closest('div[data-id]').dataset.id;
+	sendEmail = function(event, user) {
 		var button = event.target.parentElement;
 		var icon = button.querySelector('.icon-mail');
 
@@ -8,7 +7,7 @@ $(document).ready(function() {
 			button.disabled = true
 			$(icon).addClass('icon-loading-small');
 
-			$.post(OC.linkToOCS('apps/preferred_providers/api/v1', 2)+ 'reactivate', {userId: userId}, function(response) {
+			$.post(OC.linkToOCS('apps/preferred_providers/api/v1', 2)+ 'reactivate', {userId: user.id}, function(response) {
 				OC.Notification.showTemporary(t('preferred_providers', 'User enabled and verification email sent!'))
 				$(icon).removeClass('icon-loading-small');
 				button.disabled = false
@@ -31,7 +30,7 @@ $(document).ready(function() {
 			}
 			setTimeout(function() {registerFunction(delay)}, delay);
 		} else {
-			OCA.Settings.UserList.registerAction('resend_email icon-mail', t('preferred_providers', 'Resend verification email and enable'), sendEmail)
+			OCA.Settings.UserList.registerAction('resend_email icon-mail', t('preferred_providers', 'Resend verification email and enable'), sendEmail, (user) => !user.enabled && user.email)
 		}
 	};
 	registerFunction(0);
