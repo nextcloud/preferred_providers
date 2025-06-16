@@ -117,7 +117,7 @@ class VerifyMailHelper {
 		// generate token + link
 		$token = $this->generateVerifyToken($user);
 		$link = $verified ? $this->urlGenerator->getAbsoluteURL('/') :
-			$this->urlGenerator->linkToRouteAbsolute($this->appName.'.mail.confirm_mail_address', ['email' => $userId, 'token' => $token]);
+			$this->urlGenerator->linkToRouteAbsolute($this->appName . '.mail.confirm_mail_address', ['email' => $userId, 'token' => $token]);
 
 		// generate mail template
 		$emailTemplate = $this->mailer->createEMailTemplate('account.Welcome', [
@@ -213,7 +213,7 @@ class VerifyMailHelper {
 			ISecureRandom::CHAR_UPPER
 		);
 		$tokenValue = $this->timeFactory->getTime() . ':' . $token;
-		$mailAddress = (null !== $user->getEMailAddress()) ? $user->getEMailAddress() : '';
+		$mailAddress = ($user->getEMailAddress() !== null) ? $user->getEMailAddress() : '';
 		$encryptedValue = $this->crypto->encrypt($tokenValue, $mailAddress . $this->config->getSystemValue('secret'));
 		$this->config->setUserValue($user->getUID(), $this->appName, 'verify_token', $encryptedValue);
 		return $token;

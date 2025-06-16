@@ -94,7 +94,7 @@ class SetPasswordMailHelper {
 	public function generateTemplate(string $userId, bool $verified = false): IEMailTemplate {
 		// get token + link
 		$token = $this->getToken($userId);
-		$link = $this->urlGenerator->linkToRouteAbsolute($this->appName.'.password.set_password', array('email' => $userId, 'token' => $token));
+		$link = $this->urlGenerator->linkToRouteAbsolute($this->appName . '.password.set_password', ['email' => $userId, 'token' => $token]);
 
 		// generate mail template
 		$emailTemplate = $this->mailer->createEMailTemplate('account.SetPassword', [
@@ -140,6 +140,6 @@ class SetPasswordMailHelper {
 	 */
 	private function getToken($userId): string {
 		$encryptedToken = $this->config->getUserValue($userId, $this->appName, 'set_password');
-		return $this->crypto->decrypt($encryptedToken, $userId.$this->config->getSystemValue('secret'));
+		return $this->crypto->decrypt($encryptedToken, $userId . $this->config->getSystemValue('secret'));
 	}
 }
