@@ -200,10 +200,10 @@ class SettingsController extends OCSController {
 		// generate a notification
 		$notification = $this->notificationsManager->createNotification();
 		$notification->setApp($this->appName)
-					 ->setUser($email)
-					 ->setDateTime(new \DateTime())
-					 ->setSubject('verify_email')
-					 ->setObject('verify_email', sha1($email));
+			->setUser($email)
+			->setDateTime(new \DateTime())
+			->setSubject('verify_email')
+			->setObject('verify_email', sha1($email));
 		$this->notificationsManager->notify($notification);
 
 		return new JSONResponse(['status' => 'success']);

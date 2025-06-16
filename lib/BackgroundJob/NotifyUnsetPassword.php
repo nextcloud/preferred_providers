@@ -100,9 +100,9 @@ class NotifyUnsetPassword extends TimedJob {
 			$sql .= 'AND `configvalue` < ?';
 		}
 
-		$result = $this->connection->executeQuery($sql, array($appName, $key, $value));
+		$result = $this->connection->executeQuery($sql, [$appName, $key, $value]);
 
-		$userIDs = array();
+		$userIDs = [];
 		while ($row = $result->fetch()) {
 			$userIDs[] = $row['userid'];
 		}

@@ -131,7 +131,7 @@ class PasswordController extends Controller {
 			$this->checkPasswordToken($token, $email);
 		} catch (\Exception $e) {
 			return new TemplateResponse('core', 'error', [
-				'errors' => array(array('error' => $e->getMessage()))
+				'errors' => [['error' => $e->getMessage()]]
 			], 'guest');
 		}
 
@@ -168,13 +168,13 @@ class PasswordController extends Controller {
 			$this->checkPasswordToken($token, $email);
 		} catch (\Exception $e) {
 			return new TemplateResponse('core', 'error', [
-				'errors' => array(array('error' => $e->getMessage()))
+				'errors' => [['error' => $e->getMessage()]]
 			], 'guest');
 		}
 
 		if (\mb_strlen($password) > 100) {
 			return new TemplateResponse('core', 'error', [
-				'errors' => array(array('error' => $this->l10n->t('Password too long')))
+				'errors' => [['error' => $this->l10n->t('Password too long')]]
 			], 'guest');
 		}
 
@@ -223,12 +223,12 @@ class PasswordController extends Controller {
 		$response = new TemplateResponse(
 			$this->appName,
 			'password-public',
-			array(
-				'link' => $this->urlGenerator->linkToRoute($this->appName . '.password.submit_password', array('token' => $token)),
+			[
+				'link' => $this->urlGenerator->linkToRoute($this->appName . '.password.submit_password', ['token' => $token]),
 				'email' => $email,
 				'ocsapirequest' => $this->request->getHeader('OCS-APIREQUEST') || $ocs,
 				'error' => $error
-			),
+			],
 			'guest'
 		);
 

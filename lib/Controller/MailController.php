@@ -129,7 +129,7 @@ class MailController extends Controller {
 			$this->checkVerifyMailAddressToken($token, $email);
 		} catch (\Exception $e) {
 			return new TemplateResponse('core', 'error', [
-				'errors' => array(array('error' => $e->getMessage()))
+				'errors' => [['error' => $e->getMessage()]]
 			], 'guest');
 		}
 
@@ -187,11 +187,11 @@ class MailController extends Controller {
 			throw new \Exception($this->l10n->t('The token is invalid'));
 		}
 
-		$mailAddress = (null !== $user->getEMailAddress()) ? $user->getEMailAddress() : '';
+		$mailAddress = ($user->getEMailAddress() !== null) ? $user->getEMailAddress() : '';
 
 		try {
 			$encryptedToken = $this->config->getUserValue($userId, $this->appName, 'verify_token');
-			$decryptedToken = $this->crypto->decrypt($encryptedToken, $mailAddress.$this->config->getSystemValue('secret'));
+			$decryptedToken = $this->crypto->decrypt($encryptedToken, $mailAddress . $this->config->getSystemValue('secret'));
 		} catch (\Exception $e) {
 			throw new \Exception($this->l10n->t('The token is invalid'));
 		}

@@ -237,7 +237,7 @@ class AccountController extends ApiController {
 		$this->config->setUserValue($email, $this->appName, 'set_password', $encryptedValue);
 		$this->config->setUserValue($email, $this->appName, 'remind_password', strval(time()));
 
-		return $this->urlGenerator->linkToRouteAbsolute($this->appName . '.password.set_password', array('email' => $email, 'token' => $token));
+		return $this->urlGenerator->linkToRouteAbsolute($this->appName . '.password.set_password', ['email' => $email, 'token' => $token]);
 	}
 
 	/**
