@@ -10,7 +10,7 @@ OC.L10N.register(
     "Unable to set the password. Contact your provider." : "Não é possível definir a senha. Contacte seu provedor.",
     "One more step required" : "Mais um passo necessário",
     "It looks like you did not create your password yet." : "Parece que você ainda não criou sua senha.",
-    "Did you encounter an issue during the sign-up process?" : "Você encontrou algum problema durante o processo de inscrição?",
+    "Did you encounter an issue during the sign-up process?" : "Você encontrou algum problema durante o processo de registro?",
     "Access your account" : "Acesse sua conta",
     "Welcome to your %s account" : "Bem vindo %s à sua conta ",
     "Your %s account %s is now verified!" : "Sua %s conta %s agora está confirmada!",
@@ -30,7 +30,7 @@ OC.L10N.register(
     "Allow nextcloud to request user accounts" : "Permitir que o nextcloud solicite contas de usuário",
     "Registration handling app for Nextcloud partners only" : "Aplicativo de gerenciamento de registro somente para parceiros Nextcloud",
     "Set your password" : "Defina sua senha",
-    "Account name or email" : "Nome da conta ou e-mail",
+    "Account name or email" : "Nome ou e-mail da conta",
     "Password" : "Senha",
     "Set password" : "Configurar senha",
     "Log in" : "Entrar",
@@ -40,8 +40,8 @@ OC.L10N.register(
     "Your provider token" : "Seu token do provedor",
     "Reset your token" : "Redefinir seu token",
     "Preferred providers groups" : "Grupos de provedores preferenciais",
-    "Select the groups to which each new account will be added." : "Select the groups to which each new account will be added.",
-    "Select the groups that will be assigned to each unconfirmed account. They will be deleted once the account has been verified." : "Select the groups that will be assigned to each unconfirmed account. They will be deleted once the account has been verified.",
-    "Select the groups that will be assigned to each confirmed account." : "Select the groups that will be assigned to each confirmed account."
+    "Select the groups to which each new account will be added." : "Selecione os grupos aos quais cada nova conta será adicionada.",
+    "Select the groups that will be assigned to each unconfirmed account. They will be deleted once the account has been verified." : "Selecione os grupos que serão atribuídos a cada conta não confirmada. Estes serão eliminados assim que a conta for verificada.",
+    "Select the groups that will be assigned to each confirmed account." : "Selecione os grupos que serão atribuídos a cada conta confirmada."
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");
