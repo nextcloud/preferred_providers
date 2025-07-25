@@ -3,6 +3,6 @@ OC.L10N.register(
     {
     "Account name or email" : "Akkaunt nomi yoki elektron pochta",
     "Password" : "Password",
-    "Log in" : "Log in"
+    "Log in" : "Kirish"
 },
 "nplurals=1; plural=0;");
