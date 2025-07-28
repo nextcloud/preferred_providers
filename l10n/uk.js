@@ -28,6 +28,7 @@ OC.L10N.register(
     "Preferred providers" : "Вибрані постачальники",
     "Preferred Providers" : "Вибрані постачальники",
     "Allow nextcloud to request user accounts" : "Дозволити Nextcloud надсилати запити щодо облікових записів користувачів",
+    "Registration handling app for Nextcloud partners only" : "Додаток для обробки реєстрації тільки для партнерів Nextcloud",
     "Set your password" : "Встановіть свій пароль",
     "Account name or email" : "Ім'я користувача або електронна пошта",
     "Password" : "Пароль",
