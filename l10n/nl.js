@@ -6,6 +6,7 @@ OC.L10N.register(
     "Resend verification email and enable" : "Verstuur verificatie-email opnieuw en activeer",
     "The token is invalid" : "Het token is ongeldig",
     "The token is expired, please contact your provider" : "Het token is verlopen. Neem contact op met je provider",
+    "Password too long" : "Wachtwoord te lang",
     "Unable to set the password. Contact your provider." : "Niet mogelijk om het wachtwoord op te slaan. Neem contact op met je provider.",
     "One more step required" : "Nog een stap noodzakelijk",
     "It looks like you did not create your password yet." : "Het lijkt alsof je nog geen wachtwoord opgeslagen heeft.",
@@ -27,6 +28,7 @@ OC.L10N.register(
     "Preferred providers" : "Voorkeur providers",
     "Preferred Providers" : "Voorkeur providers",
     "Allow nextcloud to request user accounts" : "Sta nextcloud to om user accounts op te vragen",
+    "Registration handling app for Nextcloud partners only" : "App voor registratieafhandeling alleen voor Nextcloud-partners",
     "Set your password" : "Stel je wachtwoord in",
     "Account name or email" : "Gebruikersnaam of email",
     "Password" : "Wachtwoord",
@@ -37,6 +39,9 @@ OC.L10N.register(
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "WARNING! Dit token is erg belangrijk en moet met zorg behandeld worden. Je zou dit alleen aan een nextcloud-official moeten overhandigen!",
     "Your provider token" : "Je provider token",
     "Reset your token" : "Reset je token",
-    "Preferred providers groups" : "Voorkeur providers groepen"
+    "Preferred providers groups" : "Voorkeur providers groepen",
+    "Select the groups to which each new account will be added." : "Selecteer de groepen waaraan elk nieuw account zal worden toegevoegd.",
+    "Select the groups that will be assigned to each unconfirmed account. They will be deleted once the account has been verified." : "Selecteer de groepen die aan elk onbevestigd account worden toegewezen. Ze worden verwijderd zodra het account is geverifieerd.",
+    "Select the groups that will be assigned to each confirmed account." : "Selecteer de groepen die aan elk bevestigd account worden toegewezen."
 },
 "nplurals=2; plural=(n != 1);");
