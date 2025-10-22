@@ -35,7 +35,7 @@ OC.L10N.register(
     "Set password" : "Passwort setzen",
     "Log in" : "Anmelden",
     "After this step, you will receive a mail to verify your account within 6 hours." : "Hiernach erhältst du eine E-Mail mit der du dein Konto innerhalb von 6 Stunden bestätigen kannst",
-    "Preferred providers token" : "Token bevorzugter Anbieter",
+    "Preferred providers token" : "Bevorzugte Anbieter-Token",
     "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "ACHTUNG! Dieser Token ist sehr wichtig und muss vorsichtig behandelt werden. du solltest ihn nur an Mitarbeiter von Nextcloud herausgeben!",
     "Your provider token" : "Dein Anbieter-Token",
     "Reset your token" : "Token zurücksetzen",
