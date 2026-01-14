@@ -2,6 +2,7 @@ OC.L10N.register(
     "preferred_providers",
     {
     "Set your password" : "Atur kata sandi Anda",
+    "Account name or email" : "Nama akun atau email",
     "Password" : "Kata sandi",
     "Set password" : "Atur kata sandi",
     "Log in" : "Masuk"
