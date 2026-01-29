@@ -28,6 +28,7 @@ OC.L10N.register(
     "Preferred Providers" : "Omiljeni davatelji usluga",
     "Allow nextcloud to request user accounts" : "Dopusti nextcloudu da zahtijeva korisničke račune",
     "Set your password" : "Postavite zaporku",
+    "Account name or email" : "Korisničko ime ili adresa e-pošte",
     "Password" : "Zaporka",
     "Set password" : "Postavi zaporku",
     "Log in" : "Prijava",
