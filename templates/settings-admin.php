@@ -28,7 +28,7 @@ declare(strict_types=1);
 
 <div id="token-section" class="section">
     <h2><?php p($l->t('Preferred providers token')); ?></h2>
-    <p class="warning"><?php p($l->t('WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!')); ?></p>
+    <p class="warning"><?php p($l->t('WARNING! This token is very important and must be handled carefully. You should only give it to a Nextcloud official!')); ?></p>
     <p><?php p($l->t('Your provider token')); ?>:</p>
     <div class="token-container">
         <input type="text" id="token" value="<?php p($_['provider_token']) ?>" readonly />
