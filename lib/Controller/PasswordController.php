@@ -123,7 +123,7 @@ class PasswordController extends Controller {
 	 *
 	 * @param string $token The security token
 	 * @param string $email The user email
-	 * @param string $ocsis this a ocs api request
+	 * @param string $ocs is this a ocs api request
 	 * @return TemplateResponse
 	 */
 	public function setPassword(string $token, string $email, $ocs = false) {
@@ -135,7 +135,26 @@ class PasswordController extends Controller {
 			], 'guest');
 		}
 
-		return $this->generateTemplate($token, $email, '', $ocs !== false);
+		return $this->generateTemplate($token, $email, '', $ocs !== false ? (string)$ocs : '');
+	}
+
+	/**
+	 * @NoCSRFRequired
+	 *
+	 * @PublicPage
+	 *
+	 * shortcut for secondary route with flow parameter
+	 */
+	public function setPasswordFlow(string $token, string $email, string $flow = ''): TemplateResponse {
+		try {
+			$this->checkPasswordToken($token, $email);
+		} catch (\Exception $e) {
+			return new TemplateResponse('core', 'error', [
+				'errors' => [['error' => $e->getMessage()]]
+			], 'guest');
+		}
+
+		return $this->generateTemplate($token, $email, '', '', $flow);
 	}
 
 	/**
@@ -160,9 +179,10 @@ class PasswordController extends Controller {
 	 * @param string $email The user email
 	 * @param string $password The user password
 	 * @param string $ocsapirequest OCS-APIREQUEST header check
+	 * @param string $flow registration flow variant
 	 * @return TemplateResponse|RedirectResponse
 	 */
-	public function submitPassword(string $token, string $email, string $password, string $ocsapirequest = '') {
+	public function submitPassword(string $token, string $email, string $password, string $ocsapirequest = '', string $flow = '') {
 		// process token validation
 		try {
 			$this->checkPasswordToken($token, $email);
@@ -182,14 +202,19 @@ class PasswordController extends Controller {
 		try {
 			$user = $this->userManager->get($email);
 			if (!$user->setPassword($password)) {
-				return $this->generateTemplate($token, $email, $this->l10n->t('Unable to set the password. Contact your provider.'), $ocsapirequest === '1');
+				return $this->generateTemplate($token, $email, $this->l10n->t('Unable to set the password. Contact your provider.'), $ocsapirequest, $flow);
 			}
 			$this->config->deleteUserValue($email, $this->appName, 'set_password');
 			$this->config->deleteUserValue($email, $this->appName, 'remind_password');
 			// logout and ignore failure
 			@\OC::$server->getUserSession()->unsetMagicInCookie();
 		} catch (\Exception $e) {
-			return $this->generateTemplate($token, $email, $e->getMessage(), $ocsapirequest === '1');
+			return $this->generateTemplate($token, $email, $e->getMessage(), $ocsapirequest, $flow);
+		}
+
+		if ($flow === 'V3') {
+			$this->loginUser($email, $password);
+			return $this->generateFlowLoginResponse();
 		}
 
 		// redirect to ClientFlowLogin if the request comes from android/ios/desktop
@@ -200,13 +225,7 @@ class PasswordController extends Controller {
 		}
 
 		// login
-		try {
-			$loginResult = $this->userManager->checkPasswordNoLogging($email, $password);
-			$this->userSession->completeLogin($loginResult, ['loginName' => $email, 'password' => $password]);
-			$this->userSession->createSessionToken($this->request, $loginResult->getUID(), $email, $password);
-		} catch (\Exception $e) {
-			$this->logger->debug('Unable to perform auto login for ' . $email, ['app' => $this->appName]);
-		}
+		$this->loginUser($email, $password);
 
 		return new RedirectResponse($this->urlGenerator->getAbsoluteURL('/'));
 	}
@@ -219,26 +238,49 @@ class PasswordController extends Controller {
 	 * @param string $error optional
 	 * @return TemplateResponse
 	 */
-	protected function generateTemplate(string $token, string $email, string $error = '', bool $ocs = false) {
+	protected function generateTemplate(string $token, string $email, string $error = '', string $ocs = '', string $flow = '') {
+		$ocsapirequest = $flow === '' && $this->request->getHeader('OCS-APIREQUEST') ? '1' : $ocs;
 		$response = new TemplateResponse(
 			$this->appName,
 			'password-public',
 			[
 				'link' => $this->urlGenerator->linkToRoute($this->appName . '.password.submit_password', ['token' => $token]),
 				'email' => $email,
-				'ocsapirequest' => $this->request->getHeader('OCS-APIREQUEST') || $ocs,
+				'ocsapirequest' => $ocsapirequest,
+				'flow' => $flow,
 				'error' => $error
 			],
 			'guest'
 		);
 
-		if ($ocs) {
+		if ($ocsapirequest !== '') {
 			// We need to set the CSP header to allow the redirect to the Nextcloud client
 			// some browsers (e.g. Safari) seems to block the redirect if the CSP header is not set.
 			$csp = new ContentSecurityPolicy();
 			$csp->addAllowedFormActionDomain('nc://*');
 			$response->setContentSecurityPolicy($csp);
 		}
+
+		return $response;
+	}
+
+	/**
+	 * @return TemplateResponse
+	 */
+	protected function generateFlowLoginResponse() {
+		$response = new TemplateResponse(
+			$this->appName,
+			'flow-login',
+			[
+				'ncLoginUrl' => $this->generateServerLoginUrl(),
+				'redirectUrl' => $this->urlGenerator->getAbsoluteURL('/'),
+			],
+			'guest'
+		);
+
+		$csp = new ContentSecurityPolicy();
+		$csp->addAllowedFormActionDomain('nc://*');
+		$response->setContentSecurityPolicy($csp);
 
 		return $response;
 	}
@@ -281,6 +323,22 @@ class PasswordController extends Controller {
 	}
 
 	/**
+	 * @param string $email the user email/userId
+	 * @param string $password the user password
+	 *
+	 * @return void
+	 */
+	private function loginUser(string $email, string $password): void {
+		try {
+			$loginResult = $this->userManager->checkPasswordNoLogging($email, $password);
+			$this->userSession->completeLogin($loginResult, ['loginName' => $email, 'password' => $password]);
+			$this->userSession->createSessionToken($this->request, $loginResult->getUID(), $email, $password);
+		} catch (\Exception $e) {
+			$this->logger->debug('Unable to perform auto login for ' . $email, ['app' => $this->appName]);
+		}
+	}
+
+	/**
 	 * generate application password and return nc protocol formatted url
 	 *
 	 * @param string $email the user email/userId
@@ -293,6 +351,25 @@ class PasswordController extends Controller {
 		$token = $this->secureRandom->generate(72, ISecureRandom::CHAR_HUMAN_READABLE);
 		$this->tokenProvider->generateToken($token, $email, $email, null, $clientName);
 
+		$serverPath = $this->getServerPath();
+		$redirectUri = 'nc://login/server:' . $serverPath . '&user:' . urlencode($email) . '&password:' . urlencode($token);
+
+		return $redirectUri;
+	}
+
+	/**
+	 * generate server-only nc protocol formatted url
+	 *
+	 * @return string
+	 */
+	protected function generateServerLoginUrl() {
+		return 'nc://login/server:' . $this->getServerPath();
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getServerPath() {
 		$serverPostfix = '';
 
 		if (strpos($this->request->getRequestUri(), '/index.php') !== false) {
@@ -312,8 +389,6 @@ class PasswordController extends Controller {
 		}
 
 		$serverPath = $protocol . '://' . $this->request->getServerHost() . $serverPostfix;
-		$redirectUri = 'nc://login/server:' . $serverPath . '&user:' . urlencode($email) . '&password:' . urlencode($token);
-
-		return $redirectUri;
+		return $serverPath;
 	}
 }
