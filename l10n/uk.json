@@ -34,7 +34,6 @@
     "Log in" : "Увійти",
     "After this step, you will receive a mail to verify your account within 6 hours." : "Після цього ви отримаєте ел.лист з проханням підтвердити ваш обліковий запис протягом 6 годин.",
     "Preferred providers token" : "Токен вибраних постачальників",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "УВАГА! Цей токен містити дуже важливі дані. Передавайте його тільки офіційним представникам Nextcloud!",
     "Your provider token" : "Ваш токен постачальника",
     "Reset your token" : "Скинути ваш токен",
     "Preferred providers groups" : "Вибрані групи постачальників",

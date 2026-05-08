@@ -32,7 +32,6 @@
     "Log in" : "Вписване",
     "After this step, you will receive a mail to verify your account within 6 hours." : "След тази стъпка ще получите имейл за потвърждение на вашият профил в рамките на 6 часа.",
     "Preferred providers token" : "Токен за предпочитани доставчици",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "ВНИМАНИЕ! Този токен е много важен и трябва да се работи внимателно. Трябва да го дадете само на служител на nextcloud!",
     "Your provider token" : "Вашият токен за доставчика",
     "Reset your token" : "Възстановете токена си",
     "Preferred providers groups" : "Предпочитани групи доставчици"

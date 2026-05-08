@@ -36,7 +36,6 @@ OC.L10N.register(
     "Log in" : "登入",
     "After this step, you will receive a mail to verify your account within 6 hours." : "在此步驟後，您將會在6小時內收到一封驗證您帳號的電子郵件。",
     "Preferred providers token" : "偏好的提供者權杖",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "警告！此權杖非常重要，必須小心處理。您只應該將其給 Nextcloud 官方！",
     "Your provider token" : "您的提供者權杖",
     "Reset your token" : "重設您的權杖",
     "Preferred providers groups" : "偏好的提供者群組",

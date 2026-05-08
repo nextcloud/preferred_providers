@@ -34,7 +34,6 @@ OC.L10N.register(
     "Log in" : "Είσοδος",
     "After this step, you will receive a mail to verify your account within 6 hours." : "Μετά από αυτό το βήμα, θα λάβετε μήνυμα επιβεβαίωση λογαριασμού εντός 6 ωρών.",
     "Preferred providers token" : "Αναγνωριστικό προτιμώμενων παρόχων",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "ΠΡΟΣΟΧΗ! Αυτό το αναγνωριστικό΄είναι σημαντικό και χρειάζεται προσεκτική διαχείριση. Πρέπει να το δώσετε μόνο σε επίσημο nextcloud!",
     "Your provider token" : "Το αναγνωριστικό του παρόχου σας",
     "Reset your token" : "Επαναφορά του αναγνωριστικού σας",
     "Preferred providers groups" : "Προτιμώμενες ομάδες παρόχων"

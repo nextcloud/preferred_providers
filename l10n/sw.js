@@ -36,7 +36,6 @@ OC.L10N.register(
     "Log in" : "Ingia",
     "After this step, you will receive a mail to verify your account within 6 hours." : "Baada ya hatua hii, utapokea barua pepe ya kuthibitisha akaunti yako ndani ya masaa 6.",
     "Preferred providers token" : "Tokeni ya watoa huduma inayopendelewa",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "ONYO! Ishara hii ni muhimu sana na lazima ishughulikiwe kwa uangalifu. Unapaswa kumpa afisa wa nextcloud pekee!",
     "Your provider token" : "Tokeni ya mtoaji wako",
     "Reset your token" : "Weka upya tokeni yako",
     "Preferred providers groups" : "Vikundi vya watoa huduma wanaopendelewa",

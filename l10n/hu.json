@@ -33,7 +33,6 @@
     "Log in" : "Bejelentkezés",
     "After this step, you will receive a mail to verify your account within 6 hours." : "Ezt a lépést követően, 6 órán belül kapni fog egy levelet, hogy erősítse meg a fiókját.",
     "Preferred providers token" : "Előnyben részesített szolgáltató tokenje",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "FIGYELEM! Ez a token nagyon fontos, és gondosan kell kezelni. Csak a Nextcloud képviselőjének szabad odaadnia!",
     "Your provider token" : "Saját szolgáltatói token",
     "Reset your token" : "Token visszaállítása",
     "Preferred providers groups" : "Előnyben részesített szolgáltató csoportjai"

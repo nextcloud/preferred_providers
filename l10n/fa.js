@@ -34,7 +34,6 @@ OC.L10N.register(
     "Log in" : "Log in",
     "After this step, you will receive a mail to verify your account within 6 hours." : "پس از این مرحله ، نامه ای را برای تأیید حساب خود در مدت 6 ساعت دریافت خواهید کرد.",
     "Preferred providers token" : "نشانه ارائه دهندگان ترجیحی",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "هشدار! این نشانه بسیار مهم است و باید با دقت به آنها رسیدگی شود. شما فقط باید آن را به یک مقام نکست کلود به من بدهید!",
     "Your provider token" : "نشان دهنده ارائه دهنده شما",
     "Reset your token" : "نماد خود را دوباره تنظیم کنید",
     "Preferred providers groups" : "گروه های ارائه دهنده ترجیحی",

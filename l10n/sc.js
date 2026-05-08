@@ -34,7 +34,6 @@ OC.L10N.register(
     "Log in" : "Intra",
     "After this step, you will receive a mail to verify your account within 6 hours." : "A pustis de custu passàgiu, as a retzure unu messàgiu eletrònicu pro cumproare su contu tuo a intro de 6 oras.",
     "Preferred providers token" : "Token de is frunidores preferidos",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "ATENTZIONE! Custu token est de importu mannu e depet èssere manigiadu cun atentzione meda. Ddu depes frunire isceti a unu nextcloud ufitziale!",
     "Your provider token" : "Token de su frunidore tuo",
     "Reset your token" : "Ripristina su token tuo",
     "Preferred providers groups" : "Grupos de is frunidores preferidos"

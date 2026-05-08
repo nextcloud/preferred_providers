@@ -36,7 +36,6 @@ OC.L10N.register(
     "Log in" : "كىرىڭ",
     "After this step, you will receive a mail to verify your account within 6 hours." : "بۇ باسقۇچتىن كېيىن ، 6 سائەت ئىچىدە ھېساباتىڭىزنى دەلىللەيدىغان خەت تاپشۇرۇۋالىسىز.",
     "Preferred providers token" : "ياقتۇرىدىغان تەمىنلىگۈچىلەر بەلگىسى",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "ئاگاھلاندۇرۇش! بۇ بەلگە ئىنتايىن مۇھىم ، چوقۇم ئەستايىدىل بىر تەرەپ قىلىش كېرەك. ئۇنى پەقەت كېيىنكى بۇلۇت ئەمەلدارىغا بېرىشىڭىز كېرەك!",
     "Your provider token" : "تەمىنلىگۈچى بەلگە",
     "Reset your token" : "بەلگىڭىزنى ئەسلىگە كەلتۈرۈڭ",
     "Preferred providers groups" : "ياقتۇرىدىغان تەمىنلىگۈچىلەر توپى",

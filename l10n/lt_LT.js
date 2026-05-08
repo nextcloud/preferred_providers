@@ -16,7 +16,6 @@ OC.L10N.register(
     "Password" : "Slaptažodis",
     "Set password" : "Nustatyti slaptažodį",
     "Log in" : "Prisijungti",
-    "After this step, you will receive a mail to verify your account within 6 hours." : "Po šio žingsnio, gausite laišką, skirtą patvirtinti paskyrą ne vėliau kaip per 6 valandas.",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "ĮSPĖJIMAS! Šis prieigos raktas yra labai svarbus ir turi būti atidžiai saugomas. Jūs turėtumėte jį perduoti tik Nextcloud atstovui!"
+    "After this step, you will receive a mail to verify your account within 6 hours." : "Po šio žingsnio, gausite laišką, skirtą patvirtinti paskyrą ne vėliau kaip per 6 valandas."
 },
 "nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);");

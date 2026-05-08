@@ -7,7 +7,6 @@ OC.L10N.register(
     "Password" : "Пароль",
     "Log in" : "Увайсці",
     "Preferred providers token" : "Токен прыярытэтных пастаўшчыкоў",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "УВАГА! Гэты токен вельмі важны і з ім трэба абыходзіцца асцярожна. Вы павінны перадаваць яго толькі супрацоўніку nextcloud!",
     "Your provider token" : "Ваш токен пастаўшчыка",
     "Reset your token" : "Скінуць токен"
 },

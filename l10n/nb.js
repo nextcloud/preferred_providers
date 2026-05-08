@@ -35,7 +35,6 @@ OC.L10N.register(
     "Log in" : "Logg inn",
     "After this step, you will receive a mail to verify your account within 6 hours." : "Etter dette steget er utført vil du motta en e-post for å bekrefte din konto innen 6 timer.",
     "Preferred providers token" : "Foretrukne tilbyderes pollet",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "Advarsel! Denne pollet er viktig og må behandles forsiktig. Du skal kun gi denne til en Nextcloud offisiell representant!",
     "Your provider token" : "Din tilbyders pollet",
     "Reset your token" : "Nullstill din pollett",
     "Preferred providers groups" : "Foretrukne tilbyderes grupper",

@@ -34,7 +34,6 @@ OC.L10N.register(
     "Log in" : "כניסה",
     "After this step, you will receive a mail to verify your account within 6 hours." : "לאחר השלב הזה, תישלח אליך הודעה בדוא״ל לאימות החשבון שלך תוך 6 שעות.",
     "Preferred providers token" : "אסימון ספקים מועדפים",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "אזהרה! האסימון הזה מאוד חשוב ויש לטפל בו בזהירות רבה. מוטב לספק אותו אך ורק לסמכות רשמית של Nextcloud!",
     "Your provider token" : "אסימון הספק שלך",
     "Reset your token" : "איפוס האסימון שלך",
     "Preferred providers groups" : "קבוצות ספקים מועדפים"

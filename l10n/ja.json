@@ -33,7 +33,6 @@
     "Log in" : "ログイン",
     "After this step, you will receive a mail to verify your account within 6 hours." : "このステップの後で、６時間以内のアカウントを確認するためのメールが送られます。",
     "Preferred providers token" : "推奨プロバイダーのトークン",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "警告！このトークンは非常に重要ですから注意して扱ってください。トークンはNextcloudの公式の関係者にだけ渡してください。",
     "Your provider token" : "あなたのプロバイダーのトークン",
     "Reset your token" : "トークンをリセットする",
     "Preferred providers groups" : "推奨プロバイダーグループ"

@@ -34,7 +34,6 @@
     "Log in" : "Se connecter",
     "After this step, you will receive a mail to verify your account within 6 hours." : "Après cette étape, vous allez recevoir un e-mail pour vérifier votre compte dans les 6 heures.",
     "Preferred providers token" : "Jeton de fournisseurs préférés",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "AVERTISSEMENT ! Ce jeton est très important et doit être utilisé avec précaution. Vous ne devez le partager qu'avec un responsable officiel de nextcloud !",
     "Your provider token" : "Votre jeton de fournisseur",
     "Reset your token" : "Réinitialiser votre jeton",
     "Preferred providers groups" : "Groupes de fournisseurs préférés",

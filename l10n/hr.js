@@ -34,7 +34,6 @@ OC.L10N.register(
     "Log in" : "Prijava",
     "After this step, you will receive a mail to verify your account within 6 hours." : "Nakon ovog koraka primit ćete poruku e-pošte kako biste potvrdili svoj račun u roku od 6 sati.",
     "Preferred providers token" : "Token omiljenih pružatelja usluga",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "UPOZORENJE! Ovaj je token vrlo važan i njime se mora pažljivo rukovati. Smijete ga predati samo službenom zastupniku nextclouda!",
     "Your provider token" : "Token vašeg davatelja usluga",
     "Reset your token" : "Resetiraj svoj token",
     "Preferred providers groups" : "Grupe omiljenih davatelja usluga"

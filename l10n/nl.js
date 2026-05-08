@@ -36,7 +36,6 @@ OC.L10N.register(
     "Log in" : "Aanmelden",
     "After this step, you will receive a mail to verify your account within 6 hours." : "Na deze stap ontvang je een email om je account binnen 6 uur te verifiëren.",
     "Preferred providers token" : "Voorkeur providers token",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "WARNING! Dit token is erg belangrijk en moet met zorg behandeld worden. Je zou dit alleen aan een nextcloud-official moeten overhandigen!",
     "Your provider token" : "Je provider token",
     "Reset your token" : "Reset je token",
     "Preferred providers groups" : "Voorkeur providers groepen",

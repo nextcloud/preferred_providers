@@ -34,7 +34,6 @@ OC.L10N.register(
     "Log in" : "Войдите",
     "After this step, you will receive a mail to verify your account within 6 hours." : "По завершению этого шага в течении 6 часов будет направлено эл. письмо для подтверждения учётной записи.",
     "Preferred providers token" : "Токен предпочитаемых поставщиков услуги",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "ВНИМАНИЕ! Этот токен крайне важен, обращайтесь с осторожностью. Вы должны предоставить его представителю Nextcloud!",
     "Your provider token" : "Токен провайдера",
     "Reset your token" : "Сбросить токен",
     "Preferred providers groups" : "Группы предпочитаемых поставщиков услуги",

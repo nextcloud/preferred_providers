@@ -36,7 +36,6 @@ OC.L10N.register(
     "Log in" : "Logáil isteach",
     "After this step, you will receive a mail to verify your account within 6 hours." : "Tar éis na céime seo, gheobhaidh tú ríomhphost chun do chuntas a fhíorú laistigh de 6 huaire an chloig.",
     "Preferred providers token" : "Comhartha soláthraithe tosaíochta",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "RABHADH! Tá an comhartha seo an-tábhachtach agus ní mór é a láimhseáil go cúramach. Níor cheart duit é a thabhairt ach d’oifigeach nextcloud!",
     "Your provider token" : "Do chomhartha soláthraí",
     "Reset your token" : "Athshocraigh do chomhartha",
     "Preferred providers groups" : "Grúpaí soláthraithe tosaíochta",

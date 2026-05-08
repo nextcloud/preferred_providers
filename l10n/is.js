@@ -33,7 +33,6 @@ OC.L10N.register(
     "Log in" : "Skrá inn",
     "After this step, you will receive a mail to verify your account within 6 hours." : "Eftir að þessu þrepi er lokið muntu fá tölvupóst með leiðbeiningum um að yfirfara aðganginn þinn innan 6 klukkustunda.",
     "Preferred providers token" : "Teikn frá umbeðnum þjónustuveitum",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "AÐVÖRUN! Þetta teikn er ákaflega mikilvægt og þarf að umgangast með varúð. Þú ættir aldrei að gefa neinum færi á að sjá það nema opinberum umsjónarmanni Nextcloud þjónsins þíns!",
     "Your provider token" : "Teikn frá þjónustuveitunni þinni",
     "Reset your token" : "Endurstilltu teiknið þitt",
     "Preferred providers groups" : "Umbeðnir hópar þjónustuveitna"

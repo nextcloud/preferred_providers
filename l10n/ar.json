@@ -34,7 +34,6 @@
     "Log in" : "تسجيل الدخول",
     "After this step, you will receive a mail to verify your account within 6 hours." : "بعد هذه الخطوة، سوف تتلقى بريدًا إلكترونيًا في غضون 6 ساعات للتحقق من حسابك.",
     "Preferred providers token" : "رمز مزودي الخدمة المقدم",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "تحذير! هذا الرمز مهم جدًا ويجب التعامل معه بحذر. يجب عليك فقط إعطائه لمسؤول نكست كلود!",
     "Your provider token" : "رمز التحقق للمزود الخاص بك",
     "Reset your token" : "إعادة تعيين رمز التحقق الخاص بك",
     "Preferred providers groups" : "مجموعات المزودين الموصي بهم",

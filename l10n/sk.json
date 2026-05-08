@@ -34,7 +34,6 @@
     "Log in" : "Prihlásiť sa",
     "After this step, you will receive a mail to verify your account within 6 hours." : "Po tomto kroku obdržíte do 6 hodín e-mail pre overenie vášho účtu.",
     "Preferred providers token" : "Token preferovaných poskytovateľov",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a nextcloud official!" : "VAROVANIE! Tento token je veľmi dôležitý a je potrebné s ním zachádzať opatrne. Mali by ste ho poskytnúť len oficiálnemu zástupcovi nextcloud.",
     "Your provider token" : "Token vášho poskytovateľa",
     "Reset your token" : "Resetovať token",
     "Preferred providers groups" : "Skupiny preferovaných poskytovateľov",
