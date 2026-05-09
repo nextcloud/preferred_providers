@@ -1,10 +1,26 @@
 { "translations": {
+    "User enabled and verification email sent!" : "Kasutaja on aktiveeritud ja kinnituskiri on saadetud!",
+    "Error while sending the verification email" : "Viga kinnituskirja saatmisel",
+    "Resend verification email and enable" : "Saada kinnituskiri uuesti ja aktiveeri kasutaja",
+    "The token is invalid" : "Tunnusluba on vigane",
+    "The token is expired, please contact your provider" : "Tunnusluba on aegunud. Palun võta ühendust oma serveri teenusepakkujaga.",
     "Password too long" : "Salasõna on liiga pikk",
+    "Unable to set the password. Contact your provider." : "Salasõna lisamine ei õnnestu. Palun võta ühendust oma teenusepakkujaga.",
+    "It looks like you did not create your password yet." : " Tundub, et sa pole veel oma salasõna lisanud.",
+    "Did you encounter an issue during the sign-up process?" : "Kas sul tekkis registreerumisel viga või probleem?",
+    "Click here to verify your email address" : "Oma e-posti aadressi kinnitamiseks klõpsa siia",
+    "Please contact your provider for further assistance." : "Täiendava kasutajatoe jaoks palun võta ühendust oma teenusepakkujaga.",
+    "Simple signup" : "Lihtne liitumine",
+    "Please verify your email address" : "Palun kinnita oma e-posti aadress",
+    "Preferred providers" : "Eelistatud teenusepakkujad",
+    "Registration handling app for Nextcloud partners only" : "Vaid Nextcloudi partneritele mõeldud registreerumiste haldus",
     "Set your password" : "Sisesta oma salasõna",
     "Account name or email" : "Konto nimi või e-posti aadress",
     "Password" : "Salasõna",
     "Set password" : "Määra salasõna",
     "Log in" : "Logi sisse",
-    "Reset your token" : "Lähtesta oma tunnusluba"
+    "WARNING! This token is very important and must be handled carefully. You should only give it to a Nextcloud official!" : "HOIATUS! See tunnusluba on ülioluline ja pead seda hoolikalt hoidma.  Võid teda edastada vaid Nextcloudi esindajale!",
+    "Reset your token" : "Lähtesta oma tunnusluba",
+    "Select the groups to which each new account will be added." : "Valitud grupid, kuhu iga uus kasutajakonto lisatakse."
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
