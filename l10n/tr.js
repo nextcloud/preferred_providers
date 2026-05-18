@@ -36,6 +36,7 @@ OC.L10N.register(
     "Log in" : "Oturum aç",
     "After this step, you will receive a mail to verify your account within 6 hours." : "Bu adımdan sonra hesabınızı doğrulamak için 6 saat süreyle geçerli olacak bir e-posta alacaksınız.",
     "Preferred providers token" : "Yeğlenen hizmet sağlayıcıları kodu",
+    "WARNING! This token is very important and must be handled carefully. You should only give it to a Nextcloud official!" : "UYARI! Bu kod çok önemlidir ve dikkatle korunması gerekir. Bu kodu yalnızca Nextcloud sorumlusuna vermelisiniz!",
     "Your provider token" : "Hizmet sağlayıcı kodunuz",
     "Reset your token" : "Kodunuzu sıfırlayın",
     "Preferred providers groups" : "Yeğlenen hizmet sağlayıcı grupları",
