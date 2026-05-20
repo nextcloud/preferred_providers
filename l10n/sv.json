@@ -34,6 +34,7 @@
     "Log in" : "Logga in",
     "After this step, you will receive a mail to verify your account within 6 hours." : "Efter detta steg får du ett e-postmeddelande för att verifiera ditt konto inom 6 timmar.",
     "Preferred providers token" : "Rekommenderad leverantörs token",
+    "WARNING! This token is very important and must be handled carefully. You should only give it to a Nextcloud official!" : "VARNING! Denna token är mycket viktig och måste hanteras omsorgsfullt. Du bör bara ge den till en Nextcloud-anställd!",
     "Your provider token" : "Din leverantörs token",
     "Reset your token" : "Återställ din token",
     "Preferred providers groups" : "Rekommenderad leverantörs grupper ",
