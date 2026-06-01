@@ -363,7 +363,7 @@ class PasswordController extends Controller {
 	 * @return string
 	 */
 	protected function generateServerLoginUrl() {
-		return 'nc://login/server:' . $this->getServerPath();
+		return 'nc://login/server:' . rtrim($this->urlGenerator->getBaseUrl(), '/');
 	}
 
 	/**
