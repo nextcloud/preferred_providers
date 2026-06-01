@@ -49,7 +49,7 @@ declare(strict_types=1);
 			<!-- Submit -->
 			<div id="submit-wrapper">
 				<input type="hidden" value="<?php print_unescaped($_['ocsapirequest']) ?>" name="ocsapirequest">
-				<input type="hidden" value="<?php print_unescaped($_['flow']) ?>" name="flow">
+				<input type="hidden" value="<?php p($_['flow']) ?>" name="flow">
 				<input class="login primary" type="submit" id="submit" value="<?php p($l->t('Log in')); ?>" />
 				<div class="submit-icon icon-confirm-white"></div>
 			</div>
