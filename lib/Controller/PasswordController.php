@@ -135,7 +135,7 @@ class PasswordController extends Controller {
 			], 'guest');
 		}
 
-		return $this->generateTemplate($token, $email, '', $ocs !== false ? (string)$ocs : '');
+		return $this->generateTemplate($token, $email, '', $ocs !== false);
 	}
 
 	/**
@@ -154,7 +154,7 @@ class PasswordController extends Controller {
 			], 'guest');
 		}
 
-		return $this->generateTemplate($token, $email, '', '', $flow);
+		return $this->generateTemplate($token, $email, '', false, $flow);
 	}
 
 	/**
@@ -202,14 +202,14 @@ class PasswordController extends Controller {
 		try {
 			$user = $this->userManager->get($email);
 			if (!$user->setPassword($password)) {
-				return $this->generateTemplate($token, $email, $this->l10n->t('Unable to set the password. Contact your provider.'), $ocsapirequest, $flow);
+				return $this->generateTemplate($token, $email, $this->l10n->t('Unable to set the password. Contact your provider.'), $ocsapirequest === '1', $flow);
 			}
 			$this->config->deleteUserValue($email, $this->appName, 'set_password');
 			$this->config->deleteUserValue($email, $this->appName, 'remind_password');
 			// logout and ignore failure
 			@\OC::$server->getUserSession()->unsetMagicInCookie();
 		} catch (\Exception $e) {
-			return $this->generateTemplate($token, $email, $e->getMessage(), $ocsapirequest, $flow);
+			return $this->generateTemplate($token, $email, $e->getMessage(), $ocsapirequest === '1', $flow);
 		}
 
 		if ($flow === 'V3') {
@@ -238,8 +238,8 @@ class PasswordController extends Controller {
 	 * @param string $error optional
 	 * @return TemplateResponse
 	 */
-	protected function generateTemplate(string $token, string $email, string $error = '', string $ocs = '', string $flow = '') {
-		$ocsapirequest = $flow === '' && $this->request->getHeader('OCS-APIREQUEST') ? '1' : $ocs;
+	protected function generateTemplate(string $token, string $email, string $error = '', bool $ocs = false, string $flow = '') {
+		$ocsapirequest = $flow === '' && ($this->request->getHeader('OCS-APIREQUEST') || $ocs) ? '1' : '';
 		$response = new TemplateResponse(
 			$this->appName,
 			'password-public',
