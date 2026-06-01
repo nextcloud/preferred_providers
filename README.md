@@ -4,7 +4,8 @@ This application allows external request of new accounts.
 
 ![screen](https://user-images.githubusercontent.com/14975046/45147329-f829de80-b1c4-11e8-8024-8e53dec98f6c.png)
 
-
+# Test
+## Web and Mobile Clients
 1. Install and enable the application.
 2. Go to the preferred providers settings and keep your token in reach.
 3. Make a POST request to `/ocs/v2.php/account/request/YOURTOKEN` with the `{email: 'myawesomemail@nextcloud.com'}` data.
@@ -16,6 +17,20 @@ This application allows external request of new accounts.
 4. The server will accept or not the request and provide a link for the user login and password definition https://cloud.yourdomain.com/apps/preferred_providers/password/set/yourawesomemail@nextcloud.com/aipTgstNeenUXe20BJTH8
 5. Meanwhile a mail confirmation is sent to the user. He have 6h to confirm or his account will be disabled
 6. After 4, if you set up the `OCS-APIREQUEST` header, you will be redirected to a `nc://` url with valid app-password token for your application. If not, you will be logged and redirected to the home page.
+
+## Desktop Client
+1. Install and enable the application.
+2. Go to the preferred providers settings and keep your token in reach.
+3. Make a POST request to `/ocs/v2.php/account/request/YOURTOKEN` with the `{email: 'myawesomemail@nextcloud.com', flow: 'V3'}` data.
+     ``` js
+    $.post('/ocs/v2.php/account/request/56300a2bf7e06894a5b59c1eb47f7460', {email:'myawesomemail@nextcloud.com', flow: 'V3'}).complete((response) => {
+        console.log(JSON.parse(response.responseText).data.setPassword)
+    })
+    ```
+4. The server will accept or not the request and provide a link for the user login and password definition https://cloud.yourdomain.com/apps/preferred_providers/password/set/yourawesomemail@nextcloud.com/aipTgstNeenUXe20BJTH8/flow/V3
+5. Meanwhile a mail confirmation is sent to the user. He have 6h to confirm or his account will be disabled
+6. You set the passord for the user and will be locked in automatically
+7. A `nc://` url with the server url will be triggered and the Desktop Client will open with the "Grant Access" Page
 
 ## Website part
 The repo for the register modue on the website is https://github.com/nextcloud/nextcloud-register/
