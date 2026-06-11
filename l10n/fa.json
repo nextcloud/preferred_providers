@@ -8,7 +8,7 @@
     "Unable to set the password. Contact your provider." : "تنظیم رمز عبور امکان پذیر نیست. با ارائه دهنده خود تماس بگیرید",
     "One more step required" : "یک مرحله دیگر لازم است",
     "It looks like you did not create your password yet." : "یک سطح دیگر",
-    "Did you encounter an issue during the sign-up process?" : "Did you encounter an issue during the sign-up process?",
+    "Did you encounter an issue during the sign-up process?" : "آیا در فرآیند ثبت‌نام با مشکلی روبه‌رو شدید؟",
     "Access your account" : "به حساب کاربری خود دسترسی پیدا کنید",
     "Welcome to your %s account" : "به شما خوش آمديد%s حساب",
     "Your %s account %s is now verified!" : "شما %s حساب %s اکنون تأیید شده است!",
@@ -38,8 +38,8 @@
     "Your provider token" : "نشان دهنده ارائه دهنده شما",
     "Reset your token" : "نماد خود را دوباره تنظیم کنید",
     "Preferred providers groups" : "گروه های ارائه دهنده ترجیحی",
-    "Select the groups to which each new account will be added." : "Select the groups to which each new account will be added.",
-    "Select the groups that will be assigned to each unconfirmed account. They will be deleted once the account has been verified." : "Select the groups that will be assigned to each unconfirmed account. They will be deleted once the account has been verified.",
-    "Select the groups that will be assigned to each confirmed account." : "Select the groups that will be assigned to each confirmed account."
+    "Select the groups to which each new account will be added." : "گروه‌هایی را که هر حساب جدید به آن‌ها افزوده می‌شود انتخاب کنید.",
+    "Select the groups that will be assigned to each unconfirmed account. They will be deleted once the account has been verified." : "گروه‌هایی را که به هر حساب تأییدنشده اختصاص داده می‌شوند انتخاب کنید. این گروه‌ها پس از تأیید حساب حذف خواهند شد.",
+    "Select the groups that will be assigned to each confirmed account." : "گروه‌هایی را که به هر حساب تأییدشده اختصاص داده می‌شوند انتخاب کنید."
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }
