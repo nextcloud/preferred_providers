@@ -11,7 +11,10 @@
     "Did you encounter an issue during the sign-up process?" : "Ar susidūrėte su problema registracijos metu?",
     "Access your account" : "Prisijunkite prie savo paskyros",
     "Welcome to your %s account" : "Sveiki atvykę į savo %s paskyrą",
+    "Your %s account %s is now verified!" : "Jūsų %s paskyra %s dabar patvirtinta!",
+    "Start using %s" : "Pradėti naudotis %s",
     "Install mobile or desktop client" : "Įdiekite mobilųjį arba kompiuterinį klientą",
+    "Verify your %s account" : "Patvirtinkite savo %s paskyrą",
     "Just one step left to complete your account setup." : "Liko tik vienas žingsnis iki paskyros nustatymo pabaigos.",
     "Click here to verify your email address" : "Spustelėkite čia, norėdami patvirtinti savo el. pašto adresą",
     "Your %s account has been disabled" : "Jūsų %s paskyra išjungta",
@@ -29,6 +32,14 @@
     "Password" : "Slaptažodis",
     "Set password" : "Nustatyti slaptažodį",
     "Log in" : "Prisijungti",
-    "After this step, you will receive a mail to verify your account within 6 hours." : "Po šio žingsnio, gausite laišką, skirtą patvirtinti paskyrą ne vėliau kaip per 6 valandas."
+    "After this step, you will receive a mail to verify your account within 6 hours." : "Po šio žingsnio, gausite laišką, skirtą patvirtinti paskyrą ne vėliau kaip per 6 valandas.",
+    "Preferred providers token" : "Pageidaujamų tiekėjų prieigos raktas",
+    "WARNING! This token is very important and must be handled carefully. You should only give it to a Nextcloud official!" : "ĮSPĖJIMAS! Šis prieigos raktas yra labai svarbus ir su juo reikia elgtis atsargiai. Jį turėtumėte atiduoti tik „Nextcloud“ atstovui!",
+    "Your provider token" : "Jūsų tiekėjo prieigos raktas",
+    "Reset your token" : "Atkurti savo prieigos raktą",
+    "Preferred providers groups" : "Pageidaujamų paslaugų teikėjų grupės",
+    "Select the groups to which each new account will be added." : "Pasirinkite grupes, prie kurių bus pridėta kiekviena nauja paskyra.",
+    "Select the groups that will be assigned to each unconfirmed account. They will be deleted once the account has been verified." : "Pasirinkite grupes, kurios bus priskirtos kiekvienai nepatvirtintai paskyrai. Jos bus ištrintos, kai paskyra bus patvirtinta.",
+    "Select the groups that will be assigned to each confirmed account." : "Pasirinkite grupes, kurios bus priskirtos kiekvienai patvirtintai paskyrai."
 },"pluralForm" :"nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);"
 }
