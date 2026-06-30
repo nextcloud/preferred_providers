@@ -1,0 +1,30 @@
+version = 1
+
+[[annotations]]
+path = [
+	"l10n/**",
+	"js/**",
+	"css/**",
+	"img/**",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2018 Nextcloud GmbH and Nextcloud contributors"
+SPDX-License-Identifier = "AGPL-3.0-or-later"
+
+[[annotations]]
+path = [
+	".github/**",
+	".tx/config",
+	".gitignore",
+	".php-cs-fixer.dist.php",
+	"Makefile",
+	"README.md",
+	"appinfo/info.xml",
+	"composer.json",
+	"composer.lock",
+	"vendor-bin/**/composer.json",
+	"tests/psalm-baseline.xml",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2018 Nextcloud GmbH and Nextcloud contributors"
+SPDX-License-Identifier = "CC0-1.0"
