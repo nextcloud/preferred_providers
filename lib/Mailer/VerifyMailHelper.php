@@ -2,31 +2,9 @@
 
 declare(strict_types=1);
 /**
- *
- * @copyright Copyright (c) 2017 Lukas Reschke <lukas@statuscode.ch>
- * @copyright Copyright (c) 2018 John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>
- *
- * @author Joas Schilling <coding@schilljs.com>
- * @author Leon Klingele <leon@struktur.de>
- * @author Lukas Reschke <lukas@statuscode.ch>
- * @author Morris Jobke <hey@morrisjobke.de>
- * @author John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2018 John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>
+ * SPDX-FileCopyrightText: 2017 Lukas Reschke <lukas@statuscode.ch>
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 namespace OCA\Preferred_Providers\Mailer;
@@ -116,8 +94,8 @@ class VerifyMailHelper {
 
 		// generate token + link
 		$token = $this->generateVerifyToken($user);
-		$link = $verified ? $this->urlGenerator->getAbsoluteURL('/') :
-			$this->urlGenerator->linkToRouteAbsolute($this->appName . '.mail.confirm_mail_address', ['email' => $userId, 'token' => $token]);
+		$link = $verified ? $this->urlGenerator->getAbsoluteURL('/')
+			: $this->urlGenerator->linkToRouteAbsolute($this->appName . '.mail.confirmmailaddress', ['email' => $userId, 'token' => $token]);
 
 		// generate mail template
 		$emailTemplate = $this->mailer->createEMailTemplate('account.Welcome', [
@@ -208,12 +186,12 @@ class VerifyMailHelper {
 	private function generateVerifyToken(IUser $user): string {
 		$token = $this->secureRandom->generate(
 			21,
-			ISecureRandom::CHAR_DIGITS .
-			ISecureRandom::CHAR_LOWER .
-			ISecureRandom::CHAR_UPPER
+			ISecureRandom::CHAR_DIGITS
+			. ISecureRandom::CHAR_LOWER
+			. ISecureRandom::CHAR_UPPER
 		);
 		$tokenValue = $this->timeFactory->getTime() . ':' . $token;
-		$mailAddress = ($user->getEMailAddress() !== null) ? $user->getEMailAddress() : '';
+		$mailAddress = $user->getEMailAddress() ?? '';
 		$encryptedValue = $this->crypto->encrypt($tokenValue, $mailAddress . $this->config->getSystemValue('secret'));
 		$this->config->setUserValue($user->getUID(), $this->appName, 'verify_token', $encryptedValue);
 		return $token;

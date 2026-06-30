@@ -2,25 +2,8 @@
 
 declare(strict_types=1);
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 namespace OCA\Preferred_Providers\Settings;
@@ -32,9 +15,6 @@ use OCP\Security\ISecureRandom;
 use OCP\Settings\ISettings;
 
 class Admin implements ISettings {
-
-	/** @var string */
-	private $appName;
 
 	/** @var IConfig */
 	private $config;
@@ -52,11 +32,12 @@ class Admin implements ISettings {
 	 * @param ISecureRandom $secureRandom
 	 * @param IGroupManager $groupManager
 	 */
-	public function __construct(string $appName,
+	public function __construct(
+		private readonly string $appName,
 		IConfig $config,
 		ISecureRandom $secureRandom,
-		IGroupManager $groupManager) {
-		$this->appName = $appName;
+		IGroupManager $groupManager,
+	) {
 		$this->config = $config;
 		$this->secureRandom = $secureRandom;
 		$this->groupManager = $groupManager;
@@ -65,11 +46,12 @@ class Admin implements ISettings {
 	/**
 	 * @return TemplateResponse
 	 */
+	#[\Override]
 	public function getForm() {
 		// Generate new token if none exists
 		$provider_token = $this->config->getAppValue($this->appName, 'provider_token', '');
 		if ($provider_token === '') {
-			$provider_token = md5($this->secureRandom->generate(10));
+			$provider_token = md5((string)$this->secureRandom->generate(10));
 			$this->config->setAppValue($this->appName, 'provider_token', $provider_token);
 		}
 
@@ -81,8 +63,8 @@ class Admin implements ISettings {
 		$parameters = [
 			'provider_token' => $provider_token,
 			'provider_groups' => explode(',', $provider_groups),
-			'provider_groups_confirmed' => explode(',', $provider_groups_confirmed),
-			'provider_groups_unconfirmed' => explode(',', $provider_groups_unconfirmed),
+			'provider_groups_confirmed' => explode(',', (string)$provider_groups_confirmed),
+			'provider_groups_unconfirmed' => explode(',', (string)$provider_groups_unconfirmed),
 			'groups' => $this->groupManager->search('')
 		];
 
@@ -92,6 +74,7 @@ class Admin implements ISettings {
 	/**
 	 * @return string the section ID
 	 */
+	#[\Override]
 	public function getSection() {
 		return 'preferred_providers';
 	}
@@ -103,6 +86,7 @@ class Admin implements ISettings {
 	 *
 	 * E.g.: 70
 	 */
+	#[\Override]
 	public function getPriority() {
 		return 5;
 	}

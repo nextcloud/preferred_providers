@@ -2,25 +2,8 @@
 
 declare(strict_types=1);
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 namespace OCA\Preferred_Providers\Event;
@@ -42,9 +25,6 @@ use Psr\Log\LoggerInterface;
 class LoginListener implements IEventListener {
 	use ExpireUserTrait;
 
-	/** @var string */
-	private $appName;
-
 	/** @var IUserManager */
 	private $userManager;
 
@@ -54,14 +34,8 @@ class LoginListener implements IEventListener {
 	/** @var IConfig */
 	private $config;
 
-	/** @var LoggerInterface */
-	private $logger;
-
 	/** @var ITimeFactory */
 	private $timeFactory;
-
-	/** @var VerifyMailHelper */
-	private $mailHelper;
 
 	/**
 	 * @param string $appName
@@ -72,20 +46,19 @@ class LoginListener implements IEventListener {
 	 * @param ITimeFactory $timeFactory
 	 * @param VerifyMailHelper $mailHelper
 	 */
-	public function __construct(string $appName,
+	public function __construct(
+		private string $appName,
 		IUserManager $userManager,
 		IUserSession $userSession,
 		IConfig $config,
-		LoggerInterface $logger,
+		private LoggerInterface $logger,
 		ITimeFactory $timeFactory,
-		VerifyMailHelper $mailHelper) {
-		$this->appName = $appName;
+		private VerifyMailHelper $mailHelper,
+	) {
 		$this->userManager = $userManager;
 		$this->userSession = $userSession;
 		$this->config = $config;
-		$this->logger = $logger;
 		$this->timeFactory = $timeFactory;
-		$this->mailHelper = $mailHelper;
 	}
 
 	/**
@@ -93,6 +66,7 @@ class LoginListener implements IEventListener {
 	 *
 	 * @param Event $event
 	 */
+	#[\Override]
 	public function handle(Event $event): void {
 		if ($event instanceof BeforeUserLoggedInEvent) {
 			$this->verifyUser($event->getUsername());
