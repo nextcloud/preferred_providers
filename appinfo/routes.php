@@ -33,6 +33,7 @@ return [
 	'routes' => [
 		['name' => 'mail#confirm_mail_address', 'url' => '/login/confirm/{email}/{token}', 'verb' => 'GET'],
 		['name' => 'password#set_password', 'url' => '/password/set/{email}/{token}', 'verb' => 'GET'],
+		['name' => 'password#set_password_flow', 'url' => '/password/set/{email}/{token}/flow/{flow}', 'verb' => 'GET'],
 		['name' => 'password#set_password_ocs', 'url' => '/password/set/{email}/{token}/{ocs}', 'verb' => 'GET'],
 		['name' => 'password#submit_password', 'url' => '/password/submit/{token}', 'verb' => 'POST']
 	]

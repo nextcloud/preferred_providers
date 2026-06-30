@@ -139,12 +139,13 @@ class AccountController extends ApiController {
 	 *
 	 * @param string $token The security token required
 	 * @param string $email The email to create an account for
+	 * @param string $flow The registration flow variant
 	 *
 	 * @return DataResponse the app password for the user
 	 *
 	 * @throws OCSForbiddenException
 	 */
-	public function requestAccount(string $token = '', string $email = ''): DataResponse {
+	public function requestAccount(string $token = '', string $email = '', string $flow = ''): DataResponse {
 		// checking if valid token
 		$provider_token = $this->config->getAppValue($this->appName, 'provider_token');
 		if ($provider_token === '' || $provider_token !== $token) {
@@ -213,7 +214,7 @@ class AccountController extends ApiController {
 
 		// generate set password token
 		try {
-			$setPasswordUrl = $this->processSetPasswordToken($email);
+			$setPasswordUrl = $this->processSetPasswordToken($email, $flow);
 		} catch (\Exception $e) {
 			$this->logger->error("An error occured during the password token generation for $email", ['exception' => $e]);
 
@@ -229,13 +230,18 @@ class AccountController extends ApiController {
 	 * Generate token and process it
 	 *
 	 * @param string $email mail address
+	 * @param string $flow The registration flow variant
 	 * @return string reset password url
 	 */
-	private function processSetPasswordToken(string $email): string {
+	private function processSetPasswordToken(string $email, string $flow = ''): string {
 		$token = $this->generateRandomToken();
 		$encryptedValue = $this->crypto->encrypt($token, $email . $this->config->getSystemValue('secret'));
 		$this->config->setUserValue($email, $this->appName, 'set_password', $encryptedValue);
 		$this->config->setUserValue($email, $this->appName, 'remind_password', strval(time()));
+
+		if ($flow === 'V3') {
+			return $this->urlGenerator->linkToRouteAbsolute($this->appName . '.password.set_password_flow', ['email' => $email, 'token' => $token, 'flow' => $flow]);
+		}
 
 		return $this->urlGenerator->linkToRouteAbsolute($this->appName . '.password.set_password', ['email' => $email, 'token' => $token]);
 	}
