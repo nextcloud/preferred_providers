@@ -18,26 +18,16 @@ use Psr\Log\LoggerInterface;
 
 class NotifyUnsetPassword extends TimedJob {
 
-	/** @var string */
-	private $appName;
-
-	/** @var IDBConnection */
-	private $connection;
-
-	/** @var IConfig */
-	private $config;
+	private string $appName = 'preferred_providers';
 
 	public function __construct(
 		ITimeFactory $timeFactory,
 		private readonly LoggerInterface $logger,
-		IDBConnection $connection,
+		private readonly IDBConnection $connection,
 		private readonly SetPasswordMailHelper $mailHelper,
-		IConfig $config,
+		private readonly IConfig $config,
 	) {
 		parent::__construct($timeFactory);
-		$this->appName = 'preferred_providers';
-		$this->connection = $connection;
-		$this->config = $config;
 
 		// Run once per 5 minutes
 		$this->setInterval(5 * 60);

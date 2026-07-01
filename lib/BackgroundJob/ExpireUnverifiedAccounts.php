@@ -24,11 +24,11 @@ class ExpireUnverifiedAccounts extends TimedJob {
 
 	public function __construct(
 		ITimeFactory $timeFactory,
-		private IConfig $config,
-		private LoggerInterface $logger,
-		private IDBConnection $connection,
-		private VerifyMailHelper $mailHelper,
-		private IUserManager $userManager,
+		private readonly IConfig $config,
+		private readonly LoggerInterface $logger,
+		private readonly IDBConnection $connection,
+		private readonly VerifyMailHelper $mailHelper,
+		private readonly IUserManager $userManager,
 	) {
 		parent::__construct($timeFactory);
 
