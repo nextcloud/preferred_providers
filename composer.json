@@ -36,7 +36,8 @@
 		"psalm": "psalm --no-cache --threads=$(nproc)",
 		"psalm:update-baseline": "psalm --threads=1 --update-baseline",
 		"rector": "rector --dry-run",
-		"rector:fix": "rector"
+		"rector:fix": "rector",
+		"test:unit": "phpunit --configuration tests/phpunit.xml"
 	},
 	"require-dev": {
 		"bamarni/composer-bin-plugin": "^1.8"

@@ -20,35 +20,17 @@ use Psr\Log\LoggerInterface;
 class ExpireUnverifiedAccounts extends TimedJob {
 	use ExpireUserTrait;
 
-	/** @var string */
-	private $appName;
-
-	/**
-	 * @var IUserManager
-	 */
-	private $userManager;
-
-	/** @var IConfig */
-	private $config;
-
-	/** @var ITimeFactory */
-	private $timeFactory;
-
-	/** @var IDBConnection */
-	private $connection;
+	private string $appName = 'preferred_providers';
 
 	public function __construct(
 		ITimeFactory $timeFactory,
-		IConfig $config,
+		private IConfig $config,
 		private LoggerInterface $logger,
-		IDBConnection $connection,
+		private IDBConnection $connection,
 		private VerifyMailHelper $mailHelper,
+		private IUserManager $userManager,
 	) {
 		parent::__construct($timeFactory);
-
-		$this->appName = 'preferred_providers';
-		$this->config = $config;
-		$this->connection = $connection;
 
 		// Run once per 15 minutes
 		$this->setInterval(15 * 60);

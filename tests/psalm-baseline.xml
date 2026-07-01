@@ -8,7 +8,6 @@
   <file src="lib/BackgroundJob/ExpireUnverifiedAccounts.php">
     <MissingDependency>
       <code><![CDATA[ITimeFactory]]></code>
-      <code><![CDATA[ITimeFactory]]></code>
     </MissingDependency>
   </file>
   <file src="lib/BackgroundJob/NotifyUnsetPassword.php">
