@@ -2,7 +2,7 @@
 <info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
     <id>preferred_providers</id>
     <name>Preferred Providers</name>
-    <summary>Allow nextcloud to request user accounts</summary>
+    <summary>Allow Nextcloud to request user accounts</summary>
     <description><![CDATA[Registration handling app for Nextcloud partners only]]></description>
     <version>1.19.0-dev.0</version>
     <licence>agpl</licence>
