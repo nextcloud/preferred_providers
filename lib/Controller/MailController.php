@@ -79,8 +79,8 @@ class MailController extends Controller {
 		}
 
 		// add/remove user to groups
-		$unconfirmedGroups = $this->appConfig->getValue($this->appName, 'provider_groups_unconfirmed', '');
-		$confirmedGroups = $this->appConfig->getValue($this->appName, 'provider_groups_confirmed', '');
+		$unconfirmedGroups = $this->appConfig->getValueString($this->appName, 'provider_groups_unconfirmed', '');
+		$confirmedGroups = $this->appConfig->getValueString($this->appName, 'provider_groups_confirmed', '');
 
 		if ($unconfirmedGroups !== '') {
 			$groupIds = explode(',', $unconfirmedGroups);

@@ -60,7 +60,7 @@ class SettingsController extends OCSController {
 	#[ApiRoute(verb: 'GET', url: '/api/v1/token/new')]
 	public function resetToken(): DataResponse {
 		$provider_token = md5($this->secureRandom->generate(10));
-		$this->appConfig->setValue('preferred_providers', 'provider_token', $provider_token);
+		$this->appConfig->setValueString('preferred_providers', 'provider_token', $provider_token);
 
 		return new DataResponse(['token' => $provider_token]);
 	}
@@ -81,9 +81,9 @@ class SettingsController extends OCSController {
 		}
 
 		if ($for === 'all') {
-			$this->appConfig->setValue('preferred_providers', 'provider_groups', implode(',', $groups));
+			$this->appConfig->setValueString('preferred_providers', 'provider_groups', implode(',', $groups));
 		} elseif ($for === 'confirmed' || $for === 'unconfirmed') {
-			$this->appConfig->setValue('preferred_providers', 'provider_groups_' . $for, implode(',', $groups));
+			$this->appConfig->setValueString('preferred_providers', 'provider_groups_' . $for, implode(',', $groups));
 		} else {
 			throw new OCSBadRequestException();
 		}

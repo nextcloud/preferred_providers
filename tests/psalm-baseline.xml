@@ -21,21 +21,12 @@
       <code><![CDATA[$this->timeFactory]]></code>
       <code><![CDATA[private]]></code>
     </MissingDependency>
-    <UndefinedInterfaceMethod>
-      <code><![CDATA[getValue]]></code>
-      <code><![CDATA[getValue]]></code>
-      <code><![CDATA[getValue]]></code>
-    </UndefinedInterfaceMethod>
   </file>
   <file src="lib/Controller/MailController.php">
     <MissingDependency>
       <code><![CDATA[$this->timeFactory]]></code>
       <code><![CDATA[private]]></code>
     </MissingDependency>
-    <UndefinedInterfaceMethod>
-      <code><![CDATA[getValue]]></code>
-      <code><![CDATA[getValue]]></code>
-    </UndefinedInterfaceMethod>
   </file>
   <file src="lib/Controller/PasswordController.php">
     <InvalidParamDefault>
@@ -70,11 +61,6 @@
     <UndefinedClass>
       <code><![CDATA[\OC]]></code>
     </UndefinedClass>
-    <UndefinedInterfaceMethod>
-      <code><![CDATA[setValue]]></code>
-      <code><![CDATA[setValue]]></code>
-      <code><![CDATA[setValue]]></code>
-    </UndefinedInterfaceMethod>
   </file>
   <file src="lib/Event/LoginListener.php">
     <MissingDependency>

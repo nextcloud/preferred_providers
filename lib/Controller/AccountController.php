@@ -71,7 +71,7 @@ class AccountController extends ApiController {
 	#[ApiRoute(verb: 'POST', url: '/request/{token}', root: '/account')]
 	public function requestAccount(string $token = '', string $email = '', string $flow = ''): DataResponse {
 		// checking if valid token
-		$provider_token = $this->appConfig->getValue($this->appName, 'provider_token');
+		$provider_token = $this->appConfig->getValueString($this->appName, 'provider_token');
 		if ($provider_token === '' || $provider_token !== $token) {
 			return new DataResponse(['data' => ['message' => 'invalid token']], Http::STATUS_UNAUTHORIZED);
 		}
@@ -93,8 +93,8 @@ class AccountController extends ApiController {
 			$newUser = $this->userManager->createUser($email, $password);
 
 			// add user to groups
-			$groups = $this->appConfig->getValue($this->appName, 'provider_groups', '');
-			$unconfirmedGroups = $this->appConfig->getValue($this->appName, 'provider_groups_unconfirmed', '');
+			$groups = $this->appConfig->getValueString($this->appName, 'provider_groups', '');
+			$unconfirmedGroups = $this->appConfig->getValueString($this->appName, 'provider_groups_unconfirmed', '');
 
 			if (!empty($groups)) {
 				$groupIds = array_merge(explode(',', $groups), explode(',', $unconfirmedGroups));
