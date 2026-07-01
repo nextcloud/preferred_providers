@@ -1,32 +1,20 @@
 <?php
 
 declare(strict_types=1);
+
 /**
- * @copyright Copyright (c) 2024 Seyed Masih Sajadi <smasihsajadi@gmail.com>
- *
- * @author Seyed Masih Sajadi <smasihsajadi@gmail.com>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2024 Seyed Masih Sajadi <smasihsajadi@gmail.com>
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 namespace OCA\Preferred_Providers\Controller;
 
 use OCA\Preferred_Providers\Mailer\VerifyMailHelper;
 use OCP\AppFramework\Controller;
+use OCP\AppFramework\Http\Attribute\AnonRateLimit;
+use OCP\AppFramework\Http\Attribute\FrontpageRoute;
+use OCP\AppFramework\Http\Attribute\NoCSRFRequired;
+use OCP\AppFramework\Http\Attribute\PublicPage;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\IConfig;
@@ -36,51 +24,37 @@ use Psr\Log\LoggerInterface;
 
 class ReactivateController extends Controller {
 
-	/** @var string */
-	protected $appName;
-
-	/** @var IConfig */
-	private $config;
-
-	/** @var IUserManager */
-	private $userManager;
-
-	/** @var ITimeFactory */
-	private $timeFactory;
-
-	/** @var VerifyMailHelper */
-	private $verifyMailHelper;
-
-	/** @var LoggerInterface */
-	private $logger;
-
-	public function __construct(string $appName,
+	public function __construct(
+		string $appName,
 		IRequest $request,
-		IConfig $config,
-		IUserManager $userManager,
-		ITimeFactory $timeFactory,
-		VerifyMailHelper $verifyMailHelper,
-		LoggerInterface $logger) {
+		private readonly IConfig $config,
+		private readonly IUserManager $userManager,
+		private readonly ITimeFactory $timeFactory,
+		private readonly VerifyMailHelper $verifyMailHelper,
+		private readonly LoggerInterface $logger,
+	) {
 		parent::__construct($appName, $request);
-		$this->appName = $appName;
-		$this->config = $config;
-		$this->userManager = $userManager;
-		$this->timeFactory = $timeFactory;
-		$this->verifyMailHelper = $verifyMailHelper;
-		$this->logger = $logger;
 	}
 
 	/**
-	 * @NoCSRFRequired
-	 * @PublicPage
+	 * Render the self-service reactivation form.
 	 */
+	#[NoCSRFRequired]
+	#[PublicPage]
+	#[FrontpageRoute(verb: 'GET', url: '/reactivate')]
 	public function showForm(): TemplateResponse {
 		return new TemplateResponse($this->appName, 'reactivate-public', ['status' => 'form'], 'guest');
 	}
 
 	/**
-	 * @PublicPage
+	 * Re-enable an account that this app auto-disabled and send a fresh
+	 * verification mail. The response is identical whether or not the address
+	 * matched an eligible account, to prevent account enumeration.
 	 */
+	#[NoCSRFRequired]
+	#[PublicPage]
+	#[AnonRateLimit(limit: 3, period: 60)]
+	#[FrontpageRoute(verb: 'POST', url: '/reactivate')]
 	public function requestReactivation(string $email = ''): TemplateResponse {
 		$user = $this->userManager->get($email);
 

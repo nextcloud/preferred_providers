@@ -50,6 +50,12 @@
       <code><![CDATA[unsetMagicInCookie]]></code>
     </UndefinedInterfaceMethod>
   </file>
+  <file src="lib/Controller/ReactivateController.php">
+    <MissingDependency>
+      <code><![CDATA[$this->timeFactory]]></code>
+      <code><![CDATA[private]]></code>
+    </MissingDependency>
+  </file>
   <file src="lib/Controller/SettingsController.php">
     <MissingDependency>
       <code><![CDATA[protected]]></code>
