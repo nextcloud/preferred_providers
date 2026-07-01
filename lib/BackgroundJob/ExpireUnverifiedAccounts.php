@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace OCA\Preferred_Providers\BackgroundJob;
 
+use OCA\Preferred_Providers\AppInfo\Application;
 use OCA\Preferred_Providers\Helper\ExpireUserTrait;
 use OCA\Preferred_Providers\Mailer\VerifyMailHelper;
 use OCP\AppFramework\Utility\ITimeFactory;
@@ -19,8 +20,6 @@ use Psr\Log\LoggerInterface;
 
 class ExpireUnverifiedAccounts extends TimedJob {
 	use ExpireUserTrait;
-
-	private string $appName = 'preferred_providers';
 
 	public function __construct(
 		ITimeFactory $timeFactory,
@@ -42,7 +41,7 @@ class ExpireUnverifiedAccounts extends TimedJob {
 	#[\Override]
 	public function run($argument) {
 		// process if token is 5min old
-		$users = $this->getUsersForUserLowerThanValue($this->appName, 'disable_user_after', strval(time()));
+		$users = $this->getUsersForUserLowerThanValue(Application::APP_ID, 'disable_user_after', strval(time()));
 		foreach ($users as $userId) {
 			$this->expireUser($userId);
 		}

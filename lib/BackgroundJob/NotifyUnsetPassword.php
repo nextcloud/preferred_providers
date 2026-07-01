@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace OCA\Preferred_Providers\BackgroundJob;
 
 use Exception;
+use OCA\Preferred_Providers\AppInfo\Application;
 use OCA\Preferred_Providers\Mailer\SetPasswordMailHelper;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\BackgroundJob\TimedJob;
@@ -17,8 +18,6 @@ use OCP\IDBConnection;
 use Psr\Log\LoggerInterface;
 
 class NotifyUnsetPassword extends TimedJob {
-
-	private string $appName = 'preferred_providers';
 
 	public function __construct(
 		ITimeFactory $timeFactory,
@@ -39,13 +38,13 @@ class NotifyUnsetPassword extends TimedJob {
 	#[\Override]
 	public function run($argument) {
 		// process if token is 5min old
-		$users = $this->getUsersForUserLowerThanValue($this->appName, 'remind_password', strval(time() - 5 * 60));
+		$users = $this->getUsersForUserLowerThanValue(Application::APP_ID, 'remind_password', strval(time() - 5 * 60));
 		foreach ($users as $userId) {
 			$emailTemplate = $this->mailHelper->generateTemplate($userId);
 			try {
 				$this->mailHelper->sendMail($userId, $emailTemplate);
 				// only send one mail
-				$this->config->deleteUserValue($userId, $this->appName, 'remind_password');
+				$this->config->deleteUserValue($userId, Application::APP_ID, 'remind_password');
 				$this->logger->debug('Password definition mail sent to ' . $userId);
 			} catch (Exception) {
 				$this->logger->debug('Error while sending the password definition mail to  ' . $userId);

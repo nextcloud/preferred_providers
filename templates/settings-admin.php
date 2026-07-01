@@ -5,8 +5,8 @@ declare(strict_types=1);
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-\OCP\Util::addScript('preferred_providers', 'admin-settings');
-\OCP\Util::addStyle('preferred_providers', 'admin-settings');
+\OCP\Util::addScript(\OCA\Preferred_Providers\AppInfo\Application::APP_ID, 'admin-settings');
+\OCP\Util::addStyle(\OCA\Preferred_Providers\AppInfo\Application::APP_ID, 'admin-settings');
 ?>
 
 <div id="token-section" class="section">

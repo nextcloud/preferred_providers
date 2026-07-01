@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace OCA\Preferred_Providers\Settings;
 
+use OCA\Preferred_Providers\AppInfo\Application;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IConfig;
 use OCP\IGroupManager;
@@ -76,7 +77,7 @@ class Admin implements ISettings {
 	 */
 	#[\Override]
 	public function getSection() {
-		return 'preferred_providers';
+		return Application::APP_ID;
 	}
 
 	/**

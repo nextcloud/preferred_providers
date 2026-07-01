@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace OCA\Preferred_Providers\Settings;
 
+use OCA\Preferred_Providers\AppInfo\Application;
 use OCP\IL10N;
 use OCP\IURLGenerator;
 use OCP\Settings\IIconSection;
@@ -35,7 +36,7 @@ class Section implements IIconSection {
 	 */
 	#[\Override]
 	public function getID() {
-		return 'preferred_providers';
+		return Application::APP_ID;
 	}
 
 	/**
@@ -66,6 +67,6 @@ class Section implements IIconSection {
 	 */
 	#[\Override]
 	public function getIcon() {
-		return $this->url->imagePath('preferred_providers', 'app-dark.svg');
+		return $this->url->imagePath(Application::APP_ID, 'app-dark.svg');
 	}
 }

@@ -5,8 +5,8 @@ declare(strict_types=1);
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-\OCP\Util::addScript('preferred_providers', 'password-public');
-\OCP\Util::addStyle('preferred_providers', 'password-public');
+\OCP\Util::addScript(\OCA\Preferred_Providers\AppInfo\Application::APP_ID, 'password-public');
+\OCP\Util::addStyle(\OCA\Preferred_Providers\AppInfo\Application::APP_ID, 'password-public');
 
 ?>
 <div class="guest-box login-box">
