@@ -1,6 +1,6 @@
 { "translations": {
+    "Log in" : "Giriň",
     "Password" : "Açarsöz",
-    "Set password" : "Paroly düzüň",
-    "Log in" : "Giriň"
+    "Set password" : "Paroly düzüň"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

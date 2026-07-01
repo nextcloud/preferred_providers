@@ -16,11 +16,11 @@
     "Click here to verify your email address" : "Napsauta tästä vahvistaaksesi sähköpostiosoitteesi",
     "A confirmation mail was sent to {email}. Make sure to confirm the account within 6 hours." : "Vahvistussähköposti lähetettiin osoitteeseen {email}. Vahvista tilisi kuuden tunnin kuluessa.",
     "Please verify your email address" : "Vahvista sähköpostiosoitteesi",
+    "Log in" : "Kirjaudu",
     "Set your password" : "Aseta salasanasi",
     "Account name or email" : "Tilin nimi tai sähköpostiosoite",
     "Password" : "Salasana",
     "Set password" : "Aseta salasana",
-    "Log in" : "Kirjaudu",
     "After this step, you will receive a mail to verify your account within 6 hours." : "Tämän vaiheen jälkeen saat sähköpostiviestin, jonka avulla sinun tulee vahvistaa tilisi kuuden tunnin kuluessa.",
     "Reset your token" : "Nollaa polettisi",
     "Select the groups to which each new account will be added." : "Valitse ryhmät, joihin uudet tilit lisätään."

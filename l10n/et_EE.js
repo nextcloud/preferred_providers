@@ -16,11 +16,11 @@ OC.L10N.register(
     "Please verify your email address" : "Palun kinnita oma e-posti aadress",
     "Preferred providers" : "Eelistatud teenusepakkujad",
     "Registration handling app for Nextcloud partners only" : "Vaid Nextcloudi partneritele mõeldud registreerumiste haldus",
+    "Log in" : "Logi sisse",
     "Set your password" : "Sisesta oma salasõna",
     "Account name or email" : "Konto nimi või e-posti aadress",
     "Password" : "Salasõna",
     "Set password" : "Määra salasõna",
-    "Log in" : "Logi sisse",
     "WARNING! This token is very important and must be handled carefully. You should only give it to a Nextcloud official!" : "HOIATUS! See tunnusluba on ülioluline ja pead seda hoolikalt hoidma.  Võid teda edastada vaid Nextcloudi esindajale!",
     "Reset your token" : "Lähtesta oma tunnusluba",
     "Select the groups to which each new account will be added." : "Valitud grupid, kuhu iga uus kasutajakonto lisatakse."

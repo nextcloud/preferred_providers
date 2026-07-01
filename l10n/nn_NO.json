@@ -1,6 +1,6 @@
 { "translations": {
+    "Log in" : "Logg inn",
     "Set your password" : "Vel eit passord",
-    "Password" : "Passord",
-    "Log in" : "Logg inn"
+    "Password" : "Passord"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

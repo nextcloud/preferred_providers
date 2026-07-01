@@ -3,9 +3,9 @@ OC.L10N.register(
     {
     "The token is invalid" : "Памылковы токен.",
     "The token is expired, please contact your provider" : "Тэрмін дзеяння токена скончыўся, звярніцеся да пастаўшчыка",
+    "Log in" : "Увайсці",
     "Account name or email" : "Імя ўліковага запісу або email",
     "Password" : "Пароль",
-    "Log in" : "Увайсці",
     "Preferred providers token" : "Токен прыярытэтных пастаўшчыкоў",
     "Your provider token" : "Ваш токен пастаўшчыка",
     "Reset your token" : "Скінуць токен"

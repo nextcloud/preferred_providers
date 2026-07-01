@@ -1,10 +1,10 @@
 OC.L10N.register(
     "preferred_providers",
     {
+    "Log in" : "Autentificare",
     "Set your password" : "Setează parola",
     "Account name or email" : "Cont utilizator sau email",
     "Password" : "Parolă",
-    "Set password" : "Setare parolă",
-    "Log in" : "Autentificare"
+    "Set password" : "Setare parolă"
 },
 "nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));");

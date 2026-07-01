@@ -5,10 +5,10 @@ OC.L10N.register(
     "The token is expired, please contact your provider" : "El pase caducó, ponte en contautu col fornidor",
     "Preferred providers" : "Fornidores preferíos",
     "Preferred Providers" : "Fornidores preferíos",
+    "Log in" : "Aniciar la sesión",
     "Set your password" : "Afitar la contraseña",
     "Account name or email" : "Nome o direición de corréu de la cuenta",
     "Password" : "Contraseña",
-    "Set password" : "Afitar la contraseña",
-    "Log in" : "Aniciar la sesión"
+    "Set password" : "Afitar la contraseña"
 },
 "nplurals=2; plural=(n != 1);");
