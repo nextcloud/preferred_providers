@@ -4,7 +4,7 @@
     <name>Preferred Providers</name>
     <summary>Allow Nextcloud to request user accounts</summary>
     <description><![CDATA[Registration handling app for Nextcloud partners only]]></description>
-    <version>1.19.0-dev.0</version>
+    <version>1.20.0-dev.0</version>
     <licence>agpl</licence>
     <author>John Molakvoæ</author>
     <namespace>Preferred_Providers</namespace>
@@ -17,6 +17,11 @@
         <job>OCA\Preferred_Providers\BackgroundJob\NotifyUnsetPassword</job>
         <job>OCA\Preferred_Providers\BackgroundJob\ExpireUnverifiedAccounts</job>
     </background-jobs>
+    <repair-steps>
+        <post-migration>
+            <step>OCA\Preferred_Providers\Migration\BackfillPpDisabled</step>
+        </post-migration>
+    </repair-steps>
     <settings>
         <admin>OCA\Preferred_Providers\Settings\Admin</admin>
         <admin-section>OCA\Preferred_Providers\Settings\Section</admin-section>

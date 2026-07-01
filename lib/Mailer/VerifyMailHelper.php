@@ -4,6 +4,7 @@ declare(strict_types=1);
 /**
  * SPDX-FileCopyrightText: 2018 John Molakvoæ (skjnldsv) <skjnldsv@protonmail.com>
  * SPDX-FileCopyrightText: 2017 Lukas Reschke <lukas@statuscode.ch>
+ * SPDX-FileCopyrightText: 2024 Seyed Masih Sajadi <smasihsajadi@gmail.com>
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
@@ -156,7 +157,11 @@ class VerifyMailHelper {
 		$emailTemplate->setSubject($this->l10n->t('Your %s account has been disabled', [$this->themingDefaults->getName()]));
 		$emailTemplate->addHeader();
 		$emailTemplate->addBodyText($this->l10n->t('Your %s account %s has been disabled because it was not verified in time.', [$this->themingDefaults->getName(), $userId]));
-		$emailTemplate->addBodyText($this->l10n->t('Please contact your provider for further assistance.'));
+		$reactivateLink = $this->urlGenerator->linkToRouteAbsolute($this->appName . '.reactivate.showform');
+		$emailTemplate->addBodyButton(
+			$this->l10n->t('Reactivate your account'),
+			$reactivateLink
+		);
 		$emailTemplate->addFooter();
 		return $emailTemplate;
 	}

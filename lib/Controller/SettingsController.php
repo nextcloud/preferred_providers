@@ -117,6 +117,10 @@ class SettingsController extends OCSController {
 			$user->setEnabled(true);
 		}
 
+		// an admin reactivation supersedes the self-service flow: drop the
+		// auto-disabled flag so it cannot linger and be acted on later
+		$this->config->deleteUserValue($userId, $this->appName, 'pp_disabled');
+
 		try {
 			// send email without the reset password link
 			$emailTemplate = $this->verifyMailHelper->generateTemplate($user);

@@ -163,6 +163,11 @@ class SettingsControllerTest extends TestCase {
 		$user->expects($this->never())->method('setEnabled');
 		$this->userManager->method('get')->with('user')->willReturn($user);
 
+		// admin reactivation clears any lingering self-service flag
+		$this->config->expects($this->once())
+			->method('deleteUserValue')
+			->with('user', Application::APP_ID, 'pp_disabled');
+
 		$emailTemplate = $this->createMock(IEMailTemplate::class);
 		$this->verifyMailHelper->expects($this->once())
 			->method('generateTemplate')

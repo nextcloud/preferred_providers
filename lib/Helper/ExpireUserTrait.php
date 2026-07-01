@@ -1,8 +1,10 @@
 <?php
 
 declare(strict_types=1);
+
 /**
  * SPDX-FileCopyrightText: 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * SPDX-FileCopyrightText: 2024 Seyed Masih Sajadi <smasihsajadi@gmail.com>
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
@@ -27,6 +29,9 @@ trait ExpireUserTrait {
 
 		// disabling
 		$user->setEnabled(false);
+		// flag the account as auto-disabled by this app, so it can be told apart
+		// from admin-disabled accounts and offered self-service reactivation
+		$this->config->setUserValue($userId, $this->appName, 'pp_disabled', '1');
 
 		// removing token to avoid conflict with further manual manipulation of the user
 		$this->config->deleteUserValue($userId, $this->appName, 'disable_user_after');
