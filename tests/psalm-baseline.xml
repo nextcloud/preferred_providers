@@ -1,41 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.12.0@f90118cdeacd0088e7215e64c0c99ceca819e176">
+<files psalm-version="6.16.1@f1f5de594dc76faf8784e02d3dc4716c91c6f6ac">
+  <file src="lib/AppInfo/Application.php">
+    <MissingDependency>
+      <code><![CDATA[BeforeUserLoggedInEvent]]></code>
+    </MissingDependency>
+  </file>
+  <file src="lib/BackgroundJob/ExpireUnverifiedAccounts.php">
+    <MissingDependency>
+      <code><![CDATA[ITimeFactory]]></code>
+      <code><![CDATA[ITimeFactory]]></code>
+    </MissingDependency>
+  </file>
+  <file src="lib/BackgroundJob/NotifyUnsetPassword.php">
+    <MissingDependency>
+      <code><![CDATA[ITimeFactory]]></code>
+    </MissingDependency>
+  </file>
+  <file src="lib/Controller/AccountController.php">
+    <MissingDependency>
+      <code><![CDATA[$this->timeFactory]]></code>
+      <code><![CDATA[private]]></code>
+    </MissingDependency>
+  </file>
   <file src="lib/Controller/MailController.php">
-    <InvalidDocblock>
-      <code>public function __construct(string $appName,</code>
-    </InvalidDocblock>
+    <MissingDependency>
+      <code><![CDATA[$this->timeFactory]]></code>
+      <code><![CDATA[private]]></code>
+    </MissingDependency>
   </file>
   <file src="lib/Controller/PasswordController.php">
+    <InvalidParamDefault>
+      <code><![CDATA[string]]></code>
+    </InvalidParamDefault>
+    <RedundantCast>
+      <code><![CDATA[(string)$this->request->getRequestUri()]]></code>
+      <code><![CDATA[(string)$this->request->getRequestUri()]]></code>
+      <code><![CDATA[(string)$this->request->getRequestUri()]]></code>
+      <code><![CDATA[(string)$this->request->getRequestUri()]]></code>
+      <code><![CDATA[(string)$this->request->getRequestUri()]]></code>
+      <code><![CDATA[(string)$this->request->getRequestUri()]]></code>
+    </RedundantCast>
     <UndefinedClass>
-      <code>IProvider</code>
-      <code>\OC</code>
-    </UndefinedClass>
-    <UndefinedDocblockClass>
       <code><![CDATA[$this->tokenProvider]]></code>
-      <code>IProvider</code>
-    </UndefinedDocblockClass>
+      <code><![CDATA[private]]></code>
+    </UndefinedClass>
+    <UndefinedInterfaceMethod>
+      <code><![CDATA[checkPasswordNoLogging]]></code>
+      <code><![CDATA[completeLogin]]></code>
+      <code><![CDATA[createSessionToken]]></code>
+      <code><![CDATA[unsetMagicInCookie]]></code>
+    </UndefinedInterfaceMethod>
   </file>
   <file src="lib/Controller/SettingsController.php">
+    <MissingDependency>
+      <code><![CDATA[protected]]></code>
+    </MissingDependency>
+    <RedundantCast>
+      <code><![CDATA[(string)$email]]></code>
+    </RedundantCast>
     <UndefinedClass>
-      <code>\OC</code>
+      <code><![CDATA[\OC]]></code>
     </UndefinedClass>
+  </file>
+  <file src="lib/Event/LoginListener.php">
+    <MissingDependency>
+      <code><![CDATA[$this->timeFactory]]></code>
+      <code><![CDATA[Event]]></code>
+      <code><![CDATA[ITimeFactory]]></code>
+      <code><![CDATA[ITimeFactory]]></code>
+      <code><![CDATA[LoginListener]]></code>
+    </MissingDependency>
   </file>
   <file src="lib/Mailer/SetPasswordMailHelper.php">
     <UndefinedClass>
-      <code>ThemingDefaults</code>
+      <code><![CDATA[ThemingDefaults]]></code>
     </UndefinedClass>
     <UndefinedDocblockClass>
       <code><![CDATA[$this->themingDefaults]]></code>
       <code><![CDATA[$this->themingDefaults]]></code>
-      <code>ThemingDefaults</code>
+      <code><![CDATA[ThemingDefaults]]></code>
     </UndefinedDocblockClass>
   </file>
   <file src="lib/Mailer/VerifyMailHelper.php">
     <InvalidArrayOffset>
       <code><![CDATA[[$user->getEMailAddress() => $user->getDisplayName()]]]></code>
     </InvalidArrayOffset>
+    <MissingDependency>
+      <code><![CDATA[$this->timeFactory]]></code>
+      <code><![CDATA[ITimeFactory]]></code>
+      <code><![CDATA[ITimeFactory]]></code>
+    </MissingDependency>
     <UndefinedClass>
-      <code>ThemingDefaults</code>
+      <code><![CDATA[ThemingDefaults]]></code>
     </UndefinedClass>
     <UndefinedDocblockClass>
       <code><![CDATA[$this->themingDefaults]]></code>
@@ -45,7 +101,12 @@
       <code><![CDATA[$this->themingDefaults]]></code>
       <code><![CDATA[$this->themingDefaults]]></code>
       <code><![CDATA[$this->themingDefaults]]></code>
-      <code>ThemingDefaults</code>
+      <code><![CDATA[ThemingDefaults]]></code>
     </UndefinedDocblockClass>
+  </file>
+  <file src="lib/Settings/Admin.php">
+    <RedundantCast>
+      <code><![CDATA[(string)$this->secureRandom->generate(10)]]></code>
+    </RedundantCast>
   </file>
 </files>

@@ -2,25 +2,8 @@
 
 declare(strict_types=1);
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 namespace OCA\Preferred_Providers\BackgroundJob;
@@ -48,26 +31,24 @@ class ExpireUnverifiedAccounts extends TimedJob {
 	/** @var IConfig */
 	private $config;
 
-	/** @var LoggerInterface */
-	private $logger;
-
 	/** @var ITimeFactory */
 	private $timeFactory;
 
 	/** @var IDBConnection */
 	private $connection;
 
-	/** @var VerifyMailHelper */
-	private $mailHelper;
-
-	public function __construct(ITimeFactory $timeFactory, IConfig $config, LoggerInterface $logger, IDBConnection $connection, VerifyMailHelper $mailHelper) {
+	public function __construct(
+		ITimeFactory $timeFactory,
+		IConfig $config,
+		private LoggerInterface $logger,
+		IDBConnection $connection,
+		private VerifyMailHelper $mailHelper,
+	) {
 		parent::__construct($timeFactory);
 
 		$this->appName = 'preferred_providers';
 		$this->config = $config;
-		$this->logger = $logger;
 		$this->connection = $connection;
-		$this->mailHelper = $mailHelper;
 
 		// Run once per 15 minutes
 		$this->setInterval(15 * 60);
@@ -76,6 +57,7 @@ class ExpireUnverifiedAccounts extends TimedJob {
 	/**
 	 * @return void
 	 */
+	#[\Override]
 	public function run($argument) {
 		// process if token is 5min old
 		$users = $this->getUsersForUserLowerThanValue($this->appName, 'disable_user_after', strval(time()));
@@ -93,8 +75,8 @@ class ExpireUnverifiedAccounts extends TimedJob {
 	 * @return array of user IDs
 	 */
 	private function getUsersForUserLowerThanValue($appName, $key, $value) {
-		$sql = 'SELECT `userid` FROM `*PREFIX*preferences` ' .
-			'WHERE `appid` = ? AND `configkey` = ? ';
+		$sql = 'SELECT `userid` FROM `*PREFIX*preferences` '
+			. 'WHERE `appid` = ? AND `configkey` = ? ';
 
 		if ($this->config->getSystemValueString('dbtype', 'sqlite') === 'oci') {
 			//oracle hack: need to explicitly cast CLOB to CHAR for comparison

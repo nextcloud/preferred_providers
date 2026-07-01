@@ -1,32 +1,17 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 namespace OCA\Preferred_Providers\Controller;
 
 use OCA\Preferred_Providers\Mailer\VerifyMailHelper;
 use OCP\App\IAppManager;
+use OCP\AppFramework\Http\Attribute\ApiRoute;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\AppFramework\OCS\OCSBadRequestException;
@@ -36,90 +21,32 @@ use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\IConfig;
 use OCP\IGroupManager;
 use OCP\IRequest;
-use OCP\IURLGenerator;
 use OCP\IUserManager;
-use OCP\IUserSession;
 use OCP\Notification\IManager;
 use OCP\Security\ISecureRandom;
 use Psr\Log\LoggerInterface;
 
 class SettingsController extends OCSController {
 
-	/** @var string */
-	protected $appName;
+	protected string $appRoot;
 
-	/** @var string */
-	protected $appRoot;
+	protected string $serverRoot;
 
-	/** @var string */
-	protected $serverRoot;
-
-	/** @var IConfig */
-	private $config;
-
-	/** @var IUserManager */
-	private $userManager;
-
-	/** @var IGroupManager */
-	private $groupManager;
-
-	/** @var LoggerInterface */
-	private $logger;
-
-	/** @var ITimeFactory */
-	protected $timeFactory;
-
-	/** @var IAppManager */
-	private $appManager;
-
-	/** @var ISecureRandom */
-	private $secureRandom;
-
-	/** @var IManager */
-	private $notificationsManager;
-
-	/** @var VerifyMailHelper */
-	private $verifyMailHelper;
-
-	/**
-	 * Account constructor.
-	 *
-	 * @param string $appName
-	 * @param IRequest $request
-	 * @param IConfig $config
-	 * @param IUserManager $userManager
-	 * @param IGroupManager $groupManager
-	 * @param LoggerInterface $logger
-	 * @param IURLGenerator $urlGenerator
-	 * @param ITimeFactory $timeFactory
-	 * @param IUserSession $userSession
-	 * @param IAppManager $appManager
-	 * @param ISecureRandom $secureRandom
-	 * @param IManager $notificationsManager
-	 * @param VerifyMailHelper $verifyMailHelper
-	 */
-	public function __construct(string $appName,
+	public function __construct(
+		string $appName,
 		IRequest $request,
-		IConfig $config,
-		IUserManager $userManager,
-		IGroupManager $groupManager,
-		LoggerInterface $logger,
-		ITimeFactory $timeFactory,
-		IAppManager $appManager,
-		ISecureRandom $secureRandom,
-		IManager $notificationsManager,
-		VerifyMailHelper $verifyMailHelper) {
+		private readonly IConfig $config,
+		private readonly IUserManager $userManager,
+		private readonly IGroupManager $groupManager,
+		private readonly LoggerInterface $logger,
+		protected ITimeFactory $timeFactory,
+		private readonly IAppManager $appManager,
+		private readonly ISecureRandom $secureRandom,
+		private readonly IManager $notificationsManager,
+		private readonly VerifyMailHelper $verifyMailHelper,
+		private readonly \OCP\IAppConfig $appConfig,
+	) {
 		parent::__construct($appName, $request);
-		$this->appName = $appName;
-		$this->config = $config;
-		$this->userManager = $userManager;
-		$this->groupManager = $groupManager;
-		$this->logger = $logger;
-		$this->timeFactory = $timeFactory;
-		$this->appManager = $appManager;
-		$this->secureRandom = $secureRandom;
-		$this->notificationsManager = $notificationsManager;
-		$this->verifyMailHelper = $verifyMailHelper;
 
 		$this->serverRoot = \OC::$SERVERROOT;
 		$this->appRoot = $this->appManager->getAppPath($this->appName);
@@ -130,9 +57,10 @@ class SettingsController extends OCSController {
 	 *
 	 * @return DataResponse
 	 */
+	#[ApiRoute(verb: 'GET', url: '/api/v1/token/new')]
 	public function resetToken(): DataResponse {
 		$provider_token = md5($this->secureRandom->generate(10));
-		$this->config->setAppValue('preferred_providers', 'provider_token', $provider_token);
+		$this->appConfig->setValueString('preferred_providers', 'provider_token', $provider_token);
 
 		return new DataResponse(['token' => $provider_token]);
 	}
@@ -144,6 +72,7 @@ class SettingsController extends OCSController {
 	 * @return DataResponse
 	 * @throws OCSNotFoundException
 	 */
+	#[ApiRoute(verb: 'POST', url: '/api/v1/groups')]
 	public function setGroups(array $groups = [], string $for = 'all'): DataResponse {
 		foreach ($groups as $groupId) {
 			if (!$this->groupManager->groupExists($groupId)) {
@@ -152,9 +81,9 @@ class SettingsController extends OCSController {
 		}
 
 		if ($for === 'all') {
-			$this->config->setAppValue('preferred_providers', 'provider_groups', implode(',', $groups));
+			$this->appConfig->setValueString('preferred_providers', 'provider_groups', implode(',', $groups));
 		} elseif ($for === 'confirmed' || $for === 'unconfirmed') {
-			$this->config->setAppValue('preferred_providers', 'provider_groups_' . $for, implode(',', $groups));
+			$this->appConfig->setValueString('preferred_providers', 'provider_groups_' . $for, implode(',', $groups));
 		} else {
 			throw new OCSBadRequestException();
 		}
@@ -170,6 +99,7 @@ class SettingsController extends OCSController {
 	 * @throws OCSNotFoundException
 	 * @throws OCSBadRequestException
 	 */
+	#[ApiRoute(verb: 'POST', url: '/api/v1/reactivate')]
 	public function reactivate(string $userId): JSONResponse {
 		$user = $this->userManager->get($userId);
 		if (!$user) {
@@ -181,7 +111,7 @@ class SettingsController extends OCSController {
 		if (!$email) {
 			throw new OCSBadRequestException($userId . ' does not have an email address');
 		}
-		
+
 		// enable if the user was disabled
 		if (!$user->isEnabled()) {
 			$user->setEnabled(true);
@@ -203,7 +133,7 @@ class SettingsController extends OCSController {
 			->setUser($email)
 			->setDateTime(new \DateTime())
 			->setSubject('verify_email')
-			->setObject('verify_email', sha1($email));
+			->setObject('verify_email', sha1((string)$email));
 		$this->notificationsManager->notify($notification);
 
 		return new JSONResponse(['status' => 'success']);

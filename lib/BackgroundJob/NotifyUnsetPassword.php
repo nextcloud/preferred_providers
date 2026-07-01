@@ -2,25 +2,8 @@
 
 declare(strict_types=1);
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 namespace OCA\Preferred_Providers\BackgroundJob;
@@ -38,25 +21,23 @@ class NotifyUnsetPassword extends TimedJob {
 	/** @var string */
 	private $appName;
 
-	/** @var LoggerInterface */
-	private $logger;
-
 	/** @var IDBConnection */
 	private $connection;
 
 	/** @var IConfig */
 	private $config;
 
-	/** @var SetPasswordMailHelper */
-	private $mailHelper;
-
-	public function __construct(ITimeFactory $timeFactory, LoggerInterface $logger, IDBConnection $connection, SetPasswordMailHelper $mailHelper, IConfig $config) {
+	public function __construct(
+		ITimeFactory $timeFactory,
+		private readonly LoggerInterface $logger,
+		IDBConnection $connection,
+		private readonly SetPasswordMailHelper $mailHelper,
+		IConfig $config,
+	) {
 		parent::__construct($timeFactory);
 		$this->appName = 'preferred_providers';
-		$this->logger = $logger;
 		$this->connection = $connection;
 		$this->config = $config;
-		$this->mailHelper = $mailHelper;
 
 		// Run once per 5 minutes
 		$this->setInterval(5 * 60);
@@ -65,6 +46,7 @@ class NotifyUnsetPassword extends TimedJob {
 	/**
 	 * @return void
 	 */
+	#[\Override]
 	public function run($argument) {
 		// process if token is 5min old
 		$users = $this->getUsersForUserLowerThanValue($this->appName, 'remind_password', strval(time() - 5 * 60));
@@ -75,7 +57,7 @@ class NotifyUnsetPassword extends TimedJob {
 				// only send one mail
 				$this->config->deleteUserValue($userId, $this->appName, 'remind_password');
 				$this->logger->debug('Password definition mail sent to ' . $userId);
-			} catch (Exception $e) {
+			} catch (Exception) {
 				$this->logger->debug('Error while sending the password definition mail to  ' . $userId);
 			}
 		}
@@ -90,8 +72,8 @@ class NotifyUnsetPassword extends TimedJob {
 	 * @return array of user IDs
 	 */
 	private function getUsersForUserLowerThanValue($appName, $key, $value) {
-		$sql = 'SELECT `userid` FROM `*PREFIX*preferences` ' .
-			'WHERE `appid` = ? AND `configkey` = ? ';
+		$sql = 'SELECT `userid` FROM `*PREFIX*preferences` '
+			. 'WHERE `appid` = ? AND `configkey` = ? ';
 
 		if ($this->config->getSystemValueString('dbtype', 'sqlite') === 'oci') {
 			//oracle hack: need to explicitly cast CLOB to CHAR for comparison

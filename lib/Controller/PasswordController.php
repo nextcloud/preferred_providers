@@ -1,32 +1,20 @@
 <?php
 
 declare(strict_types=1);
+
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 namespace OCA\Preferred_Providers\Controller;
 
 use OC\Authentication\Token\IProvider;
 use OCP\AppFramework\Controller;
+use OCP\AppFramework\Http\Attribute\AnonRateLimit;
+use OCP\AppFramework\Http\Attribute\FrontpageRoute;
+use OCP\AppFramework\Http\Attribute\NoCSRFRequired;
+use OCP\AppFramework\Http\Attribute\PublicPage;
 use OCP\AppFramework\Http\ContentSecurityPolicy;
 use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\TemplateResponse;
@@ -42,83 +30,23 @@ use Psr\Log\LoggerInterface;
 
 class PasswordController extends Controller {
 
-	/** @var string */
-	protected $appName;
-
-	/** @var IRequest */
-	protected $request;
-
-	/** @var IConfig */
-	private $config;
-
-	/** @var IL10N */
-	private $l10n;
-
-	/** @var IUserManager */
-	private $userManager;
-
-	/** @var ICrypto */
-	private $crypto;
-
-	/** @var IURLGenerator */
-	private $urlGenerator;
-
-	/** @var IUserSession */
-	private $userSession;
-
-	/** @var LoggerInterface */
-	private $logger;
-
-	/** @var IProvider */
-	private $tokenProvider;
-
-	/** @var ISecureRandom */
-	private $secureRandom;
-
-	/**
-	 * Account constructor.
-	 *
-	 * @param string $appName
-	 * @param IRequest $request
-	 * @param IConfig $config
-	 * @param IL10N $l10n
-	 * @param IUserManager $userManager
-	 * @param ICrypto $crypto
-	 * @param IURLGenerator $urlGenerator
-	 * @param IUserSession $userSession
-	 * @param LoggerInterface $logger
-	 * @param IProvider $tokenProvider
-	 * @param ISecureRandom $secureRandom
-	 */
-	public function __construct(string $appName,
+	public function __construct(
+		string $appName,
 		IRequest $request,
-		IConfig $config,
-		IL10N $l10n,
-		IUserManager $userManager,
-		ICrypto $crypto,
-		IURLGenerator $urlGenerator,
-		IUserSession $userSession,
-		LoggerInterface $logger,
-		IProvider $tokenProvider,
-		ISecureRandom $secureRandom) {
+		private readonly IConfig $config,
+		private readonly IL10N $l10n,
+		private readonly IUserManager $userManager,
+		private readonly ICrypto $crypto,
+		private readonly IURLGenerator $urlGenerator,
+		private readonly IUserSession $userSession,
+		private readonly LoggerInterface $logger,
+		private readonly IProvider $tokenProvider,
+		private readonly ISecureRandom $secureRandom,
+	) {
 		parent::__construct($appName, $request);
-		$this->appName = $appName;
-		$this->request = $request;
-		$this->config = $config;
-		$this->l10n = $l10n;
-		$this->userManager = $userManager;
-		$this->crypto = $crypto;
-		$this->urlGenerator = $urlGenerator;
-		$this->userSession = $userSession;
-		$this->logger = $logger;
-		$this->tokenProvider = $tokenProvider;
-		$this->secureRandom = $secureRandom;
 	}
 
 	/**
-	 * @NoCSRFRequired
-	 * @PublicPage
-	 *
 	 * Display password definition template
 	 *
 	 * @param string $token The security token
@@ -126,6 +54,9 @@ class PasswordController extends Controller {
 	 * @param string $ocs is this a ocs api request
 	 * @return TemplateResponse
 	 */
+	#[NoCSRFRequired]
+	#[PublicPage]
+	#[FrontpageRoute(verb: 'GET', url: '/password/set/{email}/{token}')]
 	public function setPassword(string $token, string $email, $ocs = false) {
 		try {
 			$this->checkPasswordToken($token, $email);
@@ -139,12 +70,11 @@ class PasswordController extends Controller {
 	}
 
 	/**
-	 * @NoCSRFRequired
-	 *
-	 * @PublicPage
-	 *
 	 * shortcut for secondary route with flow parameter
 	 */
+	#[NoCSRFRequired]
+	#[PublicPage]
+	#[FrontpageRoute(verb: 'GET', url: '/password/set/{email}/{token}/flow/{flow}')]
 	public function setPasswordFlow(string $token, string $email, string $flow = ''): TemplateResponse {
 		try {
 			$this->checkPasswordToken($token, $email);
@@ -158,21 +88,16 @@ class PasswordController extends Controller {
 	}
 
 	/**
-	 * @NoCSRFRequired
-	 *
-	 * @PublicPage
-	 *
 	 * shortcut for secondary route with ocs api parameter
 	 */
+	#[NoCSRFRequired]
+	#[PublicPage]
+	#[FrontpageRoute(verb: 'GET', url: '/password/set/{email}/{token}/{ocs}')]
 	public function setPasswordOcs(string $token, string $email, $ocs = false): TemplateResponse {
 		return $this->setPassword($token, $email, $ocs);
 	}
 
 	/**
-	 * @NoCSRFRequired
-	 * @PublicPage
-	 * @AnonRateThrottle(limit=5, period=1)
-	 *
 	 * Display password definition template
 	 *
 	 * @param string $token The security token
@@ -182,6 +107,10 @@ class PasswordController extends Controller {
 	 * @param string $flow registration flow variant
 	 * @return TemplateResponse|RedirectResponse
 	 */
+	#[NoCSRFRequired]
+	#[PublicPage]
+	#[AnonRateLimit(limit: 5, period: 1)]
+	#[FrontpageRoute(verb: 'POST', url: '/password/submit/{token}')]
 	public function submitPassword(string $token, string $email, string $password, string $ocsapirequest = '', string $flow = '') {
 		// process token validation
 		try {
@@ -207,7 +136,7 @@ class PasswordController extends Controller {
 			$this->config->deleteUserValue($email, $this->appName, 'set_password');
 			$this->config->deleteUserValue($email, $this->appName, 'remind_password');
 			// logout and ignore failure
-			@\OC::$server->getUserSession()->unsetMagicInCookie();
+			@\OCP\Server::get(\OCP\IUserSession::class)->unsetMagicInCookie();
 		} catch (\Exception $e) {
 			return $this->generateTemplate($token, $email, $e->getMessage(), $ocsapirequest === '1', $flow);
 		}
@@ -244,7 +173,7 @@ class PasswordController extends Controller {
 			$this->appName,
 			'password-public',
 			[
-				'link' => $this->urlGenerator->linkToRoute($this->appName . '.password.submit_password', ['token' => $token]),
+				'link' => $this->urlGenerator->linkToRoute($this->appName . '.password.submitpassword', ['token' => $token]),
 				'email' => $email,
 				'ocsapirequest' => $ocsapirequest,
 				'flow' => $flow,
@@ -304,7 +233,7 @@ class PasswordController extends Controller {
 		try {
 			$encryptedToken = $this->config->getUserValue($userId, $this->appName, 'set_password');
 			$decryptedToken = $this->crypto->decrypt($encryptedToken, $userId . $this->config->getSystemValue('secret'));
-		} catch (\Exception $e) {
+		} catch (\Exception) {
 			throw new \Exception($this->l10n->t('The token is invalid'));
 		}
 
@@ -333,7 +262,7 @@ class PasswordController extends Controller {
 			$loginResult = $this->userManager->checkPasswordNoLogging($email, $password);
 			$this->userSession->completeLogin($loginResult, ['loginName' => $email, 'password' => $password]);
 			$this->userSession->createSessionToken($this->request, $loginResult->getUID(), $email, $password);
-		} catch (\Exception $e) {
+		} catch (\Exception) {
 			$this->logger->debug('Unable to perform auto login for ' . $email, ['app' => $this->appName]);
 		}
 	}
@@ -372,10 +301,10 @@ class PasswordController extends Controller {
 	private function getServerPath() {
 		$serverPostfix = '';
 
-		if (strpos($this->request->getRequestUri(), '/index.php') !== false) {
-			$serverPostfix = substr($this->request->getRequestUri(), 0, strpos($this->request->getRequestUri(), '/index.php'));
-		} elseif (strpos($this->request->getRequestUri(), '/login/flow') !== false) {
-			$serverPostfix = substr($this->request->getRequestUri(), 0, strpos($this->request->getRequestUri(), '/login/flow'));
+		if (str_contains((string)$this->request->getRequestUri(), '/index.php')) {
+			$serverPostfix = substr((string)$this->request->getRequestUri(), 0, strpos((string)$this->request->getRequestUri(), '/index.php'));
+		} elseif (str_contains((string)$this->request->getRequestUri(), '/login/flow')) {
+			$serverPostfix = substr((string)$this->request->getRequestUri(), 0, strpos((string)$this->request->getRequestUri(), '/login/flow'));
 		}
 
 		$protocol = $this->request->getServerProtocol();

@@ -1,26 +1,10 @@
 <?php
 
 declare(strict_types=1);
+
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 namespace OCA\Preferred_Providers\Controller;
@@ -28,6 +12,11 @@ namespace OCA\Preferred_Providers\Controller;
 use OCA\Preferred_Providers\Mailer\VerifyMailHelper;
 use OCP\AppFramework\ApiController;
 use OCP\AppFramework\Http;
+use OCP\AppFramework\Http\Attribute\ApiRoute;
+use OCP\AppFramework\Http\Attribute\CORS;
+use OCP\AppFramework\Http\Attribute\NoAdminRequired;
+use OCP\AppFramework\Http\Attribute\NoCSRFRequired;
+use OCP\AppFramework\Http\Attribute\PublicPage;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\OCS\OCSForbiddenException;
 use OCP\AppFramework\Utility\ITimeFactory;
@@ -47,96 +36,26 @@ class AccountController extends ApiController {
 	/* delay for the user to confirm his email */
 	public const validateEmailDelay = (6 * 60 * 60);
 
-	/** @var string */
-	protected $appName;
-
-	/** @var IConfig */
-	private $config;
-
-	/** @var IUserManager */
-	private $userManager;
-
-	/** @var IGroupManager */
-	private $groupManager;
-
-	/** @var IMailer */
-	private $mailer;
-
-	/** @var VerifyMailHelper */
-	private $verifyMailHelper;
-
-	/** @var LoggerInterface */
-	private $logger;
-
-	/** @var IURLGenerator */
-	private $urlGenerator;
-
-	/** @var ITimeFactory */
-	private $timeFactory;
-
-	/** @var ICrypto */
-	private $crypto;
-
-	/** @var ISecureRandom */
-	private $secureRandom;
-
-	/** @var IManager */
-	private $notificationsManager;
-
-	/**
-	 * Account constructor.
-	 *
-	 * @param string $appName
-	 * @param IRequest $request
-	 * @param IConfig $config
-	 * @param IUserManager $userManager
-	 * @param IGroupManager $groupManager
-	 * @param IMailer $mailer
-	 * @param VerifyMailHelper $verifyMailHelper
-	 * @param LoggerInterface $logger
-	 * @param IURLGenerator $urlGenerator
-	 * @param ITimeFactory $timeFactory
-	 * @param ICrypto $crypto
-	 * @param ISecureRandom $secureRandom
-	 * @param IManager $notificationsManager
-	 */
-	public function __construct(string $appName,
+	public function __construct(
+		string $appName,
 		IRequest $request,
-		IConfig $config,
-		IUserManager $userManager,
-		IGroupManager $groupManager,
-		IMailer $mailer,
-		VerifyMailHelper $verifyMailHelper,
-		LoggerInterface $logger,
-		IURLGenerator $urlGenerator,
-		ITimeFactory $timeFactory,
-		ICrypto $crypto,
-		ISecureRandom $secureRandom,
-		IManager $notificationsManager) {
+		private readonly IConfig $config,
+		private readonly IUserManager $userManager,
+		private readonly IGroupManager $groupManager,
+		private readonly IMailer $mailer,
+		private readonly VerifyMailHelper $verifyMailHelper,
+		private readonly LoggerInterface $logger,
+		private readonly IURLGenerator $urlGenerator,
+		private readonly ITimeFactory $timeFactory,
+		private readonly ICrypto $crypto,
+		private readonly ISecureRandom $secureRandom,
+		private readonly IManager $notificationsManager,
+		private readonly \OCP\IAppConfig $appConfig,
+	) {
 		parent::__construct($appName, $request, 'POST');
-		$this->appName = $appName;
-		$this->config = $config;
-		$this->userManager = $userManager;
-		$this->groupManager = $groupManager;
-		$this->mailer = $mailer;
-		$this->verifyMailHelper = $verifyMailHelper;
-		$this->logger = $logger;
-		$this->urlGenerator = $urlGenerator;
-		$this->timeFactory = $timeFactory;
-		$this->crypto = $crypto;
-		$this->secureRandom = $secureRandom;
-		$this->notificationsManager = $notificationsManager;
 	}
 
 	/**
-	 * @NoAdminRequired
-	 *
-	 * @NoCSRFRequired
-	 *
-	 * @PublicPage
-	 *
-	 * @CORS
-	 *
 	 * @param string $token The security token required
 	 * @param string $email The email to create an account for
 	 * @param string $flow The registration flow variant
@@ -145,9 +64,14 @@ class AccountController extends ApiController {
 	 *
 	 * @throws OCSForbiddenException
 	 */
+	#[NoAdminRequired]
+	#[NoCSRFRequired]
+	#[PublicPage]
+	#[CORS]
+	#[ApiRoute(verb: 'POST', url: '/request/{token}', root: '/account')]
 	public function requestAccount(string $token = '', string $email = '', string $flow = ''): DataResponse {
 		// checking if valid token
-		$provider_token = $this->config->getAppValue($this->appName, 'provider_token');
+		$provider_token = $this->appConfig->getValueString($this->appName, 'provider_token');
 		if ($provider_token === '' || $provider_token !== $token) {
 			return new DataResponse(['data' => ['message' => 'invalid token']], Http::STATUS_UNAUTHORIZED);
 		}
@@ -169,9 +93,9 @@ class AccountController extends ApiController {
 			$newUser = $this->userManager->createUser($email, $password);
 
 			// add user to groups
-			$groups = $this->config->getAppValue($this->appName, 'provider_groups', '');
-			$unconfirmedGroups = $this->config->getAppValue($this->appName, 'provider_groups_unconfirmed', '');
-			
+			$groups = $this->appConfig->getValueString($this->appName, 'provider_groups', '');
+			$unconfirmedGroups = $this->appConfig->getValueString($this->appName, 'provider_groups_unconfirmed', '');
+
 			if (!empty($groups)) {
 				$groupIds = array_merge(explode(',', $groups), explode(',', $unconfirmedGroups));
 				foreach ($groupIds as $groupId) {
@@ -240,10 +164,10 @@ class AccountController extends ApiController {
 		$this->config->setUserValue($email, $this->appName, 'remind_password', strval(time()));
 
 		if ($flow === 'V3') {
-			return $this->urlGenerator->linkToRouteAbsolute($this->appName . '.password.set_password_flow', ['email' => $email, 'token' => $token, 'flow' => $flow]);
+			return $this->urlGenerator->linkToRouteAbsolute($this->appName . '.password.setpasswordflow', ['email' => $email, 'token' => $token, 'flow' => $flow]);
 		}
 
-		return $this->urlGenerator->linkToRouteAbsolute($this->appName . '.password.set_password', ['email' => $email, 'token' => $token]);
+		return $this->urlGenerator->linkToRouteAbsolute($this->appName . '.password.setpassword', ['email' => $email, 'token' => $token]);
 	}
 
 	/**
@@ -263,9 +187,9 @@ class AccountController extends ApiController {
 	private function generateRandomToken(): string {
 		return $this->secureRandom->generate(
 			21,
-			ISecureRandom::CHAR_DIGITS .
-			ISecureRandom::CHAR_LOWER .
-			ISecureRandom::CHAR_UPPER
+			ISecureRandom::CHAR_DIGITS
+			. ISecureRandom::CHAR_LOWER
+			. ISecureRandom::CHAR_UPPER
 		);
 	}
 }
