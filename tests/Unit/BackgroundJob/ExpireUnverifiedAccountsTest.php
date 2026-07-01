@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace OCA\Preferred_Providers\Tests\Unit\BackgroundJob;
 
+use OCA\Preferred_Providers\AppInfo\Application;
 use OCA\Preferred_Providers\BackgroundJob\ExpireUnverifiedAccounts;
 use OCA\Preferred_Providers\Mailer\VerifyMailHelper;
 use OCP\AppFramework\Utility\ITimeFactory;
@@ -96,6 +97,10 @@ class ExpireUnverifiedAccountsTest extends TestCase {
 
 		$this->config->expects($this->atLeastOnce())
 			->method('deleteUserValue');
+		// the account is flagged as auto-disabled by this app for self-service reactivation
+		$this->config->expects($this->once())
+			->method('setUserValue')
+			->with('alice', Application::APP_ID, 'pp_disabled', '1');
 		$this->mailHelper->method('generateTemplate')
 			->with($user, false, true)
 			->willReturn($this->createMock(\OCP\Mail\IEMailTemplate::class));
