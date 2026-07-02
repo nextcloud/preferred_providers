@@ -19,6 +19,7 @@ path = [
 	".php-cs-fixer.dist.php",
 	"Makefile",
 	"README.md",
+	"CHANGELOG.md",
 	"appinfo/info.xml",
 	"composer.json",
 	"composer.lock",

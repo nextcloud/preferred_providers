@@ -4,7 +4,7 @@
     <name>Preferred Providers</name>
     <summary>Allow Nextcloud to request user accounts</summary>
     <description><![CDATA[Registration handling app for Nextcloud partners only]]></description>
-    <version>1.20.0-dev.0</version>
+    <version>2.0.0</version>
     <licence>agpl</licence>
     <author>John Molakvoæ</author>
     <namespace>Preferred_Providers</namespace>
