@@ -32,7 +32,7 @@ trait ExpireUserTrait {
 		$user->setEnabled(false);
 		// flag the account as auto-disabled by this app, so it can be told apart
 		// from admin-disabled accounts and offered self-service reactivation
-		$this->config->setUserValue($userId, $this->appName, 'pp_disabled', '1');
+		$this->config->setUserValue($userId, Application::APP_ID, 'pp_disabled', '1');
 
 		// removing token to avoid conflict with further manual manipulation of the user
 		$this->config->deleteUserValue($userId, Application::APP_ID, 'disable_user_after');

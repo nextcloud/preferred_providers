@@ -1,0 +1,21 @@
+{
+	"name": "preferred_providers",
+	"description": "End-to-end tests for the Preferred Providers app",
+	"license": "AGPL-3.0-or-later",
+	"private": true,
+	"type": "module",
+	"engines": {
+		"node": "^24.0.0",
+		"npm": "^11.0.0"
+	},
+	"scripts": {
+		"start:nextcloud": "node playwright/start-nextcloud-server.mjs",
+		"test:e2e": "playwright test",
+		"test:e2e:ui": "playwright test --ui",
+		"test:e2e:report": "playwright show-report"
+	},
+	"devDependencies": {
+		"@nextcloud/e2e-test-server": "^0.4.0",
+		"@playwright/test": "^1.61.1"
+	}
+}

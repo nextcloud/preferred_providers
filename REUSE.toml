@@ -24,6 +24,8 @@ path = [
 	"composer.lock",
 	"vendor-bin/**/composer.json",
 	"tests/psalm-baseline.xml",
+	"package.json",
+	"package-lock.json",
 ]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2018 Nextcloud GmbH and Nextcloud contributors"
