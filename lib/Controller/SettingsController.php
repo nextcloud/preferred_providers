@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace OCA\Preferred_Providers\Controller;
 
+use OCA\Preferred_Providers\AppInfo\Application;
 use OCA\Preferred_Providers\Mailer\VerifyMailHelper;
 use OCP\App\IAppManager;
 use OCP\AppFramework\Http\Attribute\ApiRoute;
@@ -60,7 +61,7 @@ class SettingsController extends OCSController {
 	#[ApiRoute(verb: 'GET', url: '/api/v1/token/new')]
 	public function resetToken(): DataResponse {
 		$provider_token = md5($this->secureRandom->generate(10));
-		$this->appConfig->setValueString('preferred_providers', 'provider_token', $provider_token);
+		$this->appConfig->setValueString(Application::APP_ID, 'provider_token', $provider_token);
 
 		return new DataResponse(['token' => $provider_token]);
 	}
@@ -81,9 +82,9 @@ class SettingsController extends OCSController {
 		}
 
 		if ($for === 'all') {
-			$this->appConfig->setValueString('preferred_providers', 'provider_groups', implode(',', $groups));
+			$this->appConfig->setValueString(Application::APP_ID, 'provider_groups', implode(',', $groups));
 		} elseif ($for === 'confirmed' || $for === 'unconfirmed') {
-			$this->appConfig->setValueString('preferred_providers', 'provider_groups_' . $for, implode(',', $groups));
+			$this->appConfig->setValueString(Application::APP_ID, 'provider_groups_' . $for, implode(',', $groups));
 		} else {
 			throw new OCSBadRequestException();
 		}

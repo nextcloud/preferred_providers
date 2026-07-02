@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace OCA\Preferred_Providers\Helper;
 
 use Exception;
+use OCA\Preferred_Providers\AppInfo\Application;
 
 trait ExpireUserTrait {
 
@@ -34,7 +35,7 @@ trait ExpireUserTrait {
 		$this->config->setUserValue($userId, $this->appName, 'pp_disabled', '1');
 
 		// removing token to avoid conflict with further manual manipulation of the user
-		$this->config->deleteUserValue($userId, $this->appName, 'disable_user_after');
+		$this->config->deleteUserValue($userId, Application::APP_ID, 'disable_user_after');
 		$this->logger->info('User ' . $userId . ' failed to verify email in time and has been disabled');
 
 		// send email
@@ -43,7 +44,7 @@ trait ExpireUserTrait {
 			try {
 				$this->mailHelper->sendMail($user, $emailTemplate);
 				// only send one mail
-				$this->config->deleteUserValue($userId, $this->appName, 'remind_password');
+				$this->config->deleteUserValue($userId, Application::APP_ID, 'remind_password');
 				$this->logger->debug('Unverified warning mail sent to ' . $userId);
 			} catch (Exception) {
 				$this->logger->error('Error while sending the failed to verify warning mail to  ' . $userId);
