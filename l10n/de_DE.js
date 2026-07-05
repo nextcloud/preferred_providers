@@ -27,7 +27,7 @@ OC.L10N.register(
     "Please verify your email address" : "Bitte überprüfen Sie Ihre E-Mail-Adresse",
     "Preferred providers" : "Bevorzugte Anbieter",
     "Preferred Providers" : "Bevorzugte Anbieter",
-    "Allow Nextcloud to request user accounts" : "Nextcloud die Anforderung Benutzerkonten erlauben",
+    "Allow Nextcloud to request user accounts" : "Nextcloud erlauben, Benutzerkonten anzufordern",
     "Registration handling app for Nextcloud partners only" : "App zur Registrierungsabwicklung nur für Nextcloud-Partner",
     "Log in" : "Anmelden",
     "Your account is ready." : "Ihr Konto ist eingerichtet.",
