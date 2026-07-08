@@ -26,7 +26,7 @@ OC.L10N.register(
     "Please verify your email address" : "Підтвердіть вашу адресу ел.пошти",
     "Preferred providers" : "Вибрані постачальники",
     "Preferred Providers" : "Вибрані постачальники",
-    "Registration handling app for Nextcloud partners only" : "Додаток для обробки реєстрації тільки для партнерів Nextcloud",
+    "Registration handling app for Nextcloud partners only" : "Застосунок для обробки реєстрації тільки для партнерів Nextcloud",
     "Log in" : "Увійти",
     "Set your password" : "Встановіть свій пароль",
     "Account name or email" : "Ім'я користувача або електронна пошта",
