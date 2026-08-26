@@ -17,5 +17,6 @@
 	"devDependencies": {
 		"@nextcloud/e2e-test-server": "^0.4.0",
 		"@playwright/test": "^1.61.1"
-	}
+	},
+	"version": "2.1.0-dev.0"
 }
