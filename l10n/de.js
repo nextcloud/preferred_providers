@@ -41,7 +41,7 @@ OC.L10N.register(
     "Enter your email address" : "Gib deine E-Mail-Adresse ein",
     "Send reactivation email" : "Reaktivierungs-E-Mail senden",
     "Preferred providers token" : "Bevorzugte Anbieter-Token",
-    "WARNING! This token is very important and must be handled carefully. You should only give it to a Nextcloud official!" : "ACHTUNG! Dieser Token ist sehr wichtig und muss vorsichtig behandelt werden. du solltest diesen nur an Mitarbeiter von Nextcloud herausgeben!",
+    "WARNING! This token is very important and must be handled carefully. You should only give it to a Nextcloud official!" : "ACHTUNG! Dieser Token ist sehr wichtig und muss vorsichtig behandelt werden. Du solltest diesen nur an Mitarbeiter von Nextcloud herausgeben!",
     "Your provider token" : "Dein Anbieter-Token",
     "Reset your token" : "Token zurücksetzen",
     "Preferred providers groups" : "Bevorzugte Anbieter-Gruppen",
