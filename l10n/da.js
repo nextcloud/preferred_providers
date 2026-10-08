@@ -29,7 +29,7 @@ OC.L10N.register(
     "Preferred Providers" : "Foretrukne udbydere",
     "Allow Nextcloud to request user accounts" : "Tillad Nextcloud at anmode om brugerkonti",
     "Registration handling app for Nextcloud partners only" : "App til håndtering af tilmeldinger, kun for Nextcloud-partnere",
-    "Log in" : "Log på",
+    "Log in" : "Log ind",
     "Your account is ready." : "Din konto er klar.",
     "Set your password" : "Angiv din adgangskode",
     "Account name or email" : "Brugernavn eller e-mail",
