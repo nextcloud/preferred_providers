@@ -66,7 +66,7 @@ class Notifier implements INotifier {
 	 * @param string $languageCode The code of the language that should be used to prepare the notification
 	 * @return INotification
 	 * @throws \InvalidArgumentException When the notification was not prepared by a notifier
-	 * @throws OCP\Notification\UnknownNotificationException When the notification is unrelated to this app
+	 * @throws UnknownNotificationException When the notification is unrelated to this app
 	 */
 	#[\Override]
 	public function prepare(INotification $notification, string $languageCode): INotification {
