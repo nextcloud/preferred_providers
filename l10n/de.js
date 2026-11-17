@@ -20,7 +20,7 @@ OC.L10N.register(
     "Just one step left to complete your account setup." : "Nur noch ein Schritt um die Einrichtung deines Kontos abzuschließen.",
     "Click here to verify your email address" : "Klicke hier, um deine E-Mail-Adresse zu überprüfen",
     "Your %s account has been disabled" : "Dein %s-Konto wurde deaktiviert",
-    "Your %s account %s has been disabled because it was not verified in time." : "Dein %sKonto%s wurde deaktiviert, weil es nicht rechtzeitig bestätigt wurde.",
+    "Your %s account %s has been disabled because it was not verified in time." : "Dein %s-Konto %s wurde deaktiviert, weil es nicht rechtzeitig bestätigt wurde.",
     "Reactivate your account" : "Aktiviere dein Konto erneut",
     "Simple signup" : "Einfaches Anmelden",
     "A confirmation mail was sent to {email}. Make sure to confirm the account within 6 hours." : "Eine Bestätigungs-E-Mail wurde an {email} gesendet. Aktiviere das Konto innerhalb der nächsten 6 Stunden.",
