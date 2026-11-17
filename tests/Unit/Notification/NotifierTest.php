@@ -16,6 +16,7 @@ use OCP\IURLGenerator;
 use OCP\IUserManager;
 use OCP\L10N\IFactory;
 use OCP\Notification\INotification;
+use OCP\Notification\UnknownNotificationException;
 use PHPUnit\Framework\MockObject\MockObject;
 use Test\TestCase;
 
@@ -60,8 +61,7 @@ class NotifierTest extends TestCase {
 		$notification = $this->createMock(INotification::class);
 		$notification->method('getApp')->willReturn('other_app');
 
-		$this->expectException(\InvalidArgumentException::class);
-		$this->expectExceptionMessage('Incorrect app');
+		$this->expectException(UnknownNotificationException::class);
 
 		$this->notifier->prepare($notification, 'en');
 	}

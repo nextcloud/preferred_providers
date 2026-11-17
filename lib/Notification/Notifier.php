@@ -13,6 +13,7 @@ use OCP\IUserManager;
 use OCP\L10N\IFactory;
 use OCP\Notification\INotification;
 use OCP\Notification\INotifier;
+use OCP\Notification\UnknownNotificationException;
 
 class Notifier implements INotifier {
 
@@ -65,11 +66,12 @@ class Notifier implements INotifier {
 	 * @param string $languageCode The code of the language that should be used to prepare the notification
 	 * @return INotification
 	 * @throws \InvalidArgumentException When the notification was not prepared by a notifier
+	 * @throws UnknownNotificationException When the notification is unrelated to this app
 	 */
 	#[\Override]
 	public function prepare(INotification $notification, string $languageCode): INotification {
 		if ($notification->getApp() !== $this->appName) {
-			throw new \InvalidArgumentException('Incorrect app');
+			throw new UnknownNotificationException();
 		}
 
 		$l = $this->l10nFactory->get($this->appName, $languageCode);
