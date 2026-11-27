@@ -6,6 +6,8 @@
 		"sort-packages": true
 	},
 	"require-dev": {
-		"nextcloud/rector": "^0.5"
+		"nextcloud/rector": "^0.5",
+		"phpstan/phpstan": "<2.3",
+		"rector/rector": "<2.8"
 	}
 }
